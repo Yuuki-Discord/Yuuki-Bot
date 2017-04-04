@@ -1,0 +1,8 @@
+*.yml
+!config/config.sample.yml
+# IDEs
+.idea/*
+
+Gemfile.lock
+
+/modules/helper/bots.rb

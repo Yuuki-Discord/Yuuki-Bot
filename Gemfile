@@ -1,0 +1,7 @@
+source 'http://rubygems.org'
+gem 'discordrb', git: 'https://github.com/meew0/discordrb.git'
+gem 'rumoji'
+gem 'rainbow'
+gem 'rake'
+gem 'rqrcode'
+gem 'flippy'
