@@ -84,7 +84,7 @@ module YuukiBot
       code: proc {
         p 'a'
       },
-        triggers: ['stats', 'statistics', 'stat', 's']
+        triggers: ['stats', 'statistics', 'stat']
     }
 
   end

@@ -4,7 +4,7 @@ module YuukiBot
   module Utility
 
     Commandrb.commands[:avatar] = {
-      code: proc { |event, _args| # Let people know the bot is working on something.
+      code: proc { |event, _args| 
 
         user = begin
           mention.nil? || mention == '' ? event.message.author : event.server.member(event.message.mentions[0])

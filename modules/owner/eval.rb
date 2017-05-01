@@ -4,7 +4,7 @@ module YuukiBot
   module Owner
 
     Commandrb.commands[:eval] = {
-      code: proc { |_, args|
+      code: proc { |event, args|
         eval args.join(' ')
       },
       triggers: ['eval'],
