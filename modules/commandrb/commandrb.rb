@@ -78,7 +78,7 @@ module Commandrb
             else
               triggers = command[:triggers]
             end
-            
+		            
             triggers.each { |trigger|
             @activator = prefix + trigger
             puts "Possible @activator: #{@activator}"
@@ -94,7 +94,18 @@ module Commandrb
             next if !$continue
             puts 'Continued'
             
-            begin
+if command[:owners_only]
+ if  YuukiBot.config['owners'].include?(event.user.id)
+	puts 'yes'
+else
+puts 'no'
+  event.respond(':x: You don\'t have permission for that!')
+  break
+end	
+end
+
+
+          begin
               if args.length > command[:max_args]
                 event.respond("❌ Too many arguments! \nMax arguments: `#{command[:max_args]}`")
                 next
