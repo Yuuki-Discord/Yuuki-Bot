@@ -5,7 +5,7 @@ module YuukiBot
 
     Commandrb.commands[:kick] = {
       code: proc { |event, args|
-        if !args.length.empty?
+        if !args.empty?
           begin
             member = event.bot.parse_mention(args[0])
           rescue
@@ -37,7 +37,7 @@ module YuukiBot
 
     Commandrb.commands[:ban] = {
       code: proc { |event, args|
-        if !args.length.empty?
+        if !args.empty?
           begin
             member = event.bot.parse_mention(args[0])
           rescue
@@ -63,7 +63,7 @@ module YuukiBot
           event << '❌ Invalid argument. Please mention a valid user.'
         end
       },
-      triggers: %w(clear clean),
+      triggers: %w(ban),
       required_permissions: [:ban_members],
       owner_override: false,
       server_only: true,

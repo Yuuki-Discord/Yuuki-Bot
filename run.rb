@@ -32,7 +32,6 @@ module YuukiBot
   end
 
   puts '>> Initial loading succesful!! <<'
-  puts Commandrb.prefix_type
-  exit(5) if config['pretend_run']
+  # exit(5) if config['pretend_run']
   Commandrb.bot.run
 end

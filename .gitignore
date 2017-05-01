@@ -3,6 +3,8 @@
 # IDEs
 .idea/*
 
+tmp/*
+
 Gemfile.lock
 
 /modules/helper/bots.rb
