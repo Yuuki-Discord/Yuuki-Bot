@@ -66,7 +66,6 @@ module Commandrb
     # Command processing
     @bot.message do |event|
       $continue = false
-      puts "[DEBUG] #{@prefixes}"
       @prefixes.each { |prefix|
         if event.message.content.start_with?(prefix)
           puts "[COMMAND RECIEVED] :: #{event.message.content}"
@@ -81,18 +80,15 @@ module Commandrb
 		            
             triggers.each { |trigger|
             @activator = prefix + trigger
-            puts "Possible @activator: #{@activator}"
               if event.message.content.start_with?(@activator)
-                puts '@activator picked.'
                 $continue = true
-                break
+                # break
               else
                 next
               end
             }
             
             next if !$continue
-            puts 'Continued'
             
 if command[:owners_only]
  if  YuukiBot.config['owners'].include?(event.user.id)
@@ -113,8 +109,7 @@ end
             rescue
               # Do nothing.
             end
-            puts 'Enough args'
-            
+
             begin
               if !command[:server_only].nil? && command[:server_only] && event.channel.private?
                 event.respond('❌ This command will only work in servers!')
@@ -123,7 +118,6 @@ end
             rescue
               # Do nothing.
             end
-            puts 'Server check passed'
             
             begin
               if !command[:parse_bots].nil? && (event.user.bot_account? && command[:parse_bots] == false) || (event.user.bot_account? && @parse_bots == false)
@@ -133,19 +127,15 @@ end
               # Do nothing.
             end
             
-            puts 'bot check passed'
-            
+
             begin
              event.channel.start_typing if command[:typing] || (command[:typing].nil? && YuukiBot.config['typing_default'].typing_default)
             rescue
             # Do nothing.
             end
-            puts 'typing done'
             
             args = event.message.content.slice!(@activator.length, event.message.content.size)
             args = args.split(' ')
-            puts 'ARGS MADE!!'
-            puts "[DEBUG] #{args}"
             command[:code].call(event, args)
             break
           }

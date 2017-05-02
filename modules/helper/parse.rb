@@ -1,37 +1,42 @@
-# Copyright Seriel 2016-2017
+# Copyright Seriel, Spotlight 2016-2017
 
 module YuukiBot
   module Helper
 
     # Accepts a message, and returns the message content, with all mentions + channels replaced with @user#1234 or #channel-name
-    # noinspection RubyArgCount,RubyArgCount,RubyArgCount
-    def self.parse_mentions(content)
-      # Replace user IDs with names
+   def self.parse_mentions(content)
+      # Replce user IDs with names
       loop do
-        match = /<@\d+>/.match(content)
-        break if match.nil?
-        # We have to sub to just get the numerical ID.
-        num_id = /\d+/.match(match[0])[0]
-        content = content.sub(id, get_user_name(num_id, bot))
+          match = /<@\d+>/.match(content)
+          break if match.nil?
+          # Get user
+          id = match[0]
+          # We have to sub to just get the numerical ID.
+          num_id = /\d+/.match(id)[0]
+          content = content.sub(id, get_user_name(num_id))
       end
       loop do
-        match = /<@!\d+>/.match(content)
-        break if match.nil?
-        # We have to sub to just get the numerical ID.
-        num_id = /\d+/.match(match[0])[0]
-        content = content.sub(id, get_user_name(num_id, bot))
+          match = /<@!\d+>/.match(content)
+          break if match.nil?
+          # Get user
+          id = match[0]
+          # We have to sub to just get the numerical ID.
+          num_id = /\d+/.match(id)[0]
+          content = content.sub(id, get_user_name(num_id, Commandrb.bot))
       end
       # Replace channel IDs with names
       loop do
-        match = /<#\d+>/.match(content)
-        break if match.nil?
-        # We have to gsub to just get the numerical ID.
-        num_id = /\d+/.match(match[0])[0]
-        content = content.sub(id, get_channel_name(num_id, bot))
+          match = /<#\d+>/.match(content)
+          break if match.nil?
+          # Get channel
+          id = match[0]
+          # We have to gsub to just get the numerical ID.
+          num_id = /\d+/.match(id)[0]
+          content = content.sub(id, get_channel_name(num_id))
       end
-      return content
+      content
     end
-
+  
     # Returns a user-readable username for the specified ID.
     def self.get_user_name(user_id)
         return begin

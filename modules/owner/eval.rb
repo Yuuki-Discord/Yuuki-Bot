@@ -11,6 +11,20 @@ module YuukiBot
       owners_only: true,
       description: 'Evaluate a Ruby command. Owner only.',
     }
+    
+    Commandrb.commands[:evaltwo] = {
+      code: proc { |event, args|
+        begin
+          result = eval args.join(' ')
+          event << ((result.nil? || result == '' || result == ' ' || result == "\n") ? '✅ Done! (No output)' : "Output: ```\n#{result}```")
+        rescue Exception => e
+          event.respond(":x: An error has occured!! ```ruby\n#{e}```")
+        end
+      },
+      triggers: ['eval2'],
+      owners_only: true,
+      description: 'Evaluate a Ruby command. Owner only.',
+    }
 
     # noinspection RubyResolve
     Commandrb.commands[:message] = {
@@ -30,7 +44,7 @@ module YuukiBot
         result = `#{"#{args.join(' ')} 2>&1"} `
         event << ((result.nil? || result == '' || result == ' ' || result == "\n") ? '✅ Done! (No output)' : "Output: ```\n#{result}```")
       },
-      triggers: ['bash'],
+      triggers: ['bash', 'sh'],
       owners_only: true,
       description: 'Evaluate a Bash command. Owner only. Use with care.',
     }

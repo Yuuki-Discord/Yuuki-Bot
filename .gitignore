@@ -2,6 +2,7 @@
 !config/config.sample.yml
 # IDEs
 .idea/*
+.codetasty/*
 
 tmp/*
 

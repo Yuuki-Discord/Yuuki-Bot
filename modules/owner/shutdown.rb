@@ -16,14 +16,14 @@ module YuukiBot
 
     # noinspection RubyResolve,RubyResolve
     Commandrb.commands[:shutdown] = {
-      code: proc { |event, _|
+      code: proc { |event, args|
         message = event.respond 'Saving and exiting... '
-        Helper.save_settings
+        #Helper.save_settings
         event.bot.invisible
         message.edit('All saved. Goodbye!')
         Helper.quit
       },
-      triggers:     ['shutdown'],
+      triggers:     ['shutdown', 'bye', 'fuck off', 'die', 'kys'],
       owners_only:  true,
       description:  'Shuts down the bot. Owner only.',
     }
