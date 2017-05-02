@@ -17,7 +17,7 @@ module YuukiBot
         event.message.delete
         event.respond(args.join(' '))
       },
-      owners_only: true,
+      owners_only: false,
       min_args: 1,
     }
 
@@ -26,7 +26,7 @@ module YuukiBot
         event.respond(args.join(' '))
         event.message.delete
       },
-      owners_only: true,
+      owners_only: false,
       min_args: 1,
     }
 
