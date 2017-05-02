@@ -21,6 +21,15 @@ module YuukiBot
       min_args: 1,
     }
 
+    Commandrb.commands[:hide] = {
+      code: proc { |event, args|
+        event.respond(args.join(' '))
+        event.message.delete
+      },
+      owners_only: true,
+      min_args: 1,
+    }
+
 
 #    Commandrb.bot.message_delete  { |event|
 #      unless Helper.say_map[event.id].nil?
