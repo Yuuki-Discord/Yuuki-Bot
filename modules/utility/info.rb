@@ -4,13 +4,12 @@ module YuukiBot
   module Utility
 
     Commandrb.commands[:avatar] = {
-      code: proc { |event, _args| 
+      code: proc { |event, args| 
 
-        user = begin
-          mention.nil? || mention == '' ? event.message.author : event.server.member(event.message.mentions[0])
-        rescue
-          event << '❌ Mention a valid user!'
-          next
+        if args.nil?
+          user = event.user
+        elsif event.message.mentions[0]
+          user = event.bot.parse_mention(args[0])
         end
         event.channel.send_file File.new(Helper.download_avatar(user, 'tmp'))
       },
