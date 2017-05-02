@@ -8,7 +8,7 @@ module YuukiBot
         num = args[0]
         num = 75 if num.nil?
         count = 0
-        msgs = {}
+        msgs = []
         event.channel.history(num).each do |x|
           if x.author.id == event.bot.profile.id
             msgs.push(x.id)
@@ -18,9 +18,10 @@ module YuukiBot
         Discordrb::API::Channel.bulk_delete_messages(event.bot.token, event.channel.id, msgs)
         event.respond("✅ Pruned #{count} bot messages!")
       },
-      triggers: %w(prune cleanup purge),
+      triggers: %w(prune cleanup purge stfu ),
       required_permissions: [:manage_messages],
       owner_override: true,
+      owners_only: true,
       max_args: 1,
     }
 
