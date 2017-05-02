@@ -7,13 +7,13 @@ The Public Bot might not always be online, if you want the bot all the time for 
 # Self-Hosting:
 
 ## Requirements
-- Ruby
+- Ruby 2.3.1+
 - bundler (`gem install bundler`)
 
 ## Install
 1. Clone the repo: `git clone https://github.com/Seriell/Yuuki-Bot.git`
 2. cd into the repo: `cd Yuuki-Bot`
-3. Edit `config/config.yml.example` to include the needed information and save it as `config.rb`
+3. Edit `config/config.yml.example` to include the needed information and save it as `config/config.yml`
 4. Install bundler if you haven't already: `gem install bundler`
 5. Install the bundle: `bundle install`
 6. Run the bot. For Linux: `bash run_linux.sh`. For Windows: `run_windows.bat`.
