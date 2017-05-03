@@ -9,6 +9,7 @@ module YuukiBot
       new_msg = event.respond(Helper.filter_everyone(message))
       Helper.map_say(event.channel.id, event.message.id, new_msg.id)
     },
+      triggers: ['say', 'echo', 'talk', 'repeat'],
       min_args: 1,
     }
 

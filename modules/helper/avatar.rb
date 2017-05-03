@@ -21,7 +21,7 @@ module YuukiBot
                            filename.gsub('.jpg', '.png')
                        end
             url << '?size=256'
-            url = "https://cdn.discordapp.com/avatars/#{user.id}/#{filename}?size=256"
+            url = "https://cdn.discordapp.com/avatars/#{user.id}/#{filename}?size=1024"
             url    end
   end
 end

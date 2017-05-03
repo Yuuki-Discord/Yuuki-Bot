@@ -17,6 +17,7 @@ module YuukiBot
           variables['user'] = target
           event.respond("*#{Textgen.generate_string(json['templates'], json['parts'], variables)}*")
         },
+        triggers: [x, "give #{x} to ",  "give a #{x} to "],
       }
       puts "Added food command for #{x}!" if YuukiBot.config['verbose']
     }

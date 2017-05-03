@@ -22,7 +22,7 @@ module YuukiBot
           id = match[0]
           # We have to sub to just get the numerical ID.
           num_id = /\d+/.match(id)[0]
-          content = content.sub(id, get_user_name(num_id, Commandrb.bot))
+          content = content.sub(id, get_user_name(num_id))
       end
       # Replace channel IDs with names
       loop do
