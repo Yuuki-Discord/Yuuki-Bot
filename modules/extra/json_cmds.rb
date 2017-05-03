@@ -198,5 +198,102 @@ module YuukiBot
       },
     }
     puts "Added fun command for flip!" if YuukiBot.config['verbose']
+      
+    Commandrb.commands[:fight] = {
+      code: proc {|event|
+        args = args.join(' ')
+        begin
+        target = event.bot.parse_mention(args).name
+        rescue
+        target = args
+        end
+        json = JSON.parse(File.read('text/Attacks/JSON/fight.json'))
+
+        variables = {}
+        variables['user'] = event.user.name
+        variables['target'] = target
+        response = Textgen.generate_string(json['templates'], json['parts'], variables)
+        
+        event.respond(response)
+      },
+    }
+    puts "Added fun command for fight!" if YuukiBot.config['verbose']
+
+    Commandrb.commands[:love] = {
+      code: proc {|event|
+          first = ""
+          second = ""
+          if args.length == 1
+            first = event.user.name
+            begin
+              second = event.bot.parse_mention(args).name
+            rescue
+              second = args[0]
+            end
+          elsif args.length == 2
+            first = args[0]
+            second = args[1]
+          end
+
+        prng = Random.new
+          percentage = prng.rand(1..100)
+
+        case
+        when percentage < 10
+          result = "Awful 😭"
+        when percentage < 20
+          result = "Bad 😢"
+        when percentage < 30
+          result = "Pretty Low 😦"
+        when percentage < 40
+          result = "Not Too Great 😕"
+        when percentage < 50
+          result = "Worse Than Average 😐"
+        when percentage < 60
+          result = "Barely 😶"
+        when percentage == 69
+          result = "( ͡° ͜ʖ ͡°)"
+        when percentage < 70
+         result = "Not Bad 🙂"
+        when percentage < 80
+          result = "Pretty Good 😃"
+        when percentage < 90
+          result = "Great 😄"
+        when percentage < 100
+          result = "Amazing 😍"
+        when percentage == 100
+          result = "PERFECT! :heart_exclamation:"
+        end
+
+        response = "💗 **MATCHMAKING** 💗\n" +
+        "First - #{first}\n" +
+        "Second - #{second}\n" +
+        "**-=-=-=-=-=-=-=-=-=-=-=-**\n" +
+        "Result ~ #{percentage}% - #{result}\n"
+        
+        event.respond(response)
+      },
+    }
+    puts "Added fun command for love!" if YuukiBot.config['verbose']
+
+    Commandrb.commands[:randommovie] = {
+      code: proc {|event|
+        movie = open("https://random-movie.herokuapp.com/random").read
+        array = JSON.parse(movie, symbolize_names: true)
+
+        response = ":film_frames: **Random Movie** :film_frames:\n" +
+        "Title: #{array[:Title]}\n" +
+        "Year: #{array[:Year]}\n" +
+        "Rating: #{array[:Rated]}\n" +
+        "Runtime: #{array[:Runtime]}\n" +
+        "Plot: #{array[:Plot]}\n" +
+        "IMDB Rating: #{array[:imdbRating]}\n" +
+        "IMDB Votes: #{array[:imdbVotes]}\n" +
+        "Poster: #{array[:Poster].sub("._V1_SX300", "")}"
+        
+        event.respond(response)
+      },
+    }
+    puts "Added fun command for randommovie!" if YuukiBot.config['verbose']
   end
 end
