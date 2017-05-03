@@ -62,6 +62,8 @@ module Commandrb
         init_hash[:ready].call(event)
       end
     end
+    
+    @parse_bots = false
 
     # Command processing
     @bot.message do |event|
@@ -82,6 +84,7 @@ module Commandrb
             @activator = prefix + trigger
               if event.message.content.start_with?(@activator)
                 $continue = true
+                @useact = @activator
                 # break
               else
                 next
@@ -90,15 +93,19 @@ module Commandrb
             
             next if !$continue
             
-if command[:owners_only]
- if  YuukiBot.config['owners'].include?(event.user.id)
-	puts 'yes'
-else
-puts 'no'
-  event.respond(':x: You don\'t have permission for that!')
-  break
-end	
-end
+          if command[:owners_only]
+           if  YuukiBot.config['owners'].include?(event.user.id)
+          	puts 'yes'
+          else
+          puts 'no'
+            if command[:errors].nil?
+            event.respond(':x: You don\'t have permission for that!')
+          else
+            event.respond(command[:errors].sample)
+          end
+            break
+          end	
+          end
 
 
           begin
@@ -120,8 +127,8 @@ end
             end
             
             begin
-              if !command[:parse_bots].nil? && (event.user.bot_account? && command[:parse_bots] == false) || (event.user.bot_account? && @parse_bots == false)
-                next
+              if !command[:parse_bots].nil? && (event.user.bot_account? && command[:parse_bots] == false) || (event.user.bot_account? && YuukiBot.config['parse_bots'] == false)
+                break
               end
             rescue
               # Do nothing.
@@ -133,8 +140,9 @@ end
             rescue
             # Do nothing.
             end
+            puts "[DEBUG] #{@useact}"
             
-            args = event.message.content.slice!(@activator.length, event.message.content.size)
+            args = event.message.content.slice!(@useact.length, event.message.content.size)
             args = args.split(' ')
             command[:code].call(event, args)
             break

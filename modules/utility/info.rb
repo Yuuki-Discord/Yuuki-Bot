@@ -44,5 +44,14 @@ module YuukiBot
       ],
       max_args: 1
     }
+    
+    Commandrb.commands[:ping] = {
+      code: Proc.new {|event, args|
+        return_message = event.respond('Ping!')
+        ping = (return_message.id - event.message.id) >> 22
+        return_message.edit("Pong! (`#{ping}ms`)")
+       },
+      triggers: ['ping','pong','peng','pung']
+    }
   end
 end
