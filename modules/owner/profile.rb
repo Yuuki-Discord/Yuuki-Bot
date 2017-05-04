@@ -16,7 +16,7 @@ module YuukiBot
     Commandrb.commands[:setgame] = {
       code: proc { |event, args|
         event.bot.game = args.join(' ')
-        event.respond("✅ Game set to `#{event.bot.game}`!")
+        event.respond("✅ Game set to `#{args.join(' ')}`!")
       },
       triggers: %w(game setgame),
       owners_only: true,

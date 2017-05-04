@@ -7,7 +7,7 @@ module YuukiBot
       code: proc { |event, args|
         eval args.join(' ')
       },
-      triggers: ['eval'],
+      triggers: ['eval '],
       owners_only: true,
       description: 'Evaluate a Ruby command. Owner only.',
     }
@@ -21,7 +21,7 @@ module YuukiBot
           event.respond(":x: An error has occured!! ```ruby\n#{e}```")
         end
       },
-      triggers: ['2eval'],
+      triggers: ['2eval', 'eval2 '],
       owners_only: true,
       description: 'Evaluate a Ruby command. Owner only.',
     }
@@ -44,7 +44,7 @@ module YuukiBot
         result = `#{"#{args.join(' ')} 2>&1"} `
         event << ((result.nil? || result == '' || result == ' ' || result == "\n") ? '✅ Done! (No output)' : "Output: ```\n#{result}```")
       },
-      triggers: ['bash', 'sh', 'run'],
+      triggers: ['bash', 'sh ', 'run'],
       owners_only: true,
       description: 'Evaluate a Bash command. Owner only. Use with care.',
     }
