@@ -2,7 +2,7 @@
 module YuukiBot
   module Extra
     if YuukiBot.config['extra_commands']
-      json_food_commands = %w(potato cake cookie sandwich taco coffee noodles muffin tea keto beer cheese pancake chicken nugget pie icecream pizza chocolate pasta cereal sushi steak burger oreo biscuit snack, scone, milkshake, kebab)
+      json_food_commands = %w(potato cake cookie sandwich taco coffee noodles muffin tea keto beer cheese pancake chicken nugget pie icecream pizza chocolate pasta cereal sushi steak burger oreo biscuit snack scone milkshake kebab)
 
       json_food_commands.each { |x|
         Commandrb.commands[x.to_sym] = {
