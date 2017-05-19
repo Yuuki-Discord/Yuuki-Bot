@@ -14,15 +14,16 @@ module YuukiBot
     }
 
     Commandrb.commands[:shutdown] = {
-      code: proc { |event, _|
+      code: proc { |event, args|
         message = event.respond 'Saving and exiting... '
-        Helper.save_settings
+        #Helper.save_settings
         event.bot.invisible
         message.edit('All saved. Goodbye!')
         Helper.quit
       },
-      triggers:     ['shutdown'],
+      triggers:     ['shutdown', 'bye', 'fuck off', 'die', 'kys', 'go away'],
       owners_only:  true,
+      errors: ['nuu, you can\'t tell me what to do >:O', 'I don\'t want to shut down', 'All saved. Good-On second thought, no', 'I hate taking naps', 'You shut me down and I\'ll shut down your computer'],
       description:  'Shuts down the bot. Owner only.',
     }
 

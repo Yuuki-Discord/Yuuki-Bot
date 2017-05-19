@@ -9,6 +9,7 @@ module YuukiBot
       new_msg = event.respond(Helper.filter_everyone(message))
       Helper.map_say(event.channel.id, event.message.id, new_msg.id)
     },
+      triggers: ['say', 'echo', 'talk', 'repeat'],
       min_args: 1,
     }
 
@@ -16,6 +17,15 @@ module YuukiBot
       code: proc { |event, args|
         event.message.delete
         event.respond(args.join(' '))
+      },
+      owners_only: true,
+      min_args: 1,
+    }
+
+    Commandrb.commands[:hide] = {
+      code: proc { |event, args|
+        event.respond(args.join(' '))
+        event.message.delete
       },
       owners_only: true,
       min_args: 1,

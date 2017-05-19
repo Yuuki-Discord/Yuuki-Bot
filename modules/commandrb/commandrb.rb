@@ -62,6 +62,8 @@ module Commandrb
         init_hash[:ready].call(event)
       end
     end
+    
+    @parse_bots = false
 
     # Command processing
     @bot.message do |event|
@@ -80,27 +82,38 @@ module Commandrb
 		            
             triggers.each { |trigger|
             @activator = prefix + trigger
-            puts "Possible @activator: #{@activator}"
               if event.message.content.start_with?(@activator)
-                puts '@activator picked.'
                 $continue = true
-                break
+                @useact = @activator
+                # break
               else
                 next
               end
             }
 
             next if !$continue
-            puts 'Continued'
             
           if command[:owners_only]
            if  YuukiBot.config['owners'].include?(event.user.id)
+<<<<<<< HEAD
             puts 'yes'
           else
           puts 'no'
             event.respond(':x: You don\'t have permission for that!')
             break
           end
+=======
+          	puts 'yes'
+          else
+          puts 'no'
+            if command[:errors].nil?
+            event.respond(':x: You don\'t have permission for that!')
+          else
+            event.respond(command[:errors].sample)
+          end
+            break
+          end	
+>>>>>>> 314792a34068725c0c73fb1c3d74dde808ddee77
           end
 
 
@@ -112,8 +125,7 @@ module Commandrb
             rescue
               # Do nothing.
             end
-            puts 'Enough args'
-            
+
             begin
               if !command[:server_only].nil? && command[:server_only] && event.channel.private?
                 event.respond('❌ This command will only work in servers!')
@@ -122,26 +134,33 @@ module Commandrb
             rescue
               # Do nothing.
             end
-            puts 'Server check passed'
             
             begin
-              if !command[:parse_bots].nil? && (event.user.bot_account? && command[:parse_bots] == false) || (event.user.bot_account? && @parse_bots == false)
-                next
+              if !command[:parse_bots].nil? && (event.user.bot_account? && command[:parse_bots] == false) || (event.user.bot_account? && YuukiBot.config['parse_bots'] == false)
+                break
               end
             rescue
               # Do nothing.
             end
             
+<<<<<<< HEAD
+=======
+
+>>>>>>> 314792a34068725c0c73fb1c3d74dde808ddee77
             begin
              event.channel.start_typing if command[:typing] || (command[:typing].nil? && YuukiBot.config['typing_default'].typing_default)
             rescue
             # Do nothing.
             end
+<<<<<<< HEAD
 
             args = event.message.content.slice!(@activator.length, event.message.content.size)
+=======
+            puts "[DEBUG] #{@useact}"
+            
+            args = event.message.content.slice!(@useact.length, event.message.content.size)
+>>>>>>> 314792a34068725c0c73fb1c3d74dde808ddee77
             args = args.split(' ')
-            puts 'ARGS MADE!!'
-            puts "[DEBUG] #{args}"
             command[:code].call(event, args)
             break
           }

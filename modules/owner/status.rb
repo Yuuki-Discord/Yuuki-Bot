@@ -15,7 +15,7 @@ module YuukiBot
           next
         end
         event.respond("✅ Status set to **#{args[0].capitalize}**!") },
-      triggers: %w(status setstatus go come),
+      triggers: %w(status setstatus go),
       owners_only: true,
     }
 

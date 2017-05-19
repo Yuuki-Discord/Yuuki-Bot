@@ -4,7 +4,7 @@ module YuukiBot
 
     Commandrb.commands[:about] = {
       code: proc { |event, _|
-        event << "`#{event.bot.user(event.bot.profile.id).distinct}` running **YuukiBot-Git v3-#{`git rev-parse --short HEAD`}** "
+        event << "`#{event.bot.user(event.bot.profile.id).distinct}` running **YuukiBot-Git v4-#{`git rev-parse --short HEAD`}** "
         event << "**#{YuukiBot.config['source_url']}** " if YuukiBot.config['show_source']
         event << "\n ⚙ Extra commands: **#{YuukiBot.config['extra_commands'] ? 'Enabled' : 'Disabled'}**"
         if YuukiBot.config['show_donate_urls']
