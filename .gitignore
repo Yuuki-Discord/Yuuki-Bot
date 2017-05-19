@@ -1,10 +1,13 @@
+# Ignore all config files.
 *.yml
-!config/config.sample.yml
+# Except the supplied samples.
+!*.sample.yml
+
 # IDEs
 .idea/*
+.vs/*
 
+# Temporary files.
 tmp/*
 
 Gemfile.lock
-
-/modules/helper/bots.rb

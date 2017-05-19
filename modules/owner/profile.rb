@@ -2,7 +2,6 @@
 module YuukiBot
   module Owner
 
-    # noinspection RubyResolve
     Commandrb.commands[:setavatar] = {
       code: proc { |event, args|
         url = args.join(' ')
@@ -12,7 +11,6 @@ module YuukiBot
       owners_only: true,
     }
 
-    # noinspection RubyResolve
     Commandrb.commands[:setgame] = {
       code: proc { |event, args|
         event.bot.game = args.join(' ')
@@ -22,7 +20,6 @@ module YuukiBot
       owners_only: true,
     }
 
-    # noinspection RubyResolve
     Commandrb.commands[:username] = {
       code: proc { |event, args|
         username = args.join(' ')

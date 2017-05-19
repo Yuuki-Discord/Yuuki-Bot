@@ -19,6 +19,17 @@ prefixes:
 # Set to false for less console output.
 verbose: true
 
+# Change the amount of chat logs displayed.
+# Can be 'none', 'all' or 'commands'
+loglevel: commands
+
+## Set to a custom emoji using <:name:ID>
+emoji_tickbox: ✅
+emoji_error: ❌
+emoji_warning: ⚠
+emoji_clear: 🚮
+emoji_success: 👌
+
 # Set to "online", "idle", "dnd" or "invisible"
 status: idle
 game: Powered by Ruby!

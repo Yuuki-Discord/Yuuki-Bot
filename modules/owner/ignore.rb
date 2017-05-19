@@ -20,7 +20,6 @@ module YuukiBot
           rescue
             event.respond("❌ `#{mention}` is not a valid user!")
           end
-
           event.respond("✅ #{user.mention} has been temporarily ignored!")
         }
       },
@@ -28,7 +27,6 @@ module YuukiBot
       owners_only: true
     }
 
-    # noinspection RubyResolve
     Commandrb.commands[:unignore] = {
       code: proc { |event, args|
         if args == []

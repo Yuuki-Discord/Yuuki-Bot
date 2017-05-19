@@ -17,13 +17,6 @@ module YuukiBot
     end
   end
 
-  # Initialize Settings
-  #    @token = @config['token']
-  #    @prefix = @config['prefix']
-  #    @status = @config['status']
-  #    @help_url = @config['help_url']
-  #    @donate_urls = @config['donate_urls']
-
   if @config['status'].nil?
     puts 'Enter a valid status in config.yml!'
     puts 'Valid options are \'online\', \'idle\', \'dnd\' and \'invisible\'.'
@@ -53,7 +46,15 @@ module YuukiBot
         puts "[READY] :: Servers: #{event.bot.servers.count}"
 
         puts '>> Bot connected and ready for action! << '
-      }
+      },
+      on_message: Proc.new {|event|
+        begin
+          next if Config.ignored_servers.include?(event.server.id) || !Config.logging
+        rescue
+          nil
+        end
+        Logging.get_message(event, nil)
+       }
     }
   end
 end
