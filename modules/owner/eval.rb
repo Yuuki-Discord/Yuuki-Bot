@@ -16,7 +16,7 @@ module YuukiBot
       code: proc { |event, args|
         begin
           result = eval args.join(' ')
-          event << ((result.nil? || result == '' || result == ' ' || result == "\n") ? '✅ Done! (No output)' : "Output: ```\n#{result}```")
+          event.respond(((result.nil? || result == '' || result == ' ' || result == "\n") ? '✅ Done! (No output)' : "Output: ```\n#{result}```"))
         rescue Exception => e
           event.respond(":x: An error has occured!! ```ruby\n#{e}```")
         end
@@ -44,7 +44,7 @@ module YuukiBot
         result = `#{"#{args.join(' ')} 2>&1"} `
         event << ((result.nil? || result == '' || result == ' ' || result == "\n") ? '✅ Done! (No output)' : "Output: ```\n#{result}```")
       },
-      triggers: ['bash', 'sh ', 'run'],
+      triggers: ['bash ', 'sh ', 'run '],
       owners_only: true,
       description: 'Evaluate a Bash command. Owner only. Use with care.',
     }
