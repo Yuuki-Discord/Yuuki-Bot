@@ -1,4 +1,4 @@
-# Copyright Seriel 2016-2017
+# Copyright Seriel, Spotlight 2016-2017
 
 module YuukiBot
   module Utility

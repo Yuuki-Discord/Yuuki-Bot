@@ -13,8 +13,6 @@ module YuukiBot
       owners_only: true,
     }
 
-
-    # noinspection RubyResolve,RubyResolve
     Commandrb.commands[:shutdown] = {
       code: proc { |event, args|
         message = event.respond 'Saving and exiting... '

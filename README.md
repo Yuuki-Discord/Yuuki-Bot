@@ -7,7 +7,7 @@ The Public Bot might not always be online, if you want the bot all the time for 
 # Self-Hosting:
 
 ## Requirements
-- Ruby 2.3.1+
+- Ruby 2.3.1+ (Due to a bug in the Ruby interpreter, this bot won't work correctly with lower versions.)
 - bundler (`gem install bundler`)
 
 ## Install
@@ -16,11 +16,11 @@ The Public Bot might not always be online, if you want the bot all the time for 
 3. Edit `config/config.yml.example` to include the needed information and save it as `config/config.yml`
 4. Install bundler if you haven't already: `gem install bundler`
 5. Install the bundle: `bundle install`
-6. Run the bot. For Linux: `bash run_linux.sh`. For Windows: `run_windows.bat`.
+6. Run the bot. For Linux: `sh run_linux.sh`. For Windows: `run_windows.bat`.
 
 ## Updating
 1. Pull any changes from the repo: `git pull`
-2. Check any config changes. Open `config.rb.example` and see if any new information is needed in your `config.rb`
+2. Check any config changes. Open `config/config.yml.example` and see if any new information is needed in your `config/config.yml.example`
 3. Update the bundle: `bundle update`
 4. Run the bot: `sh run_linux.sh` or `run_windows.bat`
 
@@ -34,8 +34,8 @@ Enjoy~
 
 Kudos to the following users for helping me out:
 
-- [@awesomebing1](https://github.com/awesomebing1)
-- [luigoalma](https://github.com/luigoalma)
+- [Spotlight](https://github.com/awesomebing1)
+- [luigoalma](https://github.com/luigoalma), for ideas and help early in development. :3
 - [megumi](https://github.com/megumisonoda)
 - Anyone active on the Discordrb channel in the Discord API server.
 - [meew0](https://github.com/meew0/) for [Discordrb](https://github.com/meew0/discordrb)
