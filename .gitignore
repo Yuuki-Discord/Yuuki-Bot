@@ -5,7 +5,9 @@
 
 # IDEs
 .idea/*
+
 .vs/*
+.codetasty/*
 
 # Temporary files.
 tmp/*

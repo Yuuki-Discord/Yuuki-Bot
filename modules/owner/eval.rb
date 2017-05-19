@@ -8,9 +8,6 @@ module YuukiBot
         eval args.join(' ')
       },
       triggers: ['eval '],
-      owners_only: true,
-      description: 'Evaluate a Ruby command. Owner only.',
-    }
 
     Commandrb.commands[:evaltwo] = {
         code: proc { |event, args|

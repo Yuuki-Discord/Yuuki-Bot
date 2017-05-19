@@ -14,14 +14,14 @@ module YuukiBot
         uri = URI.parse(url)
         # extension = File.extname(uri.path)
         filename = File.basename(uri.path)
-
-        filename = if filename.start_with?('a_')
-                    filename.gsub('.jpg', '.gif')
-                  else
-                    filename.gsub('.jpg', '.png')
-                  end
-        url << '?size=256'
-        url = "https://cdn.discordapp.com/avatars/#{user.id}/#{filename}?size=256"
-        url    end
+            filename = if filename.start_with?('a_')
+                           filename.gsub('.jpg', '.gif')
+                       else
+                           filename.gsub('.jpg', '.png')
+                       end
+            url << '?size=256'
+            url = "https://cdn.discordapp.com/avatars/#{user.id}/#{filename}?size=1024"
+            url   
+		end
   end
 end
