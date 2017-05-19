@@ -10,11 +10,10 @@ module YuukiBot
     end
 
     def self.avatar_url(user)
-            url = user.avatar_url
-            uri = URI.parse(url)
-            extension = File.extname(uri.path)
-            filename = File.basename(uri.path)
-
+        url = user.avatar_url
+        uri = URI.parse(url)
+        # extension = File.extname(uri.path)
+        filename = File.basename(uri.path)
             filename = if filename.start_with?('a_')
                            filename.gsub('.jpg', '.gif')
                        else
@@ -22,6 +21,7 @@ module YuukiBot
                        end
             url << '?size=256'
             url = "https://cdn.discordapp.com/avatars/#{user.id}/#{filename}?size=1024"
-            url    end
+            url   
+		end
   end
 end

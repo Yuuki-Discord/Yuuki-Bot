@@ -90,11 +90,19 @@ module Commandrb
                 next
               end
             }
-            
+
             next if !$continue
             
           if command[:owners_only]
            if  YuukiBot.config['owners'].include?(event.user.id)
+<<<<<<< HEAD
+            puts 'yes'
+          else
+          puts 'no'
+            event.respond(':x: You don\'t have permission for that!')
+            break
+          end
+=======
           	puts 'yes'
           else
           puts 'no'
@@ -105,6 +113,7 @@ module Commandrb
           end
             break
           end	
+>>>>>>> 314792a34068725c0c73fb1c3d74dde808ddee77
           end
 
 
@@ -148,15 +157,23 @@ module Commandrb
               # Do nothing.
             end
             
+<<<<<<< HEAD
+=======
 
+>>>>>>> 314792a34068725c0c73fb1c3d74dde808ddee77
             begin
              event.channel.start_typing if command[:typing] || (command[:typing].nil? && YuukiBot.config['typing_default'].typing_default)
             rescue
             # Do nothing.
             end
+<<<<<<< HEAD
+
+            args = event.message.content.slice!(@activator.length, event.message.content.size)
+=======
             puts "[DEBUG] #{@useact}"
             
             args = event.message.content.slice!(@useact.length, event.message.content.size)
+>>>>>>> 314792a34068725c0c73fb1c3d74dde808ddee77
             args = args.split(' ')
             command[:code].call(event, args)
             break

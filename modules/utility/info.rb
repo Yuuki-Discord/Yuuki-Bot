@@ -4,8 +4,7 @@ module YuukiBot
   module Utility
 
     Commandrb.commands[:avatar] = {
-      code: proc { |event, args| 
-
+      code: proc { |event, args|
         if args.nil?
           user = event.user
         elsif event.message.mentions[0]
@@ -13,10 +12,7 @@ module YuukiBot
         end
         event.channel.send_file File.new(Helper.download_avatar(user, 'tmp'))
       },
-      triggers: [
-        'avatar',
-        'avy'
-      ],
+      triggers: %w(avatar avy),
       :server_only => true,
     }
 
