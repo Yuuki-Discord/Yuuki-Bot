@@ -7,30 +7,40 @@ module YuukiBot
       code: proc { |event, args|
         eval args.join(' ')
       },
-      triggers: ['eval'],
+      triggers: ['eval '],
       owners_only: true,
       description: 'Evaluate a Ruby command. Owner only.',
     }
 
-    # noinspection RubyResolve
-    Commandrb.commands[:message] = {
-      code: proc { |event, args|
-        result = eval args.join(' ')
-        event.user.pm(result)
-        event.respond('DMed you the command result ;)')
-      },
-      triggers: ['message'],
-      owners_only: true,
-      description: 'Send the result of an eval in PM. Owner only.',
+    Commandrb.commands[:evaltwo] = {
+        code: proc { |event, args|
+          result = eval args.join(' ')
+          if result.length >= 1984
+            put result
+            event << "⚠ Your output exceeded the character limit! (`#{content.length - 1984}`/`1984`)"
+            event << 'The result has been logged to the terminal instead :3'
+          else
+            event << ((result.nil? || result == '' || result == ' ' || result == "\n") ? '✅ Done! (No output)' : "Output: ```\n#{result}```")
+          end
+        },
+        triggers: ['eval2 '],
+        owners_only: true,
+        description: 'Evaluate a Ruby command. Owner only.',
     }
 
     Commandrb.commands[:bash] = {
       code: proc { |event, args|
         # Capture all output, including STDERR.
         result = `#{"#{args.join(' ')} 2>&1"} `
-        event << ((result.nil? || result == '' || result == ' ' || result == "\n") ? '✅ Done! (No output)' : "Output: ```\n#{result}```")
+        if result.length >= 1984
+          put result
+          event << "⚠ Your output exceeded the character limit! (`#{content.length - 1984}`/`1984`)"
+          event << 'The result has been logged to the terminal instead :3'
+        else
+          event << ((result.nil? || result == '' || result == ' ' || result == "\n") ? '✅ Done! (No output)' : "Output: ```\n#{result}```")
+        end
       },
-      triggers: ['bash'],
+      triggers: ['bash ', 'sh ', 'shell ', 'run '],
       owners_only: true,
       description: 'Evaluate a Bash command. Owner only. Use with care.',
     }

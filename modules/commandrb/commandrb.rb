@@ -66,7 +66,6 @@ module Commandrb
     # Command processing
     @bot.message do |event|
       $continue = false
-      puts "[DEBUG] #{@prefixes}"
       @prefixes.each { |prefix|
         if event.message.content.start_with?(prefix)
           puts "[COMMAND RECIEVED] :: #{event.message.content}"
@@ -90,19 +89,19 @@ module Commandrb
                 next
               end
             }
-            
+
             next if !$continue
             puts 'Continued'
             
-if command[:owners_only]
- if  YuukiBot.config['owners'].include?(event.user.id)
-	puts 'yes'
-else
-puts 'no'
-  event.respond(':x: You don\'t have permission for that!')
-  break
-end	
-end
+          if command[:owners_only]
+           if  YuukiBot.config['owners'].include?(event.user.id)
+            puts 'yes'
+          else
+          puts 'no'
+            event.respond(':x: You don\'t have permission for that!')
+            break
+          end
+          end
 
 
           begin
@@ -133,15 +132,12 @@ end
               # Do nothing.
             end
             
-            puts 'bot check passed'
-            
             begin
              event.channel.start_typing if command[:typing] || (command[:typing].nil? && YuukiBot.config['typing_default'].typing_default)
             rescue
             # Do nothing.
             end
-            puts 'typing done'
-            
+
             args = event.message.content.slice!(@activator.length, event.message.content.size)
             args = args.split(' ')
             puts 'ARGS MADE!!'

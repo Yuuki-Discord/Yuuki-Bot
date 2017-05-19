@@ -66,6 +66,8 @@ module YuukiBot
       puts Rainbow("<Attachments: #{message.attachments[0].filename}: #{message.attachments[0].url} >}").red unless message.attachments.empty?
     end
 
+    ## Replaced with Commandrb feature.
+=begin
     Commandrb.bot.message do |event|
       begin
         next if Config.ignored_servers.include?(event.server.id) || !Config.logging
@@ -74,7 +76,7 @@ module YuukiBot
         end
       get_message(event, nil)
     end
-
+=end
     Commandrb.bot.message_edit do |event|
       begin
         # noinspection RubyResolve
