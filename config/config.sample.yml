@@ -23,6 +23,8 @@ verbose: true
 status: idle
 game: Powered by Ruby!
 
+ibsearch_key = ''
+
  # Change to false if you don't like the bot "typing" all the time.
 typing_default: true
 

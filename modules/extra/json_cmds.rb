@@ -22,6 +22,7 @@ module YuukiBot
         }
         puts "Added food command for #{x}!" if YuukiBot.config['verbose']
       }
+      Commandrb.commands[:brekkie][:triggers].push('breakfast', 'brekky', 'give breakfast to ', 'give a breakfast to', 'give brekky to ', 'give a brekky to')
 
       json_attack_commands = %w(slap compliment strax present)
       json_attack_commands.each { |x|
@@ -299,5 +300,11 @@ module YuukiBot
       }
       puts "Added fun command for randommovie!" if YuukiBot.config['verbose']
     end
+	Commandrb.commands[:choose] = {
+		code: Proc.new { |event,args|
+			event.respond("I choose #{args.sample}!")
+		}
+	}
+
   end
 end

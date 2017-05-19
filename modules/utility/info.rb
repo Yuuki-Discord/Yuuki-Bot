@@ -40,7 +40,7 @@ module YuukiBot
       },
       triggers: [
         'info',
-        'i'
+        'i '
       ],
       max_args: 1
     }
@@ -51,7 +51,7 @@ module YuukiBot
         ping = (return_message.id - event.message.id) >> 22
         return_message.edit("Pong! (`#{ping}ms`)")
        },
-      triggers: ['ping','pong','peng','pung']
+      triggers: ['ping','pong','peng','pung', 'pyng', 'pang']
     }
   end
 end

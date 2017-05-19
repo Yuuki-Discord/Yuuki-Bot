@@ -116,6 +116,20 @@ module Commandrb
             rescue
               # Do nothing.
             end
+            @do_break = false
+            
+            if !command[:required_permissions].nil?
+              command[:required_permissions].each {|x|
+        
+                if !event.user.on(event.server).permission?(x)
+                  event.respond(':x: You don\'t have permission for that!')
+                  @do_break = true
+                  break
+                end
+              }
+            end
+            break if @do_break
+            
 
             begin
               if !command[:server_only].nil? && command[:server_only] && event.channel.private?

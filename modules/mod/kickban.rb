@@ -55,7 +55,7 @@ module YuukiBot
           begin
             event.server.ban(member)
           rescue Discordrb::Errors::NoPermission
-            event << "❌ I don't have permission to ban that user!\nCancelling Kick..."
+            event << "❌ I don't have permission to ban that user!\nCancelling Ban..."
             next
           end
           event << " 👌 The banhammer was hit on #{member.name}!"
