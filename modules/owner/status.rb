@@ -14,7 +14,7 @@ module YuukiBot
           event.respond('Enter a valid argument!')
           next
         end
-        event.respond("✅ Status set to **#{args[0].capitalize}**!") },
+        event.respond("#{YuukiBot.config['emoji_tickbox']} Status set to **#{args[0].capitalize}**!") },
       triggers: %w(status setstatus go),
       owners_only: true,
     }

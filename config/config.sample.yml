@@ -3,7 +3,7 @@
 #######################################################################################################
 ## To get started, please create a bot account at https://discordapp.com/developers/applications/me  ##
 ## Then create a bot user, find the token and client id, and put them below.                         ##
-## It is also highly recommended that you add your user ID to "owners" array. (Lines 56-64)          ##
+## It is also highly recommended that you add your user ID to "owners" array. (Lines 71-77)          ##
 ## Anything after a hash (#) is a comment and will be ignored.                                       ##
 #######################################################################################################
 ## When you're done, save this file as `config.yml` (In the config folder)                           ##
@@ -34,14 +34,12 @@ emoji_success: 👌
 status: idle
 game: Powered by Ruby!
 
-ibsearch_key = ''
-
  # Change to false if you don't like the bot "typing" all the time.
 typing_default: true
 
 # Change to false if private.
 show_invite: true
-# Best to leave nil unless sure. (Defaults to a generated URL)
+# Best to leave nil unless sure. (Defaults t o a generated URL)
 invite_url: nil
 
 # plz dont set to false, closed source is baaad :(
@@ -87,7 +85,3 @@ parse_bots: false
 selfbot: false # Doesn't work on bot accounts.
 prefix_type: always
 type: :bot
-
-# Leave as false
-pretend_run: true
-live_debug: true

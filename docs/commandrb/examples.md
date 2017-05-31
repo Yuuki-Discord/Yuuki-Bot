@@ -40,7 +40,7 @@ Commandrb.commands[:bash] = {
     toberun = "#{bashcode} 2>&1"
     result = ` #{toberun} `
     event << if result.nil? || result == '' || result == ' ' || result == "\n"
-               '✅ Done! (No output)'
+               '#{YuukiBot.config['emoji_tickbox']} Done! (No output)'
              else
                  "Output: ```\n#{result}```"
              end

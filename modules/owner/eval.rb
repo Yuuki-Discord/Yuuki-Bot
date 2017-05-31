@@ -19,7 +19,7 @@ module YuukiBot
             event << "⚠ Your output exceeded the character limit! (`#{result.length - 1984}`/`1984`)"
             event << 'The result has been logged to the terminal instead :3'
           else
-            event << ((result.nil? || result == '' || result == ' ' || result == "\n") ? '✅ Done! (No output)' : "Output: ```\n#{result}```")
+            event << ((result.nil? || result == '' || result == ' ' || result == "\n") ? "#{YuukiBot.config['emoji_tickbox']} Done! (No output)" : "Output: ```\n#{result}```")
           end
           rescue Exception => e
           event.respond(":x: An error has occured!! ```ruby\n#{e}```")
@@ -39,7 +39,7 @@ module YuukiBot
           event << "⚠ Your output exceeded the character limit! (`#{result.length - 1984}`/`1984`)"
           event << 'The result has been logged to the terminal instead :3'
         else
-          event << ((result.nil? || result == '' || result == ' ' || result == "\n") ? '✅ Done! (No output)' : "Output: ```\n#{result}```")
+          event << ((result.nil? || result == '' || result == ' ' || result == "\n") ? "#{YuukiBot.config['emoji_tickbox']} Done! (No output)" : "Output: ```\n#{result}```")
         end
       },
       triggers: ['bash ', 'sh ', 'shell ', 'run '],

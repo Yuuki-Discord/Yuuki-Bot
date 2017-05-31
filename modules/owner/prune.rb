@@ -16,7 +16,7 @@ module YuukiBot
           end
         end
         Discordrb::API::Channel.bulk_delete_messages(event.bot.token, event.channel.id, msgs)
-        event.respond("✅ Pruned #{count} bot messages!")
+        event.respond("#{YuukiBot.config['emoji_tickbox']} Pruned #{count} bot messages!")
       },
       triggers: %w(prune cleanup purge stfu ),
       required_permissions: [:manage_messages],
@@ -41,7 +41,7 @@ module YuukiBot
             end
           end
           Discordrb::API::Channel.bulk_delete_messages(event.bot.token, event.channel.id, msgs)
-          event.respond("✅ Pruned #{count} messages by **#{user.distinct}** !")
+          event.respond("#{YuukiBot.config['emoji_tickbox']} Pruned #{count} messages by **#{user.distinct}** !")
         rescue Discordrb::Errors::NoPermission
           event.respond("❌ I don't have permission to delete messages!")
           puts 'The bot does not have the delete message permission!'

@@ -6,7 +6,7 @@ module YuukiBot
       code: proc { |event, args|
         url = args.join(' ')
         event.bot.profile.avatar = File.open(Helper.download_file(url, 'tmp'))
-        event.respond('✅ Avatar should be updated!')
+        event.respond("#{YuukiBot.config['emoji_tickbox']} Avatar should be updated!")
       },
       owners_only: true,
     }
@@ -14,7 +14,7 @@ module YuukiBot
     Commandrb.commands[:setgame] = {
       code: proc { |event, args|
         event.bot.game = args.join(' ')
-        event.respond("✅ Game set to `#{args.join(' ')}`!")
+        event.respond("#{YuukiBot.config['emoji_tickbox']} Game set to `#{args.join(' ')}`!")
       },
       triggers: %w(game setgame),
       owners_only: true,
@@ -28,7 +28,7 @@ module YuukiBot
         rescue
           event.respond('An error has occured!')
         end
-        event.respond('✅ Username should be updated!')
+        event.respond("#{YuukiBot.config['emoji_tickbox']} Username should be updated!")
       },
       triggers: %w(username setusername setname),
       owners_only: true,
