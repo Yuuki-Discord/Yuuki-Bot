@@ -186,6 +186,7 @@ module YuukiBot
       }
       puts "Added fun command for catgifs!" if YuukiBot.config['verbose']
 
+=begin
       Commandrb.commands[:flip] = {
         code: proc { |event,args|
           args = args.join(' ')
@@ -200,6 +201,7 @@ module YuukiBot
         },
       }
       puts "Added fun command for flip!" if YuukiBot.config['verbose']
+=end
 
       Commandrb.commands[:fight] = {
         code: proc { |event,args|

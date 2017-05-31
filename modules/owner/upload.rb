@@ -33,7 +33,7 @@ module YuukiBot
         end
         ts = event.message.timestamp
         Helper.dump_channel(channel, event.channel, Config.dump_dir, ts)
-        event.respond('✅ Dumped successfully!')
+        event.respond("#{YuukiBot.config['emoji_tickbox']} Dumped successfully!")
       },
       triggers: %w(dump log savechannel),
       owners_only: true,

@@ -20,7 +20,7 @@ module YuukiBot
           rescue
             event.respond("❌ `#{mention}` is not a valid user!")
           end
-          event.respond("✅ #{user.mention} has been temporarily ignored!")
+          event.respond("#{YuukiBot.config['emoji_tickbox']} #{user.mention} has been temporarily ignored!")
         }
       },
       triggers: %w(ignore blacklist),
@@ -45,7 +45,7 @@ module YuukiBot
             event.respond("❌ `#{mention}` is not a valid user!")
             break
           end
-          event.respond("✅ #{user.mention} has been removed from the ignore list!")
+          event.respond("#{YuukiBot.config['emoji_tickbox']} #{user.mention} has been removed from the ignore list!")
         }
       },
       owners_only: true,

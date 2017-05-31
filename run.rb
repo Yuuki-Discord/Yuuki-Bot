@@ -28,10 +28,10 @@ module YuukiBot
     require 'json'
     require 'open-uri'
     # require 'flippy'
+    puts 'Loading: Extra commands...' if @config['verbose']
     Dir['modules/extra/*.rb'].each { |r| require_relative r; puts "Loaded: #{r}" if @config['verbose'] }
   end
 
   puts '>> Initial loading succesful!! <<'
-  # exit(5) if config['pretend_run']
   Commandrb.bot.run
 end
