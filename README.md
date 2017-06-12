@@ -32,9 +32,9 @@ Enjoy~
 
 # Credits
 
-Kudos to the following users for helping me out:
+Kudos to the following users for helping me ([Seriel](https://github.com/Seriell)) out:
 
-- [Spotlight](https://github.com/awesomebing1)
+- [Spotlight](https://github.com/spotlightishere)
 - [luigoalma](https://github.com/luigoalma), for ideas and help early in development. :3
 - [megumi](https://github.com/megumisonoda)
 - Anyone active on the Discordrb channel in the Discord API server.
