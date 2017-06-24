@@ -2,16 +2,13 @@
 module YuukiBot
   module Helper
 
-    def self.save_settings
+    def self.save_donators
       folder = 'data'
-      settingspath = "#{folder}/settings.yml"
+      settingspath = "#{folder}/donators.yml"
       FileUtils.mkdir(folder) unless File.exist?(folder)
-      unless File.exist?(settingspath)
-        File.open(settingspath, 'w') { |file| file.write("---\n:version: 1\n") }
-      end
-      Data.settings = {}
-      Data.settings = YAML.load(File.read(settingsPath))
+      File.open(settingspath, 'w') { |file| file.write(Data.donators) }
     end
+
 
     def self.save_stats
       folder = 'data'
@@ -36,11 +33,20 @@ module YuukiBot
     end
 
     def self.save_all
-
+      save_donators
     end
 
     def self.shutdown
 
     end
+  end
+
+  module Data
+    class << self
+      attr_accessor :donators
+    end
+    @donators = []
+    @donators = YAML.load_file('data/donators.yml') rescue []
+
   end
 end

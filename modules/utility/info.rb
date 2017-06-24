@@ -25,7 +25,7 @@ module YuukiBot
         end
 
         member = user.on(event.server) unless event.channel.private?
-        event <<  " 👥 Infomation about **#{(event.channel.private? ? user.name : member.display_name)}**"
+        event <<  "#{Data.donators.include?(user.id) ? ' 👑' : ' 👥' } Infomation about **#{(event.channel.private? ? user.name : member.display_name)}**"
         event << "-ID: **#{user.id}**"
         event << "-Username: `#{user.distinct}`"
         event << "-Nickname: **#{member.nickname.nil? ? '[N/A]' : member.nickname}**" unless event.channel.private?
