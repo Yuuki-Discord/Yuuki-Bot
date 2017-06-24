@@ -3,12 +3,12 @@
 custom = {}
 
 # 1. Make your own hashes!
-custom[:pong] = {
+custom[:pong,
   :type => 'text',
   :response => 'Ping!'
 }
 
-custom[:hi] = {
+custom[:hi,
   :type => 'text',
   :response => 'Hello, {user}!'
 }

@@ -1,19 +1,13 @@
 module YuukiBot
   require 'discordrb'
-
-
-  Dir['modules/commandrb/*.rb'].each do |r|
-    require_relative r
-  end
+  require 'open-uri'
+  require 'commandrb'
 
   require_relative 'modules/config.rb'
 
   init_hash = YuukiBot.build_init
 
-  unless Commandrb.initialise(init_hash)
-    puts 'Bot startup failed! Check your config.'
-    exit(4)
-  end
+  $cbot = CommandrbBot.new(init_hash)
 
   module_dirs = %w(owner helper logging misc mod utility)
   module_dirs.each {|dir|
@@ -26,12 +20,15 @@ module YuukiBot
   # Load Extra Commands if enabled.
   if YuukiBot.config['extra_commands']
     require 'json'
-    require 'open-uri'
     # require 'flippy'
     puts 'Loading: Extra commands...' if @config['verbose']
     Dir['modules/extra/*.rb'].each { |r| require_relative r; puts "Loaded: #{r}" if @config['verbose'] }
   end
 
   puts '>> Initial loading succesful!! <<'
-  Commandrb.bot.run
+  $cbot.add_command('whooo', triggers: ['who are you'], code: proc {|event,_|
+      event.respond('http://owarinoseraph.wikia.com/wiki/Tomoe_Saotome')
+    }
+  )
+  $cbot.bot.run
 end

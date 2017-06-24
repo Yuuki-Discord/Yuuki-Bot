@@ -17,6 +17,14 @@ module YuukiBot
     end
   end
 
+  @new_events = {}
+
+  @config['logevents'].each { |x|
+    @new_events[x] = true
+    puts "Added log event: #{x}" if @config['verbose']
+  }
+  @config['logevents'] = @new_events
+
   if @config['status'].nil?
     puts 'Enter a valid status in config.yml!'
     puts 'Valid options are \'online\', \'idle\', \'dnd\' and \'invisible\'.'
@@ -42,10 +50,7 @@ module YuukiBot
       owners: @config['owners'],
       typing_default: @config['typing_default'],
       ready: proc { |event|
-        puts "[READY] :: Logged in as #{event.bot.user(event.bot.profile.id).distinct} !"
-        puts "[READY] :: Servers: #{event.bot.servers.count}"
-
-        puts '>> Bot connected and ready for action! << '
+        event.bot.game = YuukiBot.config['game']
       },
       on_message: Proc.new {|event|
         begin
@@ -56,5 +61,6 @@ module YuukiBot
         Logging.get_message(event, nil)
        }
     }
+    return init_hash
   end
 end

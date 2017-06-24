@@ -3,11 +3,11 @@
 module YuukiBot
   module Utility
 
-    Commandrb.commands[:stubs] = {
+    $cbot.add_command(:stubs,
       code: proc { |event, _|
         event.respond('This command has been removed!')
       },
       triggers: %w(zalgo command angry space tell)
-    }
+    )
   end
 end

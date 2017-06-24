@@ -3,7 +3,7 @@
 module YuukiBot
   module Utility
 
-    Commandrb.commands[:avatar] = {
+    $cbot.add_command(:avatar,
       code: proc { |event, args|
         if args.nil?
           user = event.user
@@ -14,9 +14,9 @@ module YuukiBot
       },
       triggers: %w(avatar avy),
       :server_only => true,
-    }
+    )
 
-    Commandrb.commands[:info] = {
+    $cbot.add_command(:info,
       code: proc { |event, args|
         begin
           user = event.bot.parse_mention(args[0])
@@ -39,15 +39,15 @@ module YuukiBot
         'i '
       ],
       max_args: 1
-    }
-    
-    Commandrb.commands[:ping] = {
-      code: Proc.new {|event, args|
+    )
+
+    $cbot.add_command(:ping,
+      code: Proc.new {|event, _|
         return_message = event.respond('Ping!')
         ping = (return_message.id - event.message.id) >> 22
         return_message.edit("Pong! (`#{ping}ms`)")
        },
-      triggers: ['ping','pong','peng','pung', 'pyng', 'pang']
-    }
+      triggers: %w(ping pong peng pung pyng pang)
+    )
   end
 end

@@ -3,7 +3,7 @@ module YuukiBot
   module Owner
 
     # noinspection RubyResolve,RubyResolve,RubyResolve,RubyResolve,RubyResolve
-    Commandrb.commands[:status] = {
+    $cbot.add_command(:status,
       code: proc { |event, args|
         case args[0].downcase
         when 'idle' || 'away' || 'afk' then event.bot.idle
@@ -16,8 +16,8 @@ module YuukiBot
         end
         event.respond("#{YuukiBot.config['emoji_tickbox']} Status set to **#{args[0].capitalize}**!") },
       triggers: %w(status setstatus go),
-      owners_only: true,
-    }
+      owners_only: true
+    )
 
   end
 end

@@ -5,7 +5,7 @@ module YuukiBot
 
     # Accepts a message, and returns the message content, with all mentions + channels replaced with @user#1234 or #channel-name
    def self.parse_mentions(content)
-      # Replce user IDs with names
+      # Replace user IDs with names
       loop do
           match = /<@\d+>/.match(content)
           break if match.nil?
@@ -40,7 +40,7 @@ module YuukiBot
     # Returns a user-readable username for the specified ID.
     def self.get_user_name(user_id)
         return begin
-          '@' + Commandrb.bot.user(user_id).distinct
+          '@' + $cbot.bot.user(user_id).distinct
         rescue NoMethodError
           '@invalid-user'
         end
@@ -49,7 +49,7 @@ module YuukiBot
     # Returns a user-readable channel name for the specified ID.
     def self.get_channel_name(channel_id)
       return  begin
-                '#' + Commandrb.bot.channel(channel_id).name
+                '#' + $cbot.bot.channel(channel_id).name
               rescue NoMethodError
                 '#deleted-channel'
               end

@@ -66,7 +66,7 @@ module YuukiBot
       puts Rainbow("<Attachments: #{message.attachments[0].filename}: #{message.attachments[0].url} >}").red unless message.attachments.empty?
     end
 
-    Commandrb.bot.message_edit do |event|
+    $cbot.bot.message_edit do |event|
       begin
         # noinspection RubyResolve
         next if Config.ignored_servers.include?(event.server.id) || !Config.logging
@@ -76,7 +76,7 @@ module YuukiBot
       get_message(event, '{EDIT}')
     end
 
-    Commandrb.bot.message_delete do |event|
+    $cbot.bot.message_delete do |event|
       begin
         next if Config.ignored_servers.include?(event.server.id) || !Config.logging
         rescue
@@ -85,7 +85,7 @@ module YuukiBot
       get_deleted_message(event, '{DELETE}')
     end
 
-    Commandrb.bot.member_join do |event|
+    $cbot.bot.member_join do |event|
       begin
         # next if Config.ignored_servers.include?(event.server.id) || !Config.logging
         rescue
