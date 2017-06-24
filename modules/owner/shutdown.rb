@@ -6,7 +6,7 @@ module YuukiBot
     $cbot.add_command(:save,
       code: proc { |event, _|
         message = event.respond 'Saving...'
-        Helper.save_settings
+        Helper.save_all
         message.edit('All saved!')
       },
       triggers: ['save'],
