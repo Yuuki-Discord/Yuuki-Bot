@@ -1,10 +1,10 @@
 # Copyright Seriel, spotlight_is_ok, Larsenv 2017
 module YuukiBot
   module Extra
-    Commandrb.commands[:love] = {
+    $cbot.add_command(:love,
         code: proc { |event,args|
-          first = ""
-          second = ""
+          first = ''
+          second = ''
           if args.length == 1
             first = event.user.name
             begin
@@ -43,7 +43,7 @@ module YuukiBot
               result = 'Great 😄'
             when percentage < 100
               result = 'Amazing 😍'
-            when percentage == 100
+            else
               result = 'PERFECT! :heart_exclamation:'
           end
 
@@ -55,7 +55,7 @@ module YuukiBot
 
           event.respond(response)
         },
-        triggers: ['love', 'ship '],
-    }
+        triggers: ['love', 'ship ']
+    )
   end
 end

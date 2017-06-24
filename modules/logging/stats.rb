@@ -80,12 +80,12 @@ module YuukiBot
       @stats[:totalmessagedeletes] += 1
     end
 
-    Commandrb.commands[:stats] = {
+    $cbot.add_command(:stats,
       code: proc {
         p 'a'
       },
         triggers: %w(stats statistics stat)
-    }
+    )
 
   end
 end

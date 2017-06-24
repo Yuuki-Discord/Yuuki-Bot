@@ -3,7 +3,7 @@ module YuukiBot
   module Owner
 
     # noinspection RubyResolve
-    Commandrb.commands[:prune] = {
+    $cbot.add_command(:prune,
       code: proc { |event, args|
         num = args[0]
         num = 75 if num.nil?
@@ -22,11 +22,11 @@ module YuukiBot
       required_permissions: [:manage_messages],
       owner_override: true,
       owners_only: true,
-      max_args: 1,
-    }
+      max_args: 1
+    )
 
     # noinspection RubyResolve
-    Commandrb.commands[:pruneuser] = {
+    $cbot.add_command(:pruneuser,
       code: proc { |event, args|
         begin
           user = event.bot.parse_mention(args[0])
@@ -43,7 +43,7 @@ module YuukiBot
           Discordrb::API::Channel.bulk_delete_messages(event.bot.token, event.channel.id, msgs)
           event.respond("#{YuukiBot.config['emoji_tickbox']} Pruned #{count} messages by **#{user.distinct}** !")
         rescue Discordrb::Errors::NoPermission
-          event.respond("❌ I don't have permission to delete messages!")
+          event.respond("#{YuukiBot.config['emoji_error']} I don't have permission to delete messages!")
           puts 'The bot does not have the delete message permission!'
         end
       },
@@ -56,7 +56,7 @@ module YuukiBot
       ],
       required_permissions: [:manage_messages],
       owner_override: false,
-      max_args: 1,
-    }
+      max_args: 1
+    )
   end
 end

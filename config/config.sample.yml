@@ -20,8 +20,11 @@ prefixes:
 verbose: true
 
 # Change the amount of chat logs displayed.
-# Can be 'none', 'all' or 'commands'
-loglevel: commands
+# Can be 'none', 'all', 'commands', 'commands_and_dms' or 'dms_only'
+loglevel: commands_and_dms
+# Change what events are logged.
+# Can contain any combination of :edit, :delete, :create. :join
+logevents: [:edit, :delete, :create, :join]
 
 ## Set to a custom emoji using <:name:ID>
 emoji_tickbox: ✅
@@ -85,3 +88,6 @@ parse_bots: false
 selfbot: false # Doesn't work on bot accounts.
 prefix_type: always
 type: :bot
+pretend_run: true
+
+catch_errors: false
