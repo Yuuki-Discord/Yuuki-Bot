@@ -3,12 +3,12 @@
 custom = {}
 
 # 1. Make your own hashes!
-custom[:pong,
+custom[:pong] = {
   :type => 'text',
   :response => 'Ping!'
 }
 
-custom[:hi,
+custom[:hi] = {
   :type => 'text',
   :response => 'Hello, {user}!'
 }
@@ -43,7 +43,3 @@ custom_text = {
     facedesk: 'https://giphy.com/gifs/XLOsdacfjL5cI',
     smea: 'https://giphy.com/gifs/Sb2NkTl1oV6eI',
 }
-
-###################################################################
-
-response.gsub('{userid}', event.user.id).gsub('{user}', event.user.name)

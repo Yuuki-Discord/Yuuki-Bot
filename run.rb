@@ -24,11 +24,7 @@ module YuukiBot
     puts 'Loading: Extra commands...' if @config['verbose']
     Dir['modules/extra/*.rb'].each { |r| require_relative r; puts "Loaded: #{r}" if @config['verbose'] }
   end
-
   puts '>> Initial loading succesful!! <<'
-  $cbot.add_command('whooo', triggers: ['who are you'], code: proc {|event,_|
-      event.respond('http://owarinoseraph.wikia.com/wiki/Tomoe_Saotome')
-    }
-  )
+  exit(1001) if YuukiBot.config['pretend_run']
   $cbot.bot.run
 end
