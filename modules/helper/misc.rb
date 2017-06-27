@@ -7,9 +7,9 @@ module YuukiBot
       Commandrb.owners.include?(member)
     end
 
-    def self.quit
+    def self.quit(status = 0)
       puts 'Exiting...'
-      exit
+      exit(status)
     end
 
     def self.role_from_name(server, rolename)

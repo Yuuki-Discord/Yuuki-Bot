@@ -50,7 +50,8 @@ module YuukiBot
       owners: @config['owners'],
       typing_default: @config['typing_default'],
       ready: proc { |event|
-        event.bot.game = YuukiBot.config['game']
+        event.bot.online
+        event.bot.game = YuukiBot.config['game'] rescue nil
       },
       on_message: Proc.new {|event|
         begin

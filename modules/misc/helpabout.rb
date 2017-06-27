@@ -10,6 +10,14 @@ module YuukiBot
         if YuukiBot.config['show_donate_urls']
           event << "\n:moneybag: Hey, making bots and hosting them isn't free. If you want this bot to stay alive, consider giving some :dollar: to the devs: "
           YuukiBot.config['donate_urls'].each {|url| event << "- #{url}" }
+          event << '\n__**Donators :heart:**__ (aka the best people ever)'
+          if Data.donators.length > 0
+            Data.donators.each {|x|
+              event << "- **#{event.bot.user(x).distinct}**"
+            }
+          else
+            event << 'None! You can be the first! :)'
+          end
         end
       }
     )
@@ -20,7 +28,7 @@ module YuukiBot
          id = args[0].nil? ? event.server.id : args[0]
          event.respond("👤 Owner of server `#{event.bot.server(id).name}` is **#{event.bot.server(id).owner.distinct}** | ID: `#{event.bot.server(id).owner.id}`")
         rescue
-          event.respond("😦 I'm not in that server!")
+          event.respond(" 😦 I'm not in that server!")
         end
       },
       server_only: true

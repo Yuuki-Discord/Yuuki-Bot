@@ -1,4 +1,6 @@
 # Copyright Seriel 2017
+
+### WIP ###
 module YuukiBot
   module Memes
 
