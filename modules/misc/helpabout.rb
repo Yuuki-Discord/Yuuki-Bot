@@ -10,7 +10,7 @@ module YuukiBot
         if YuukiBot.config['show_donate_urls']
           event << "\n:moneybag: Hey, making bots and hosting them isn't free. If you want this bot to stay alive, consider giving some :dollar: to the devs: "
           YuukiBot.config['donate_urls'].each {|url| event << "- #{url}" }
-          event << '\n__**Donators :heart:**__ (aka the best people ever)'
+          event << "\n__**Donators :heart:**__ (aka the best people ever)"
           if Data.donators.length > 0
             Data.donators.each {|x|
               event << "- **#{event.bot.user(x).distinct}**"
