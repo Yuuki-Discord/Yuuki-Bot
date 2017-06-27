@@ -1,5 +1,10 @@
 # Three different ways to add custom commands easy.
 
+
+#### NOTE ####
+# The below examples that use {user} and {userid} do not currently function.
+# This feature is planned for later.
+
 custom = {}
 
 # 1. Make your own hashes!
