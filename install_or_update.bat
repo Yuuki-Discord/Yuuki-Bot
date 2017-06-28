@@ -1,7 +1,7 @@
 @echo off
 echo :: Installing/Updating Bundler
 gem install bundler
-echo :: Installing/Udating Bundle..
+echo :: Installing/Updating Bundle..
 bundle install
 echo :: Updating Yuuki-Bot..
 git pull
