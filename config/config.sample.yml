@@ -24,7 +24,11 @@ verbose: true
 loglevel: commands_and_dms
 # Change what events are logged.
 # Can contain any combination of :edit, :delete, :create. :join
-logevents: [:edit, :delete, :create, :join]
+logevents: 
+ - :edit
+ - :delete
+ - :create
+ - :join
 
 ## Set to a custom emoji using <:name:ID>
 emoji_tickbox: ✅
@@ -88,6 +92,6 @@ parse_bots: false
 selfbot: false # Doesn't work on bot accounts.
 prefix_type: always
 type: :bot
-pretend_run: true
+pretend_run: false
 
 catch_errors: false
