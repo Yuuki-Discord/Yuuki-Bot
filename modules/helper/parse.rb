@@ -1,4 +1,4 @@
-# Copyright Seriel, Spotlight 2016-2017
+# Copyright Erisa Komuro (Seriel), Spotlight 2016-2017
 
 module YuukiBot
   module Helper

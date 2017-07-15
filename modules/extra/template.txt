@@ -1,4 +1,4 @@
-# Copyright Seriel, spotlight_is_ok, Larsenv 2017
+# Copyright Erisa Komuro (Seriel), spotlight_is_ok, Larsenv 2017
 module YuukiBot
   module Extra
 

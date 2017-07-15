@@ -1,4 +1,4 @@
-# Copyright Seriel 2017
+# Copyright Erisa Komuro (Seriel) 2017
 
 ### WIP ###
 module YuukiBot
