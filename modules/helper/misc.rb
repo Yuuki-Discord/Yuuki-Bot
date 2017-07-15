@@ -19,7 +19,6 @@ module YuukiBot
     # Get the user's color
     def self.colour_from_user(member, default = 0)
       colour = default
-
       unless member.nil?
         member.roles.sort_by(&:position).reverse.each do | role |
           next if role.color.combined == 0
@@ -31,13 +30,5 @@ module YuukiBot
       return colour
     end
 
-  end
-end
-
-module Discordrb
-  module Cache
-    def find_user(username)
-      @users.values.find_all { |e| e.username.includes? username }
-    end
   end
 end
