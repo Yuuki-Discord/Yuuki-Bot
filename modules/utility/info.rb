@@ -40,11 +40,11 @@ module YuukiBot
         # event << "-Playing: **#{user.game.nil? ? '[N/A]' : user.game}**"
         # event << "-Account created: **#{user.creation_time.getutc.asctime}** UTC"
         # event << "-Joined server at: **#{member.joined_at.getutc.asctime}** UTC" unless event.channel.private?
-        nickname = member.nickname.nil? ? '[N/A]' : member.nickname unless event.channel.private?
+        nickname = member.nickname.nil? ? member.display_name : member.nickname unless event.channel.private?
         event.channel.send_embed("__Information about **#{user.distinct}**__") do |embed|
           embed.colour = event.channel.private? ? 0xe06b2 : Helper.colour_from_user(member)
           embed.thumbnail = Discordrb::Webhooks::EmbedThumbnail.new(url: Helper.avatar_url(user))
-          embed.author = Discordrb::Webhooks::EmbedAuthor.new(name: "#{Data.donators.include?(user.id) ? ' 👑' : ' 👥' } #{nickname.nil? ? user.name : nickname}", url: Helper.avatar_url(user))
+          embed.author = Discordrb::Webhooks::EmbedAuthor.new(name: "#{Data.donators.include?(user.id) ? ' 👑' : ' 👥' } #{event.channel.private? ? user.name : member.display_name}", url: Helper.avatar_url(user))
           embed.footer = Discordrb::Webhooks::EmbedFooter.new(text: "All information correct as of: #{Time.now.getutc.asctime}")
           embed.add_field(name: 'User ID:', value: user.id, inline: true)
           embed.add_field(name: 'Playing:', value: user.game.nil? ? '[N/A]' : user.game, inline: true)

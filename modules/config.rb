@@ -48,6 +48,7 @@ module YuukiBot
       type: @config['type'],
       game: @config['game'],
       owners: @config['owners'],
+
       typing_default: @config['typing_default'],
       ready: proc { |event|
         event.bot.online
