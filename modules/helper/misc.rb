@@ -12,6 +12,15 @@ module YuukiBot
       exit(status)
     end
 
+    def self.ctrl_c(type)
+      puts "[WARN] #{type} detected, safely shutting down...."
+      $cbot.bot.invisible
+      $cbot.bot.stop
+      exit
+    end
+    trap('SIGINT') { ctrl_c('SIGINT') }
+    trap('SIGTERM') { ctrl_c('SIGTERM') }
+
     def self.role_from_name(server, rolename)
       return server.roles.select { |r| r.name == rolename }.first
     end
