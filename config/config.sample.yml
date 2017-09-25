@@ -3,7 +3,7 @@
 #######################################################################################################
 ## To get started, please create a bot account at https://discordapp.com/developers/applications/me  ##
 ## Then create a bot user, find the token and client id, and put them below.                         ##
-## It is also highly recommended that you add your user ID to "owners" array. (Lines 71-77)          ##
+## It is also highly recommended that you add your user ID to "owners" array. (Lines 82-86)          ##
 ## Anything after a hash (#) is a comment and will be ignored.                                       ##
 #######################################################################################################
 ## When you're done, save this file as `config.yml` (In the config folder)                           ##
@@ -37,8 +37,16 @@ emoji_warning: ⚠
 emoji_clear: 🚮
 emoji_success: 👌
 
+# Uncomment to use Discord Bots style tickbox and errors.
+# Only works if bot is in Discord Bots (Which an obvious clone shouldnt be!)
+# Alternatively upload the emote images to your own server and change the IDs.
+
+#~ emoji_tickbox: <:check:314349398811475968>
+#~ emoji_error: <:xmark:314349398824058880>
+
+
 # Set to "online", "idle", "dnd" or "invisible"
-status: idle
+status: online
 game: Powered by Ruby!
 
  # Change to false if you don't like the bot "typing" all the time.
@@ -74,7 +82,7 @@ donate_urls:
 ##~~~ !! Any user on this list will have full access to the machine the bot is hosted on via eval and bash commands !! ~~~##
 ##~~~~ Give this power WITH CAUTION ~~~~###
 owners:
-  - 228574821590499328 # Not a real ID, put yours.
+  - 228574821590499328 # Seriel
 # - 228574821590499328
 
 # To get your user ID: (two methods)
