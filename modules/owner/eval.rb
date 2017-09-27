@@ -3,24 +3,14 @@
 module YuukiBot
   module Owner
 
-    $cbot.add_command(:eval,
-        code: proc { |_, args|
-          eval args.join(' ')
+    $cbot.add_command(:oldeval,
+        code: proc { |event, args|
+          event.respond(eval args.join(' '))
         },
-        triggers: ['eval '],
+        triggers: ['raweval ', 'oldeval'],
         owners_only: true
     )
 
-    $cbot.add_command('eval',
-      triggers: ['eval '],
-      owners_only: true
-    )
-    {
-        code: proc { |_, args|
-          eval args.join(' ')
-        },
-
-    }
 
     $cbot.add_command(:owners,
         code: proc { |event, _|
@@ -30,7 +20,7 @@ module YuukiBot
         triggers: ['owners']
     )
 
-    $cbot.add_command(:evaltwo,
+    $cbot.add_command(:eval,
         code: proc { |event, args|
         begin
           result = eval args.join(' ')
@@ -51,7 +41,7 @@ module YuukiBot
           event.respond(":x: An error has occured!! ```ruby\n#{e}```")
         end
         },
-        triggers: ['eval2 '],
+        triggers: ['eval2 ', 'eval'],
         owners_only: true,
         description: 'Evaluate a Ruby command. Owner only.',
     )
@@ -61,8 +51,9 @@ module YuukiBot
         # Capture all output, including STDERR.
         result = `#{"#{args.join(' ')} 2>&1"} `
         if result.length >= 1984
+          # TODO: Hastebin upload
           puts result
-          event << "#{YuukiBot.config['emoji_warning']} Your output exceeded the character limit! (`#{result.length - 1984}`/`1984`)"
+          event << "#{YuukiBot.config['emoji_warning']} Your output exceeded the character limit by `#{result.length - 1984}` characters!"
           event << 'The result has been logged to the terminal instead :3'
         else
           event << ((result.nil? || result == '' || result == ' ' || result == "\n") ? "#{YuukiBot.config['emoji_tickbox']} Done! (No output)" : "Output: ```\n#{result}```")
