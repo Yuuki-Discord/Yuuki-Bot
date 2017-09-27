@@ -305,7 +305,7 @@ module YuukiBot
       puts 'Added fun command for randommovie!' if YuukiBot.config['verbose']
     end
 	$cbot.add_command(:choose,
-		code: Proc.new { |event,args|
+		code: proc { |event,args|
 			event.respond("I choose #{args.sample}!")
     }
   )

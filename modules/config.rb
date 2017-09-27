@@ -70,7 +70,7 @@ module YuukiBot
           puts "[READY] Invite URL: #{event.bot.invite_url}"
         end
       },
-      on_message: Proc.new {|event|
+      on_message: proc {|event|
         begin
           next if Config.ignored_servers.include?(event.server.id) || !Config.logging
         rescue
