@@ -32,11 +32,10 @@ module YuukiBot
       code: proc { |event, _|
         message = event.respond 'Saving and reloading... '
         Helper.save_all
-        event.bot.invisible
         message.edit('All saved. Restarting, please wait...')
         Helper.quit(1002)
       },
-      triggers:     ['reboot', 'restart', 'reload', 'gtfo'],
+      triggers: %w(reboot restart reload gtfo),
       owners_only:  true,
       errors:       ['nuu, you can\'t tell me what to do >:O', 'I don\'t want to shut down.', 'All saved. Good-On second thought, no.', 'I hate taking naps.', 'You shut me down and I\'ll shut down your computer.'],
       description:  'Shuts down the bot. Owner only.',

@@ -9,12 +9,16 @@ module YuukiBot
 
     def self.quit(status = 0)
       puts 'Exiting...'
+      begin
+        $cbot.bot.stop
+      rescue
+        $cbot.bot.invisible
+      end
       exit(status)
     end
 
     def self.ctrl_c(type)
       puts "[WARN] #{type} detected, safely shutting down...."
-      $cbot.bot.invisible
       $cbot.bot.stop
       exit
     end
@@ -31,7 +35,7 @@ module YuukiBot
       unless member.nil?
         member.roles.sort_by(&:position).reverse.each do | role |
           next if role.color.combined == 0
-          puts 'Using ' + role.name + '\'s color ' + role.color.combined.to_s if YuukiBot.config['verbose']
+          puts 'Using ' + role.name + '\'s color ' + role.color.combined.to_s if YuukiBot.config['debug'] rescue nil
           colour = role.colour.combined
           break
         end
