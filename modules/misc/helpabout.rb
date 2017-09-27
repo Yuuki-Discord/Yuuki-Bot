@@ -4,7 +4,7 @@ module YuukiBot
 
     $cbot.add_command(:about,
       code: proc { |event, _|
-        event << "`#{event.bot.user(event.bot.profile.id).distinct}` running **YuukiBot-Testing v4** "
+        event << "`#{event.bot.user(event.bot.profile.id).distinct}` running **YuukiBot v#{$version}** "
         event << "**#{YuukiBot.config['source_url']}** " if YuukiBot.config['show_source']
         event << "\n ⚙ Extra commands: **#{YuukiBot.config['extra_commands'] ? 'Enabled' : 'Disabled'}**"
         if YuukiBot.config['show_donate_urls']
