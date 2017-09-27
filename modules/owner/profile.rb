@@ -2,24 +2,11 @@
 module YuukiBot
   module Owner
 
-    $cbot.add_command(:set,
+    $cbot.add_command(:setavatar,
       code: proc { |event, args|
-        case args[0].downcase
-          when 'avatar' || 'avy' then
-            url = args.join(' ')
-            begin
-              event.bot.profile.avatar = File.open(Helper.download_file(url, 'tmp'))
-            rescue Exception => e
-            end
-
-              event.respond("#{YuukiBot.config['emoji_tickbox']} Avatar should be updated!")
-          when 'dnd' then event.bot.dnd
-          when 'online' then event.bot.online
-          when 'invisible' || 'offline' then event.bot.invisible
-          else
-            event.respond('Enter a valid argument!')
-            next
-        end
+        url = args.join(' ')
+        event.bot.profile.avatar = File.open(Helper.download_file(url, 'tmp'))
+        event.respond("#{YuukiBot.config['emoji_tickbox']} Avatar should be updated!")
       },
       owners_only: true
     )
