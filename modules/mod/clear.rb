@@ -36,13 +36,7 @@ module YuukiBot
                   clearnum = 0
               end
           end
-          # Emoji below is a trash can icon thingy.
           event.respond("#{YuukiBot.config['emoji_clear']} Cleared #{original_num} messages!\n#{YuukiBot.config['emoji_warning']}Messages older than 2 weeks will not have been deleted. Please use `forceclear` in those cases.")
-
-          # On second thought, that's annoying.
-
-          #~ sleep(3)
-          #~ message.delete
         rescue Discordrb::Errors::NoPermission
           event.respond("#{YuukiBot.config['emoji_success']} Message delete failed!\nCheck the permissions?")
           break
