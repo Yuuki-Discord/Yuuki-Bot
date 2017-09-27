@@ -62,7 +62,7 @@ module YuukiBot
     )
 
     $cbot.add_command(:ping,
-      code: Proc.new {|event, _|
+      code: proc {|event, _|
         return_message = event.respond('Pinging..!')
         ping = (return_message.id - event.message.id) >> 22
 	    choose = %w(i o e u y a)
