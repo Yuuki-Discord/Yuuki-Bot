@@ -6,7 +6,6 @@ module YuukiBot
     $cbot.add_command(:ignore,
       code: proc { |event, args|
         event.respond("#{YuukiBot.config['emoji_error']} Mention valid user(s)!") if args == []
-
         args.each { |x|
           mention = args[0]
           user = begin
