@@ -1,0 +1,17 @@
+##~~~ DO NOT OPEN THIS FILE IN NOTEPAD (Use a modern text editor such as Notepad++ or any Unix-based one)  ~~~##
+##~~~ If everything displays on one line, do not save the file and instead open in a different editor.     ~~~##
+
+##~~~ /!\/!\ Any user on this list will have full access to the machine the bot is hosted on via eval and bash commands /!\/!\ ~~~##
+##~~~~ Give this power WITH CAUTION ~~~~###
+
+# To add an owner, create a new line below "owners:" containng a space, a dash (-), another space, and then your ID.
+# For example: ' - 228574821590499329'
+
+# To get your user ID:
+# 1. Enable Developer mode in the client, then right click your name and select "Copy ID".
+# 2. Run the bot temporarily and use the info command.
+# 3. Use the info/userinfo command of another bot to discover your ID.
+
+owners:
+# - 228574821590499323
+# - 228574821590499328
