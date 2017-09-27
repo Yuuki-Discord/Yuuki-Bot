@@ -17,6 +17,12 @@ module YuukiBot
     end
   end
 
+  # owners.yml always overrides config.yml, but if it doesn't exist, config.yml will be honoured.
+  # This ensures compatibility with old config files, meaning no owners file needs to be setup.
+  if File.exists?('config/owners.yml')
+    @config['owners'] = YAML.load_file('config/config.yml')['owners']
+  end
+
   @new_events = {}
 
   @config['logevents'].each { |x|
@@ -53,6 +59,14 @@ module YuukiBot
       ready: proc { |event|
         event.bot.online
         event.bot.game = YuukiBot.config['game'] rescue nil
+      },
+      ready: proc {|event|
+        puts "[READY] Logged in as #{event.bot.profile.distinct} !"
+        puts "[READY] Connected to #{event.bot.servers.count} servers!"
+        if event.bot.servers.count == 0
+          puts '[READY] You are not connected to any servers. Use the following URL to add your first one!'
+          puts "[READY] Invite URL: #{event.bot.invite_url}"
+        end
       },
       on_message: Proc.new {|event|
         begin
