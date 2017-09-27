@@ -38,7 +38,7 @@ module YuukiBot
             event << "Output: ```\n#{result}```"
           end
           rescue Exception => e
-          event.respond(":x: An error has occured!! ```ruby\n#{e}```")
+          event.respond("#{YuukiBot.config['emoji_error']} An error has occured!! ```ruby\n#{e}```")
         end
         },
         triggers: ['eval2 ', 'eval'],
