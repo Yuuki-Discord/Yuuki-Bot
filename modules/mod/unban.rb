@@ -3,7 +3,6 @@
 module YuukiBot
   module Mod
 
-    # noinspection RubyResolve
     $cbot.add_command(:unban,
       code: proc { |event, args|
         target_id = args[0]

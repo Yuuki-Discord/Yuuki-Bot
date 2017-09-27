@@ -12,7 +12,8 @@ module YuukiBot
             event << "#{YuukiBot.config['emoji_error']} Failed to parse user \"#{args[0]}\"\nDid you mention a user?"
             break
           end
-          message = "You have been kicked from the server **#{event.server.name}** by #{event.message.author.mention} | **#{event.message.author.display_name}**\n"
+          message = "You have been kicked from the server **#{event.server.name}** "
+          message << "by #{event.message.author.mention} | **#{event.message.author.display_name}**\n"
           message << "They gave the following reason: ``#{args.drop(1).join(' ')}``"
           begin
             member.pm(message)
@@ -44,7 +45,8 @@ module YuukiBot
             event << "#{YuukiBot.config['emoji_error']} Failed to parse user \"#{args[0]}\"\nDid you mention a user?"
             break
           end
-          message = "You have been **permanently banned** from the server `#{event.server.name}` by #{event.message.author.mention} | **#{event.message.author.display_name}**\n"
+          message = "You have been **permanently banned** from the server `#{event.server.name}` "
+          message << "by #{event.message.author.mention} | **#{event.message.author.display_name}**\n"
           message << "They gave the following reason: ``#{args.drop(1).join(' ')}``\n\n"
           message << "If you wish to appeal for your ban's removal, please contact this person, or the server owner."
           begin
@@ -68,6 +70,5 @@ module YuukiBot
       owner_override: false,
       server_only: true
     )
-
   end
 end

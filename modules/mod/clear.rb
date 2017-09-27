@@ -1,11 +1,10 @@
 # Copyright Erisa Komuro (Seriel) 2016-2017
 
 module YuukiBot
-  # noinspection ALL
   module Mod
 
     $cbot.add_command(:clear,
-      :code => proc { |event, args|
+      code: proc { |event, args|
         unless /\A\d+\z/ =~ args[0]
             event.respond("`#{args[0]}` is not a valid number!")
             break
@@ -43,15 +42,15 @@ module YuukiBot
         end
         nil
       },
-      :triggers =>['clear', 'clean'],
-      :server_only => true,
-      :required_permissions => [:manage_messages],
-      :owner_override => false,
-      :max_args => 1
+      triggers: ['clear', 'clean'],
+      server_only: true,
+      required_permissions: [:manage_messages],
+      owner_override: false,
+      max_args: 1
     )
 
     $cbot.add_command(:forceclear,
-       :code => proc { |event, args|
+       code: proc { |event, args|
          unless /\A\d+\z/ =~ args[0]
            event.respond("`#{args[0]}` is not a valid number!")
            break
@@ -93,12 +92,11 @@ module YuukiBot
          end
          nil
        },
-       :triggers =>['clear', 'clean'],
-       :server_only => true,
-       :required_permissions => [:manage_messages],
-       :owner_override => false,
-       :max_args => 1
+      triggers: ['clear', 'clean'],
+      server_only: true,
+      required_permissions: [:manage_messages],
+      owner_override: false,
+      max_args: 1
     )
-
   end
 end

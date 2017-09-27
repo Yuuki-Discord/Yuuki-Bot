@@ -38,6 +38,5 @@ module YuukiBot
       triggers: ['donate', 'donateinfo', 'how do i donate', 'how do i donate?', 'how do I donate', 'how do I donate?']
     )
 
-
   end
 end
