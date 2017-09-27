@@ -3,7 +3,8 @@ module YuukiBot
   require 'open-uri'
   require 'commandrb'
 
-  require_relative 'modules/config.rb'
+  require_relative 'modules/config'
+  require_relative 'modules/version'
 
   init_hash = YuukiBot.build_init
 
