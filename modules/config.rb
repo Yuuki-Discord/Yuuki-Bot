@@ -58,11 +58,17 @@ module YuukiBot
       owners: @config['owners'],
 
       typing_default: @config['typing_default'],
-      ready: proc { |event|
-        event.bot.online
-        event.bot.game = YuukiBot.config['game'] rescue nil
-      },
       ready: proc {|event|
+        case @config['status']
+          when 'idle' || 'away' || 'afk' then event.bot.idle
+          when 'dnd' then event.bot.dnd
+          when 'online' then event.bot.online
+          when 'invisible' || 'offline' then event.bot.invisible
+          when 'stream' || 'streaming' then event.bot.stream(@config['game'], @config['twitch_url'])
+          else
+            raise 'No valid status found.'
+        end
+        event.bot.game = YuukiBot.config['game'] rescue nil
         puts "[READY] Logged in as #{event.bot.profile.distinct} !"
         puts "[READY] Connected to #{event.bot.servers.count} servers!"
         if event.bot.servers.count == 0

@@ -16,9 +16,12 @@ prefixes:
   - "&"
   - "s!!"
 
-# Set to "online", "idle", "dnd" or "invisible"
+# Set to "online", "idle", "dnd", "invisible" or "streaming"
 status: online
 game: Powered by Ruby!
+
+# Only valid if status is streaming and game isn't nil.
+twitch_url: https://twitch.tv/example
 
 # Set to false for less console output.
 verbose: true
