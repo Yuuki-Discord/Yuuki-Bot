@@ -23,6 +23,8 @@ module YuukiBot
     @config['owners'] = YAML.load_file('config/config.yml')['owners']
   end
 
+  @config['debug'] = false if @config['debug'].nil?
+
   @new_events = {}
 
   @config['logevents'].each { |x|
