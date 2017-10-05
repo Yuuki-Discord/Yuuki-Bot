@@ -17,7 +17,7 @@ module YuukiBot
        owners_only: true
     )
 
-    $cbot.add_command(:doante,
+    $cbot.add_command(:donate,
       code: proc {|event,args|
         if YuukiBot.config['show_donate_urls']
           event << ":moneybag: Hey, making bots and hosting them isn't free. If you want this bot to stay alive, consider giving some :dollar: to the devs: "
