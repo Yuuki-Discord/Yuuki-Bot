@@ -23,7 +23,7 @@ module YuukiBot
         )
       }
 
-    $cbot.add_command(:confucious,
+    $cbot.add_command(:confucius,
         code: proc { |event, _|
           event.respond("Confucious say #{File.readlines('text/Jokes/confucious.txt').sample.chomp}")
         }
