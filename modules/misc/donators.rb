@@ -35,7 +35,7 @@ module YuukiBot
           event << 'Please contact the bot owner for more information.'
         end
       },
-      triggers: ['donate', 'donateinfo', 'how do i donate', 'how do i donate?', 'how do I donate', 'how do I donate?']
+      triggers: ['donate', 'donateinfo', 'how do i donate', 'how do i donate?', 'how do I donate', 'how do I donate?', 'doante']
     )
 
   end
