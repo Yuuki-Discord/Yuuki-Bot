@@ -5,8 +5,6 @@ module YuukiBot
 
   # Dumps all messages in a given channel.
   # Returns the filepath of the file containing the dump.
-  # Dumps all messages in a given channel.
-  # Returns the filepath of the file containing the dump.
   def self.dump_channel(channel, output_channel = nil, folder, timestamp)
     server = if channel.private?
                'DMs'

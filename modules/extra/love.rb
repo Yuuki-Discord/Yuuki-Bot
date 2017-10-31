@@ -12,7 +12,7 @@ module YuukiBot
             rescue
               second = args[0]
             end
-          elsif args.length == 2
+          else
             first = args[0]
             second = args[1]
           end

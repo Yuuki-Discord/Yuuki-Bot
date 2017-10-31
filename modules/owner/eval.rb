@@ -14,8 +14,21 @@ module YuukiBot
 
     $cbot.add_command(:owners,
         code: proc { |event, _|
+          if YuukiBot.config['owners'].nil? || YuukiBot.config['owners'] == []
+            event.channel.send_message('', false,
+            Helper.error_embed(
+             error: "No bot owners have been configured.",
+             footer: "Command: `#{event.message.content}`",
+             colour: 0xFA0E30,
+             code_error: false
+            )
+          )
+          end
+          
           event << 'This bot instance is managed/owned by the following users. Please contact them for any issues.'
-          YuukiBot.config['owners'].each { |x| event << "`#{event.bot.user(x).distinct}`" }
+          
+            
+          YuukiBot.config['owners'].each { |id| event.bot.user(id).nil? ? event << "Unknown User (ID: `#{id}`)" : event << "`#{event.bot.user(id).distinct}`" }
         },
         triggers: ['owners']
     )
@@ -31,9 +44,8 @@ module YuukiBot
           end
 
           if result.length >= 1984
-            puts result
             event << "#{YuukiBot.config['emoji_warning']} Your output exceeded the character limit! (`#{result.length - 1984}`/`1984`)"
-            event << 'The result has been logged to the terminal instead :3'
+            event << "You can view the result here: https://hastebin.com/raw/#{$uploader.upload_raw(result)}"
           else
             event << "Output: ```\n#{result}```"
           end
@@ -51,10 +63,8 @@ module YuukiBot
         # Capture all output, including STDERR.
         result = `#{"#{args.join(' ')} 2>&1"} `
         if result.length >= 1984
-          # TODO: Hastebin upload
-          puts result
           event << "#{YuukiBot.config['emoji_warning']} Your output exceeded the character limit by `#{result.length - 1984}` characters!"
-          event << 'The result has been logged to the terminal instead :3'
+          event << "You can view the result here: https://hastebin.com/raw/#{$uploader.upload_raw(result)}"
         else
           event << ((result.nil? || result == '' || result == ' ' || result == "\n") ? "#{YuukiBot.config['emoji_tickbox']} Done! (No output)" : "Output: ```\n#{result}```")
         end
