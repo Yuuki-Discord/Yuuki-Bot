@@ -9,12 +9,16 @@
 ## When you're done, save this file as `config.yml` (In the config folder)                           ##
 #######################################################################################################
 
-token: Mjk1OTUwMjg3MDcwNTYwMjU2.C7rIsw.az_gJtwJtz-Hv8e_jmq5tQK0WQw # Get from https://discordapp.com/developers/applications/me
-client_id: 295950287070560256 # Also get from https://discordapp.com/developers/applications/me
+token: EXAMPLE # Get from https://discordapp.com/developers/applications/me
+client_id: 306142257818632193 # Also get from https://discordapp.com/developers/applications/me
 prefixes:
-  - "s!"
-  - "&"
-  - "s!!"
+  - "s!!" # Please change.
+  
+# Google Translate API Key
+translate_api_key: INSERTHERE 
+
+## PLEASE CHANGE
+emoji_translate: <:translate:374262067529515008> 
 
 # Set to "online", "idle", "dnd", "invisible" or "streaming"
 status: online
@@ -55,7 +59,7 @@ emoji_success: 👌
 typing_default: true
 
 # Change to false if private.
-show_invite: true
+show_invite: false
 # Best to leave nil unless sure. (Defaults t o a generated URL)
 invite_url: nil
 
@@ -93,7 +97,7 @@ parse_bots: false
 selfbot: false # Doesn't work on bot accounts.
 prefix_type: always
 type: :bot
-catch_errors: false
+catch_errors: true
 
 # Debug options, only change if contributing to Yuuki-Bot or making your own fork.
 

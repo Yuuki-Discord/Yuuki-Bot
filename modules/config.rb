@@ -38,13 +38,17 @@ module YuukiBot
   if @config['status'].nil?
     puts 'Enter a valid status in config.yml!'
     puts 'Valid options are \'online\', \'idle\', \'dnd\' and \'invisible\'.'
+    raise 'Invalid status'
     exit
   end
 
   if @config['token'].nil?
-    puts 'No valid token entered!'
+    raise 'No valid token entered!'
     exit
   end
+  require 'easy_translate'
+  
+  EasyTranslate.api_key = @config['translate_api_key']
 
   def self.build_init
     # Transfer it into an init hash.

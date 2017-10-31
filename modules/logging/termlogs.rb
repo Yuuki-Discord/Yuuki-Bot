@@ -18,7 +18,7 @@ module YuukiBot
           server_name = 'DM'
           channel_name = event.channel.name
         else
-          server_name = event.server.name
+           server_name = event.server.name
           channel_name = "\##{event.channel.name}"
         end
         content = Rumoji.encode(Helper.parse_mentions(event.content))
@@ -44,7 +44,7 @@ module YuukiBot
             server: server_name
           }
         }
-        end
+      end
     end
 
     def self.get_deleted_message(event, state)
@@ -70,27 +70,27 @@ module YuukiBot
       begin
         # noinspection RubyResolve
         next if Config.ignored_servers.include?(event.server.id) || !Config.logging
-        rescue
+      rescue
           nil
-        end
+      end
       get_message(event, '{EDIT}')
     end
 
     $cbot.bot.message_delete do |event|
       begin
         next if Config.ignored_servers.include?(event.server.id) || !Config.logging
-        rescue
+      rescue
           nil
-        end
+      end
       get_deleted_message(event, '{DELETE}')
     end
 
     $cbot.bot.member_join do |event|
       begin
         # next if Config.ignored_servers.include?(event.server.id) || !Config.logging
-        rescue
-          nil
-        end
+      rescue
+        nil
+      end
       puts Rainbow("#{Time.now.strftime('[%D %H:%M]')} #{event.member.distinct} joined #{event.server.name}").blue
     end
   end

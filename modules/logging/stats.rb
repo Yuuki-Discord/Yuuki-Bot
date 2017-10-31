@@ -82,9 +82,10 @@ module YuukiBot
 
     $cbot.add_command(:stats,
       code: proc {
-        p 'a'
+        raise NotImplementedError
       },
-        triggers: %w(stats statistics stat)
+        triggers: %w(stats statistics stat),
+        cath_errors: true
     )
 
   end

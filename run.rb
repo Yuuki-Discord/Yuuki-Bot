@@ -1,8 +1,15 @@
 module YuukiBot
   require 'discordrb'
   require 'open-uri'
-  require 'commandrb'
-
+  require 'haste'
+  require 'easy_translate'
+  
+  if ENV['COMMANDRB_PATH'].nil?
+    require 'commandrb'
+  else
+    puts '[INFO] Loading commandrb from Environment location.'
+    require_relative "#{ENV['COMMANDRB_PATH']}/lib/commandrb"
+  end
   require_relative 'modules/config'
   require_relative 'modules/version'
 
@@ -27,5 +34,6 @@ module YuukiBot
   end
   puts '>> Initial loading succesful!! <<'
   exit(1001) if YuukiBot.config['pretend_run']
+  $uploader =  Haste::Uploader.new
   $cbot.bot.run
 end
