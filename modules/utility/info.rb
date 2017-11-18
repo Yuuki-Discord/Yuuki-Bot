@@ -13,7 +13,6 @@ module YuukiBot
               user = event.bot.user(args[1])
             else
               user = event.bot.parse_mention(args.join(' '))
-              puts user
             end
           rescue
             event.channel.send_message('', false,
@@ -26,6 +25,18 @@ module YuukiBot
             )
             raise 'Not a valid user'
           end
+        end
+        
+        if user.nil?
+          event.channel.send_message('', false,
+            Helper.error_embed(
+             error: "Error unknown. Details:\n`User is nil or not found.`",
+             footer: "Command: `#{event.message.content}`",
+             colour: 0xFA0E30,
+             code_error: false
+            )
+          )
+          next
         end
 
         event.channel.send_embed do |embed|
@@ -41,21 +52,24 @@ module YuukiBot
 
     $cbot.add_command(:info,
       code: proc { |event, args|
-        begin
+        if args.length == 0 or args[0].nil? or args[0] == ''
+          user = event.user
+        else
+          begin
             if args[0] == "byid"
               user = event.bot.user(args[1])
             else
               user = event.bot.parse_mention(args.join(' '))
-              puts user
             end
-        rescue
-          user = event.user
+          rescue
+            user = event.user
+          end
         end
         
         if user.nil?
           event.channel.send_message('', false,
             Helper.error_embed(
-             error: "Error unknown. Details:\n`User is nil.`",
+             error: "Error unknown. Details:\n`User is nil or not found.`",
              footer: "Command: `#{event.message.content}`",
              colour: 0xFA0E30,
              code_error: false
@@ -63,16 +77,13 @@ module YuukiBot
           )
           next
         end
-          
-          
 
         unless event.channel.private? || event.server.members.include?(user)
-         member = user.on(event.server) unless 
+         member = user.on(event.server) 
+        else
          ignoreserver = true
         end
        
-        
-        nickname = member.nickname.nil? ? member.display_name : member.nickname unless ignoreserver
         event.channel.send_embed("__Information about **#{user.distinct}**__") do |embed|
           embed.colour = event.channel.private? ? 0xe06b2 : Helper.colour_from_user(member)
           embed.thumbnail = Discordrb::Webhooks::EmbedThumbnail.new(url: Helper.avatar_url(user))
