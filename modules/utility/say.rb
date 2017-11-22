@@ -19,18 +19,9 @@ module YuukiBot
         event.respond(args.join(' '))
       },
       owners_only: true,
-      min_args: 1
+      min_args: 1,
+      triggers: %w(speak hide)
     )
-
-    $cbot.add_command(:hide,
-      code: proc { |event, args|
-        event.respond(args.join(' '))
-        event.message.delete
-      },
-      owners_only: true,
-      min_args: 1
-    )
-
 
 #    $cbot.bot.message_delete  { |event|
 #      unless Helper.say_map[event.id].nil?
