@@ -18,7 +18,7 @@ module YuukiBot
           message << 'This message will vanish in 5 seconds and the clearing will begin, please wait..'
           event.respond(message)
           sleep(5)
-        else clearnum > 1000
+        elsif clearnum > 1000
           message = "The maximum number of messages I can clear is 1000!"
           event.respond(message)
           break
