@@ -28,7 +28,6 @@ module YuukiBot
   # Load Extra Commands if enabled.
   if YuukiBot.config['extra_commands']
     require 'json'
-    # require 'flippy'
     puts 'Loading: Extra commands...' if @config['verbose']
     Dir['modules/extra/*.rb'].each { |r| require_relative r; puts "Loaded: #{r}" if @config['verbose'] }
   end
