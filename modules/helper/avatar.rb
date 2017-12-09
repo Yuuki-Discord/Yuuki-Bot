@@ -8,6 +8,9 @@ module YuukiBot
     def self.download_avatar(user, folder)
       return download_file(avatar_url(user), folder)
     end
+
+    def self.avatar_url(user)
+      url = user.avatar_url
       uri = URI.parse(url)
       # extension = File.extname(uri.path)
       filename = File.basename(uri.path)
@@ -22,7 +25,3 @@ module YuukiBot
     end
   end
 end
-
-
-def self.avatar_url(user)
-        url = user.av
