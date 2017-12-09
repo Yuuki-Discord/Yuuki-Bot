@@ -7,7 +7,7 @@ module YuukiBot
     # Returns the path of the downloaded file.
     def self.download_avatar(user, folder)
       return download_file(avatar_url(user), folder)
-    endatar_url
+    end
       uri = URI.parse(url)
       # extension = File.extname(uri.path)
       filename = File.basename(uri.path)
