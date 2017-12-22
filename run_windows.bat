@@ -1,3 +1,5 @@
 @echo off
-bundle exec ruby run.rb
+:repeat
+call bundle exec ruby run.rb || goto :repeat
+echo Success!
 pause
