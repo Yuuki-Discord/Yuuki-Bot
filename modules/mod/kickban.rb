@@ -39,9 +39,8 @@ module YuukiBot
     $cbot.add_command(:ban,
       code: proc { |event, args|
         if !args.empty?
-          begin
-            member = event.bot.parse_mention(args[0])
-          rescue
+          member = event.bot.parse_mention(args[0])
+          if member.nil?
             event << "#{YuukiBot.config['emoji_error']} Failed to parse user \"#{args[0]}\"\nDid you mention a user?"
             break
           end
