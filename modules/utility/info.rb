@@ -78,10 +78,10 @@ module YuukiBot
           next
         end
 
-        unless event.channel.private? || event.server.members.include?(user)
-         member = user.on(event.server) 
+        if event.channel.private? || !event.server.members.include?(user)
+          ignoreserver = true
         else
-         ignoreserver = true
+          member = user.on(event.server)
         end
        
         event.channel.send_embed("__Information about **#{user.distinct}**__") do |embed|
