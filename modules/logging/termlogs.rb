@@ -1,7 +1,8 @@
-# Copyright Erisa Komuro (Seriel) 2016-2017
+# Copyright Erisa Komuro (Seriel), Spotlight 2016-2017
 
 module YuukiBot
   module Logging
+=begin
     require 'rumoji'
     require 'rainbow'
     extend Discordrb::EventContainer
@@ -93,5 +94,6 @@ module YuukiBot
       end
       puts Rainbow("#{Time.now.strftime('[%D %H:%M]')} #{event.member.distinct} joined #{event.server.name}").blue
     end
+=end
   end
 end
