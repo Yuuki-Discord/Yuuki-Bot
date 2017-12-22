@@ -19,7 +19,7 @@ module YuukiBot
         Helper.save_all
         event.bot.invisible
         message.edit('All saved. Goodbye!')
-        Helper.quit(1001)
+        Helper.quit(0)
       },
       triggers:     ['shutdown', 'bye', 'fuck off', 'die', 'kys', 'go away'],
       owners_only:  true,
@@ -33,7 +33,7 @@ module YuukiBot
         message = event.respond 'Saving and reloading... '
         Helper.save_all
         message.edit('All saved. Restarting, please wait...')
-        Helper.quit(1002)
+        Helper.quit(1)
       },
       triggers: %w(reboot restart reload gtfo),
       owners_only:  true,

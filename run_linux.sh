@@ -1,2 +1,2 @@
 #!/bin/sh
-bundle exec ruby run.rb
+while bundle exec ruby run.rb; do :; done

@@ -20,7 +20,7 @@ module YuukiBot
     def self.ctrl_c(type)
       puts "[WARN] #{type} detected, safely shutting down...."
       $cbot.bot.stop
-      exit
+      exit(0)
     end
     trap('SIGINT') { ctrl_c('SIGINT') }
     trap('SIGTERM') { ctrl_c('SIGTERM') }
