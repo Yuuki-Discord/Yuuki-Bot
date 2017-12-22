@@ -39,12 +39,10 @@ module YuukiBot
     puts 'Enter a valid status in config.yml!'
     puts 'Valid options are \'online\', \'idle\', \'dnd\' and \'invisible\'.'
     raise 'Invalid status'
-    exit
   end
 
   if @config['token'].nil?
     raise 'No valid token entered!'
-    exit
   end
   require 'easy_translate'
   
