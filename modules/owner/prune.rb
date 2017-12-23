@@ -2,26 +2,40 @@
 module YuukiBot
   module Owner
 
-    # noinspection RubyResolve
     $cbot.add_command(:prune,
       code: proc { |event, args|
         num = args[0]
         num = 75 if num.nil?
-        count = 0
+        @count = 0
         msgs = []
-        event.channel.history(num).each do |x|
-          if x.author.id == event.bot.profile.id
-            msgs.push(x.id)
-            count += 1
+        msg = event.channel.send("#{YuukiBot.config['emoji_loading']} Deleting, please wait...")
+        if event.bot.profile.on(event.server).permission?(:manage_messages,event.channel)
+          event.channel.history(num).each do |x|
+            if x.author.id == event.bot.profile.id && x.id != msg.id
+              msgs.push(x.id)
+              @count += 1
+            end
+          end
+          Discordrb::API::Channel.bulk_delete_messages(event.bot.token, event.channel.id, msgs) unless @count.zero?
+        else
+          event.channel.history(num).each do |x|
+            if x.author.id == event.bot.profile.id && x.id != msg.id
+              x.delete
+              @count += 1
+            end
           end
         end
-        Discordrb::API::Channel.bulk_delete_messages(event.bot.token, event.channel.id, msgs)
-        event.respond("#{YuukiBot.config['emoji_tickbox']} Pruned #{count} bot messages!")
+        if !@count.zero?
+          msg.edit("#{YuukiBot.config['emoji_tickbox']} Pruned #{@count} bot messages!")
+        else
+          msg.edit("#{YuukiBot.config['emoji_warning']} No messages found!")
+        end
+
       },
       triggers: %w(prune cleanup purge stfu ),
       required_permissions: [:manage_messages],
       owner_override: true,
-      owners_only: true,
+      # owners_only: true,
       max_args: 1
     )
 
@@ -55,7 +69,7 @@ module YuukiBot
         'purge user',
       ],
       required_permissions: [:manage_messages],
-      owner_override: false,
+      owner_override: true,
       max_args: 1
     )
   end
