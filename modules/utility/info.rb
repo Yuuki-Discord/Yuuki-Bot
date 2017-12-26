@@ -83,11 +83,12 @@ module YuukiBot
         else
           member = user.on(event.server)
         end
-       
+
+        donator = DB.execute("SELECT * FROM `userlist` WHERE `id` = #{event.user.id}")[0][2]
         event.channel.send_embed("__Information about **#{user.distinct}**__") do |embed|
           embed.colour = event.channel.private? ? 0xe06b2 : Helper.colour_from_user(member)
           embed.thumbnail = Discordrb::Webhooks::EmbedThumbnail.new(url: Helper.avatar_url(user))
-          embed.author = Discordrb::Webhooks::EmbedAuthor.new(name: "#{Data.donators.include?(user.id) ? ' 👑' : ' 👥' } #{ignoreserver ? user.name : member.display_name}", url: Helper.avatar_url(user))
+          embed.author = Discordrb::Webhooks::EmbedAuthor.new(name: "#{!donator.zero? ? ' 👑' : ' 👥' } #{ignoreserver ? user.name : member.display_name}", url: Helper.avatar_url(user))
           embed.footer = Discordrb::Webhooks::EmbedFooter.new(text: "All information correct as of: #{Time.now.getutc.asctime}")
           embed.add_field(name: 'User ID:', value: user.id, inline: true)
           embed.add_field(name: 'Playing:', value: user.game.nil? ? '[N/A]' : user.game, inline: true)
