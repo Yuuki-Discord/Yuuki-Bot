@@ -4,14 +4,27 @@ module YuukiBot
 
     $cbot.add_command(:donators,
        code: proc { |event, args|
+         id = args[1].to_i
          if args[0] == 'add'
-           user = event.bot.parse_mention(args[1])
-           Data.donators.push(user.id)
-           event.respond("#{YuukiBot.config['emoji_tickbox']} added #{user.name} to donators!")
+           p id
+           userdata = DB.execute("SELECT * FROM `userlist` WHERE `id` = #{id}")
+           if userdata == []
+             DB.execute("INSERT INTO userlist (id, is_owner, is_donator, ignored) VALUES (#{id}, 0, 1, 0); ")
+           else
+             DB.execute("UPDATE userlist
+               SET is_donator = 1
+               WHERE id = #{id};"
+             )
+           end
+           event.respond("#{YuukiBot.config['emoji_tickbox']} added `#{event.bot.user(id).nil? ? "Unknown User (ID: #{id})" : "#{event.bot.user(id).distinct}"}` to donators!")
          elsif args[0] == 'remove'
-           user = event.bot.parse_mention(args[1])
-            Data.donators.delete(user.id)
-           event.respond("#{YuukiBot.config['emoji_tickbox']} removed #{user.name} to donators!")
+           user = event.bot.user(args[1])
+           if userdata == []
+             DB.execute("INSERT INTO userlist (id, is_owner, is_donator, ignored) VALUES (#{id}, 0, 0, 0)")
+           else
+             DB.execute("UPDATE `userlist` SET `is_donator` = 0 WHERE `id` = #{id}")
+           end
+           event.respond("#{YuukiBot.config['emoji_tickbox']} removed `#{event.bot.user(id).nil? ? "Unknown User (ID: #{id})" : "#{event.bot.user(id).distinct}"}` from donators!")
          end
        },
        owners_only: true
@@ -23,9 +36,10 @@ module YuukiBot
           event << ":moneybag: Hey, making bots and hosting them isn't free. If you want this bot to stay alive, consider giving some :dollar: to the devs: "
           YuukiBot.config['donate_urls'].each {|url| event << "- #{url}" }
           event << '__**Donators :heart:**__ (aka the best people ever)'
-          if Data.donators.length > 0
-            Data.donators.each {|x|
-              event << "- **#{event.bot.user(x).distinct}**"
+          donators = DB.execute("select id from userlist where is_donator=1").map {|v| v[0]}
+          if donators.length > 0
+            donators.each {|x|
+              event.bot.user(x).nil? ? event << "- Unknown User (ID: `#{x}`)" : event << "- **#{event.bot.user(x).distinct}**"
             }
           else
             event << 'None! You can be the first! :)'
