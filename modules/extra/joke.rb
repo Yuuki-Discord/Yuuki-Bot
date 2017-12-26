@@ -6,7 +6,6 @@ module YuukiBot
       $cbot.add_command(x.to_sym,
           code: proc { |event|
             result = File.readlines("text/Jokes/#{x}.txt").sample.chomp
-
             event.respond("*#{result}*")
           }
         )
@@ -17,7 +16,6 @@ module YuukiBot
       $cbot.add_command(x.to_sym,
           code: proc { |event|
             result = File.readlines("text/Other/Text/#{x}.txt").sample.chomp
-
             event.respond("*#{result}*")
           },
         )

@@ -71,7 +71,5 @@ module YuukiBot
       triggers: %w(reset),
       owners_only: true
     )
-
-
   end
 end

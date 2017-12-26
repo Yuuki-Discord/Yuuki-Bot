@@ -31,8 +31,19 @@ module YuukiBot
     puts 'Loading: Extra commands...' if @config['verbose']
     Dir['modules/extra/*.rb'].each { |r| require_relative r; puts "Loaded: #{r}" if @config['verbose'] }
   end
+
+  require 'sqlite3'
+  DB = SQLite3::Database.new "data/data.db"
+  DB.execute("CREATE TABLE if not exists userlist (id integer, is_owner integer, is_donator integer, ignored integer);")
+
   puts '>> Initial loading succesful!! <<'
   exit(1001) if YuukiBot.config['pretend_run']
   $uploader =  Haste::Uploader.new
-  $cbot.bot.run
+  if YuukiBot.config['use_pry']
+    $cbot.bot.run(true)
+    require 'pry'
+    binding.pry
+  else
+    $cbot.bot.run
+  end
 end
