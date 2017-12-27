@@ -64,6 +64,16 @@ module YuukiBot
           else
             raise 'No valid status found.'
         end
+        ignored = DB.execute("select id from userlist where ignored=1").map {|v| v[0]}
+        p ignored
+        ignored.each {|id|
+          begin
+            $cbot.bot.ignore_user($cbot.bot.user(id))
+          rescue Exception => e
+            p e
+          end
+        }
+
         event.bot.game = YuukiBot.config['game'] rescue nil
         puts "[READY] Logged in as #{event.bot.profile.distinct} !"
         puts "[READY] Connected to #{event.bot.servers.count} servers!"
@@ -71,15 +81,7 @@ module YuukiBot
           puts '[READY] You are not connected to any servers. Use the following URL to add your first one!'
           puts "[READY] Invite URL: #{event.bot.invite_url}"
         end
-      },
-      on_message: proc {|event|
-        begin
-          next if Config.ignored_servers.include?(event.server.id) || !Config.logging
-        rescue
-          nil
-        end
-        Logging.get_message(event, nil)
-       }
+      }
     }
     return init_hash
   end
