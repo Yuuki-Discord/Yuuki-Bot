@@ -32,7 +32,7 @@ module YuukiBot
           if args[0] == 'me'
             whom = event.user.name
           else
-            whom = event.bot.parse_mention(args).name
+            whom = event.bot.parse_mention(args[0]).name
           end
           
           if args.length >= 2 && args[1] == 'senpai'
