@@ -17,14 +17,6 @@ module YuukiBot
     end
   end
 
-  # owners.yml always overrides config.yml, but if it doesn't exist, config.yml will be honoured.
-  # This ensures compatibility with old config files, meaning no owners file needs to be setup.
-  if File.exists?('config/owners.yml')
-    @config['owners'] = YAML.load_file('config/owners.yml')['owners']
-  else
-    @config['owners'] = YAML.load_file('config/config.yml')['owners']
-  end
-
   @config['debug'] = false if @config['debug'].nil?
 
   @new_events = {}
