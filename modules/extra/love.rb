@@ -55,7 +55,8 @@ module YuukiBot
 
           event.respond(response)
         },
-        triggers: ['love', 'ship ']
+        triggers: ['love', 'ship '],
+        min_args: 1
     )
   end
 end
