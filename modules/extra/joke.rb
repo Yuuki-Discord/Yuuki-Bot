@@ -29,7 +29,7 @@ module YuukiBot
 
     $cbot.add_command(:notice,
         code: proc { |event, args|
-          if args.length < 1 || args[0] == 'me'
+          if args[0] == 'me'
             whom = event.user.name
           else
             whom = event.bot.parse_mention(args).name
@@ -40,7 +40,8 @@ module YuukiBot
           else
             event.respond("*notices #{whom}*")
           end
-        }
+        },
+        min_args: 1
     )
   end
 end
