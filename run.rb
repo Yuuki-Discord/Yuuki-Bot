@@ -44,7 +44,13 @@ module YuukiBot
 
   require 'sqlite3'
   DB = SQLite3::Database.new "data/data.db"
-  DB.execute("CREATE TABLE if not exists userlist (id integer, is_owner integer, is_donator integer, ignored integer);")
+  DB.execute("CREATE TABLE IF NOT EXISTS `userlist` (
+    `id`	integer,
+    `is_owner`	integer DEFAULT 0,
+    `is_donator`	integer DEFAULT 0,
+    `ignored`	integer DEFAULT 0,
+    PRIMARY KEY(`id`));"
+  )
 
   puts '>> Initial loading succesful!! <<'
   exit(1001) if YuukiBot.config['pretend_run']

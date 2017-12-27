@@ -2,7 +2,6 @@
 module YuukiBot
   module Owner
 
-    # noinspection RubyResolve
     $cbot.add_command(:ignore,
       code: proc { |event, args|
         event.respond("#{YuukiBot.config['emoji_error']} Mention valid user(s)!") if args == []
@@ -15,14 +14,20 @@ module YuukiBot
             break
           end
           begin
+            userdata = DB.execute("SELECT * FROM `userlist` WHERE `id` = #{user.id}")
+            if userdata == []
+              DB.execute("INSERT INTO userlist (id, is_owner, is_donator, ignored) VALUES (#{user.id}, 0, 0, 1); ")
+            else
+              DB.execute("UPDATE userlist SET ignored = 1 WHERE id = #{user.id};")
+            end
             event.bot.ignore_user(user)
+            event.respond("#{YuukiBot.config['emoji_tickbox']} #{user.mention} is now being ignored!")
           rescue
-            event.respond("#{YuukiBot.config['emoji_error']} `#{mention}` is not a valid user!")
+            event.respond("#{YuukiBot.config['emoji_error']} Error occured, is `#{mention}` a valid use?")
           end
-          event.respond("#{YuukiBot.config['emoji_tickbox']} #{user.mention} has been temporarily ignored!")
         }
       },
-      triggers: %w(ignore blacklist),
+      triggers: %w(ignore),
       owners_only: true
     )
 
@@ -39,12 +44,18 @@ module YuukiBot
             event.respond("#{YuukiBot.config['emoji_error']} `#{mention}` is not a valid user!")
           end
           begin
+            userdata = DB.execute("SELECT * FROM `userlist` WHERE `id` = #{user.id}")
+            if userdata == []
+              DB.execute("INSERT INTO userlist (id, is_owner, is_donator, ignored) VALUES (#{user.id}, 0, 0, 0); ")
+            else
+              DB.execute("UPDATE userlist SET ignored = 0 WHERE id = #{user.id};")
+            end
             event.bot.unignore_user(user)
+            event.respond("#{YuukiBot.config['emoji_tickbox']} #{user.distinct} has been removed from the ignore list!")
           rescue
             event.respond("#{YuukiBot.config['emoji_error']} `#{mention}` is not a valid user!")
             break
           end
-          event.respond("#{YuukiBot.config['emoji_tickbox']} #{user.mention} has been removed from the ignore list!")
         }
       },
       owners_only: true
