@@ -66,7 +66,7 @@ module YuukiBot
           if args[0] == 'add'
             userdata = DB.execute("SELECT * FROM `userlist` WHERE `id` = #{id}")
             if userdata == []
-              DB.execute("INSERT INTO userlist (id, is_owner, is_donator, ignored) VALUES (#{id}, 0, 1, 0); ")
+              DB.execute("INSERT INTO userlist (id, is_owner, is_donator, ignored) VALUES (#{id}, 1, 0, 0); ")
             else
               DB.execute("UPDATE userlist SET is_owner = 1 WHERE id = #{id};")
             end
