@@ -13,6 +13,16 @@ module YuukiBot
   require_relative 'modules/config'
   require_relative 'modules/version'
 
+  class CommandrbBot < CommandrbBot
+    def is_owner?(id)
+      if YuukiBot.config['master_owner'] == id
+        true
+      else
+        !DB.execute("SELECT * FROM `userlist` WHERE `id` = #{id}")[0][1].zero?
+      end
+    end
+  end
+
   init_hash = YuukiBot.build_init
 
   $cbot = CommandrbBot.new(init_hash)

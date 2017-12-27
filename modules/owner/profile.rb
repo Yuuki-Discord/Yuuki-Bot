@@ -44,7 +44,7 @@ module YuukiBot
           next
         end
       },
-      triggers: %w(set config bot),
+      triggers: %w(set config),
       owners_only: true
     )
     $cbot.add_command(:reset,

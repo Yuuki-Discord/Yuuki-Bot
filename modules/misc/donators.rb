@@ -4,27 +4,31 @@ module YuukiBot
 
     $cbot.add_command(:donators,
        code: proc { |event, args|
-         id = args[1].to_i
-         if args[0] == 'add'
-           p id
-           userdata = DB.execute("SELECT * FROM `userlist` WHERE `id` = #{id}")
-           if userdata == []
-             DB.execute("INSERT INTO userlist (id, is_owner, is_donator, ignored) VALUES (#{id}, 0, 1, 0); ")
-           else
-             DB.execute("UPDATE userlist
-               SET is_donator = 1
-               WHERE id = #{id};"
-             )
+         user = Helper.userparse(args[1])
+         id = user.id rescue nil
+         if user.nil?
+           event.respond("#{YuukiBot.config['emoji_error']} Not a valid user!")
+         else
+           if args[0] == 'add'
+             p id
+             userdata = DB.execute("SELECT * FROM `userlist` WHERE `id` = #{id}")
+             if userdata == []
+               DB.execute("INSERT INTO userlist (id, is_owner, is_donator, ignored) VALUES (#{id}, 0, 1, 0); ")
+             else
+               DB.execute("UPDATE userlist
+                 SET is_donator = 1
+                 WHERE id = #{id};"
+               )
+             end
+             event.respond("#{YuukiBot.config['emoji_tickbox']} added `#{event.bot.user(id).nil? ? "Unknown User (ID: #{id})" : "#{event.bot.user(id).distinct}"}` to donators!")
+           elsif args[0] == 'remove'
+             if userdata == []
+               DB.execute("INSERT INTO userlist (id, is_owner, is_donator, ignored) VALUES (#{id}, 0, 0, 0)")
+             else
+               DB.execute("UPDATE `userlist` SET `is_donator` = 0 WHERE `id` = #{id}")
+             end
+             event.respond("#{YuukiBot.config['emoji_tickbox']} removed `#{event.bot.user(id).nil? ? "Unknown User (ID: #{id})" : "#{event.bot.user(id).distinct}"}` from donators!")
            end
-           event.respond("#{YuukiBot.config['emoji_tickbox']} added `#{event.bot.user(id).nil? ? "Unknown User (ID: #{id})" : "#{event.bot.user(id).distinct}"}` to donators!")
-         elsif args[0] == 'remove'
-           user = event.bot.user(args[1])
-           if userdata == []
-             DB.execute("INSERT INTO userlist (id, is_owner, is_donator, ignored) VALUES (#{id}, 0, 0, 0)")
-           else
-             DB.execute("UPDATE `userlist` SET `is_donator` = 0 WHERE `id` = #{id}")
-           end
-           event.respond("#{YuukiBot.config['emoji_tickbox']} removed `#{event.bot.user(id).nil? ? "Unknown User (ID: #{id})" : "#{event.bot.user(id).distinct}"}` from donators!")
          end
        },
        owners_only: true
@@ -51,6 +55,35 @@ module YuukiBot
       },
       triggers: ['donate', 'donateinfo', 'how do i donate', 'how do i donate?', 'how do I donate', 'how do I donate?', 'doante']
     )
+
+    $cbot.add_command(:botowners,
+      code: proc { |event, args|
+        user = Helper.userparse(args[1])
+        id = user.id rescue nil
+        if user.nil?
+          event.respond("#{YuukiBot.config['emoji_error']} Not a valid user!")
+        else
+          if args[0] == 'add'
+            userdata = DB.execute("SELECT * FROM `userlist` WHERE `id` = #{id}")
+            if userdata == []
+              DB.execute("INSERT INTO userlist (id, is_owner, is_donator, ignored) VALUES (#{id}, 0, 1, 0); ")
+            else
+              DB.execute("UPDATE userlist SET is_owner = 1 WHERE id = #{id};")
+            end
+            event.respond("#{YuukiBot.config['emoji_tickbox']} added `#{event.bot.user(id).nil? ? "Unknown User (ID: #{id})" : "#{event.bot.user(id).distinct}"}` to bot owners!")
+          elsif args[0] == 'remove'
+            if userdata == []
+              DB.execute("INSERT INTO userlist (id, is_owner, is_donator, ignored) VALUES (#{id}, 0, 0, 0)")
+            else
+              DB.execute("UPDATE `userlist` SET `is_owner` = 0 WHERE `id` = #{id}")
+            end
+            event.respond("#{YuukiBot.config['emoji_tickbox']} removed `#{event.bot.user(id).nil? ? "Unknown User (ID: #{id})" : "#{event.bot.user(id).distinct}"}` from bot owners!")
+          end
+        end
+      },
+      owners_only: true
+    )
+
 
   end
 end

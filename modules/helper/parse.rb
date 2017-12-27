@@ -59,5 +59,31 @@ module YuukiBot
       # Place a null into @everyone and @here, to prevent accidental tagging. Returns the parsed text.
       return text.gsub('@everyone', "@\x00everyone").gsub('@here', "@\x00here")
     end
+
+   # Detects which user you are talking about from a word.
+   def self.userparse(word)
+     # Trial and error, ho!
+
+     # If its an ID.
+     unless $cbot.bot.user(word).nil?
+       return $cbot.bot.user(word)
+     end
+
+     # If its a mention!
+     begin
+      unless /\d+/.match(/<@\d+>/.match(word).to_s)[0].nil?
+        return $cbot.bot.user(/\d+/.match(/<@\d+>/.match(word).to_s)[0])
+      end
+     rescue
+      # ignored
+     end
+
+     # Might be a username...
+     unless $cbot.bot.find_user(word).nil?
+       return $cbot.bot.find_user(word)[0]
+     end
+
+     return nil
+   end
   end
 end
