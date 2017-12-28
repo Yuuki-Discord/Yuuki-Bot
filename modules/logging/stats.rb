@@ -1,6 +1,7 @@
 # Copyright Erisa Komuro (Seriel) 2016-2017
 module YuukiBot
   module Logging
+=begin
     class << self
       attr_accessor :stats
     end
@@ -87,6 +88,6 @@ module YuukiBot
         triggers: %w(stats statistics stat),
         cath_errors: true
     )
-
+=end
   end
 end
