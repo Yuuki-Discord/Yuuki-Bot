@@ -26,5 +26,22 @@ module YuukiBot
           event.respond("Confucious say #{File.readlines('text/Jokes/confucious.txt').sample.chomp}")
         }
     )
+
+    $cbot.add_command(:notice,
+        code: proc { |event, args|
+          if args[0] == 'me'
+            whom = event.user.name
+          else
+            whom = args[0]
+          end
+          
+          if args.length >= 2 && args[1] == 'senpai'
+            event.respond("*Senpai notices #{whom}*")
+          else
+            event.respond("*notices #{whom}*")
+          end
+        },
+        min_args: 1
+    )
   end
 end
