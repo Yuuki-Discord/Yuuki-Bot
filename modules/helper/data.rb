@@ -2,6 +2,8 @@
 module YuukiBot
   module Helper
 
+    # Databases are the best.
+=begin
     def self.save_donators
       folder = 'data'
       settingspath = "#{folder}/donators.yml"
@@ -39,5 +41,7 @@ module YuukiBot
     end
     @donators = []
     @donators = YAML.load_file('data/donators.yml') rescue []
+  end
+=end
   end
 end

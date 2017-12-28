@@ -19,6 +19,7 @@ module YuukiBot
 
   @config['debug'] = false if @config['debug'].nil?
 
+=begin
   @new_events = {}
 
   @config['logevents'].each { |x|
@@ -26,6 +27,7 @@ module YuukiBot
     puts "Added log event: #{x}" if @config['verbose']
   }
   @config['logevents'] = @new_events
+=end
 
   if @config['status'].nil?
     puts 'Enter a valid status in config.yml!'
