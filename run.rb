@@ -1,8 +1,9 @@
 module YuukiBot
   require 'discordrb'
-  require 'open-uri'
-  require 'haste'
   require 'easy_translate'
+  require 'haste'
+  require 'open-uri'
+  require 'sqlite3'
   
   if ENV['COMMANDRB_PATH'].nil?
     require 'commandrb'
@@ -42,7 +43,6 @@ module YuukiBot
     Dir['modules/extra/*.rb'].each { |r| require_relative r; puts "Loaded: #{r}" if @config['verbose'] }
   end
 
-  require 'sqlite3'
   DB = SQLite3::Database.new "data/data.db"
   DB.execute("CREATE TABLE IF NOT EXISTS `userlist` (
     `id`	integer,
