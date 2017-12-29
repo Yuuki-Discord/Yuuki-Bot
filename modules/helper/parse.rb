@@ -36,7 +36,7 @@ module YuukiBot
       end
       content
     end
-  
+
     # Returns a user-readable username for the specified ID.
     def self.get_user_name(user_id)
         return begin
@@ -63,6 +63,11 @@ module YuukiBot
    # Detects which user you are talking about from a word.
    def self.userparse(word)
      # Trial and error, ho!
+
+     # Can't do anything if there's nothing to begin with.
+     if word.nil?
+       return nil
+     end
 
      # If its an ID.
      unless $cbot.bot.user(word).nil?

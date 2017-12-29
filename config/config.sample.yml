@@ -71,7 +71,7 @@ typing_default: true
 
 # Change to false if private.
 show_invite: false
-# Best to leave nil unless sure. (Defaults t o a generated URL)
+# Best to leave nil unless sure. (Defaults to a generated URL)
 invite_url: nil
 
 # plz dont set to false, closed source is baaad :(
