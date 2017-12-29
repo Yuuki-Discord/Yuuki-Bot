@@ -1,8 +1,8 @@
 module YuukiBot
   require 'discordrb'
-  require 'open-uri'
-  require 'haste'
   require 'easy_translate'
+  require 'haste'
+  require 'open-uri'
   
   if ENV['COMMANDRB_PATH'].nil?
     require 'commandrb'
