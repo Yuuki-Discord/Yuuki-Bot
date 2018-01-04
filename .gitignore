@@ -119,3 +119,7 @@ $RECYCLE.BIN/
 
 
 *.db
+
+log/*
+logs/*
+log*
