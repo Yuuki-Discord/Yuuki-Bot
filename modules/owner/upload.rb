@@ -32,8 +32,9 @@ module YuukiBot
           event.respond("#{YuukiBot.config['emoji_error']} Enter a valid channel id!")
         end
         ts = event.message.timestamp
-        Helper.dump_channel(channel, event.channel, Config.dump_dir, ts)
+        file = Helper.dump_channel(channel, event.channel, 'log/', ts)
         event.respond("#{YuukiBot.config['emoji_tickbox']} Dumped successfully!")
+        event.channel.send_file(File.new(file))
       },
       triggers: %w(dump log savechannel),
       owners_only: true
