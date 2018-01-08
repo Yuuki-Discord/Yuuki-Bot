@@ -11,10 +11,10 @@ module YuukiBot
           colour = 0x22ef1f
         end
         Discordrb::Webhooks::Embed.new(
-            title:  "#{YuukiBot.config[:emoji_error]} An error has occured!",
-            description: code_error ?  "```ruby\n#{error}```" :  error,
-            colour: colour || color,
-            footer: Discordrb::Webhooks::EmbedFooter.new(text: footer)
+          title:  "#{YuukiBot.config[:emoji_error]} An error has occured!",
+          description: code_error ?  "```ruby\n#{error}```" :  error,
+          colour: colour || color,
+          footer: Discordrb::Webhooks::EmbedFooter.new(text: footer)
         )
       end
     end

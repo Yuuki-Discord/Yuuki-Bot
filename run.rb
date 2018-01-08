@@ -58,6 +58,10 @@ module YuukiBot
     PRIMARY KEY(`id`));"
   )
 
+  $cbot.bot.message do |event|
+    Helper.calc_exp(event.user.id)
+  end
+
   puts '>> Initial loading succesful!! <<'
   exit(1001) if YuukiBot.config['pretend_run']
   $uploader =  Haste::Uploader.new

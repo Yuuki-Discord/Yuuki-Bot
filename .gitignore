@@ -123,3 +123,4 @@ $RECYCLE.BIN/
 log/*
 logs/*
 log*
+.vscode/*
