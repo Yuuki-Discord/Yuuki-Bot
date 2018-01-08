@@ -13,7 +13,11 @@ module YuukiBot
       puts 'Corrupt or incorrect Yaml.'
       exit
     else
-      puts("config.yml: Found #{key}: #{value}") if @config['verbose']
+      if key == 'token'
+        puts "config.yml: Found: token: [REDACTED]"
+      else
+        puts("config.yml: Found #{key}: #{value}") if @config['verbose']
+      end
     end
   end
 
