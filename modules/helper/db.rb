@@ -2,35 +2,44 @@
 module YuukiBot
   module Helper
 
-    def update_user(
+    def self.update_user(
       id: nil,
       is_owner: nil,
       is_donator: nil,
       ignored: nil,
       exp: nil,
-      level: nil
+      level: nil,
+      donationamount: nil
     )
       userdata = DB.execute("SELECT * FROM `userlist` WHERE `id` = #{id}")
       if userdata == []
-        DB.execute("INSERT INTO userlist (id, is_owner, is_donator, ignored, exp, level) VALUES (#{id}, 0, 0, 0, 0, 0); ")
+        DB.execute("INSERT INTO userlist (id, is_owner, is_donator, ignored, exp, level) VALUES (#{id}, 0, 0, 0, 0, 1); ")
       end
       dbexec = "UPDATE userlist"
-      dbexec << "\n SET is_owner = `#{is_owner}`" unless is_owner.nil?
-      dbexec << ",\n SET is_owner = `#{is_donator}`" unless is_donator.nil?
-      dbexec << ",\n SET is_owner = `#{ignored}`" unless ignored.nil?
-      dbexec << ",\n SET is_owner = `#{exp}`" unless exp.nil?
-      dbexec << ",\n SET is_owner = `#{level}`" unless level.nil?
-      dbexec << ",\n SET donationamount - `#{donationamount}`" unless donationamount.nil?
-      dbexec << "\n WHERE ID = #{id};"
 
-      DB.execute("UPDATE userlist
-       SET is_donator = 1
-       WHERE id = #{id};"
-      )
+      is_owner = get_data(id, 'is_owner') if is_owner.nil?
+
+      dbexec << "\n SET is_owner = #{is_owner}" unless is_owner.nil?
+      dbexec << ",is_donator = #{is_donator}" unless is_donator.nil?
+      dbexec << ",ignored = #{ignored}" unless ignored.nil?
+      dbexec << ",exp = #{exp}" unless exp.nil?
+      dbexec << ",level = #{level}" unless level.nil?
+      dbexec << ",donationamount - #{donationamount}" unless donationamount.nil?
+      dbexec << "\n WHERE id = #{id};"
+
+      DB.execute(dbexec)
     end
 
-    def calc_exp(userid)
+    def self.calc_exp(userid)
+      newexp = get_data(userid, 'exp') + rand(5..30)
+      update_user(id: userid, exp: newexp)
+    end
 
+    def self.get_data(userid, data)
+      if DB.execute("SELECT * FROM `userlist` WHERE `id` = #{userid}") == []
+        DB.execute("INSERT INTO userlist (id, is_owner, is_donator, ignored, exp, level) VALUES (#{userid}, 0, 0, 0, 0, 0); ")
+      end
+      DB.execute("SELECT #{data} FROM userlist WHERE id = #{userid}")[0][0]
     end
 
   end
