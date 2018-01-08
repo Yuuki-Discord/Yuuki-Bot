@@ -50,12 +50,15 @@ module YuukiBot
   end
 
   DB = SQLite3::Database.new "data/data.db"
-  DB.execute("CREATE TABLE IF NOT EXISTS `userlist` (
-    `id`	integer,
-    `is_owner`	integer DEFAULT 0,
-    `is_donator`	integer DEFAULT 0,
-    `ignored`	integer DEFAULT 0,
-    PRIMARY KEY(`id`));"
+  DB.execute("CREATE TABLE `userlist` (
+      `id`	integer NOT NULL,
+      `is_owner`	integer NOT NULL DEFAULT 0,
+      `is_donator`	integer NOT NULL DEFAULT 0,
+      `ignored`	integer NOT NULL DEFAULT 0,
+      `exp`	INTEGER NOT NULL DEFAULT 0,
+      `level`	INTEGER NOT NULL DEFAULT 1,
+      PRIMARY KEY(`id`)
+    );"
   )
 
   $cbot.bot.message do |event|
