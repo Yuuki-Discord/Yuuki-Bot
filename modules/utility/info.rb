@@ -107,7 +107,7 @@ module YuukiBot
 	      choose = %w(i o e u y a)
         return_message.edit("P#{choose.sample}ng! (`#{ping}ms`)")
        },
-      triggers: %w(ping pong peng pung pyng pang)
+      triggers: %w(ping pong peng pung pyng pang 🅱ing)
     )
   end
 end
