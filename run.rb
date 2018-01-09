@@ -49,17 +49,20 @@ module YuukiBot
     Dir['modules/extra/*.rb'].each { |r| require_relative r; puts "Loaded: #{r}" if @config['verbose'] }
   end
 
-  DB = SQLite3::Database.new "data/data.db"
-  DB.execute("CREATE TABLE `userlist` (
-      `id`	integer NOT NULL,
-      `is_owner`	integer NOT NULL DEFAULT 0,
-      `is_donator`	integer NOT NULL DEFAULT 0,
-      `ignored`	integer NOT NULL DEFAULT 0,
-      `exp`	INTEGER NOT NULL DEFAULT 0,
-      `level`	INTEGER NOT NULL DEFAULT 1,
-      PRIMARY KEY(`id`)
-    );"
-  )
+  unless File.exists?('data/data.db')
+    DB = SQLite3::Database.new "data/data.db"
+    DB.execute("CREATE TABLE `userlist` (
+        `id`	integer NOT NULL,
+        `is_owner`	integer NOT NULL DEFAULT 0,
+        `is_donator`	integer NOT NULL DEFAULT 0,
+        `ignored`	integer NOT NULL DEFAULT 0,
+        `exp`	INTEGER NOT NULL DEFAULT 0,
+        `level`	INTEGER NOT NULL DEFAULT 1,
+        PRIMARY KEY(`id`)
+      );"
+    )
+  end
+
 
   $cbot.bot.message do |event|
     Helper.calc_exp(event.user.id)
