@@ -49,8 +49,9 @@ module YuukiBot
     Dir['modules/extra/*.rb'].each { |r| require_relative r; puts "Loaded: #{r}" if @config['verbose'] }
   end
 
+  DB = SQLite3::Database.new "data/data.db"
   unless File.exists?('data/data.db')
-    DB = SQLite3::Database.new "data/data.db"
+
     DB.execute("CREATE TABLE `userlist` (
         `id`	integer NOT NULL,
         `is_owner`	integer NOT NULL DEFAULT 0,
