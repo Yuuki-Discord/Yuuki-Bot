@@ -63,7 +63,6 @@ module YuukiBot
     )
   end
 
-
   $cbot.bot.message do |event|
     Helper.calc_exp(event.user.id)
   end
