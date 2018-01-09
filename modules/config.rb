@@ -42,6 +42,9 @@ module YuukiBot
   if @config['token'].nil?
     raise 'No valid token entered!'
   end
+  
+  @config['owners'] = [@config['master_owner']] if @config['owners'].nil?
+  
   require 'easy_translate'
   
   EasyTranslate.api_key = @config['translate_api_key']
