@@ -27,7 +27,7 @@ bot.message do |event|
     if event.message.content.split(' ').length > 1 
         @config['prefixes'].each { |x|
             if event.message.content.start_with? x
-                event.respond("Hi, if you're seeing this message, it means that Yuuki-Bot is currently unavailable (Deliberately, unlike downtime) or is in maintenance due to a major bug that needs to be dealt with.\nPlease try again later, and contact `#{event.bot.user(@config['owners'][0]).distinct}` if problems persist.\nSorry for any inconvenience caused!")
+                event.respond("Hi, if you're seeing this message, it means that Yuuki-Bot is currently unavailable (Deliberately, unlike downtime) or is in maintenance due to a major bug that needs to be dealt with.\nPlease try again later, and contact `#{event.bot.user(@config['master_owner']).distinct}` if problems persist.\nSorry for any inconvenience caused!")
                 break
             end
         }
