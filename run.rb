@@ -25,7 +25,11 @@ module YuukiBot
       if YuukiBot.config['master_owner'] == id
         true
       else
-        !DB.execute("SELECT * FROM `userlist` WHERE `id` = #{id}")[0][1].zero?
+        begin
+          !DB.execute("SELECT * FROM `userlist` WHERE `id` = #{id}")[0][1].zero?
+        rescue
+          false
+        end
       end
     end
   end
@@ -51,7 +55,6 @@ module YuukiBot
 
   DB = SQLite3::Database.new "data/data.db"
   unless File.exists?('data/data.db')
-
     DB.execute("CREATE TABLE `userlist` (
         `id`	integer NOT NULL,
         `is_owner`	integer NOT NULL DEFAULT 0,
@@ -76,6 +79,7 @@ module YuukiBot
     require 'pry'
     binding.pry
   else
+    puts 'Connecting to Discord....'
     $cbot.bot.run
   end
 end

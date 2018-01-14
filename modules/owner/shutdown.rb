@@ -28,7 +28,7 @@ module YuukiBot
         event.respond 'Rebooting...!'
         Helper.quit(1)
       },
-      triggers: ['reboot' 'restart' 'reload' 'gtfo', 'machine 🅱roke', '🅱achine 🅱roke'],
+      triggers: ['reboot', 'restart', 'reload', 'gtfo', 'machine 🅱roke', '🅱achine 🅱roke'],
       owners_only:  true,
       description:  'Shuts down the bot. Owner only.',
       catch_errors: false
