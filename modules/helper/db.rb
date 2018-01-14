@@ -12,7 +12,7 @@ module YuukiBot
       donationamount: nil
     )
       userdata = DB.execute("SELECT * FROM `userlist` WHERE `id` = #{id}")
-      if userdata == []
+      if userdata == [] || userdata.nil?
         DB.execute("INSERT INTO userlist (id, is_owner, is_donator, ignored, exp, level) VALUES (#{id}, 0, 0, 0, 0, 1); ")
       end
       dbexec = "UPDATE userlist"
@@ -31,16 +31,17 @@ module YuukiBot
     end
 
     def self.calc_exp(userid)
-      newexp = get_data(userid, 'exp') + rand(5..30)
+      exp = get_data(userid, 'exp')
+      exp = 0 if exp.nil? or exp = []
+      newexp = exp + rand(5..30)
       update_user(id: userid, exp: newexp)
     end
 
     def self.get_data(userid, data)
-      if DB.execute("SELECT * FROM `userlist` WHERE `id` = #{userid}") == []
+      if DB.execute("SELECT * FROM `userlist` WHERE `id` = #{userid}") == [] || DB.execute("SELECT * FROM `userlist` WHERE `id` = #{userid}").nil?
         DB.execute("INSERT INTO userlist (id, is_owner, is_donator, ignored, exp, level) VALUES (#{userid}, 0, 0, 0, 0, 0); ")
       end
       DB.execute("SELECT #{data} FROM userlist WHERE id = #{userid}")[0][0]
     end
-
   end
 end
