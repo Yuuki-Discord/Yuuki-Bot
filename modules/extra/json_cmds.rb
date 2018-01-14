@@ -282,7 +282,7 @@ module YuukiBot
         triggers: ['love', 'ship ']
       )
       puts 'Added fun command for love!' if YuukiBot.config['verbose']
-
+=begin
       $cbot.add_command(:randommovie,
         code: proc { |event, _|
           movie = open('https://random-movie.herokuapp.com/random').read
@@ -302,6 +302,7 @@ module YuukiBot
 
         }
       )
+=end
       puts 'Added fun command for randommovie!' if YuukiBot.config['verbose']
     end
 	$cbot.add_command(:choose,
