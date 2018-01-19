@@ -73,14 +73,14 @@ module YuukiBot
           else
             raise 'No valid status found.'
         end
-        ignored = DB.execute("select id from userlist where ignored=1").map {|v| v[0]}
-        ignored.each {|id|
-          begin
-            $cbot.bot.ignore_user($cbot.bot.user(id))
-          rescue Exception => e
-            p e
-          end
-        }
+#        ignored = DB.execute("select id from userlist where ignored=1").map {|v| v[0]}
+#        ignored.each {|id|
+#          begin
+#            $cbot.bot.ignore_user($cbot.bot.user(id))
+#          rescue Exception => e
+#            p e
+#          end
+#        }
 
         event.bot.game = YuukiBot.config['game'] rescue nil
         puts "[READY] Logged in as #{event.bot.profile.distinct} (#{event.bot.profile.id})!"

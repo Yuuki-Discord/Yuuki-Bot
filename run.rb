@@ -2,7 +2,9 @@ module YuukiBot
   require 'easy_translate'
   require 'haste'
   require 'open-uri'
-  require 'sqlite3'
+  require 'redis'
+  require 'redis-namespace'
+  require 'json'
   
   if ENV['COMMANDRB_PATH'].nil?
     require 'commandrb'
@@ -26,7 +28,7 @@ module YuukiBot
         true
       else
         begin
-          !DB.execute("SELECT * FROM `userlist` WHERE `id` = #{id}")[0][1].zero?
+          JSON.parse(REDIS.get('owners')).include?(id)
         rescue
           false
         end
@@ -48,24 +50,11 @@ module YuukiBot
 
   # Load Extra Commands if enabled.
   if YuukiBot.config['extra_commands']
-    require 'json'
     puts 'Loading: Extra commands...' if @config['verbose']
     Dir['modules/extra/*.rb'].each { |r| require_relative r; puts "Loaded: #{r}" if @config['verbose'] }
   end
-
-  DB = SQLite3::Database.new "data/data.db"
-  unless File.exists?('data/data.db')
-    DB.execute("CREATE TABLE `userlist` (
-        `id`	integer NOT NULL,
-        `is_owner`	integer NOT NULL DEFAULT 0,
-        `is_donator`	integer NOT NULL DEFAULT 0,
-        `ignored`	integer NOT NULL DEFAULT 0,
-        `exp`	INTEGER NOT NULL DEFAULT 0,
-        `level`	INTEGER NOT NULL DEFAULT 1,
-        PRIMARY KEY(`id`)
-      );"
-    )
-  end
+  orig_redis = Redis.new(host: YuukiBot.config['redis_host'], port: YuukiBot.config['redis_port'])
+  REDIS = Redis::Namespace.new(YuukiBot.config['redis_namespace'], :redis => orig_redis )
 
   $cbot.bot.message do |event|
     Helper.calc_exp(event.user.id)
