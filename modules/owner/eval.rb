@@ -13,25 +13,15 @@ module YuukiBot
 
 
     $cbot.add_command(:owners,
-        code: proc { |event, _|
-          owners = DB.execute("select id from userlist where is_owner=1").map {|v| v[0]}
-          if owners.length.zero?
-            event.channel.send_message('', false,
-            Helper.error_embed(
-             error: "No bot owners have been configured.",
-             footer: "Command: `#{event.message.content}`",
-             colour: 0xFA0E30,
-             code_error: false
-            )
-          )
-          end
-
-          event << 'This bot instance is managed/owned by the following users. Please contact them for any issues.'
-          owners.each {|x|
-            event.bot.user(x).nil? ? event << "Unknown User (ID: `#{x}`)" : event << "- **#{event.bot.user(x).distinct}**"
-          }
-        },
-        triggers: ['owners']
+      code: proc { |event, _|
+        owners = JSON.parse(REDIS.get('owners')) rescue []
+        event << 'This bot instance is managed/owned by the following users. Please contact them for any issues.'
+        event << "- **#{event.bot.user(YuukiBot.config['master_owner']).distinct}** [**MAIN**]"
+        owners.each {|x|
+          event.bot.user(x).nil? ? event << "- Unknown User (ID: `#{x}`)" : event << "- **#{event.bot.user(x).distinct}**"
+        }
+      },
+      triggers: ['owners']
     )
 
     $cbot.add_command(:eval,

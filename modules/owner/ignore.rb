@@ -6,24 +6,20 @@ module YuukiBot
       code: proc { |event, args|
         event.respond("#{YuukiBot.config['emoji_error']} Mention valid user(s)!") if args == []
         mention = args[0]
-        user = begin
-          event.bot.parse_mention(x)
-        rescue
-          event.respond("#{YuukiBot.config['emoji_error']} `#{mention}` is not a valid user!")
-          break
+        user = Helper.userparse(args[0])
+        if user.nil?
+          event.respond("#{YuukiBot.config['emoji_error']} Not a valid user!")
+          next
         end
-        begin
-          userdata = DB.execute("SELECT * FROM `userlist` WHERE `id` = #{user.id}")
-          if userdata == []
-            DB.execute("INSERT INTO userlist (id, is_owner, is_donator, ignored) VALUES (#{user.id}, 0, 0, 1); ")
-          else
-            DB.execute("UPDATE userlist SET ignored = 1 WHERE id = #{user.id};")
-          end
-          event.bot.ignore_user(user)
-          event.respond("#{YuukiBot.config['emoji_tickbox']} #{user.mention} is now being ignored!")
-        rescue
-          event.respond("#{YuukiBot.config['emoji_error']} Error occured, is `#{mention}` a valid user?")
+        id = user.id
+        ignores = JSON.parse(REDIS.get('ignores')) rescue []
+        if ignores.include?(id)
+          event.respond("#{YuukiBot.config['emoji_error']} User is already ignored!")
+          next
         end
+        REDIS.set('ignores', ignores.push(id).to_json)
+        event.bot.ignore_user(user)
+        event.respond("#{YuukiBot.config['emoji_tickbox']} #{user.mention} is now being ignored!")
       },
       triggers: %w(ignore),
       owners_only: true
@@ -35,26 +31,24 @@ module YuukiBot
           event.respond("#{YuukiBot.config['emoji_error']} Mention valid user(s)!")
           next
         end
-        args.each { |x|
-          user = begin
-            event.bot.parse_mention(x)
-          rescue
-            event.respond("#{YuukiBot.config['emoji_error']} `#{mention}` is not a valid user!")
+        user = Helper.userparse(args[0])
+        if user.nil?
+          event.respond("#{YuukiBot.config['emoji_error']} Not a valid user!")
+          next
+        end
+        id = user.id
+        begin
+          ignores = JSON.parse(REDIS.get('ignores')) rescue []
+          unless ignores.include?(id)
+            event.respond("#{YuukiBot.config['emoji_error']} User isn't ignored!")
+            next
           end
-          begin
-            userdata = DB.execute("SELECT * FROM `userlist` WHERE `id` = #{user.id}")
-            if userdata == []
-              DB.execute("INSERT INTO userlist (id, is_owner, is_donator, ignored) VALUES (#{user.id}, 0, 0, 0); ")
-            else
-              DB.execute("UPDATE userlist SET ignored = 0 WHERE id = #{user.id};")
-            end
-            event.bot.unignore_user(user)
-            event.respond("#{YuukiBot.config['emoji_tickbox']} #{user.distinct} has been removed from the ignore list!")
-          rescue
-            event.respond("#{YuukiBot.config['emoji_error']} `#{mention}` is not a valid user!")
-            break
-          end
-        }
+          event.bot.unignore_user(user)
+          event.respond("#{YuukiBot.config['emoji_tickbox']} #{user.distinct} has been removed from the ignore list!")
+        rescue
+          event.respond("#{YuukiBot.config['emoji_error']} `#{mention}` is not a valid user!")
+          break
+        end
       },
       owners_only: true
     )

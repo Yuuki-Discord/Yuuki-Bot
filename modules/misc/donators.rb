@@ -11,34 +11,31 @@ module YuukiBot
              event.respond("#{YuukiBot.config['emoji_error']} Not a valid user!")
              next
            end
-           p id
-           userdata = DB.execute("SELECT * FROM `userlist` WHERE `id` = #{id}")
-           if userdata == []
-             DB.execute("INSERT INTO userlist (id, is_owner, is_donator, ignored) VALUES (#{id}, 0, 1, 0); ")
-           else
-             DB.execute("UPDATE userlist
-               SET is_donator = 1
-               WHERE id = #{id};"
-             )
+           donators = JSON.parse(REDIS.get('donators')) rescue []
+           if donators.include?(id)
+             event.respond("#{YuukiBot.config['emoji_error']} User is already a donator!")
+             next
            end
+           REDIS.set('donators', donators.push(id).to_json)
            event.respond("#{YuukiBot.config['emoji_tickbox']} added `#{event.bot.user(id).nil? ? "Unknown User (ID: #{id})" : "#{event.bot.user(id).distinct}"}` to donators!")
          elsif args[0] == 'remove'
            if user.nil?
              event.respond("#{YuukiBot.config['emoji_error']} Not a valid user!")
              next
            end
-           if userdata == []
-             DB.execute("INSERT INTO userlist (id, is_owner, is_donator, ignored) VALUES (#{id}, 0, 0, 0)")
-           else
-             DB.execute("UPDATE `userlist` SET `is_donator` = 0 WHERE `id` = #{id}")
+           donators = JSON.parse(REDIS.get('donators')) rescue []
+           unless donators.include?(id)
+             event.respond("#{YuukiBot.config['emoji_error']} User is not a donator!")
+             next
            end
+           REDIS.set('donators', donators.delete(id).to_json)
            event.respond("#{YuukiBot.config['emoji_tickbox']} removed `#{event.bot.user(id).nil? ? "Unknown User (ID: #{id})" : "#{event.bot.user(id).distinct}"}` from donators!")
          else
            if YuukiBot.config['show_donate_urls']
              event << ":moneybag: Hey, making bots and hosting them isn't free. If you want this bot to stay alive, consider giving some :dollar: to the devs: "
              YuukiBot.config['donate_urls'].each {|url| event << "- #{url}" }
              event << '__**Donators :heart:**__ (aka the best people ever)'
-             donators = DB.execute("select id from userlist where is_donator=1").map {|v| v[0]}
+             donators = JSON.parse(REDIS.get('donators')) rescue []
              if donators.length > 0
                donators.each {|x|
                  event.bot.user(x).nil? ? event << "- Unknown User (ID: `#{x}`)" : event << "- **#{event.bot.user(x).distinct}**"
@@ -58,7 +55,7 @@ module YuukiBot
            event << ":moneybag: Hey, making bots and hosting them isn't free. If you want this bot to stay alive, consider giving some :dollar: to the devs: "
            YuukiBot.config['donate_urls'].each {|url| event << "- #{url}" }
            event << '__**Donators :heart:**__ (aka the best people ever)'
-           donators = DB.execute("select id from userlist where is_donator=1").map {|v| v[0]}
+           donators = JSON.parse(REDIS.get('donators')) rescue []
            if donators.length > 0
              donators.each {|x|
                event.bot.user(x).nil? ? event << "- Unknown User (ID: `#{x}`)" : event << "- **#{event.bot.user(x).distinct}**"
@@ -103,19 +100,23 @@ module YuukiBot
           event.respond("#{YuukiBot.config['emoji_error']} Not a valid user!")
         else
           if args[0] == 'add'
-            userdata = DB.execute("SELECT * FROM `userlist` WHERE `id` = #{id}")
-            if userdata == []
-              DB.execute("INSERT INTO userlist (id, is_owner, is_donator, ignored) VALUES (#{id}, 1, 0, 0); ")
-            else
-              DB.execute("UPDATE userlist SET is_owner = 1 WHERE id = #{id};")
+            owners = JSON.parse(REDIS.get('owners'))
+            if $cbot.is_owner?(id)
+              event.respond("#{YuukiBot.config['emoji_error']} User is already an owner!")
+              next
             end
+            REDIS.set('owners', owners.push(id).to_json)
             event.respond("#{YuukiBot.config['emoji_tickbox']} added `#{event.bot.user(id).nil? ? "Unknown User (ID: #{id})" : "#{event.bot.user(id).distinct}"}` to bot owners!")
           elsif args[0] == 'remove'
-            if userdata == []
-              DB.execute("INSERT INTO userlist (id, is_owner, is_donator, ignored) VALUES (#{id}, 0, 0, 0)")
-            else
-              DB.execute("UPDATE `userlist` SET `is_owner` = 0 WHERE `id` = #{id}")
+            owners = JSON.parse(REDIS.get('owners'))
+            unless owners.include?(id)
+              event.respond("#{YuukiBot.config['emoji_error']} User is not an owner!")
+              next
             end
+            if YuukiBot.config['master_owner'] == id
+              event.respond("#{YuukiBot.config['emoji_error']} You can't remove the main owner!")
+            end
+            REDIS.set('owners', owners.delete(id).to_json)
             event.respond("#{YuukiBot.config['emoji_tickbox']} removed `#{event.bot.user(id).nil? ? "Unknown User (ID: #{id})" : "#{event.bot.user(id).distinct}"}` from bot owners!")
           end
         end
