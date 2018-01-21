@@ -86,6 +86,7 @@ module YuukiBot
         puts "[READY] Logged in as #{event.bot.profile.distinct} (#{event.bot.profile.id})!"
         puts "[READY] Connected to #{event.bot.servers.count} servers!"
         puts "[READY] Raw Invite URL: #{event.bot.invite_url}"
+        puts "[READY] Redis ping: #{REDIS.ping}"
         puts "[READY] Vanity Invite URL: #{@config['invite_url'] rescue event.bot.invite_url}"
       }
     }
