@@ -28,9 +28,9 @@ module YuukiBot
     )
 	
 	$cbot.add_command(:dance,
-        code: proc { |event, _|
+        code: proc { |event, args|
 		  letters = YAML.load_file('config/dancingletters.yml')
-          event.respond(args.join(/ /).downcase.gsub(/[a-zA-Z.0-9 ?!&$-]/, letters).to_s )
+          event.respond(args.join(' ').downcase.gsub(/[a-zA-Z0-9@?!&$-]/, letters).to_s )
         }
     )
 

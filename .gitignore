@@ -2,6 +2,7 @@
 *.yml
 # Except the supplied samples.
 !*.sample.yml
+!config/dancingletters.yml
 
 # Temporary files.
 tmp/*
