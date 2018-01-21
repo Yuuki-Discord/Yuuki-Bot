@@ -76,7 +76,7 @@ module YuukiBot
           event << ":moneybag: Hey, making bots and hosting them isn't free. If you want this bot to stay alive, consider giving some :dollar: to the devs: "
           YuukiBot.config['donate_urls'].each {|url| event << "- #{url}" }
           event << '__**Donators :heart:**__ (aka the best people ever)'
-          donators = DB.execute("select id from userlist where is_donator=1").map {|v| v[0]}
+          donators = JSON.parse(REDIS.get('donators')) rescue []
           if donators.length > 0
             donators.each {|x|
               event.bot.user(x).nil? ? event << "- Unknown User (ID: `#{x}`)" : event << "- **#{event.bot.user(x).distinct}**"
