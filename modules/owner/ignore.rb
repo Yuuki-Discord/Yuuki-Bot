@@ -37,6 +37,10 @@ module YuukiBot
           next
         end
         id = user.id
+        if $cbot.is_owner?(user)
+          event.respond("#{YuukiBot.config['emoji_error']} You can't ignore owners!")
+          next
+        end
         begin
           ignores = JSON.parse(REDIS.get('ignores')) rescue []
           unless ignores.include?(id)
