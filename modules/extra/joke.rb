@@ -26,6 +26,13 @@ module YuukiBot
           event.respond("Confucious say #{File.readlines('text/Jokes/confucious.txt').sample.chomp}")
         }
     )
+	
+	$cbot.add_command(:dance,
+        code: proc { |event, _|
+		  letters = YAML.load_file('config/dancingletters.yml')
+          event.respond(args.join(/ /).downcase.gsub(/[a-zA-Z.0-9 ?!&$-]/, letters).to_s )
+        }
+    )
 
     $cbot.add_command(:notice,
         code: proc { |event, args|
