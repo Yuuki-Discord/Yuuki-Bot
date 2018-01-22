@@ -18,20 +18,23 @@ module YuukiBot
             result = File.readlines("text/Other/Text/#{x}.txt").sample.chomp
             event.respond("*#{result}*")
           },
+          min_args: 1
         )
       }
 
     $cbot.add_command(:confucius,
         code: proc { |event, _|
           event.respond("Confucious say #{File.readlines('text/Jokes/confucious.txt').sample.chomp}")
-        }
+        },
+        min_args: 1
     )
 	
 	$cbot.add_command(:dance,
         code: proc { |event, args|
-		  letters = YAML.load_file('config/dancingletters.yml')
+		    letters = YAML.load_file('config/dancingletters.yml')
           event.respond(args.join(' ').downcase.gsub(/[a-zA-Z0-9@?!&$-]/, letters).to_s )
-        }
+        },
+        min_args: 1
     )
 
     $cbot.add_command(:notice,
