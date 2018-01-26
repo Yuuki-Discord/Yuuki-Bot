@@ -1,5 +1,8 @@
 # Ignore all config files.
 *.yml
+config/custom.rb
+config/code.rb
+
 # Except the supplied samples.
 !*.sample.yml
 !config/dancingletters.yml

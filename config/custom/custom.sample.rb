@@ -5,43 +5,43 @@
 # The below examples that use {user} and {userid} do not currently function.
 # This feature is planned for later.
 
-custom = {}
+CUSTOM = {}
 
 # 1. Make your own hashes!
-custom[:pong] = {
+CUSTOM[:pong] = {
   :type => 'text',
   :response => 'Ping!'
 }
 
-custom[:hi] = {
+CUSTOM[:hi] = {
   :type => 'text',
   :response => 'Hello, {user}!'
 }
 
-custom[:mentionme] = {
+CUSTOM[:mentionme] = {
   :type => 'text',
   :response => 'Hello, <@{userid}>!'
 }
 
 # 2. All in one hash!
-custom_text = {
+CUSTOM_TEXT = {
   :pong => 'Ping!',
   :hi => 'Hello, {user}!',
   :mentionme => 'Hello, <@{userid}>!'
 }
 
 # 3. Change one variable(!)
-custom_text[:pong] = 'Ping'
-custom_text[:hi] = 'Hello, {user}!'
-custom_text[:mentionme] = 'Hello, <@{userid}>!'
+CUSTOM_TEXT[:pong] = 'Ping'
+CUSTOM_TEXT[:hi] = 'Hello, {user}!'
+CUSTOM_TEXT[:mentionme] = 'Hello, <@{userid}>!'
 
 # Don't forget images!
-custom_image = {}
+CUSTOM_IMAGE = {}
 
-custom_image[:soon] = 'images/soon.png'
+CUSTOM_IMAGE[:soon] = 'images/soon.png'
 
 
-custom_text = {
+CUSTOM_TEXT = {
     lenny: '( ͡° ͜ʖ ͡°)',
     shrug: '¯\_(ツ)_/¯',
     support: "⚙ **Need help?**\nYou can join the support server here:\n**https://discord.gg/43SaDy6 **",

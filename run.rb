@@ -48,6 +48,9 @@ module YuukiBot
     }
   }
 
+  require_relative 'modules/custom'
+  puts 'Loaded custom commands!'
+
   # Load Extra Commands if enabled.
   if YuukiBot.config['extra_commands']
     puts 'Loading: Extra commands...' if @config['verbose']
