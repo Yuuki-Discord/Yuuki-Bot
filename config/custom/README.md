@@ -5,7 +5,7 @@ Custom text commands can only show static strings for now, with the exception of
 
 ## Files:
 
-### custom.yml`
+### custom.yml
 The simplest way of creating a custom command. Follow the sample file to see how it is formatted. There are two entries, `:text:` and `:image:`. 
 
 For text commands the entered text will be displayed as a response when any prefix is used with the word enclosed in two `:`.
