@@ -57,6 +57,7 @@ module YuukiBot
       client_id: @config['client_id'],
       parse_self: @config['parse_self'],
       parse_bots: @config['parse_bots'],
+      catch_errors: @config['catch_errors'],
       selfbot: @config['selfbot'],
       type: @config['type'],
       game: @config['game'],
