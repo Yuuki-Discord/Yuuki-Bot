@@ -19,7 +19,7 @@ module YuukiBot
     puts '[INFO] Loading discordrb from Environment location.'
     require_relative "#{ENV['DISCORDRB_PATH']}/lib/discordrb"
   end
-  require_relative 'modules/config'
+  require_relative 'modules/setup'
   require_relative 'modules/version'
 
   class CommandrbBot < CommandrbBot
