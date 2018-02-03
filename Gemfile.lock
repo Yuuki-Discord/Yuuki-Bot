@@ -6,19 +6,6 @@ GIT
       discordrb (~> 3.1, >= 3.1.0)
 
 GIT
-  remote: https://github.com/Seriell/discordrb.git
-  revision: 31163396a95c0c5486a14217314d27e3f3789bee
-  specs:
-    discordrb (3.2.1)
-      discordrb-webhooks (~> 3.2.0.1)
-      opus-ruby
-      rbnacl (~> 3.4.0)
-      rest-client
-      websocket-client-simple (>= 0.3.0)
-    discordrb-webhooks (3.2.0.1)
-      rest-client
-
-GIT
   remote: https://github.com/seejohnrun/easy_translate.git
   revision: 32b0c5be9dceb03f46518825dc1112bebd204b94
   specs:
@@ -32,6 +19,14 @@ GEM
   specs:
     chunky_png (1.3.8)
     coderay (1.1.2)
+    discordrb (3.2.1)
+      discordrb-webhooks (~> 3.2.0.1)
+      opus-ruby
+      rbnacl (~> 3.4.0)
+      rest-client
+      websocket-client-simple (>= 0.3.0)
+    discordrb-webhooks (3.2.0.1)
+      rest-client
     domain_name (0.5.20170404)
       unf (>= 0.0.5, < 1.0.0)
     event_emitter (0.2.6)
@@ -93,7 +88,7 @@ PLATFORMS
 
 DEPENDENCIES
   commandrb!
-  discordrb!
+  discordrb
   easy_translate!
   haste
   pomf.rb
