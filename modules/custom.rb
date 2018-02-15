@@ -15,10 +15,10 @@ module YuukiBot
       end
 
       unless CUSTOM_IMAGE.nil? || CUSTOM_IMAGE == {}
-        CUSTOM_IMAGE.each {|name, response|
+        CUSTOM_IMAGE.each {|name, image|
           $cbot.add_command(name.to_sym,
            code: proc {|event|
-             event.respond(response)
+             event.channel.send_file(File.new("./config/custom/#{image}"))
            }
           )
           puts "Added custom command: #{name}"
@@ -39,10 +39,10 @@ module YuukiBot
     end
 
     unless yml_commands.nil? || yml_commands[:image].nil? || yml_commands[:image] == {}
-      yml_commands[:image].each {|name, response|
+      yml_commands[:image].each {|name, image|
         $cbot.add_command(name.to_sym,
          code: proc {|event|
-           event.respond(response)
+           event.channel.send_file(File.new("./config/custom/#{image}"))
          }
         )
         puts "Added custom command: #{name}"
