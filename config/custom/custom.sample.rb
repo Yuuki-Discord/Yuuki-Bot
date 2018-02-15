@@ -38,7 +38,7 @@ CUSTOM_TEXT[:mentionme] = 'Hello, <@{userid}>!'
 # Don't forget images!
 CUSTOM_IMAGE = {}
 
-CUSTOM_IMAGE[:soon] = 'images/soon.png'
+CUSTOM_IMAGE[:dab] = 'custom/dab.jpg'
 
 
 CUSTOM_TEXT = {

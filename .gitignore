@@ -1,11 +1,14 @@
 # Ignore all config files.
 *.yml
-config/custom.rb
+config/custom/custom.rb
 config/code.rb
+config/custom/assets/*
 
 # Except the supplied samples.
 !*.sample.yml
 !config/dancingletters.yml
+!config/custom/assets/.gitkeep
+!config/custom/custom.sample.rb
 
 # Temporary files.
 tmp/*
