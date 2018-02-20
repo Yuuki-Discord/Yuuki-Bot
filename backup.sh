@@ -9,7 +9,9 @@ mkdir -v $FOLDER
 echo "--copy files--"
 
 cp -rv data/ config/ $FOLDER
-cp -v /var/lib/redis/dump.rdb $FOLDER
+
+# yeah this only works with passwordless sudo, good thing its for personal use only!
+sudo cp -v /var/lib/redis/dump.rdb $FOLDER
 
 echo "--upload raw files--"
 
