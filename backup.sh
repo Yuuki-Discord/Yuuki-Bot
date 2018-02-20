@@ -12,6 +12,7 @@ cp -rv data/ config/ $FOLDER
 
 # yeah this only works with passwordless sudo, good thing its for personal use only!
 sudo cp -v /var/lib/redis/dump.rdb $FOLDER
+sudo chmod 777 $FOLDER/dump.rdb
 
 echo "--upload raw files--"
 
