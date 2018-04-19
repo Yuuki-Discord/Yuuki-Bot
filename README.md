@@ -45,3 +45,5 @@ Kudos to the following users for helping me ([Seriel](https://github.com/Seriell
 - Anyone active on the Discordrb channel in the Discord API server.
 - [meew0](https://github.com/meew0/) for [Discordrb](https://github.com/meew0/discordrb)
 - [edwardslabs](https://github.com/edwardslabs) for [CloudBot](https://github.com/edwardslabs/CloudBot/)
+- [ry00001](https://github.com/ry00001) for [Commandorobo](https://github.com/ry00001/commandorobo)
+- [MatthewBaa](https://github.com/MatthewBaa), the hero that everyone deserves.
