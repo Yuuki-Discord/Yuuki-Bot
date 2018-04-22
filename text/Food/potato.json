@@ -1,15 +1,13 @@
 {
     "templates": [
-        "{method} a {flavor} {size} {potato_type} potato for {user} and serves it with a small {side_dish}!"
+        "{method} a {flavor} {size} {type} potato for {user} and serves it with a small {side}!"
     ],
     "parts": {
-        "size": [
-            "small",
-            "little",
-            "mid-sized",
-            "medium-sized",
-            "large",
-            "gigantic"
+        "method": [
+            "bakes",
+            "fries",
+            "boils",
+            "roasts"
         ],
         "flavor": [
             "tasty",
@@ -20,19 +18,15 @@
             "scrumptious",
             "luscious"
         ],
-        "method": [
-            "bakes",
-            "fries",
-            "boils",
-            "roasts"
+        "size": [
+            "small",
+            "little",
+            "mid-sized",
+            "medium-sized",
+            "large",
+            "gigantic"
         ],
-        "side_dish": [
-            "side salad",
-            "dollop of sour cream",
-            "piece of chicken",
-            "bowl of shredded bacon"
-        ],
-        "potato_type": [
+        "type": [
             "AC Belmont",
             "AC Blue Pride",
             "AC Brador",
@@ -265,6 +259,12 @@
             "Winema",
             "Yellow Finn",
             "Yukon Gold"
+        ],
+        "side": [
+            "side salad",
+            "dollop of sour cream",
+            "piece of chicken",
+            "bowl of shredded bacon"
         ]
     }
 }

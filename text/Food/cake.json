@@ -1,9 +1,33 @@
 {
     "templates": [
-        "{method} {user} a {flavor} {size} {cake_type} cake and serves it with a small {side_dish}!"
+        "{method} {user} a {flavor} {size} {type} cake and serves it with a small {side}!"
     ],
     "parts": {
-        "cake_type": ["Chocolate",
+        "method": [
+            "makes",
+            "gives",
+            "gets",
+            "buys"
+        ],
+        "flavor": [
+            "tasty",
+            "delectable",
+            "delicious",
+            "yummy",
+            "toothsome",
+            "scrumptious",
+            "luscious"
+        ],
+        "size": [
+            "small",
+            "little",
+            "mid-sized",
+            "medium-sized",
+            "large",
+            "gigantic"
+        ],
+        "type": [
+            "Chocolate",
             "Ice Cream",
             "Angel",
             "Boston Cream",
@@ -20,30 +44,7 @@
             "Welsh",
             "Yokan"
         ],
-        "size": [
-            "small",
-            "little",
-            "mid-sized",
-            "medium-sized",
-            "large",
-            "gigantic"
-        ],
-        "flavor": [
-            "tasty",
-            "delectable",
-            "delicious",
-            "yummy",
-            "toothsome",
-            "scrumptious",
-            "luscious"
-        ],
-        "method": [
-            "makes",
-            "gives",
-            "gets",
-            "buys"
-        ],
-        "side_dish": [
+        "side": [
             "glass of chocolate milk",
             "bowl of ice cream",
             "jar of cookies",
