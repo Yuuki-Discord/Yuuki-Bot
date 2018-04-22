@@ -1,34 +1,13 @@
 {
     "templates": [
-        "{method} {user} a {flavor} {size} {cookie_type} cookie and serves it with a {side_dish}!"
+        "{method} {user} a {flavor} {size} {type} cookie and serves it with a {side}!"
     ],
     "parts": {
-        "cookie_type": [
-            "chocolate chip",
-            "oatmeal",
-            "sugar",
-            "oatmeal raisin",
-            "macadamia nut",
-            "jam thumbprint",
-            "medican wedding",
-            "biscotti",
-            "oatmeal cranberry",
-            "chocolate fudge",
-            "peanut butter",
-            "pumpkin",
-            "lemon bar",
-            "chocolate oatmeal fudge",
-            "toffee peanut",
-            "danish sugar",
-            "triple chocolate",
-            "oreo"
-        ],
-        "size": [
-            "small",
-            "little",
-            "medium-sized",
-            "large",
-            "gigantic"
+        "method": [
+            "makes",
+            "gives",
+            "gets",
+            "buys"
         ],
         "flavor": [
             "tasty",
@@ -39,13 +18,35 @@
             "scrumptious",
             "luscious"
         ],
-        "method": [
-            "makes",
-            "gives",
-            "gets",
-            "buys"
+        "size": [
+            "small",
+            "little",
+            "medium-sized",
+            "large",
+            "gigantic"
         ],
-        "side_dish": [
+        "type": [
+            "Chocolate Chip",
+            "Oatmeal",
+            "Sugar",
+            "Oatmeal Raisin",
+            "Macadamia Nut",
+            "Jam Thumbprint",
+            "Mexican Wedding",
+            "Biscotti",
+            "Oatmeal Cranberry",
+            "Chocolate Fudge",
+            "Peanut Butter",
+            "Pumpkin",
+            "Lemon Bar",
+            "Chocolate Oatmeal Fudge",
+            "Toffee Peanut",
+            "Danish Sugar",
+            "Tim Tam",
+            "Triple Chocolate",
+            "Oreo"
+        ],
+        "side": [
             "glass of milk",
             "bowl of ice cream",
             "bowl of chocolate sauce"
