@@ -2,7 +2,7 @@
 module YuukiBot
   module Extra
     if YuukiBot.config['extra_commands']
-      json_food_commands = %w(beer biscuit brekkie burger cake cereal cheese chicken chocolate coffee cookie doobie icecream kebab keto milkshake muffin noodles nugget oreo pancake pasta pie pizza potato sandwich scone snack steak sushi taco tea)
+      json_food_commands = %w(beer biscuit brekkie burger cake cereal cheese chicken chocolate coffee cookie donut doobie drinks halal icecream kebab keto kosher milkshake muffin noodles nugget oreo pancake pasta pie pizza potato rice sandwich scone snack soup steak sushi taco tea wine)
 
       json_food_commands.each { |x|
         $cbot.add_command(x.to_sym,
