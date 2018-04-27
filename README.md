@@ -1,7 +1,7 @@
 # Yuuki-Bot
 Publicly available bot for [Discord](https://discordapp.com).
 
-You can invite the Public Bot with this link -> https://dis.gg/yuuki <br />
+You can invite the Public Bot with this link -> https://yuuki.fl0.co/invite <br />
 The Public Bot might not always be online, if you want the bot all the time for sure, or access to Owner Commands, please host it yourself.
 
 ## Important Information
