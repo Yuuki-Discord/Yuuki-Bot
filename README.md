@@ -1,7 +1,7 @@
 # Yuuki-Bot
 Publicly available bot for [Discord](https://discordapp.com).
 
-You can invite the Public Bot with this link -> https://yuuki.fl0.co/invite <br />
+You can invite the Public Bot with this link -> https://yuuki.erisa.moe/invite <br />
 The Public Bot might not always be online, if you want the bot all the time for sure, or access to Owner Commands, please host it yourself.
 
 ## Important Information
@@ -29,8 +29,8 @@ In the rare event that the code running is not the same as the master branch on 
 3. Update the bundle: `bundle update`
 4. Run the bot: `sh run_linux.sh` or `run_windows.bat`
 
-Please report any issues to `Erisa#9999` | `<@228574821590499329>` on Discord, or open an Issue on Github! <br />
-You can also join our server for support! (Or to find me) https://discord.gg/kZ9dHxJ <br />
+Please report any issues to Erisa | `<@228574821590499329>` on Discord, or open an Issue on Github! <br />
+You can also join our server for support! (Or to find me) https://discord.gg/PrTMrv4 <br />
 
 Enjoy~
 <br />
