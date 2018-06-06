@@ -1,13 +1,9 @@
 # Yuuki-Bot
-Publicly available bot for [Discord](https://discordapp.com).
+Free and open-source bot for [Discord](https://discordapp.com).
 
-You can invite the Public Bot with this link -> https://yuuki.erisa.moe/invite <br />
-The Public Bot might not always be online, if you want the bot all the time for sure, or access to Owner Commands, please host it yourself.
-
-## Important Information
-This bot is provided for use in your Discord Server at your discretion. All code that is currently running on the Bot Account is viewable at this repository.  
-The creator(s) of this code accepts no responsibility for anything that may happen as a result of adding this bot, feel free to verify the source code to ensure that nothing bad is running.  
-In the rare event that the code running is not the same as the master branch on GitHub, a commit code will be shown in the `about` command which can be checked with GitHub to see what code is running.
+# Usage
+You can invite the [publicly usable version of the bot](https://yuuki.erisa.moe/invite) or [host your own version](#self-hosting) to gain full control and access to owner commands.  
+You can find a [list of commands on the wiki](https://owo.codes/Seriel/Yuuki-Bot/wikis/Commands).
 
 # Self-Hosting:
 
@@ -32,12 +28,15 @@ In the rare event that the code running is not the same as the master branch on 
 Please report any issues to Erisa | `<@228574821590499329>` on Discord, or open an [Issue](https://owo.codes/Seriel/Yuuki-Bot/issues)! <br />
 You can also join our server for support! (Or to find me) https://discord.gg/PrTMrv4 <br />
 
-Enjoy~
-<br />
+Enjoy~  
+
+# Important Information
+Use of this bot is at your own discretion. The bot's current code is viewable at this repository, feel free to review the code to verify its safety.
+The creator(s) of this code accept no responsibility for any repercussions that occur as a result of adding this bot.
 
 # Credits
 
-Kudos to the following users for helping me ([Seriel](https://owo.codes/Seriel)) out:
+Kudos to the following users for helping me ([Erisa](https://owo.codes/Seriel)) out:
 
 - [Spotlight](https://github.com/spotlightishere)
 - [luigoalma](https://github.com/luigoalma), for ideas and help early in development. :3
