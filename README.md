@@ -1,11 +1,11 @@
 # Yuuki-Bot
 Publicly available bot for [Discord](https://discordapp.com).
 
-You can invite the Public Bot with this link -> https://yuuki.erisa.moe/invite <br />
-The Public Bot might not always be online, if you want the bot all the time for sure, or access to Owner Commands, please host it yourself.
+You can invite the public bot with this link -> https://yuuki.erisa.moe/invite <br />
+The public bot might not always be online, if you want the bot all the time for sure, or access to owner commands, please host it yourself.
 
 ## Important Information
-This bot is provided for use in your Discord Server at your discretion. All code that is currently running on the Bot Account is viewable at this repository.  
+This bot is provided for use in your Discord server at your discretion. All code that is currently running on the bot account is viewable at this repository.  
 The creator(s) of this code accepts no responsibility for anything that may happen as a result of adding this bot, feel free to verify the source code to ensure that nothing bad is running.  
 In the rare event that the code running is not the same as the master branch on GitHub, a commit code will be shown in the `about` command which can be checked with GitHub to see what code is running.
 
