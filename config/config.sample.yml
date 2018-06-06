@@ -81,12 +81,12 @@ invite_url: nil
 # plz dont set to false, closed source is baaad :(
 show_source: true
 # Change if using your own fork.
-source_url: https://github.com/Seriell/Yuuki-Bot
+source_url: https://owo.codes/Seriel/Yuuki-Bot
 
 # Will disable the `help` command.
 show_help: true
 # Change if using your own fork or hosting your own help.
-help_url: https://github.com/Seriell/Yuuki-Bot/wiki/Commands
+help_url: https://owo.codes/Seriel/Yuuki-Bot/wikis/commands
 
 show_support: true
 # Change to your server if using your own modified code.
