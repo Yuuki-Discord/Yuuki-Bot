@@ -23,6 +23,14 @@ module YuukiBot
       triggers: %w(speak hide)
     )
 
+    $cbot.add_command(:servers,
+      code: proc { |event, args|
+        event.respond "🏠 I am in #{event.bot.servers.count} servers!"
+      },
+#      min_args: 1
+    )
+
+
 #    $cbot.bot.message_delete  { |event|
 #      unless Helper.say_map[event.id].nil?
 #        event.bot.channel(Helper.say_map[event.id][0]).message(Helper.say_map[event.id][1]).delete
