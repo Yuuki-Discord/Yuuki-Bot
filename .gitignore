@@ -1,3 +1,7 @@
+# Bye backups
+backup-*
+dump.rdb
+
 # Ignore all config files.
 *.yml
 config/custom/custom.rb
