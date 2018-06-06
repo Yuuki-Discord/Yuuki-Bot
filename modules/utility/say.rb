@@ -1,7 +1,6 @@
-# Copyright Erisa Komuro (Seriel) 2016-2017
+# Copyright Erisa Arrowsmith (Seriel) 2016-2017
 module YuukiBot
   module Utility
-
 
     $cbot.add_command(:say,
       code: proc { |event, args|
@@ -27,14 +26,7 @@ module YuukiBot
       code: proc { |event, args|
         event.respond "🏠 I am in #{event.bot.servers.count} servers!"
       },
-#      min_args: 1
     )
 
-
-#    $cbot.bot.message_delete  { |event|
-#      unless Helper.say_map[event.id].nil?
-#        event.bot.channel(Helper.say_map[event.id][0]).message(Helper.say_map[event.id][1]).delete
-#      end
-#    }
   end
 end
