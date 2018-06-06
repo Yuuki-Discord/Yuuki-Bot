@@ -1,8 +1,7 @@
 # Yuuki-Bot
-Publicly available bot for [Discord](https://discordapp.com).
+Free and open-source bot for [Discord](https://discordapp.com).
 
-You can invite the public bot with this link -> https://yuuki.erisa.moe/invite <br />
-The public bot might not always be online, if you want the bot all the time for sure, or access to owner commands, please host it yourself.
+You can invite the publicly usable version of the bot [here](https://yuuki.erisa.moe/invite) or [host your own version](https://owo.codes/Seriel/Yuuki-Bot#self-hosting) to gain full control and access to owner commands.
 
 ## Important Information
 This bot is provided for use in your Discord server at your discretion. All code that is currently running on the bot account is viewable at this repository.  
@@ -32,12 +31,11 @@ In the rare event that the code running is not the same as the master branch on 
 Please report any issues to Erisa | `<@228574821590499329>` on Discord, or open an [Issue](https://owo.codes/Seriel/Yuuki-Bot/issues)! <br />
 You can also join our server for support! (Or to find me) https://discord.gg/PrTMrv4 <br />
 
-Enjoy~
-<br />
+Enjoy~  
 
 # Credits
 
-Kudos to the following users for helping me ([Seriel](https://owo.codes/Seriel)) out:
+Kudos to the following users for helping me ([Erisa](https://owo.codes/Seriel)) out:
 
 - [Spotlight](https://github.com/spotlightishere)
 - [luigoalma](https://github.com/luigoalma), for ideas and help early in development. :3
