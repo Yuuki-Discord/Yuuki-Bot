@@ -1,7 +1,7 @@
 # Yuuki-Bot
 Free and open-source bot for [Discord](https://discordapp.com).
 
-You can invite the publicly usable version of the bot [here](https://yuuki.erisa.moe/invite) or [host your own version](https://owo.codes/Seriel/Yuuki-Bot#self-hosting) to gain full control and access to owner commands.
+You can invite the publicly usable version of the bot [here](https://yuuki.erisa.moe/invite) or [host your own version](#self-hosting) to gain full control and access to owner commands.
 
 ## Important Information
 This bot is provided for use in your Discord server at your discretion. All code that is currently running on the bot account is viewable at this repository.  
