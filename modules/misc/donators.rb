@@ -89,7 +89,7 @@ module YuukiBot
           event << 'Please contact the bot owner for more information.'
         end
       },
-      triggers: ['donate', 'donateinfo', 'how do i donate', 'how do i donate?', 'how do I donate', 'how do I donate?', 'doante']
+      triggers: ['donate', 'donateinfo', 'how do i donate', 'how do i donate?', 'how do I donate', 'how do I donate?', 'doante', 'donut']
     )
 
     $cbot.add_command(:botowners,
