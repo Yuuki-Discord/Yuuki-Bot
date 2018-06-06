@@ -2,8 +2,8 @@
 Free and open-source bot for [Discord](https://discordapp.com).
 
 # Usage
-You can invite the publicly usable version of the bot [here](https://yuuki.erisa.moe/invite) or [host your own version](#self-hosting) to gain full control and access to owner commands.
-A list of all commands is viewable [on the wiki](https://owo.codes/Seriel/Yuuki-Bot/wikis/Commands).
+You can invite the [publicly usable version of the bot](https://yuuki.erisa.moe/invite) or [host your own version](#self-hosting) to gain full control and access to owner commands.  
+You can find a [list of commands on the wiki](https://owo.codes/Seriel/Yuuki-Bot/wikis/Commands).
 
 # Self-Hosting:
 
