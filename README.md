@@ -5,7 +5,7 @@ Free and open-source bot for [Discord](https://discordapp.com).
 You can invite the [publicly usable version of the bot](https://yuuki.erisa.moe/invite) or [host your own version](#self-hosting) to gain full control and access to owner commands.  
 You can find a [list of commands on the wiki](https://owo.codes/Seriel/Yuuki-Bot/wikis/Commands).
 
-# Self-Hosting:
+# Self-Hosting
 
 ## Requirements
 - Ruby 2.3.1+ (Due to a bug in the Ruby interpreter, this bot won't work correctly with lower versions.)
