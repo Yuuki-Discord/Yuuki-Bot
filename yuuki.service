@@ -10,7 +10,7 @@ Description=Yuuki-Bot Service
 
 [Service]
 # This needs to be cleaner.
-ExecStart=/usr/bin/bash -lc 'export PATH="$PATH:/home/erisa/.gem/ruby/2.5.0/bin"\n bundle exec ruby run.rb'
+ExecStart=/bin/bash -lc 'bundle exec ruby run.rb'
 Restart=on-abort
 
 # Change this:
