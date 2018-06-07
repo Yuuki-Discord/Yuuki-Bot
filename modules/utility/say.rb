@@ -22,11 +22,5 @@ module YuukiBot
       triggers: %w(speak hide)
     )
 
-    $cbot.add_command(:servers,
-      code: proc { |event, args|
-        event.respond "🏠 I am in #{event.bot.servers.count} servers!"
-      },
-    )
-
   end
 end
