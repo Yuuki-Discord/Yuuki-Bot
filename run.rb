@@ -24,14 +24,12 @@ module YuukiBot
 
   class CommandrbBot < CommandrbBot
     def is_owner?(id)
-      if YuukiBot.config['master_owner'] == id
+      if YuukiBot.config['master_owner'].to_i == id
         true
       else
-        begin
-          JSON.parse(REDIS.get('owners')).include?(id)
-        rescue
-          false
-        end
+        response = REDIS.get('owners')
+		return false if response.nil?
+		return JSON.parse(response).include?(id)
       end
     end
   end
