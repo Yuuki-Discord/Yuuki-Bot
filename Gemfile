@@ -1,5 +1,5 @@
 source 'http://rubygems.org'
-gem 'commandrb', git: 'https://github.com/Seriell/commandrb.git'
+gem 'commandrb', git: 'https://owo.codes/Seriel/commandrb.git'
 gem 'discordrb'
 gem 'easy_translate', git: 'https://github.com/seejohnrun/easy_translate.git'
 gem 'haste'
