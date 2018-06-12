@@ -4,7 +4,7 @@ module YuukiBot
   
     $cbot.add_command(:servers,
       code: proc { |event, args|
-        event.respond "🏠 | I am in ((#{event.bot.servers.count} servers!"
+        event.respond "🏠 | I am in **#{event.bot.servers.count}** servers!"
       },
     )
     
