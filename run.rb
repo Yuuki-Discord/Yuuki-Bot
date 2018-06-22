@@ -63,7 +63,7 @@ module YuukiBot
 
   puts '>> Initial loading succesful!! <<'
   exit(1001) if YuukiBot.config['pretend_run']
-  $uploader =  Haste::Uploader.new
+  $uploader =  Haste::Uploader.new("https://paste.erisa.moe" )
   if YuukiBot.config['use_pry']
     $cbot.bot.run(true)
     require 'pry'

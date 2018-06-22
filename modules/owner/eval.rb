@@ -38,7 +38,7 @@ module YuukiBot
           str = ''
           if result.length >= 1984
             str << "#{YuukiBot.config['emoji_warning']} Your output exceeded the character limit! (`#{result.length - 1984}`/`1984`)"
-            str << "You can view the result here: https://hastebin.com/raw/#{$uploader.upload_raw(result)}\nCommand took #{(Time.now - init_time)} seconds to execute!"
+            str << "You can view the result here: https://paste.erisa.moe/raw/#{$uploader.upload_raw(result)}\nCommand took #{(Time.now - init_time)} seconds to execute!"
           else
             str << "Output: ```\n#{result}```Command took #{(Time.now - init_time)} seconds to execute!"
           end
@@ -66,7 +66,7 @@ module YuukiBot
         str = ''
         if result.length >= 1984
           str << "#{YuukiBot.config['emoji_warning']} Your output exceeded the character limit! (`#{result.length - 1984}`/`1984`)"
-          str << "You can view the result here: https://hastebin.com/raw/#{$uploader.upload_raw(result)}\nCommand took #{(Time.now - init_time)} seconds to execute!"
+          str << "You can view the result here: https://paste.erisa.moe/raw/#{$uploader.upload_raw(result)}\nCommand took #{(Time.now - init_time)} seconds to execute!"
         else
           str << "Output: ```\n#{result}```Command took #{(Time.now - init_time)} seconds to execute!"
         end
