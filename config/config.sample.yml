@@ -21,6 +21,9 @@ redis_host: localhost
 redis_port: 6379
 redis_namespace: yuuki
 
+## Uncomment this line to use a password protected Redis instance.
+# redis_password: foobar
+
 # Google Translate API Key
 translate_api_key: INSERTHERE 
 
