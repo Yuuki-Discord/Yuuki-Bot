@@ -78,10 +78,20 @@ module YuukiBot
           next
         end
 
+# Discordrb sucks
+=begin
         if event.channel.private? || !event.server.members.include?(user)
           ignoreserver = true
         else
           member = user.on(event.server)
+        end
+=end  
+
+        # Beter than the alternative :)
+        begin 
+          member = user.on(event.server)
+        rescue
+          ignoreserver = true
         end
 
         donator = JSON.parse(REDIS.get('donators').include?(user.id))
