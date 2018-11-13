@@ -147,7 +147,7 @@ end
     code: proc do |event, _|
       uptimems = (Time.now - $launch_time) * 1000
 
-      event.respond("I was first launched on `#{$launch_time.asctime} UTC`\nThis means I have been online for `#{self.ms_to_time(uptimems)}` (`#{uptimems.floor}ms`)")
+      event.respond("I was launched on `#{$launch_time.asctime} UTC`\nThis means I have been online for `#{self.ms_to_time(uptimems)}` (`#{uptimems.floor}ms`)")
     end
     )
 
