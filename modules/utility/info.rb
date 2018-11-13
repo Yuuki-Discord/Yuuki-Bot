@@ -127,8 +127,8 @@ def self.ms_to_time(ms)
   time = time / 60
   minutes = time % 60
   time = time / 60
-  hours = time % 60
-  time = time / 60
+  hours = time % 24
+  time = time / 24
   days = time
 
   seconds = seconds.floor
