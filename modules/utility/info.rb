@@ -140,7 +140,7 @@ def self.ms_to_time(ms)
   minutes = (minutes.to_s.length == 1) ?  "0" + minutes.to_s : minutes.to_s
   hours = (hours.to_s.length == 1) ?  "0" + hours.to_s : hours.to_s
 
-  "#{days} days, #{hours}:#{minutes}:#{seconds}"
+  "#{days} day#{'s' unless days == 1}, #{hours}:#{minutes}:#{seconds}"
 end
 
     $cbot.add_command(:uptime,
