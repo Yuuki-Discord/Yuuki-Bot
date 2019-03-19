@@ -17,6 +17,9 @@ prefixes:
 # PLEASE CHANGE
 master_owner: 1234567890
 
+# Defaults to master_owner's DM inbox if not set.
+# dm_channel: 12345678901234
+
 redis_host: localhost
 redis_port: 6379
 redis_namespace: yuuki
