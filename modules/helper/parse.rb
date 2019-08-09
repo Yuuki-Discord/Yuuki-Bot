@@ -1,4 +1,4 @@
-# Copyright Erisa Arrowsmith (Seriel), Spotlight 2016-2017
+# Copyright Erisa Arrowsmith, Spotlight 2016-2017
 
 module YuukiBot
   module Helper

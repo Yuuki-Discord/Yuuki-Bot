@@ -1,4 +1,4 @@
-# Copyright Erisa Arrowsmith (Seriel) 2016-2017
+# Copyright Erisa Arrowsmith 2016-2017
 
 module YuukiBot
   module Mod

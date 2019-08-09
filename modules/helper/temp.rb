@@ -1,4 +1,4 @@
-# Copyright Erisa Arrowsmith (Seriel) 2019
+# Copyright Erisa Arrowsmith 2019
 module YuukiBot
   module Helper
 
