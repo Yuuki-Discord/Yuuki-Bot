@@ -2,8 +2,8 @@
 Free and open-source bot for [Discord](https://discordapp.com).
 
 # Usage
-You can invite the [publicly usable version of the bot](https://yuuki.erisa.moe/invite) or [host your own version](#self-hosting) to gain full control and access to owner commands.  
-You can find a [list of commands on the wiki](https://owo.codes/Seriel/Yuuki-Bot/wikis/Commands).
+You can invite the [publicly usable version of the bot](https://erisa.link/yuukibot) or [host your own version](#self-hosting) to gain full control and access to owner commands.  
+You can find a [list of commands on the wiki](https://github.com/yuuki-discord/Yuuki-Bot/wiki/Commands).
 
 # Self-Hosting
 
@@ -12,7 +12,7 @@ You can find a [list of commands on the wiki](https://owo.codes/Seriel/Yuuki-Bot
 - bundler (`gem install bundler`)
 
 ## Install
-1. Clone the repo: `git clone https://owo.codes/Seriel/Yuuki-Bot.git`
+1. Clone the repo: `git clone https://github.com/yuuki-discord/Yuuki-Bot.git`
 2. cd into the repo: `cd Yuuki-Bot`
 3. Create a bot account and edit the config files accordingly (See config/README.md)
 4. Install bundler if you haven't already: `gem install bundler`
@@ -25,7 +25,7 @@ You can find a [list of commands on the wiki](https://owo.codes/Seriel/Yuuki-Bot
 3. Update the bundle: `bundle update`
 4. Run the bot: `sh run_linux.sh` or `run_windows.bat`
 
-Please report any issues to Erisa | `<@228574821590499329>` on Discord, or open an [Issue](https://owo.codes/Seriel/Yuuki-Bot/issues)! <br />
+Please report any issues to Erisa | `<@228574821590499329>` on Discord, or open an [Issue](https://github.com/yuuki-discord/Yuuki-Bot/issues)! <br />
 You can also join our server for support! (Or to find me) https://discord.gg/PrTMrv4 <br />
 
 Enjoy~  
@@ -36,7 +36,7 @@ The creator(s) of this code accept no responsibility for any repercussions that 
 
 # Credits
 
-Kudos to the following users for helping me ([Erisa](https://owo.codes/Seriel)) out:
+Kudos to the following users for helping me ([Erisa](https://github.com/Erisa)) out:
 
 - [Spotlight](https://github.com/spotlightishere)
 - [luigoalma](https://github.com/luigoalma), for ideas and help early in development. :3
