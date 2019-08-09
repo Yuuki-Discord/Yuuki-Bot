@@ -87,12 +87,12 @@ invite_url: nil
 # plz dont set to false, closed source is baaad :(
 show_source: true
 # Change if using your own fork.
-source_url: https://owo.codes/Seriel/Yuuki-Bot
+source_url: https://github.com/yuuki-discord/Yuuki-Bot
 
 # Will disable the `help` command.
 show_help: true
 # Change if using your own fork or hosting your own help.
-help_url: https://owo.codes/Seriel/Yuuki-Bot/wikis/commands
+help_url: https://github.com/yuuki-discord/Yuuki-Bot/wiki/commands
 
 show_support: true
 # Change to your server if using your own modified code.
@@ -102,7 +102,7 @@ show_donate_urls: true
 # Wrap in <> if using more than one (To avoid huge embeds).
 donate_urls:
   # It would be nice if you kept the original devs, but is not required.
-  - <https://paypal.me/Seriel>
+  - <https://paypal.me/ErisaArrow>
   - <https://paypal.me/spotlightisok>
 # - <https://paypal.me/your_name_here>
 
