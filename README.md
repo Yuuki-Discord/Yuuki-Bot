@@ -12,7 +12,7 @@ You can find a [list of commands on the wiki](https://github.com/yuuki-discord/Y
 - bundler (`gem install bundler`)
 
 ## Install
-1. Clone the repo: `git clone https://github.com/yuuki-discord/Yuuki-Bot.git`
+1. Clone the repo: `git clone --recursive https://github.com/yuuki-discord/Yuuki-Bot.git`
 2. cd into the repo: `cd Yuuki-Bot`
 3. Create a bot account and edit the config files accordingly (See config/README.md)
 4. Install bundler if you haven't already: `gem install bundler`
