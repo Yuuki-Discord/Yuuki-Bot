@@ -1,4 +1,4 @@
-# Copyright 2018 Erisa Komuro (Seriel)
+# Copyright 2019 Erisa Arrowsmith (Seriel)
 module YuukiBot
   module Owner
 

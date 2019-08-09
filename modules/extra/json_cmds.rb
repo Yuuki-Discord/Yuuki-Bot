@@ -1,4 +1,4 @@
-# Copyright Erisa Komuro (Seriel), spotlight_is_ok, Larsenv 2017
+# Copyright Erisa Arrowsmith (Seriel), spotlight_is_ok, Larsenv 2017
 module YuukiBot
   module Extra
     if YuukiBot.config['extra_commands']
