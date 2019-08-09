@@ -1,4 +1,4 @@
-# Copyright Erisa Arrowsmith (Seriel), spotlight_is_ok, Larsenv 2017
+# Copyright Erisa Arrowsmith, spotlight_is_ok, Larsenv 2017
 module YuukiBot
   module Extra
     $cbot.add_command(:love,
