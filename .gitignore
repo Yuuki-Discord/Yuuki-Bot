@@ -7,12 +7,14 @@ dump.rdb
 config/custom/custom.rb
 config/code.rb
 config/custom/assets/*
+config/custom/images
 
 # Except the supplied samples.
 !*.sample.yml
 !config/dancingletters.yml
 !config/custom/assets/.gitkeep
 !config/custom/custom.sample.rb
+!config/custom/images/.gitkeep
 
 # Temporary files.
 tmp/*
