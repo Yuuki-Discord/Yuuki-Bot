@@ -39,12 +39,17 @@ module YuukiBot
           next
         end
 
-        event.channel.send_embed do |embed|
-          embed.colour = 0x22ef1f
-          embed.image = Discordrb::Webhooks::EmbedImage.new(url: Helper.avatar_url(user))
-          embed.author = Discordrb::Webhooks::EmbedAuthor.new(name: "Avatar for #{user.name}", url: Helper.avatar_url(user))
-          embed.footer = Discordrb::Webhooks::EmbedFooter.new(text: "Avatar correct as of #{Time.now.getutc.asctime}")
-        end
+        avy_embed = Discordrb::Webhooks::Embed.new(
+          image: Discordrb::Webhooks::EmbedImage.new(url: Helper.avatar_url(user)),
+          author: Discordrb::Webhooks::EmbedAuthor.new(name: "Avatar for #{user.name}", url: Helper.avatar_url(user)),
+          footer: Discordrb::Webhooks::EmbedFooter.new(text: "Avatar correct as of #{Time.now.getutc.asctime}")
+        )
+
+        color = Helper.colour_from_user(user, -1)
+        # We don't want black (0x000000) if the user has no role colors.
+        # Let's leave that to Discord.
+        avy_embed.color = color unless color == -1
+        event.channel.send_message('', false, avy_embed)
       },
       triggers: %w(avatar avy),
       :server_only => true,
