@@ -13,6 +13,9 @@ client_id: 306142257818632193 # Also get from https://discordapp.com/developers/
 prefixes:
   - "s!!" # Please change.
 
+# More features but may break. Set to true to use. If unsure leave as false.
+extra_commands: false
+
 # This user will ALWAYS be owner. Regardless of any configured through the bot.
 # PLEASE CHANGE
 master_owner: 1234567890
@@ -26,9 +29,6 @@ redis_namespace: yuuki
 
 ## Uncomment this line to use a password protected Redis instance.
 # redis_password: foobar
-
-# Google Translate API Key
-translate_api_key: INSERTHERE 
 
 ## PLEASE CHANGE
 # Feel free to rip my image from https://cdn.discordapp.com/emojis/374262067529515008.png
@@ -50,18 +50,6 @@ twitch_url: https://twitch.tv/example
 # Set to false for less console output.
 verbose: true
 
-## REMOVED UNTIL FUTURE NOTICE
-# Change the amount of chat logs displayed.
-# Can be 'none', 'all', 'commands', 'commands_and_dms' or 'dms_only'
-# loglevel: commands_and_dms
-# Change what events are logged.
-# Can contain any combination of :edit, :delete, :create. :join
-#logevents:
-# - :edit
-# - :delete
-# - :create
-# - :join
-
 ## Set to a custom emoji using <:name:ID>
 emoji_tickbox: ✅
 emoji_error: ❌
@@ -72,31 +60,31 @@ emoji_success: 👌
 # Uncomment to use Discord Bots style tickbox and errors.
 # Only works if bot is in Discord Bots (Which an obvious clone shouldnt be!)
 # Alternatively upload the emote images to your own server and change the IDs.
+# https://discord.bots.gg/
 
-#~ emoji_tickbox: <:check:314349398811475968>
-#~ emoji_error: <:xmark:314349398824058880>
+# emoji_tickbox: <:check:314349398811475968>
+# emoji_error: <:xmark:314349398824058880>
 
- # Change to false if you don't like the bot "typing" all the time.
+# Change to false if you don't like the bot "typing" all the time.
 typing_default: true
 
-# Change to false if private.
+# Change to true if public.
 show_invite: false
 # Best to leave nil unless sure. (Defaults to a generated URL)
 invite_url: nil
 
-# plz dont set to false, closed source is baaad :(
 show_source: true
 # Change if using your own fork.
-source_url: https://github.com/yuuki-discord/Yuuki-Bot
+source_url: https://github.com/Yuuki-Discord/Yuuki-Bot
 
 # Will disable the `help` command.
 show_help: true
 # Change if using your own fork or hosting your own help.
-help_url: https://github.com/yuuki-discord/Yuuki-Bot/wiki/commands
+help_url: https://github.com/Yuuki-Discord/Yuuki-Bot/wiki/commands
 
 show_support: true
 # Change to your server if using your own modified code.
-support_server: https://discord.gg/kZ9dHxJ
+support_server: https://discord.gg/Q2XzDEt
 
 show_donate_urls: true
 # Wrap in <> if using more than one (To avoid huge embeds).
@@ -104,10 +92,6 @@ donate_urls:
   # It would be nice if you kept the original devs, but is not required.
   - <https://ko-fi.com/ErisaMoe>
 # - <https://paypal.me/your_name_here>
-
-
-# More features but may break. Set to true to use. If unsure leave as false.
-extra_commands: false
 
 ##~~~ (: DONT TOUCH THIS PART :) ~~~##
 
