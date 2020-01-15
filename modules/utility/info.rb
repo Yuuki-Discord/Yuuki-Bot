@@ -84,15 +84,6 @@ module YuukiBot
           next
         end
 
-# Discordrb sucks
-=begin
-        if event.channel.private? || !event.server.members.include?(user)
-          ignoreserver = true
-        else
-          member = user.on(event.server)
-        end
-=end  
-
         # Beter than the alternative :)
         begin 
           member = user.on(event.server)
@@ -127,27 +118,27 @@ module YuukiBot
     )
 
 
-def self.ms_to_time(ms)
-  time = ms / 1000
-  seconds = time % 60
-  time = time / 60
-  minutes = time % 60
-  time = time / 60
-  hours = time % 24
-  time = time / 24
-  days = time
+    def self.ms_to_time(ms)
+      time = ms / 1000
+      seconds = time % 60
+      time = time / 60
+      minutes = time % 60
+      time = time / 60
+      hours = time % 24
+      time = time / 24
+      days = time
 
-  seconds = seconds.floor
-  minutes = minutes.floor
-  hours = hours.floor
-  days = days.floor
+      seconds = seconds.floor
+      minutes = minutes.floor
+      hours = hours.floor
+      days = days.floor
 
-  seconds = (seconds.to_s.length == 1) ?  "0" + seconds.to_s : seconds.to_s
-  minutes = (minutes.to_s.length == 1) ?  "0" + minutes.to_s : minutes.to_s
-  hours = (hours.to_s.length == 1) ?  "0" + hours.to_s : hours.to_s
+      seconds = (seconds.to_s.length == 1) ?  "0" + seconds.to_s : seconds.to_s
+      minutes = (minutes.to_s.length == 1) ?  "0" + minutes.to_s : minutes.to_s
+      hours = (hours.to_s.length == 1) ?  "0" + hours.to_s : hours.to_s
 
-  "#{days} day#{'s' unless days == 1}, #{hours}:#{minutes}:#{seconds}"
-end
+      "#{days} day#{'s' unless days == 1}, #{hours}:#{minutes}:#{seconds}"
+    end
 
     $cbot.add_command(:uptime,
     code: proc do |event, _|
@@ -156,7 +147,6 @@ end
       event.respond("I was launched on `#{$launch_time.asctime} UTC`\nThis means I have been online for `#{self.ms_to_time(uptimems)}` (`#{uptimems.floor}ms`)")
     end
     )
-
 
   end
 end
