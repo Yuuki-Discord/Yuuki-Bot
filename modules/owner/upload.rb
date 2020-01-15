@@ -23,22 +23,5 @@ module YuukiBot
       owners_only: true
     )
 
-    # noinspection RubyResolve,RubyResolve
-    $cbot.add_command(:dump,
-      code: proc { |event, args|
-        channel = begin
-          args[0].nil? ? event.bot.channel(event.channel.id) : event.bot.channel(args[0])
-        rescue
-          event.respond("#{YuukiBot.config['emoji_error']} Enter a valid channel id!")
-        end
-        ts = event.message.timestamp
-        file = Helper.dump_channel(channel, event.channel, 'log/', ts)
-        event.respond("#{YuukiBot.config['emoji_tickbox']} Dumped successfully!")
-        event.channel.send_file(File.new(file))
-      },
-      triggers: %w(dump log savechannel),
-      owners_only: true
-    )
-
   end
 end
