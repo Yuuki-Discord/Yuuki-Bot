@@ -102,8 +102,7 @@ show_donate_urls: true
 # Wrap in <> if using more than one (To avoid huge embeds).
 donate_urls:
   # It would be nice if you kept the original devs, but is not required.
-  - <https://paypal.me/ErisaArrow>
-  - <https://paypal.me/spotlightisok>
+  - <https://ko-fi.com/ErisaMoe>
 # - <https://paypal.me/your_name_here>
 
 
