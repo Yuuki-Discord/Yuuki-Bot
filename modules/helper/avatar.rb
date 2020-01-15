@@ -18,7 +18,7 @@ module YuukiBot
                  else
                    filename.gsub('.jpg', '.png')
                  end
-      url = "https://cdn.discordapp.com/avatars/#{user.id}/#{changed_filename}?size=1024"
+      url = "https://cdn.discordapp.com/avatars/#{user.id}/#{changed_filename}?size=4096"
       url
     end
   end
