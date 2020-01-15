@@ -4,8 +4,7 @@ module YuukiBot
 
     $cbot.add_command(:prune,
       code: proc { |event, args|
-        num = args[0]
-        num = 75 if num.nil?
+        num = 75
         @count = 0
         msgs = []
         msg = event.channel.send("#{YuukiBot.config['emoji_loading']} Deleting, please wait...")
@@ -29,6 +28,10 @@ module YuukiBot
           msg.edit("#{YuukiBot.config['emoji_tickbox']} Pruned #{@count} bot messages!")
         else
           msg.edit("#{YuukiBot.config['emoji_warning']} No messages found!")
+        end
+        if args[0] == '-f'
+          sleep 2
+          msg.delete
         end
 
       },
