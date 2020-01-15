@@ -23,18 +23,6 @@ module YuukiBot
       }
     )
 
-    $cbot.add_command(:owner,
-      code: proc {|event, args|
-        begin
-         id = args[0].nil? ? event.server.id : args[0]
-         event.respond("👤 Owner of server `#{event.bot.server(id).name}` is **#{event.bot.server(id).owner.distinct}** | ID: `#{event.bot.server(id).owner.id}`")
-        rescue
-          event.respond(" 😦 I'm not in that server!")
-        end
-      },
-      server_only: true
-    )
-
     $cbot.add_command(:help,
       code: proc {|event, _|
         event << (YuukiBot.config['show_help'] ? "Follow this link for basic help: ** 🔗 #{YuukiBot.config['help_url']}**" : 'Unfortunately, no command help can be shown. Please contact the bot owner.')
