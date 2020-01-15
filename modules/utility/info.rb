@@ -40,7 +40,7 @@ module YuukiBot
         end
 
         avy_embed = Discordrb::Webhooks::Embed.new(
-          image: Discordrb::Webhooks::EmbedImage.new(url: Helper.avatar_url(user.on)),
+          image: Discordrb::Webhooks::EmbedImage.new(url: Helper.avatar_url(user)),
           author: Discordrb::Webhooks::EmbedAuthor.new(name: "Avatar for #{user.name} (Click to open in browser)", url: Helper.avatar_url(user)),
           footer: Discordrb::Webhooks::EmbedFooter.new(text: "Called by #{event.user.distinct} (#{event.user.id})", icon_url: Helper.avatar_url(event.user)),
           timestamp: Time.now
