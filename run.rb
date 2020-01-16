@@ -1,7 +1,6 @@
 $launch_time = Time.now
 
 module YuukiBot
-  require 'easy_translate'
   require 'haste'
   require 'open-uri'
   require 'redis'
