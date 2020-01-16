@@ -42,7 +42,6 @@ module YuukiBot
       max_args: 1
     )
 
-    # noinspection RubyResolve
     $cbot.add_command(:pruneuser,
       code: proc { |event, args|
         begin
