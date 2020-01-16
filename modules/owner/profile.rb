@@ -51,6 +51,7 @@ module YuukiBot
       triggers: %w(set config),
       owners_only: true
     )
+    
     $cbot.add_command(:reset,
       code: proc {|event,args|
         case args[0].downcase
