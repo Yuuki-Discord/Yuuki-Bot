@@ -20,7 +20,7 @@ module YuukiBot
               id = user.id rescue nil
               if user.nil?
                 event.respond("#{YuukiBot.config['emoji_error']} Not a valid user!")
-              else
+              else\
                 if args[0] == 'add'
                   owners = JSON.parse(REDIS.get('owners'))
                   if $cbot.is_owner?(id)
