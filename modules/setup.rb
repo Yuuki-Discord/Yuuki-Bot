@@ -97,7 +97,11 @@ module YuukiBot
     raise 'No valid token entered!'
   end
   
-  @config['owners'] = [@config['master_owner']] if @config['owners'].nil?
+  if @config['master_owner'].nil?
+    @config['owners'] = [@config['owners'][0]]
+  else
+    @config['owners'] = [@config['master_owner']]
+  end
   
   require 'easy_translate'
 
