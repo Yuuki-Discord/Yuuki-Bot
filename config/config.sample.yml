@@ -30,11 +30,6 @@ redis_namespace: yuuki
 ## Uncomment this line to use a password protected Redis instance.
 # redis_password: foobar
 
-## PLEASE CHANGE
-# Feel free to rip my image from https://cdn.discordapp.com/emojis/374262067529515008.png
-# And upload to your own server the bot is in.
-emoji_translate: <:translate:374262067529515008>
-
 # PLEASE CHANGE.
 # Feel free to rip my image from https://cdn.discordapp.com/emojis/393841895794671616.gif
 # And upload to your own server the bot is in.

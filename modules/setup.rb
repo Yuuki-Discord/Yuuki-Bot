@@ -102,8 +102,6 @@ module YuukiBot
   else
     @config['owners'] = [@config['master_owner']]
   end
-  
-  require 'easy_translate'
 
   def self.build_init
     # Transfer it into an init hash.
