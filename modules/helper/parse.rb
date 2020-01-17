@@ -76,8 +76,8 @@ module YuukiBot
 
      # If its a mention!
      begin
-      unless /\d+/.match(/<@\d+>/.match(word).to_s)[0].nil?
-        return $cbot.bot.user(/\d+/.match(/<@\d+>/.match(word).to_s)[0])
+      unless /\d+/.match(/<@!?\d+>/.match(word).to_s)[0].nil?
+        return $cbot.bot.user(/\d+/.match(/<@!?\d+>/.match(word).to_s)[0])
       end
      rescue
       # ignored
