@@ -4,22 +4,25 @@ module YuukiBot
 
     $cbot.add_command(:ignore,
       code: proc { |event, args|
-        event.respond("#{YuukiBot.config['emoji_error']} Mention valid user(s)!") if args == []
+        if args == []
+          event.respond("#{YuukiBot.config['emoji_error']} Mention a valid user!")
+          next
+        end
         mention = args[0]
         user = Helper.userparse(args[0])
+
+        ignores = JSON.parse(REDIS.get('ignores')) rescue []
         if user.nil?
           event.respond("#{YuukiBot.config['emoji_error']} Not a valid user!")
-          next
-        end
-        id = user.id
-        ignores = JSON.parse(REDIS.get('ignores')) rescue []
-        if ignores.include?(id)
+        elsif $cbot.is_owner?(user)
+          event.respond("#{YuukiBot.config['emoji_error']} You can't ignore owners!")
+        elsif ignores.include?(user.id)
           event.respond("#{YuukiBot.config['emoji_error']} User is already ignored!")
-          next
+        else
+          REDIS.set('ignores', ignores.push(user.id).to_json)
+          event.bot.ignore_user(user)
+          event.respond("#{YuukiBot.config['emoji_tickbox']} `#{user.distinct}` is now being ignored!")
         end
-        REDIS.set('ignores', ignores.push(id).to_json)
-        event.bot.ignore_user(user)
-        event.respond("#{YuukiBot.config['emoji_tickbox']} #{user.mention} is now being ignored!")
       },
       triggers: %w(ignore),
       owners_only: true
@@ -28,30 +31,20 @@ module YuukiBot
     $cbot.add_command(:unignore,
       code: proc { |event, args|
         if args == []
-          event.respond("#{YuukiBot.config['emoji_error']} Mention valid user(s)!")
+          event.respond("#{YuukiBot.config['emoji_error']} Mention a valid user!")
           next
         end
         user = Helper.userparse(args[0])
+        ignores = JSON.parse(REDIS.get('ignores')) rescue []
+
         if user.nil?
           event.respond("#{YuukiBot.config['emoji_error']} Not a valid user!")
-          next
-        end
-        id = user.id
-        if $cbot.is_owner?(user)
-          event.respond("#{YuukiBot.config['emoji_error']} You can't ignore owners!")
-          next
-        end
-        begin
-          ignores = JSON.parse(REDIS.get('ignores')) rescue []
-          unless ignores.include?(id)
-            event.respond("#{YuukiBot.config['emoji_error']} User isn't ignored!")
-            next
-          end
+        elsif !ignores.include?(user.id)
+          event.respond("#{YuukiBot.config['emoji_error']} User isn't ignored!")
+        else
           event.bot.unignore_user(user)
-          event.respond("#{YuukiBot.config['emoji_tickbox']} #{user.distinct} has been removed from the ignore list!")
-        rescue
-          event.respond("#{YuukiBot.config['emoji_error']} `#{mention}` is not a valid user!")
-          break
+          REDIS.set('ignores', (ignores - [user.id]).to_json)
+          event.respond("#{YuukiBot.config['emoji_tickbox']} `#{user.distinct}` has been removed from the ignore list!")
         end
       },
       owners_only: true
