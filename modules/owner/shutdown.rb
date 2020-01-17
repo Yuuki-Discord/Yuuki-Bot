@@ -2,15 +2,6 @@
 module YuukiBot
   module Owner
 
-    $cbot.add_command(:save,
-      code: proc { |event, _|
-        message = event.respond 'Saving...'
-        message.edit('All saved!')
-      },
-      triggers: ['save'],
-      owners_only: true
-    )
-
     $cbot.add_command(:shutdown,
       code: proc { |event, _|
         event.bot.invisible
