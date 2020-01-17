@@ -10,6 +10,8 @@ module YuukiBot
   unless File.exists?('config/config.yml')
     puts 'You don\'t have a valid config file!'
     puts 'If you want to create a config file manually, please stop this program with Ctrl+C and follow the instructions in config/README.md.'
+    puts 'Waiting 3 seconds...'
+    sleep 3
     # Initialise a fresh set of configuration options.
     newconfig = YAML.load_file('config/config.sample.yml')
     puts '-=-=-=-=-=-=-=-=-=-=-=-=-=-=-'
@@ -76,16 +78,6 @@ module YuukiBot
   end
 
   @config['debug'] = false if @config['debug'].nil?
-
-=begin
-  @new_events = {}
-
-  @config['logevents'].each { |x|
-    @new_events[x] = true
-    puts "Added log event: #{x}" if @config['verbose']
-  }
-  @config['logevents'] = @new_events
-=end
 
   if @config['status'].nil?
     puts 'Enter a valid status in config.yml!'
