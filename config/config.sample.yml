@@ -27,8 +27,8 @@ redis_host: localhost
 redis_port: 6379
 redis_namespace: yuuki
 
-## Uncomment this line to use a password protected Redis instance.
-# redis_password: foobar
+# Set to a value to use a password protected Redis instance.
+redis_password: nil
 
 # PLEASE CHANGE.
 # Feel free to rip my image from https://cdn.discordapp.com/emojis/393841895794671616.gif
@@ -93,7 +93,6 @@ donate_urls:
 # Init options, if unsure please leave alone to avoid accidental catastrophes.
 parse_self: true
 parse_bots: false
-selfbot: false # Doesn't work on bot accounts.
 prefix_type: always
 type: :bot
 catch_errors: true
