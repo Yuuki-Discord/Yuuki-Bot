@@ -39,11 +39,14 @@ module YuukiBot
 
     $cbot.add_command(:notice,
         code: proc { |event, args|
-          if args[0] == 'me'
-            whom = event.user.name
-          else
-            whom = args[0]
-          end
+          target_guess = event.bot.parse_mention(args.join(' '))
+            if args.nil? or args == [] or args[0] == 'me'
+              target = event.user.name 
+            elsif target_guess.nil?
+              target = args.join(' ')
+            else
+              target = target_guess.name
+            end    
           
           if args.length >= 2 && args[1] == 'senpai'
             event.respond("\\*Senpai notices #{whom}*")
