@@ -7,11 +7,15 @@ module YuukiBot
       json_food_commands.each { |x|
         $cbot.add_command(x.to_sym,
           code: proc { |event,args|
-            target = begin
-              event.bot.parse_mention(args.join(' ')).name
-            rescue
-              args.join(' ')
+            target_guess = event.bot.parse_mention(args.join(' '))
+            if args.nil? or args == []
+              target = event.user.name 
+            elsif target_guess.nil?
+              target = args.join(' ')
+            else
+              target = target_guess.name
             end
+            
             json = JSON.parse(File.read("text/Food/#{x}.json"))
 
             variables = {}
@@ -28,11 +32,15 @@ module YuukiBot
       json_attack_commands.each { |x|
         $cbot.add_command(x.to_sym,
           code: proc { |event,args|
-            target = begin
-              event.bot.parse_mention(args.join(' ')).name
-            rescue
-              args.join(' ')
+            target_guess = event.bot.parse_mention(args.join(' '))
+            if args.nil? or args == []
+              target = event.user.name 
+            elsif target_guess.nil?
+              target = args.join(' ')
+            else
+              target = target_guess.name
             end
+
             json = JSON.parse(File.read("text/Attack/JSON/#{x}.json"))
 
             variables = {}
@@ -47,11 +55,15 @@ module YuukiBot
       text_attack_commands.each { |x|
         $cbot.add_command(x.to_sym,
           code: proc { |event,args|
-            target = begin
-              event.bot.parse_mention(args.join(' ')).name
-            rescue
-              args.join(' ')
+            target_guess = event.bot.parse_mention(args.join(' '))
+            if args.nil? or args == []
+              target = event.user.name 
+            elsif target_guess.nil?
+              target = args.join(' ')
+            else
+              target = target_guess.name
             end
+
             result = File.readlines("text/Attacks/Text/#{x}.txt").sample.chomp
             result = result.gsub('{user}', target) if /{user}/ =~ result
 
@@ -187,12 +199,15 @@ module YuukiBot
 
       $cbot.add_command(:fight,
         code: proc { |event,args|
-          args = args.join(' ')
-          begin
-          target = event.bot.parse_mention(args).name
-          rescue
-          target = args
+          target_guess = event.bot.parse_mention(args.join(' '))
+          if args.nil? or args == []
+            target = event.user.name 
+          elsif target_guess.nil?
+            target = args.join(' ')
+          else
+            target = target_guess.name
           end
+
           json = JSON.parse(File.read('text/Attacks/JSON/fight.json'))
 
           variables = {}
