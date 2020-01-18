@@ -208,7 +208,7 @@ module YuukiBot
             target = target_guess.name
           end
 
-          json = JSON.parse(File.read('text/Attacks/JSON/fight.json'))
+          json = JSON.parse(File.read('text/Attack/JSON/fight.json'))
 
           variables = {}
           variables['user'] = event.user.name
