@@ -63,11 +63,7 @@ module YuukiBot
   end
 
   REDIS = Redis::Namespace.new(YuukiBot.config['redis_namespace'], :redis => orig_redis )
-
-  $cbot.bot.message do |event|
-    Helper.calc_exp(event.user.id)
-  end
-
+  
   puts '>> Initial loading succesful!! <<'
   $uploader =  Haste::Uploader.new("https://paste.erisa.moe" )
   if YuukiBot.config['use_pry']
