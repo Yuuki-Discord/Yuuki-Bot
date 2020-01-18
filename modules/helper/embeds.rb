@@ -1,4 +1,4 @@
-# Copyright Erisa Arrowsmith 2017
+# Copyright Erisa A. (erisa.moe) 2020
 
 module YuukiBot
   module Helper

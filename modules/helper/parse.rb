@@ -1,4 +1,4 @@
-# Copyright Erisa Arrowsmith, Spotlight 2016-2017
+# Copyright Erisa A. (erisa.moe), Spotlight 2016-2020
 
 module YuukiBot
   module Helper
