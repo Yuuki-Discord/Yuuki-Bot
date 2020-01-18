@@ -164,7 +164,6 @@ module YuukiBot
         }
       )
       puts 'Added fun command for eightball!' if YuukiBot.config['verbose']
-    #end
 
       $cbot.add_command(:cats,
         code: proc { |event, _|
@@ -185,23 +184,6 @@ module YuukiBot
         }
       )
       puts 'Added fun command for catgifs!' if YuukiBot.config['verbose']
-
-=begin
-      $cbot.add_command(:flip,
-        code: proc { |event,args|
-          args = args.join(' ')
-          begin
-          target = event.bot.parse_mention(args).on(event.server).display_name.name
-          rescue
-          target = args
-          end
-          flippers = ['( ﾉ⊙︵⊙）ﾉ', '(╯°□°）╯', '( ﾉ♉︵♉ ）ﾉ']
-          flipper = flippers.sample
-          event.respond("#{flipper}  ︵ #{target.flip}")
-        },
-      }
-      puts "Added fun command for flip!" if YuukiBot.config['verbose']
-=end
 
       $cbot.add_command(:fight,
         code: proc { |event,args|
@@ -282,28 +264,6 @@ module YuukiBot
         triggers: ['love', 'ship ']
       )
       puts 'Added fun command for love!' if YuukiBot.config['verbose']
-=begin
-      $cbot.add_command(:randommovie,
-        code: proc { |event, _|
-          movie = open('https://random-movie.herokuapp.com/random').read
-          array = JSON.parse(movie, symbolize_names: true)
-
-          response = ":film_frames: **Random Movie** :film_frames:\n" +
-          "Title: #{array[:Title]}\n" +
-          "Year: #{array[:Year]}\n" +
-          "Rating: #{array[:Rated]}\n" +
-          "Runtime: #{array[:Runtime]}\n" +
-          "Plot: #{array[:Plot]}\n" +
-          "IMDB Rating: #{array[:imdbRating]}\n" +
-          "IMDB Votes: #{array[:imdbVotes]}\n" +
-          "Poster: #{array[:Poster].sub('._V1_SX300', '')}"
-
-          event.respond(response)
-
-        }
-      )
-=end
-      puts 'Added fun command for randommovie!' if YuukiBot.config['verbose']
     end
 	$cbot.add_command(:choose,
 		code: proc { |event,args|
