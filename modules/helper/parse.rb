@@ -90,5 +90,10 @@ module YuukiBot
 
      return nil
    end
+
+   def self.userid_to_string(id)
+    $cbot.bot.user(id).nil? ? "Unknown User (ID: #{id})" : "#{$cbot.bot.user(id).distinct}"
+   end
+
   end
 end

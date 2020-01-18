@@ -17,29 +17,27 @@ module YuukiBot
         $cbot.add_command(:botowners,
             code: proc { |event, args|
               user = Helper.userparse(args[1])
-              id = user.id rescue nil
+              owners = JSON.parse(REDIS.get('owners')) rescue []
               if user.nil?
                 event.respond("#{YuukiBot.config['emoji_error']} Not a valid user!")
               else
-                if args[0] == 'add'
-                  owners = JSON.parse(REDIS.get('owners'))
-                  if $cbot.is_owner?(id)
+                case args[0]
+                when 'add'
+                  if $cbot.is_owner?(user.id)
                     event.respond("#{YuukiBot.config['emoji_error']} User is already an owner!")
-                    next
+                  else
+                    REDIS.set('owners', owners.push(user.id).to_json)
+                    event.respond("#{YuukiBot.config['emoji_tickbox']} added `#{Helper.userid_to_string(user.id)}` to bot owners!")
                   end
-                  REDIS.set('owners', owners.push(id).to_json)
-                  event.respond("#{YuukiBot.config['emoji_tickbox']} added `#{event.bot.user(id).nil? ? "Unknown User (ID: #{id})" : "#{event.bot.user(id).distinct}"}` to bot owners!")
-                elsif args[0] == 'remove'
-                  owners = JSON.parse(REDIS.get('owners'))
-                  unless owners.include?(id)
-                    event.respond("#{YuukiBot.config['emoji_error']} User is not an owner!")
-                    next
-                  end
-                  if YuukiBot.config['master_owner'] == id
+                when 'remove'
+                  if YuukiBot.config['master_owner'] == user.id
                     event.respond("#{YuukiBot.config['emoji_error']} You can't remove the main owner!")
+                  elsif owners.include?(user.id)
+                    REDIS.set('owners', owners.delete(user.id).to_json)
+                    event.respond("#{YuukiBot.config['emoji_tickbox']} removed `#{Helper.userid_to_string(user.id)}` from bot owners!")
+                  else
+                    event.respond("#{YuukiBot.config['emoji_error']} User is not an owner!")
                   end
-                  REDIS.set('owners', owners.delete(id).to_json)
-                  event.respond("#{YuukiBot.config['emoji_tickbox']} removed `#{event.bot.user(id).nil? ? "Unknown User (ID: #{id})" : "#{event.bot.user(id).distinct}"}` from bot owners!")
                 end
               end
             },
