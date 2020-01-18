@@ -32,9 +32,9 @@ module YuukiBot
            event.respond("#{YuukiBot.config['emoji_tickbox']} removed `#{event.bot.user(id).nil? ? "Unknown User (ID: #{id})" : "#{event.bot.user(id).distinct}"}` from donators!")
          else
            if YuukiBot.config['show_donate_urls']
-             event << ":moneybag: Hey, making bots and hosting them isn't free. If you want this bot to stay alive, consider giving some :dollar: to the devs: "
+             event << "💰 Hey, making bots and hosting them isn't free. If you want this bot to stay alive, consider giving some 💵 to the devs: "
              YuukiBot.config['donate_urls'].each {|url| event << "- #{url}" }
-             event << '__**Donators :heart:**__ (aka the best people ever)'
+             event << '__**Donators ❤️**__ (aka the best people ever)'
              donators = JSON.parse(REDIS.get('donators')) rescue []
              if donators.length > 0
                donators.each {|x|
@@ -52,9 +52,9 @@ module YuukiBot
        owners_only: true,
        failcode: proc { |event, _|
          if YuukiBot.config['show_donate_urls']
-           event << ":moneybag: Hey, making bots and hosting them isn't free. If you want this bot to stay alive, consider giving some :dollar: to the devs: "
+           event << "💰 Hey, making bots and hosting them isn't free. If you want this bot to stay alive, consider giving some 💵 to the devs: "
            YuukiBot.config['donate_urls'].each {|url| event << "- #{url}" }
-           event << '__**Donators :heart:**__ (aka the best people ever)'
+           event << '__**Donators ❤️*__ (aka the best people ever)'
            donators = JSON.parse(REDIS.get('donators')) rescue []
            if donators.length > 0
              donators.each {|x|
@@ -73,7 +73,7 @@ module YuukiBot
     $cbot.add_command(:donate,
       code: proc {|event,args|
         if YuukiBot.config['show_donate_urls']
-          event << ":moneybag: Hey, making bots and hosting them isn't free. If you want this bot to stay alive, consider giving some :dollar: to the devs: "
+          event << "💰 Hey, making bots and hosting them isn't free. If you want this bot to stay alive, consider giving some 💵 to the devs: "
           YuukiBot.config['donate_urls'].each {|url| event << "- #{url}" }
           event << '__**Donators :heart:**__ (aka the best people ever)'
           donators = JSON.parse(REDIS.get('donators')) rescue []

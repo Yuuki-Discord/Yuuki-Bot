@@ -266,7 +266,7 @@ module YuukiBot
           when percentage < 100
             result = 'Amazing 😍'
           when percentage == 100
-            result = 'PERFECT! :heart_exclamation:'
+            result = 'PERFECT! ❣️'
           else
             result = 'Error!'
           end
