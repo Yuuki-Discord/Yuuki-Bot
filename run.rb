@@ -28,7 +28,7 @@ module YuukiBot
       if YuukiBot.config['master_owner'].to_i == id
         true
       else
-        response = REDIS.get('owners')
+        response = REDIS.get('owners') rescue []
 		return false if response.nil?
 		return JSON.parse(response).include?(id)
       end
