@@ -12,6 +12,7 @@ token: EXAMPLE # Get from https://discordapp.com/developers/applications/me
 client_id: 306142257818632193 # Also get from https://discordapp.com/developers/applications/me
 prefixes:
   - "s!!" # Please change.
+# - "custom!"
 
 # More features but may break. Set to true to use. If unsure leave as false.
 extra_commands: false
