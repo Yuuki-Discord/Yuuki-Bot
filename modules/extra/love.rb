@@ -44,7 +44,7 @@ module YuukiBot
             when percentage < 100
               result = 'Amazing 😍'
             else
-              result = 'PERFECT! :heart_exclamation:'
+              result = 'PERFECT! ❣️'
           end
 
           response = "💗 **MATCHMAKING** 💗\n" +
