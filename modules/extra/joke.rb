@@ -6,7 +6,7 @@ module YuukiBot
       $cbot.add_command(x.to_sym,
           code: proc { |event|
             result = File.readlines("text/Jokes/#{x}.txt").sample.chomp
-            event.respond("*#{result}*")
+            event.respond("\\*#{result}*")
           }
         )
       }
@@ -16,7 +16,7 @@ module YuukiBot
       $cbot.add_command(x.to_sym,
           code: proc { |event|
             result = File.readlines("text/Other/Text/#{x}.txt").sample.chomp
-            event.respond("*#{result}*")
+            event.respond("#{result}")
           },
           min_args: 1
         )
@@ -46,9 +46,9 @@ module YuukiBot
           end
           
           if args.length >= 2 && args[1] == 'senpai'
-            event.respond("*Senpai notices #{whom}*")
+            event.respond("\\*Senpai notices #{whom}*")
           else
-            event.respond("*notices #{whom}*")
+            event.respond("\\*notices #{whom}*")
           end
         },
         min_args: 1

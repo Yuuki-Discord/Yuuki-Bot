@@ -16,7 +16,7 @@ module YuukiBot
 
             variables = {}
             variables['user'] = target
-            event.respond("*#{Textgen.generate_string(json['templates'], json['parts'], variables)}*")
+            event.respond("\\*#{Textgen.generate_string(json['templates'], json['parts'], variables)}*")
           },
           triggers: [x, "give #{x} to ",  "give a #{x} to "]
         )
@@ -37,7 +37,7 @@ module YuukiBot
 
             variables = {}
             variables['user'] = target
-            event.respond("*#{Textgen.generate_string(json['templates'], json['parts'], variables)}*")
+            event.respond("\\*#{Textgen.generate_string(json['templates'], json['parts'], variables)}*")
           }
         )
         puts "Added attack command for #{x}!" if YuukiBot.config['verbose']
@@ -55,7 +55,7 @@ module YuukiBot
             result = File.readlines("text/Attacks/Text/#{x}.txt").sample.chomp
             result = result.gsub('{user}', target) if /{user}/ =~ result
 
-            event.respond("*#{result}*")
+            event.respond("\\*#{result}*")
           }
         )
         puts "Added attack command for #{x}!" if YuukiBot.config['verbose']
@@ -67,7 +67,7 @@ module YuukiBot
           code: proc { |event|
             result = File.readlines("text/Attacks/Text/#{x}.txt").sample.chomp
 
-            event.respond("*#{result}*")
+            event.respond("\\*#{result}*")
           }
         )
         puts "Added attack command for #{x}!" if YuukiBot.config['verbose']
@@ -79,7 +79,7 @@ module YuukiBot
           code: proc { |event|
             result = File.readlines("text/Jokes/#{x}.txt").sample.chomp
 
-            event.respond("*#{result}*")
+            event.respond("\\*#{result}*")
           }
         )
         puts "Added jokes command for #{x}!" if YuukiBot.config['verbose']
@@ -91,7 +91,7 @@ module YuukiBot
           code: proc { |event|
             result = File.readlines("text/Other/Text/#{x}.txt").sample.chomp
 
-            event.respond("*#{result}*")
+            event.respond("\\*#{result}*")
           }
         )
         puts "Added jokes command for #{x}!" if YuukiBot.config['verbose']
