@@ -24,16 +24,12 @@ module YuukiBot
             end
           end
         end
-        if !count.zero?
-          msg.edit("#{YuukiBot.config['emoji_tickbox']} Pruned #{count} bot messages!")
-        else
-          msg.edit("#{YuukiBot.config['emoji_warning']} No messages found!")
-        end
+        count.zero? ? msg.edit("#{YuukiBot.config['emoji_warning']} No messages found!") : msg.edit("#{YuukiBot.config['emoji_tickbox']} Pruned #{count} bot messages!")
+
         if args[0] == '-f'
           sleep 2
           msg.delete
         end
-
       },
       triggers: %w(prune cleanup purge stfu ),
       required_permissions: [:manage_messages],
