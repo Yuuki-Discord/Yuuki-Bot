@@ -56,14 +56,14 @@ module YuukiBot
 
   # I cant think of a better way to this and honestly all this code is going to be abandoned soon.
   # forgive me, for i have sinned
-  if YuukiBot.config['redis_password'].nil?
+  if YuukiBot.config['redis_password'].nil? or YuukiBot.config['redis_password'] == 'nil'
     orig_redis = Redis.new(host: YuukiBot.config['redis_host'], port: YuukiBot.config['redis_port'])
   else
     orig_redis = Redis.new(host: YuukiBot.config['redis_host'], port: YuukiBot.config['redis_port'], password: YuukiBot.config['redis_password'])
   end
 
   REDIS = Redis::Namespace.new(YuukiBot.config['redis_namespace'], :redis => orig_redis )
-  
+
   puts '>> Initial loading succesful!! <<'
   $uploader =  Haste::Uploader.new("https://paste.erisa.moe" )
   if YuukiBot.config['use_pry']
