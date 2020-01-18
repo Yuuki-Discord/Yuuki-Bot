@@ -1,4 +1,4 @@
-# Copyright Erisa A (erisa.moe) 2016-2019
+# Copyright Erisa A. (erisa.moe) 2016-2020
 module YuukiBot
     module Owner
 

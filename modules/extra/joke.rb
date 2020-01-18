@@ -1,4 +1,4 @@
-# Copyright Erisa Arrowsmith, spotlight_is_ok, Larsenv 2017
+# Copyright Erisa A. (erisa.moe), spotlight_is_ok, Larsenv 2017-2020
 module YuukiBot
   module Extra
     text_joke_commands = %w(doit pun wisdom lawyerjoke)

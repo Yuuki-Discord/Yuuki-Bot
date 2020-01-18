@@ -1,4 +1,4 @@
-# Copyright Erisa Arrowsmith, spotlight_is_ok, Larsenv 2017
+# Copyright Erisa A. (erisa.moe), spotlight_is_ok, Larsenv 2017-2020
 module YuukiBot
   module Extra
     if YuukiBot.config['extra_commands']
@@ -220,7 +220,7 @@ module YuukiBot
       )
       puts 'Added fun command for fight!' if YuukiBot.config['verbose']
     end
-    
+
     $cbot.add_command(:choose,
       code: proc { |event,args|
         event.respond("I choose #{args.sample}!")
