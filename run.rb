@@ -59,13 +59,21 @@ module YuukiBot
     end
   end
 
-  # I cant think of a better way to this and honestly all this code is going to be abandoned soon.
-  # forgive me, for i have sinned
-  if YuukiBot.config['redis_password'].nil? or YuukiBot.config['redis_password'] == 'nil'
-    orig_redis = Redis.new(host: YuukiBot.config['redis_host'], port: YuukiBot.config['redis_port'])
-  else
-    orig_redis = Redis.new(host: YuukiBot.config['redis_host'], port: YuukiBot.config['redis_port'], password: YuukiBot.config['redis_password'])
-  end
+  # Check if the key redis_password exists or is string literal 'nil'
+  # If so, set it!
+  redis_password = YuukiBot.config['redis_password']
+  orig_redis = if redis_password.nil? || (redis_password == 'nil')
+                 Redis.new(
+                   host: YuukiBot.config['redis_host'],
+                   port: YuukiBot.config['redis_port']
+                 )
+               else
+                 Redis.new(
+                   host: YuukiBot.config['redis_host'],
+                   port: YuukiBot.config['redis_port'],
+                   password: redis_password
+                 )
+               end
 
   REDIS = Redis::Namespace.new(
     YuukiBot.config['redis_namespace'],
