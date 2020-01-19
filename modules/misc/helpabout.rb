@@ -7,7 +7,6 @@ module YuukiBot
         event << "`#{event.bot.user(event.bot.profile.id).distinct}` running **YuukiBot v#{YuukiBot.version}** "
         event << "**#{YuukiBot.config['source_url']}** " if YuukiBot.config['show_source']
         event << "\n ⚙ Extra commands: **#{YuukiBot.config['extra_commands'] ? 'Enabled' : 'Disabled'}**"
-        end
       }
     )
 
