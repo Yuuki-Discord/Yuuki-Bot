@@ -1,0 +1,28 @@
+Metrics/BlockLength:
+  Enabled: false
+
+Metrics/MethodLength:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+ 
+Security/Eval:
+  Exclude:
+    - "exts/core/eval.rb"
+
+Lint/Debugger:
+  Exclude:
+    - "run.rb"
+
+Layout/LineLength:
+  Exclude:
+    - "config/custom/custom.sample.rb"
+
+Style/GlobalVars:
+  Exclude:
+    - "run.rb"
+
+Security/Open:
+  Exclude:
+    - "helpers/download.rb"

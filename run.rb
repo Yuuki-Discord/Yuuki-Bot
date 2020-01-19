@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 $launch_time = Time.now
 
 module YuukiBot
@@ -6,7 +8,7 @@ module YuukiBot
   require 'redis'
   require 'redis-namespace'
   require 'json'
-  
+
   if ENV['COMMANDRB_PATH'].nil?
     require 'commandrb'
   else
@@ -28,7 +30,7 @@ module YuukiBot
       if YuukiBot.config['master_owner'].to_i == id
         true
       else
-		    Helper.owners.include?(id)
+        Helper.owners.include?(id)
       end
     end
   end
@@ -37,13 +39,13 @@ module YuukiBot
 
   $cbot = CommandrbBot.new(init_hash)
 
-  module_dirs = %w(owner helper logging misc mod utility)
-  module_dirs.each {|dir|
-    Dir["modules/#{dir}/*.rb"].each { |r|
-     require_relative r
-     puts "Loaded: #{r}" if @config['verbose']
-    }
-  }
+  module_dirs = %w[owner helper logging misc mod utility]
+  module_dirs.each do |dir|
+    Dir["modules/#{dir}/*.rb"].each do |r|
+      require_relative r
+      puts "Loaded: #{r}" if @config['verbose']
+    end
+  end
 
   require_relative 'modules/custom'
   puts 'Loaded custom commands!'
@@ -51,7 +53,10 @@ module YuukiBot
   # Load Extra Commands if enabled.
   if YuukiBot.config['extra_commands']
     puts 'Loading: Extra commands...' if @config['verbose']
-    Dir['modules/extra/*.rb'].each { |r| require_relative r; puts "Loaded: #{r}" if @config['verbose'] }
+    Dir['modules/extra/*.rb'].each do |r|
+      require_relative r
+      puts "Loaded: #{r}" if @config['verbose']
+    end
   end
 
   # I cant think of a better way to this and honestly all this code is going to be abandoned soon.
@@ -62,10 +67,13 @@ module YuukiBot
     orig_redis = Redis.new(host: YuukiBot.config['redis_host'], port: YuukiBot.config['redis_port'], password: YuukiBot.config['redis_password'])
   end
 
-  REDIS = Redis::Namespace.new(YuukiBot.config['redis_namespace'], :redis => orig_redis )
+  REDIS = Redis::Namespace.new(
+    YuukiBot.config['redis_namespace'],
+    redis: orig_redis
+  )
 
   puts '>> Initial loading succesful!! <<'
-  $uploader =  Haste::Uploader.new("https://paste.erisa.moe" )
+  $uploader = Haste::Uploader.new('https://paste.erisa.moe')
   if YuukiBot.config['use_pry']
     $cbot.bot.run(true)
     require 'pry'
