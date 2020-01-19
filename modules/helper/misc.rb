@@ -1,8 +1,9 @@
+# frozen_string_literal: true
+
 # Copyright Erisa A. (erisa.moe) 2016-2020
 
 module YuukiBot
   module Helper
-
     def self.isadmin?(member)
       Commandrb.owners.include?(member)
     end
@@ -11,7 +12,7 @@ module YuukiBot
       puts 'Exiting...'
       begin
         $cbot.bot.stop
-      rescue
+      rescue StandardError
         $cbot.bot.invisible
       end
       exit(status)
@@ -26,22 +27,28 @@ module YuukiBot
     trap('SIGTERM') { ctrl_c('SIGTERM') }
 
     def self.role_from_name(server, rolename)
-      return server.roles.select { |r| r.name == rolename }.first
+      server.roles.select { |r| r.name == rolename }.first
     end
 
     # Get the user's color
     def self.colour_from_user(member, default = 0)
       colour = default
       unless member.nil?
-        member.roles.sort_by(&:position).reverse.each do | role |
+        member.roles.sort_by(&:position).reverse.each do |role|
           next if role.color.combined == 0
-          puts 'Using ' + role.name + '\'s color ' + role.color.combined.to_s if YuukiBot.config['debug'] rescue nil
+
+          begin
+            if YuukiBot.config['debug']
+              puts 'Using ' + role.name + '\'s color ' + role.color.combined.to_s
+                      end
+          rescue StandardError
+            nil
+          end
           colour = role.colour.combined
           break
         end
       end
-      return colour
+      colour
     end
-
   end
 end

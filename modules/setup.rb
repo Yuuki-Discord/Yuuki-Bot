@@ -1,13 +1,14 @@
-module YuukiBot
+# frozen_string_literal: true
 
+module YuukiBot
   class << self
-     attr_accessor :config
+    attr_accessor :config
   end
 
   require 'yaml'
   # Load Config from YAML
 
-  unless File.exists?('config/config.yml')
+  unless File.exist?('config/config.yml')
     puts 'You don\'t have a valid config file!'
     puts 'If you want to create a config file manually, please stop this program with Ctrl+C and follow the instructions in config/README.md.'
     puts 'Waiting 3 seconds...'
@@ -23,21 +24,21 @@ module YuukiBot
     print 'Please paste that string here: '
     token = gets.chomp
 
-    puts "-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"
+    puts '-=-=-=-=-=-=-=-=-=-=-=-=-=-=-'
     puts 'Awesome! Now you\'ll need to head to the top of the page and fetch the Client ID, which should be a long number.'
     print 'And paste that here: '
     appid = gets.chomp
 
-    puts "-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"
+    puts '-=-=-=-=-=-=-=-=-=-=-=-=-=-=-'
     puts 'Wew, thats the hard part out of the way. Now you get to decide some needed options for your bot!'
     puts 'Your bot will need at least one prefix to be used. For example if you use the prefix s!, your help command will be s!help'
     puts 'If your prefix is a word, please add a space after it! (For example enter \'tomoe\' for \'tomoe ping\' instead of \'tomoeping\''
     print 'Enter your first prefix here: '
-    prefix = gets.chomp()
+    prefix = gets.chomp
 
     puts "Nice prefix! Your bots help command will be: '#{prefix}help'"
 
-    puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"
+    puts '=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-'
     puts 'Thats enough information to get the bot launching, but theres one more thing we need.'
     puts 'If you haven\'t already, go to User Settings -> Appearance, and enable Developer Mode.'
     puts 'Then, right click your own name and select Copy ID.'
@@ -59,7 +60,7 @@ module YuukiBot
     puts 'All done! The bot will launch in 1 second..'
     sleep(1) # So the user knows what the hecc just happened.
 
-  # Lets go!
+    # Lets go!
   end
 
   @config = YAML.load_file('config/config.yml')
@@ -70,7 +71,7 @@ module YuukiBot
       exit
     else
       if key == 'token'
-        puts "config.yml: Found: token: [REDACTED]"
+        puts 'config.yml: Found: token: [REDACTED]'
       else
         puts("config.yml: Found #{key}: #{value}") if @config['verbose']
       end
@@ -85,15 +86,13 @@ module YuukiBot
     raise 'Invalid status'
   end
 
-  if @config['token'].nil?
-    raise 'No valid token entered!'
-  end
-  
-  if @config['master_owner'].nil?
-    @config['owners'] = [@config['owners'][0]]
-  else
-    @config['owners'] = [@config['master_owner']]
-  end
+  raise 'No valid token entered!' if @config['token'].nil?
+
+  @config['owners'] = if @config['master_owner'].nil?
+                        [@config['owners'][0]]
+                      else
+                        [@config['master_owner']]
+                      end
 
   def self.build_init
     # Transfer it into an init hash.
@@ -110,33 +109,45 @@ module YuukiBot
       owners: @config['owners'],
 
       typing_default: @config['typing_default'],
-      ready: proc {|event|
+      ready: proc { |event|
         case @config['status']
-          when 'idle' || 'away' || 'afk' then event.bot.idle
-          when 'dnd' then event.bot.dnd
-          when 'online' then event.bot.online
-          when 'invisible' || 'offline' then event.bot.invisible
-          when 'stream' || 'streaming' then event.bot.stream(@config['game'], @config['twitch_url'])
-          else
-            raise 'No valid status found.'
+        when 'idle' || 'away' || 'afk' then event.bot.idle
+        when 'dnd' then event.bot.dnd
+        when 'online' then event.bot.online
+        when 'invisible' || 'offline' then event.bot.invisible
+        when 'stream' || 'streaming' then event.bot.stream(@config['game'], @config['twitch_url'])
+        else
+          raise 'No valid status found.'
         end
-        ignored = JSON.parse(REDIS.get('ignores')) rescue []
-        ignored.each {|id|
+        ignored = begin
+                    JSON.parse(REDIS.get('ignores'))
+                  rescue StandardError
+                    []
+                  end
+        ignored.each do |id|
           begin
             $cbot.bot.ignore_user($cbot.bot.user(id))
           rescue Exception => e
             p e
           end
-        }
+        end
 
-        event.bot.game = YuukiBot.config['game'] rescue nil
+        event.bot.game = begin
+                           YuukiBot.config['game']
+                         rescue StandardError
+                           nil
+                         end
         puts "[READY] Logged in as #{event.bot.profile.distinct} (#{event.bot.profile.id})!"
         puts "[READY] Connected to #{event.bot.servers.count} servers!"
         puts "[READY] Raw Invite URL: #{event.bot.invite_url}"
         puts "[READY] Redis ping: #{REDIS.ping}"
-        puts "[READY] Vanity Invite URL: #{@config['invite_url'] rescue event.bot.invite_url}"
+        puts "[READY] Vanity Invite URL: #{begin
+                                             @config['invite_url']
+                                           rescue StandardError
+                                             event.bot.invite_url
+                                           end}"
       }
     }
-    return init_hash
+    init_hash
   end
 end
