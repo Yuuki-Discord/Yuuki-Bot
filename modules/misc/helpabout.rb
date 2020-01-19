@@ -4,21 +4,9 @@ module YuukiBot
 
     $cbot.add_command(:about,
       code: proc { |event, _|
-        event << "`#{event.bot.user(event.bot.profile.id).distinct}` running **YuukiBot v#{$version}** "
+        event << "`#{event.bot.user(event.bot.profile.id).distinct}` running **YuukiBot v#{YuukiBot.version}** "
         event << "**#{YuukiBot.config['source_url']}** " if YuukiBot.config['show_source']
         event << "\n ⚙ Extra commands: **#{YuukiBot.config['extra_commands'] ? 'Enabled' : 'Disabled'}**"
-        if YuukiBot.config['show_donate_urls']
-          event << "\n:moneybag: Hey, making bots and hosting them isn't free. If you want this bot to stay alive, consider giving some :dollar: to the devs: "
-          YuukiBot.config['donate_urls'].each {|url| event << "- #{url}" }
-          event << "\n__**Donators :heart:**__ (aka the best people ever)"
-          donators = DB.execute("select id from userlist where is_donator=1").map {|v| v[0]}
-          if donators.length > 0
-            donators.each {|x|
-              event.bot.user(x).nil? ? event << "Unknown User (ID: `#{x}`)" : event << "`- **#{event.bot.user(x).distinct}**"
-            }
-          else
-            event << 'None! You can be the first! :)'
-          end
         end
       }
     )
