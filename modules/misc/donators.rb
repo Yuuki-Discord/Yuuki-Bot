@@ -3,7 +3,7 @@
 # Copyright Erisa A. (erisa.moe) 2016-2020
 module YuukiBot
   module Misc
-    $cbot.add_command(
+    YuukiBot.crb.add_command(
       :donators,
       code: proc { |event, args|
         user = Helper.userparse(args[1])
@@ -92,7 +92,7 @@ end
       }
     )
 
-    $cbot.add_command(
+    YuukiBot.crb.add_command(
       :donate,
       code: proc { |event, _args|
         if YuukiBot.config['show_donate_urls']

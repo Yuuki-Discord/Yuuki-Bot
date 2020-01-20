@@ -3,7 +3,7 @@
 # Copyright Erisa A. (erisa.moe) 2016-2020
 module YuukiBot
   module Owner
-    $cbot.add_command(
+    YuukiBot.crb.add_command(
       :shutdown,
       code: proc { |event, _|
         event.bot.invisible
@@ -16,7 +16,7 @@ module YuukiBot
       catch_errors: false
     )
 
-    $cbot.add_command(
+    YuukiBot.crb.add_command(
       :reboot,
       code: proc { |event, _|
         event.respond 'Rebooting...!'

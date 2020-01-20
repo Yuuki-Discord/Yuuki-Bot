@@ -3,7 +3,7 @@
 # Copyright Erisa A. (erisa.moe) 2016-2020
 module YuukiBot
   module Owner
-    $cbot.add_command(
+    YuukiBot.crb.add_command(
       :ignore,
       code: proc { |event, args|
         if args == []
@@ -20,7 +20,7 @@ module YuukiBot
   end
         if user.nil?
           event.respond("#{YuukiBot.config['emoji_error']} Not a valid user!")
-        elsif $cbot.owner?(user)
+        elsif YuukiBot.crb.owner?(user)
           event.respond("#{YuukiBot.config['emoji_error']} You can't ignore owners!")
         elsif ignores.include?(user.id)
           event.respond("#{YuukiBot.config['emoji_error']} User is already ignored!")
@@ -34,7 +34,7 @@ module YuukiBot
       owners_only: true
     )
 
-    $cbot.add_command(
+    YuukiBot.crb.add_command(
       :unignore,
       code: proc { |event, args|
         if args == []

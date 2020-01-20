@@ -132,7 +132,7 @@ module YuukiBot
                   end
         ignored.each do |id|
           begin
-            $cbot.bot.ignore_user($cbot.bot.user(id))
+            @crb.bot.ignore_user(@crb.bot.user(id))
           rescue Exception => e
             p e
           end

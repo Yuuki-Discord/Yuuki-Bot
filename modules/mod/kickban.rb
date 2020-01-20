@@ -4,7 +4,7 @@
 
 module YuukiBot
   module Mod
-    $cbot.add_command(
+    YuukiBot.crb.add_command(
       :kick,
       code: proc { |event, args|
         if !args.empty?
@@ -38,7 +38,7 @@ module YuukiBot
       server_only: true
     )
 
-    $cbot.add_command(
+    YuukiBot.crb.add_command(
       :ban,
       code: proc { |event, args|
         if !args.empty?

@@ -3,7 +3,7 @@
 # Copyright Erisa A. (erisa.moe) 2016-2020
 module YuukiBot
   module Utility
-    $cbot.add_command(
+    YuukiBot.crb.add_command(
       :say,
       code: proc { |event, args|
               message = args.join(' ')
@@ -14,7 +14,7 @@ module YuukiBot
       min_args: 1
     )
 
-    $cbot.add_command(
+    YuukiBot.crb.add_command(
       :speak,
       code: proc { |event, args|
         event.message.delete

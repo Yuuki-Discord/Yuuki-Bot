@@ -3,7 +3,7 @@
 # Copyright Erisa A. (erisa.moe) 2016-2020
 module YuukiBot
   module Misc
-    $cbot.add_command(
+    YuukiBot.crb.add_command(
       :help,
       code: proc { |event, _|
         event << (YuukiBot.config['show_help'] ? "Follow this link for basic help: ** 🔗 #{YuukiBot.config['help_url']}**" : 'Unfortunately, no command help can be shown. Please contact the bot owner.')

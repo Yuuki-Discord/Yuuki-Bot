@@ -7,7 +7,7 @@ module YuukiBot
     require 'rqrcode'
     require 'pomf.rb'
 
-    $cbot.add_command(
+    YuukiBot.crb.add_command(
       :qr,
       code: proc { |event, args|
         tmp_path = "#{Dir.pwd}/tmp/qr.png"

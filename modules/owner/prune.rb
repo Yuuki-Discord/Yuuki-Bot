@@ -3,7 +3,7 @@
 # Copyright Erisa A. (erisa.moe) 2016-2020
 module YuukiBot
   module Owner
-    $cbot.add_command(
+    YuukiBot.crb.add_command(
       :prune,
       code: proc { |event, args|
         num = 75
@@ -41,7 +41,7 @@ module YuukiBot
       max_args: 1
     )
 
-    $cbot.add_command(
+    YuukiBot.crb.add_command(
       :pruneuser,
       code: proc { |event, args|
         begin

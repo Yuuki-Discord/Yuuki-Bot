@@ -4,7 +4,7 @@
 
 module YuukiBot
   module Owner
-    $cbot.add_command(
+    YuukiBot.crb.add_command(
       :oldeval,
       code: proc { |event, args|
         event.respond(eval(args.join(' ')))
@@ -13,7 +13,7 @@ module YuukiBot
       owners_only: true
     )
 
-    $cbot.add_command(
+    YuukiBot.crb.add_command(
       :eval,
       code: proc { |event, args|
         begin
@@ -33,7 +33,7 @@ module YuukiBot
       description: 'Evaluate a Ruby command. Owner only.'
     )
 
-    $cbot.add_command(
+    YuukiBot.crb.add_command(
       :bash,
       code: proc { |event, args|
         init_time = Time.now

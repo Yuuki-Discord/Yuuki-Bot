@@ -6,7 +6,7 @@ module YuukiBot
     attr_reader :launch_time
     attr_accessor :crb
   end
-  $launch_time = Time.now
+  @launch_time = Time.now
 
   require 'haste'
   require 'open-uri'
@@ -42,7 +42,7 @@ module YuukiBot
 
   init_hash = YuukiBot.build_init
 
-  $cbot = CommandrbBot.new(init_hash)
+  @crb = CommandrbBot.new(init_hash)
 
   module_dirs = %w[owner helper logging misc mod utility]
   module_dirs.each do |dir|
@@ -88,11 +88,11 @@ module YuukiBot
   puts '>> Initial loading succesful!! <<'
   @uploader = Haste::Uploader.new(@config['hastebin_instance_url'])
   if YuukiBot.config['use_pry']
-    $cbot.bot.run(true)
+    @crb.bot.run(true)
     require 'pry'
     binding.pry
   else
     puts 'Connecting to Discord....'
-    $cbot.bot.run
+    @crb.bot.run
   end
 end
