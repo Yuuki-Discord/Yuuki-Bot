@@ -6,7 +6,7 @@ module YuukiBot
     $cbot.bot.message do |event|
       next unless event.channel.private?
       next if event.user.bot_account
-      next if $cbot.is_owner?(event.user)
+      next if $cbot.owner?(event.user)
 
       target_id = YuukiBot.config['dm_channel'].nil? ? event.bot.user(YuukiBot.config['master_owner']).pm.id : YuukiBot.config['dm_channel']
       event.bot.channel(target_id).send_embed do |embed|

@@ -20,7 +20,7 @@ module YuukiBot
   end
         if user.nil?
           event.respond("#{YuukiBot.config['emoji_error']} Not a valid user!")
-        elsif $cbot.is_owner?(user)
+        elsif $cbot.owner?(user)
           event.respond("#{YuukiBot.config['emoji_error']} You can't ignore owners!")
         elsif ignores.include?(user.id)
           event.respond("#{YuukiBot.config['emoji_error']} User is already ignored!")

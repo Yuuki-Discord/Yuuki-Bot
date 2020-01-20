@@ -30,7 +30,7 @@ module YuukiBot
   require_relative 'modules/version'
 
   class CommandrbBot < CommandrbBot
-    def is_owner?(id)
+    def owner?(id)
       if YuukiBot.config['master_owner'].to_i == id
         true
       else
