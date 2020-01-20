@@ -6,7 +6,7 @@ module YuukiBot
   class << self
     attr_reader :uploader
   end
-  
+
   require 'haste'
   require 'open-uri'
   require 'redis'

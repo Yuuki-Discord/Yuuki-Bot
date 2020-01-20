@@ -6,10 +6,12 @@ module YuukiBot
       require './config/custom/custom.rb'
       unless CUSTOM_TEXT.nil? || CUSTOM_TEXT == {}
         CUSTOM_TEXT.each do |name, response|
-          $cbot.add_command(name.to_sym,
-                            code: proc { |event|
-                              event.respond(response)
-                            })
+          $cbot.add_command(
+            name.to_sym,
+            code: proc { |event|
+              event.respond(response)
+            }
+          )
           puts "Added custom command: #{name}"
         end
       end

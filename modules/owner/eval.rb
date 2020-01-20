@@ -4,43 +4,49 @@
 
 module YuukiBot
   module Owner
-    $cbot.add_command(:oldeval,
-                      code: proc { |event, args|
-                        event.respond(eval(args.join(' ')))
-                      },
-                      triggers: ['raweval ', 'oldeval '],
-                      owners_only: true)
+    $cbot.add_command(
+      :oldeval,
+      code: proc { |event, args|
+        event.respond(eval(args.join(' ')))
+      },
+      triggers: ['raweval ', 'oldeval '],
+      owners_only: true
+    )
 
-    $cbot.add_command(:eval,
-                      code: proc { |event, args|
-                        begin
-                          msg = event.respond "#{YuukiBot.config['emoji_loading']} Evaluating..."
-                          init_time = Time.now
-                          result = eval args.join(' ')
-                          result_output = handle_result(result, init_time)
-                          msg.edit(result_output)
-                        rescue Exception => e
-                          msg.edit("#{YuukiBot.config['emoji_error']} An error has occurred!"\
-                          "```ruby\n#{e}```" \
-                          "Command took #{(Time.now - init_time)} seconds to execute!")
-                        end
-                      },
-                      triggers: ['eval2 ', 'eval'],
-                      owners_only: true,
-                      description: 'Evaluate a Ruby command. Owner only.')
+    $cbot.add_command(
+      :eval,
+      code: proc { |event, args|
+        begin
+          msg = event.respond "#{YuukiBot.config['emoji_loading']} Evaluating..."
+          init_time = Time.now
+          result = eval args.join(' ')
+          result_output = handle_result(result, init_time)
+          msg.edit(result_output)
+        rescue Exception => e
+          msg.edit("#{YuukiBot.config['emoji_error']} An error has occurred!"\
+          "```ruby\n#{e}```" \
+          "Command took #{(Time.now - init_time)} seconds to execute!")
+        end
+      },
+      triggers: ['eval2 ', 'eval'],
+      owners_only: true,
+      description: 'Evaluate a Ruby command. Owner only.'
+    )
 
-    $cbot.add_command(:bash,
-                      code: proc { |event, args|
-                        init_time = Time.now
-                        msg = event.respond "#{YuukiBot.config['emoji_loading']} Evaluating..."
-                        # Capture all output, including STDERR.
-                        result = `#{"#{args.join(' ')} 2>&1"} `
-                        result_output = handle_result(result, init_time)
-                        msg.edit(result_output)
-                      },
-                      triggers: ['bash ', 'sh ', 'shell ', 'run '],
-                      owners_only: true,
-                      description: 'Evaluate a Bash command. Owner only. Use with care.')
+    $cbot.add_command(
+      :bash,
+      code: proc { |event, args|
+        init_time = Time.now
+        msg = event.respond "#{YuukiBot.config['emoji_loading']} Evaluating..."
+        # Capture all output, including STDERR.
+        result = `#{"#{args.join(' ')} 2>&1"} `
+        result_output = handle_result(result, init_time)
+        msg.edit(result_output)
+      },
+      triggers: ['bash ', 'sh ', 'shell ', 'run '],
+      owners_only: true,
+      description: 'Evaluate a Bash command. Owner only. Use with care.'
+    )
 
     # Formulates results to an external source or character-specific message.
     # @param [Object] result_output Returned result of an operation.
