@@ -4,7 +4,7 @@
 
 module YuukiBot
   module Utility
-    $cbot.add_command(
+    YuukiBot.crb.add_command(
       :avatar,
       code: proc { |event, args|
         if args.empty?
@@ -56,7 +56,7 @@ module YuukiBot
       server_only: true
     )
 
-    $cbot.add_command(
+    YuukiBot.crb.add_command(
       :info,
       code: proc { |event, args|
         if args.empty? || args[0].nil? || (args[0] == '')
@@ -107,7 +107,7 @@ module YuukiBot
       triggers: %w[info profile]
     )
 
-    $cbot.add_command(
+    YuukiBot.crb.add_command(
       :ping,
       code: proc { |event, _|
               return_message = event.respond('Pinging..!')
@@ -140,12 +140,12 @@ module YuukiBot
       "#{days} day#{'s' unless days == 1}, #{hours}:#{minutes}:#{seconds}"
     end
 
-    $cbot.add_command(
+    YuukiBot.crb.add_command(
       :uptime,
       code: proc do |event, _|
-        uptimems = (Time.now - $launch_time) * 1000
+        uptimems = (Time.now - YuukiBot.launch_time) * 1000
 
-        event.respond("I was launched on `#{$launch_time.asctime} UTC`\nThis means I have been online for `#{ms_to_time(uptimems)}` (`#{uptimems.floor}ms`)")
+        event.respond("I was launched on `#{YuukiBot.launch_time.asctime} UTC`\nThis means I have been online for `#{ms_to_time(uptimems)}` (`#{uptimems.floor}ms`)")
       end
     )
   end

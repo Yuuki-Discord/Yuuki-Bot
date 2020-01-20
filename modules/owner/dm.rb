@@ -3,10 +3,10 @@
 # Copyright Erisa A. (erisa.moe) 2019-2020
 module YuukiBot
   module Owner
-    $cbot.bot.message do |event|
+    YuukiBot.crb.bot.message do |event|
       next unless event.channel.private?
       next if event.user.bot_account
-      next if $cbot.owner?(event.user)
+      next if YuukiBot.crb.owner?(event.user)
 
       target_id = YuukiBot.config['dm_channel'].nil? ? event.bot.user(YuukiBot.config['master_owner']).pm.id : YuukiBot.config['dm_channel']
       event.bot.channel(target_id).send_embed do |embed|
@@ -18,7 +18,7 @@ module YuukiBot
       end
     end
 
-    $cbot.add_command(
+    YuukiBot.crb.add_command(
       :reply,
       code: proc { |event, args|
         channel = event.bot.channel(args[0])

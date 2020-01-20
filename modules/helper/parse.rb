@@ -43,14 +43,14 @@ module YuukiBot
 
     # Returns a user-readable username for the specified ID.
     def self.get_user_name(user_id)
-      '@' + $cbot.bot.user(user_id).distinct
+      '@' + YuukiBot.crb.bot.user(user_id).distinct
     rescue NoMethodError
       '@invalid-user'
     end
 
     # Returns a user-readable channel name for the specified ID.
     def self.get_channel_name(channel_id)
-      '#' + $cbot.bot.channel(channel_id).name
+      '#' + YuukiBot.crb.bot.channel(channel_id).name
     rescue NoMethodError
       '#deleted-channel'
     end
@@ -68,25 +68,25 @@ module YuukiBot
       return nil if word.nil?
 
       # If its an ID.
-      return $cbot.bot.user(word) unless $cbot.bot.user(word).nil?
+      return YuukiBot.crb.bot.user(word) unless YuukiBot.crb.bot.user(word).nil?
 
       # If its a mention!
       begin
         unless /\d+/.match(/<@!?\d+>/.match(word).to_s)[0].nil?
-          return $cbot.bot.user(/\d+/.match(/<@!?\d+>/.match(word).to_s)[0])
+          return YuukiBot.crb.bot.user(/\d+/.match(/<@!?\d+>/.match(word).to_s)[0])
         end
       rescue StandardError
         # ignored
       end
 
       # Might be a username...
-      return $cbot.bot.find_user(word)[0] unless $cbot.bot.find_user(word).nil?
+      return YuukiBot.crb.bot.find_user(word)[0] unless YuukiBot.crb.bot.find_user(word).nil?
 
       nil
     end
 
     def self.userid_to_string(id)
-      $cbot.bot.user(id).nil? ? "Unknown User (ID: #{id})" : $cbot.bot.user(id).distinct.to_s
+      YuukiBot.crb.bot.user(id).nil? ? "Unknown User (ID: #{id})" : YuukiBot.crb.bot.user(id).distinct.to_s
     end
   end
 end

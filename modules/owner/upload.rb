@@ -3,7 +3,7 @@
 # Copyright Erisa A. (erisa.moe) 2016-2020
 module YuukiBot
   module Owner
-    $cbot.add_command(
+    YuukiBot.crb.add_command(
       :upload,
       code: proc { |event, args|
         filename = args.join(' ')
@@ -13,7 +13,7 @@ module YuukiBot
       owners_only: true
     )
 
-    $cbot.add_command(
+    YuukiBot.crb.add_command(
       :rehost,
       code: proc { |event, args|
         event.channel.start_typing

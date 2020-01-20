@@ -3,7 +3,7 @@
 # Copyright Erisa A. (erisa.moe) 2016-2020
 module YuukiBot
   module Owner
-    $cbot.add_command(
+    YuukiBot.crb.add_command(
       :owners,
       code: proc { |event, _|
         event << 'This bot instance is managed/owned by the following users. Please contact them for any issues.'
@@ -17,7 +17,7 @@ module YuukiBot
       triggers: ['owners']
     )
 
-    $cbot.add_command(
+    YuukiBot.crb.add_command(
       :botowners,
       code: proc { |event, args|
         user = Helper.userparse(args[1])
@@ -26,7 +26,7 @@ module YuukiBot
         else
           case args[0]
           when 'add'
-            if $cbot.owner?(user.id)
+            if YuukiBot.crb.owner?(user.id)
               event.respond("#{YuukiBot.config['emoji_error']} User is already an owner!")
             else
               REDIS.set('owners', Helper.owners.push(user.id).to_json)

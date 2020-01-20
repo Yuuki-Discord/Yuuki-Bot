@@ -4,7 +4,7 @@
 
 module YuukiBot
   module Utility
-    $cbot.add_command(
+    YuukiBot.crb.add_command(
       :stubs,
       code: proc { |event, _|
         event.respond('This command has been removed!')

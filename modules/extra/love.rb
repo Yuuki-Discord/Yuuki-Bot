@@ -3,7 +3,7 @@
 # Copyright Erisa A. (erisa.moe), spotlight_is_ok, Larsenv 2017-2020
 module YuukiBot
   module Extra
-    $cbot.add_command(
+    YuukiBot.crb.add_command(
       :love,
       code: proc { |event, args|
         first = ''

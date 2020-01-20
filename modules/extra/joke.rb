@@ -5,7 +5,7 @@ module YuukiBot
   module Extra
     text_joke_commands = %w[doit pun wisdom lawyerjoke]
     text_joke_commands.each do |x|
-      $cbot.add_command(
+      YuukiBot.crb.add_command(
         x.to_sym,
         code: proc { |event|
           result = File.readlines("text/Jokes/#{x}.txt").sample.chomp
@@ -16,7 +16,7 @@ module YuukiBot
 
     text_other_commands = %w[vote topicchange fortunes factdiscord randomssmash4item]
     text_other_commands.each do |x|
-      $cbot.add_command(
+      YuukiBot.crb.add_command(
         x.to_sym,
         code: proc { |event|
           result = File.readlines("text/Other/Text/#{x}.txt").sample.chomp
@@ -26,7 +26,7 @@ module YuukiBot
       )
     end
 
-    $cbot.add_command(
+    YuukiBot.crb.add_command(
       :confucius,
       code: proc { |event, _|
         event.respond("Confucious say #{File.readlines('text/Jokes/confucious.txt').sample.chomp}")
@@ -34,7 +34,7 @@ module YuukiBot
       min_args: 1
     )
 
-    $cbot.add_command(
+    YuukiBot.crb.add_command(
       :dance,
       code: proc { |event, args|
         letters = YAML.load_file('config/dancingletters.yml')
@@ -43,7 +43,7 @@ module YuukiBot
       min_args: 1
     )
 
-    $cbot.add_command(
+    YuukiBot.crb.add_command(
       :notice,
       code: proc { |event, args|
         target_guess = event.bot.parse_mention(args.join(' '))

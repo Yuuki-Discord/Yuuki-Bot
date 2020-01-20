@@ -7,7 +7,7 @@ module YuukiBot
       json_food_commands = %w[beer biscuit brekkie burger cake cereal cheese chicken chocolate coffee cookie donut doobie drinks halal icecream kebab keto kosher milkshake muffin noodles nugget oreo pancake pasta pie pizza potato rice sandwich scone snack soup steak sushi taco tea wine]
 
       json_food_commands.each do |x|
-        $cbot.add_command(
+        YuukiBot.crb.add_command(
           x.to_sym,
           code: proc { |event, args|
             target_guess = event.bot.parse_mention(args.join(' '))
@@ -29,11 +29,11 @@ module YuukiBot
         )
         puts "Added food command for #{x}!" if YuukiBot.config['verbose']
       end
-      $cbot.commands[:brekkie][:triggers].push('breakfast', 'brekky', 'give breakfast to ', 'give a breakfast to', 'give brekky to ', 'give a brekky to')
+      YuukiBot.crb.commands[:brekkie][:triggers].push('breakfast', 'brekky', 'give breakfast to ', 'give a breakfast to', 'give brekky to ', 'give a brekky to')
 
       json_attack_commands = %w[slap compliment strax present]
       json_attack_commands.each do |x|
-        $cbot.add_command(
+        YuukiBot.crb.add_command(
           x.to_sym,
           code: proc { |event, args|
             target_guess = event.bot.parse_mention(args.join(' '))
@@ -57,7 +57,7 @@ module YuukiBot
 
       text_attack_commands = %w[lart insult]
       text_attack_commands.each do |x|
-        $cbot.add_command(
+        YuukiBot.crb.add_command(
           x.to_sym,
           code: proc { |event, args|
             target_guess = event.bot.parse_mention(args.join(' '))
@@ -82,7 +82,7 @@ module YuukiBot
 
       text_attack_commands = %w[nk]
       text_attack_commands.each do |x|
-        $cbot.add_command(
+        YuukiBot.crb.add_command(
           x.to_sym,
           code: proc { |event|
             result = File.readlines("text/Attacks/Text/#{x}.txt").sample.chomp
@@ -95,7 +95,7 @@ module YuukiBot
 
       text_joke_commands = %w[doit pun wisdom lawyerjoke]
       text_joke_commands.each do |x|
-        $cbot.add_command(
+        YuukiBot.crb.add_command(
           x.to_sym,
           code: proc { |event|
             result = File.readlines("text/Jokes/#{x}.txt").sample.chomp
@@ -108,7 +108,7 @@ module YuukiBot
 
       text_other_commands = %w[vote topicchange fortunes factdiscord randomssmash4item]
       text_other_commands.each do |x|
-        $cbot.add_command(
+        YuukiBot.crb.add_command(
           x.to_sym,
           code: proc { |event|
             result = File.readlines("text/Other/Text/#{x}.txt").sample.chomp
@@ -119,7 +119,7 @@ module YuukiBot
         puts "Added jokes command for #{x}!" if YuukiBot.config['verbose']
       end
 
-      $cbot.add_command(
+      YuukiBot.crb.add_command(
         :randomquestion,
         code: proc { |event|
           json = JSON.parse(File.read('text/Other/JSON/randomquestion.json'))
@@ -135,7 +135,7 @@ module YuukiBot
         puts 'Added fun command for random question!'
       end
 
-      $cbot.add_command(
+      YuukiBot.crb.add_command(
         :nextzeldagame,
         code: proc { |event|
           json = JSON.parse(File.read('text/Other/JSON/nextzeldagame.json'))
@@ -150,7 +150,7 @@ module YuukiBot
       )
       puts 'Added fun command for nextzeldagame!' if YuukiBot.config['verbose']
 
-      $cbot.add_command(
+      YuukiBot.crb.add_command(
         :confucious,
         code: proc { |event, _|
           event.respond("Confucious say #{File.readlines('text/Jokes/confucious.txt').sample.chomp}")
@@ -158,7 +158,7 @@ module YuukiBot
       )
       puts 'Added jokes command for confucious!' if YuukiBot.config['verbose']
 
-      $cbot.add_command(
+      YuukiBot.crb.add_command(
         :bookpun,
         code: proc { |event, _|
           title, author = File.readlines('text/Jokes/bookpun.txt').sample.chomp.split ': ', 2
@@ -167,7 +167,7 @@ module YuukiBot
       )
       puts 'Added jokes command for bookpun!' if YuukiBot.config['verbose']
 
-      $cbot.add_command(
+      YuukiBot.crb.add_command(
         :wouldyourather,
         code: proc { |event, _|
           json_string = open('http://rrrather.com/botapi').read
@@ -177,7 +177,7 @@ module YuukiBot
       )
       puts 'Added fun command for wouldyourather!' if YuukiBot.config['verbose']
 
-      $cbot.add_command(
+      YuukiBot.crb.add_command(
         :fact,
         code: proc { |_, _|
           types = %w[trivia math date year]
@@ -187,7 +187,7 @@ module YuukiBot
       )
       puts 'Added fun command for fact!' if YuukiBot.config['verbose']
 
-      $cbot.add_command(
+      YuukiBot.crb.add_command(
         :eightball,
         code: proc { |event, _|
           event.respond("shakes the magic 8 ball... **#{File.readlines('text/Other/8ball_responses.txt').sample.chomp}**")
@@ -195,7 +195,7 @@ module YuukiBot
       )
       puts 'Added fun command for eightball!' if YuukiBot.config['verbose']
 
-      $cbot.add_command(
+      YuukiBot.crb.add_command(
         :cats,
         code: proc { |event, _|
           json_string = open('https://catfacts-api.appspot.com/api/facts').read
@@ -205,7 +205,7 @@ module YuukiBot
       )
       puts 'Added fun command for cats!' if YuukiBot.config['verbose']
 
-      $cbot.add_command(
+      YuukiBot.crb.add_command(
         :catgifs,
         code: proc { |event, _|
           gif_url = nil
@@ -217,7 +217,7 @@ module YuukiBot
       )
       puts 'Added fun command for catgifs!' if YuukiBot.config['verbose']
 
-      $cbot.add_command(
+      YuukiBot.crb.add_command(
         :fight,
         code: proc { |event, args|
           target_guess = event.bot.parse_mention(args.join(' '))
@@ -242,7 +242,7 @@ module YuukiBot
       puts 'Added fun command for fight!' if YuukiBot.config['verbose']
     end
 
-    $cbot.add_command(
+    YuukiBot.crb.add_command(
       :choose,
       code: proc { |event, args|
         event.respond("I choose #{args.sample}!")

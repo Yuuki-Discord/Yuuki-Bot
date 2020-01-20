@@ -4,7 +4,7 @@
 
 module YuukiBot
   module Mod
-    $cbot.add_command(
+    YuukiBot.crb.add_command(
       :clear,
       code: proc { |event, args|
         unless /\A\d+\z/ =~ args[0]
@@ -55,7 +55,7 @@ module YuukiBot
       max_args: 1
     )
 
-    $cbot.add_command(
+    YuukiBot.crb.add_command(
       :forceclear,
       code: proc { |event, args|
         unless /\A\d+\z/ =~ args[0]

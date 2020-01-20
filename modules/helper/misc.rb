@@ -11,16 +11,16 @@ module YuukiBot
     def self.quit(status = 0)
       puts 'Exiting...'
       begin
-        $cbot.bot.stop
+        YuukiBot.crb.bot.stop
       rescue StandardError
-        $cbot.bot.invisible
+        YuukiBot.crb.bot.invisible
       end
       exit(status)
     end
 
     def self.ctrl_c(type)
       puts "[WARN] #{type} detected, safely shutting down...."
-      $cbot.bot.stop
+      YuukiBot.crb.bot.stop
       exit(0)
     end
     trap('SIGINT') { ctrl_c('SIGINT') }
