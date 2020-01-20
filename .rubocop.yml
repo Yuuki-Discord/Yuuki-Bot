@@ -15,13 +15,12 @@ Lint/Debugger:
   Exclude:
     - "run.rb"
 
+Layout/EndOfLine:
+  EnforcedStyle: lf
+
 Layout/LineLength:
   Exclude:
     - "config/custom/custom.sample.rb"
-
-
-Style/EndOfLine:
-  EnforcedStyle: lf
 
 Style/GlobalVars:
   Exclude:
