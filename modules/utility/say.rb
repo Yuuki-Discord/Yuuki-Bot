@@ -11,7 +11,8 @@ module YuukiBot
               # Helper.map_say(event.channel.id, event.message.id, new_msg.id)
             },
       triggers: %w[say echo talk repeat],
-      min_args: 1
+      min_args: 1,
+      owners_only: true
     )
 
     YuukiBot.crb.add_command(
