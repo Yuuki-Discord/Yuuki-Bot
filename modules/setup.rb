@@ -78,6 +78,12 @@ module YuukiBot
     end
   end
 
+  default_haste_instance = 'https://paste.erisa.moe'
+  if @config['hastebin_instance_url'].nil?
+    puts "No Hastebin instance configured. Using #{default_haste_instance}."
+    @config['hastebin_instance_url'] = default_haste_instance
+  end
+
   @config['debug'] = false if @config['debug'].nil?
 
   if @config['status'].nil?

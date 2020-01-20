@@ -81,7 +81,7 @@ module YuukiBot
   )
 
   puts '>> Initial loading succesful!! <<'
-  $uploader = Haste::Uploader.new('https://paste.erisa.moe')
+  $uploader = Haste::Uploader.new(@config['hastebin_instance_url'])
   if YuukiBot.config['use_pry']
     $cbot.bot.run(true)
     require 'pry'
