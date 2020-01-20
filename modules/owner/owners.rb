@@ -26,7 +26,7 @@ module YuukiBot
         else
           case args[0]
           when 'add'
-            if $cbot.is_owner?(user.id)
+            if $cbot.owner?(user.id)
               event.respond("#{YuukiBot.config['emoji_error']} User is already an owner!")
             else
               REDIS.set('owners', Helper.owners.push(user.id).to_json)
