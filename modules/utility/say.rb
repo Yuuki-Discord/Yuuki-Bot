@@ -7,7 +7,7 @@ module YuukiBot
       :say,
       code: proc { |event, args|
               message = args.join(' ')
-              new_msg = event.respond(Helper.filter_everyone(message))
+              # new_msg = event.respond(Helper.filter_everyone(message))
               # Helper.map_say(event.channel.id, event.message.id, new_msg.id)
             },
       triggers: %w[say echo talk repeat],

@@ -133,7 +133,7 @@ module YuukiBot
         ignored.each do |id|
           begin
             @crb.bot.ignore_user(@crb.bot.user(id))
-          rescue Exception => e
+          rescue StandardError => e
             p e
           end
         end

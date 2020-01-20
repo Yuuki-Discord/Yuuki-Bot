@@ -32,7 +32,7 @@ module YuukiBot
 
     # Get the user's color
     def self.colour_from_user(member, default = 0)
-      colour = default
+      color = default
       unless member.nil?
         member.roles.sort_by(&:position).reverse.each do |role|
           next if role.color.combined == 0
@@ -40,15 +40,15 @@ module YuukiBot
           begin
             if YuukiBot.config['debug']
               puts 'Using ' + role.name + '\'s color ' + role.color.combined.to_s
-                      end
+            end
           rescue StandardError
             nil
           end
-          colour = role.colour.combined
+          color = role.color.combined
           break
         end
       end
-      colour
+      color
     end
   end
 end

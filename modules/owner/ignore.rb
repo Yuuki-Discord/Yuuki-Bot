@@ -13,11 +13,7 @@ module YuukiBot
         mention = args[0]
         user = Helper.userparse(args[0])
 
-        ignores = begin
-    JSON.parse(REDIS.get('ignores'))
-                  rescue StandardError
-                    []
-  end
+        ignores = JSON.parse(REDIS.get('ignores')) rescue StandardError
         if user.nil?
           event.respond("#{YuukiBot.config['emoji_error']} Not a valid user!")
         elsif YuukiBot.crb.owner?(user)
