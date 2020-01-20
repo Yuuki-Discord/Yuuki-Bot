@@ -19,6 +19,10 @@ Layout/LineLength:
   Exclude:
     - "config/custom/custom.sample.rb"
 
+
+Style/EndOfLine:
+  EnforcedStyle: lf
+
 Style/GlobalVars:
   Exclude:
     - "run.rb"
