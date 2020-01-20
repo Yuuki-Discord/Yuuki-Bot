@@ -9,7 +9,7 @@ Style/Documentation:
  
 Security/Eval:
   Exclude:
-    - "exts/core/eval.rb"
+    - "modules/owner/eval.rb"
 
 Lint/Debugger:
   Exclude:
@@ -21,6 +21,7 @@ Layout/EndOfLine:
 Layout/LineLength:
   Exclude:
     - "config/custom/custom.sample.rb"
+  Max: 100
 
 Style/GlobalVars:
   Exclude:

@@ -43,7 +43,7 @@ end
             next
           end
           REDIS.set('donators', donators.delete(id).to_json)
-          event.respond("#{YuukiBot.config['emoji_tickbox']} removed `#{event.bot.user(id).nil? ? "Unknown User (ID: #{id})" : event.bot.user(id).distinct.to_s}` from donators!")
+          event.respond("#{YuukiBot.config['emoji_tickbox']} removed `#{Helper.userid_to_string(user.id)}` from donators!")
         else
           if YuukiBot.config['show_donate_urls']
             event << "💰 Hey, making bots and hosting them isn't free. If you want this bot to stay alive, consider giving some 💵 to the devs: "
