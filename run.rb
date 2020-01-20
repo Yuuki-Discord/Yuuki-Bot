@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 
-$launch_time = Time.now
-
 module YuukiBot
   class << self
     attr_reader :uploader
+    attr_reader :launch_time
+    attr_accessor :crb
   end
+  $launch_time = Time.now
 
   require 'haste'
   require 'open-uri'
