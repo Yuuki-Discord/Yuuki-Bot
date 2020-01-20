@@ -54,13 +54,13 @@ module YuukiBot
       if result.nil? || result == '' || result == ' ' || result == "\n"
         output += '' "#{YuukiBot.config['emoji_tickbox']} Done! (No output)"
       elsif result.length >= 1984
-        uploader_domain = $uploader.server_url
-        uploader_file = $uploader.upload_raw(result)
+        uploader_domain = YuukiBot.config['hastebin_instance_url']
+        uploader_file = YuukiBot.uploader.upload_raw(result)
 
         output += "#{YuukiBot.config['emoji_warning']}" \
         'Your output exceeded the character limit! ' \
         "(`#{result.length - 1984}`/`1984`)\n" \
-        "You can view the result here: #{uploader_domain}/raw/#{uploader_file}"
+        "You can view the result here: #{uploader_domain}/raw/#{uploader_file}\n"
       else
         output += "Output: ```\n#{result}```"
       end
