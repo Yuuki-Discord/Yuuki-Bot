@@ -3,6 +3,10 @@
 $launch_time = Time.now
 
 module YuukiBot
+  class << self
+    attr_reader :uploader
+  end
+  
   require 'haste'
   require 'open-uri'
   require 'redis'
@@ -81,7 +85,7 @@ module YuukiBot
   )
 
   puts '>> Initial loading succesful!! <<'
-  $uploader = Haste::Uploader.new(@config['hastebin_instance_url'])
+  @uploader = Haste::Uploader.new(@config['hastebin_instance_url'])
   if YuukiBot.config['use_pry']
     $cbot.bot.run(true)
     require 'pry'
