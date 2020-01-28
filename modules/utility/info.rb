@@ -12,9 +12,9 @@ module YuukiBot
         else
           begin
             user = if args[0] == 'byid'
-                     event.bot.user(args[1]).on(event.server)
+                     event.bot.user(args[1])
                    else
-                     event.bot.parse_mention(args.join(' ')).on(event.server)
+                     Helper.userparse(args.join(' '))
                    end
           rescue StandardError
             event.channel.send_message('', false,
@@ -31,7 +31,7 @@ module YuukiBot
         if user.nil?
           event.channel.send_message('', false,
                                      Helper.error_embed(
-                                       error: "Error unknown. Details:\n`User is nil or not found.`",
+                                       error: "Error:\n`User is nil or not found.`",
                                        footer: "Command: `#{event.message.content}`",
                                        colour: 0xFA0E30,
                                        code_error: false
@@ -46,7 +46,7 @@ module YuukiBot
           timestamp: Time.now
         )
 
-        color = Helper.colour_from_user(user, -1)
+        color = Helper.colour_from_user(user.on(event.server), -1)
         # We don't want black (0x000000) if the user has no role colors.
         # Let's leave that to Discord.
         avy_embed.color = color unless color == -1
@@ -84,12 +84,8 @@ module YuukiBot
           next
         end
 
-        # Beter than the alternative :)
-        begin
-          member = user.on(event.server)
-        rescue StandardError
-          ignoreserver = true
-        end
+        member = user.on(event.server)
+        ignoreserver = true if member.nil?
 
         donator = JSON.parse(REDIS.get('donators')).include?(user.id)
         event.channel.send_embed("__Information about **#{user.distinct}**__") do |embed|
