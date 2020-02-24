@@ -28,7 +28,7 @@ module YuukiBot
              event.respond("#{YuukiBot.config['emoji_error']} User is not a donator!")
              next
            end
-           REDIS.set('donators', donators.delete(id).to_json)
+           REDIS.set('donators', (donators - [user.id]).to_json)
            event.respond("#{YuukiBot.config['emoji_tickbox']} removed `#{event.bot.user(id).nil? ? "Unknown User (ID: #{id})" : "#{event.bot.user(id).distinct}"}` from donators!")
          else
            if YuukiBot.config['show_donate_urls']

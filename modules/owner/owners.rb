@@ -30,8 +30,8 @@ module YuukiBot
                 when 'remove'
                   if YuukiBot.config['master_owner'] == user.id
                     event.respond("#{YuukiBot.config['emoji_error']} You can't remove the main owner!")
-                  elsif owners.include?(user.id)
-                    REDIS.set('owners', Helper.owners.delete(user.id).to_json)
+                  elsif Helper.owners.include?(user.id)
+                    REDIS.set('owners', (Helper.owners - [user.id]).to_json)
                     event.respond("#{YuukiBot.config['emoji_tickbox']} removed `#{Helper.userid_to_string(user.id)}` from bot owners!")
                   else
                     event.respond("#{YuukiBot.config['emoji_error']} User is not an owner!")
