@@ -4,89 +4,38 @@
 
 module YuukiBot
   module Helper
-    # Accepts a message, and returns the message content, with all mentions + channels replaced with @user#1234 or #channel-name
-    def self.parse_mentions(content)
-      # Replace user IDs with names
-      loop do
-        match = /<@\d+>/.match(content)
-        break if match.nil?
-
-        # Get user
-        id = match[0]
-        # We have to sub to just get the numerical ID.
-        num_id = /\d+/.match(id)[0]
-        content = content.sub(id, get_user_name(num_id))
-      end
-      loop do
-        match = /<@!\d+>/.match(content)
-        break if match.nil?
-
-        # Get user
-        id = match[0]
-        # We have to sub to just get the numerical ID.
-        num_id = /\d+/.match(id)[0]
-        content = content.sub(id, get_user_name(num_id))
-      end
-      # Replace channel IDs with names
-      loop do
-        match = /<#\d+>/.match(content)
-        break if match.nil?
-
-        # Get channel
-        id = match[0]
-        # We have to gsub to just get the numerical ID.
-        num_id = /\d+/.match(id)[0]
-        content = content.sub(id, get_channel_name(num_id))
-      end
-      content
-     end
-
-    # Returns a user-readable username for the specified ID.
-    def self.get_user_name(user_id)
-      '@' + YuukiBot.crb.bot.user(user_id).distinct
-    rescue NoMethodError
-      '@invalid-user'
-    end
-
-    # Returns a user-readable channel name for the specified ID.
-    def self.get_channel_name(channel_id)
-      '#' + YuukiBot.crb.bot.channel(channel_id).name
-    rescue NoMethodError
-      '#deleted-channel'
-    end
-
+    # Places a null into @everyone and @here to prevent accidental tagging. Returns the parsed text.
     def self.filter_everyone(text)
-      # Place a null into @everyone and @here, to prevent accidental tagging. Returns the parsed text.
       text.gsub('@everyone', "@\x00everyone").gsub('@here', "@\x00here")
     end
 
     # Detects which user you are talking about from a word.
     def self.userparse(word)
       # Trial and error, ho!
+      bot = YuukiBot.crb.bot
 
       # Can't do anything if there's nothing to begin with.
       return nil if word.nil?
 
-      # If its an ID.
-      return YuukiBot.crb.bot.user(word) unless YuukiBot.crb.bot.user(word).nil?
+      # Catches things such as "0": obviously invalid, attempted nonetheless.
+      word = word.to_s
 
-      # If its a mention!
-      begin
-        unless /\d+/.match(/<@!?\d+>/.match(word).to_s)[0].nil?
-          return YuukiBot.crb.bot.user(/\d+/.match(/<@!?\d+>/.match(word).to_s)[0])
-        end
-      rescue StandardError
-        # ignored
-      end
+      # If it's an ID.
+      id_check = bot.user(word)
+      return id_check unless id_check.nil?
+
+      # If it's a mention!
+      matches = /<@!?(\d+)>/.match(word)
+      return bot.user(matches[1]) unless matches.nil?
 
       # Might be a username...
-      return YuukiBot.crb.bot.find_user(word)[0] unless YuukiBot.crb.bot.find_user(word).nil?
+      return bot.find_user(word)[0] unless bot.find_user(word).nil?
 
       nil
     end
 
     def self.userid_to_string(id)
-      YuukiBot.crb.bot.user(id).nil? ? "Unknown User (ID: #{id})" : YuukiBot.crb.bot.user(id).distinct.to_s
+      bot.user(id).nil? ? "Unknown User (ID: #{id})" : bot.user(id).distinct.to_s
     end
   end
 end
