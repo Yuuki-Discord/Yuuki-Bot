@@ -35,6 +35,7 @@ module YuukiBot
     end
 
     def self.userid_to_string(id)
+      bot = YuukiBot.crb.bot
       bot.user(id).nil? ? "Unknown User (ID: #{id})" : bot.user(id).distinct.to_s
     end
   end
