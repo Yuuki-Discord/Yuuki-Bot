@@ -26,7 +26,8 @@ module YuukiBot
         else
           REDIS.set('ignores', ignores.push(user.id).to_json)
           event.bot.ignore_user(user)
-          event.respond("#{YuukiBot.config['emoji_tickbox']} `#{user.distinct}` is now being ignored!")
+          tickbox = YuukiBot.config['emoji_tickbox']
+          event.respond("#{tickbox} `#{user.distinct}` is now being ignored!")
         end
       },
       triggers: %w[ignore],
@@ -40,6 +41,7 @@ module YuukiBot
           event.respond("#{YuukiBot.config['emoji_error']} Mention a valid user!")
           next
         end
+
         user = Helper.userparse(args[0])
         ignores = begin
                     JSON.parse(REDIS.get('ignores'))
@@ -54,7 +56,8 @@ module YuukiBot
         else
           event.bot.unignore_user(user)
           REDIS.set('ignores', (ignores - [user.id]).to_json)
-          event.respond("#{YuukiBot.config['emoji_tickbox']} `#{user.distinct}` has been removed from the ignore list!")
+          tickbox = YuukiBot.config['emoji_tickbox']
+          event.respond("#{tickbox} `#{user.distinct}` has been removed from the ignore list!")
         end
       },
       owners_only: true

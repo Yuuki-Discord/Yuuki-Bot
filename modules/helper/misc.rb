@@ -37,7 +37,7 @@ module YuukiBot
       color = default
       unless member.nil?
         member.roles.sort_by(&:position).reverse.each do |role|
-          next if role.color.combined == 0
+          next if role.color.combined.zero?
 
           begin
             if YuukiBot.config['debug']

@@ -41,8 +41,14 @@ module YuukiBot
 
         avy_embed = Discordrb::Webhooks::Embed.new(
           image: Discordrb::Webhooks::EmbedImage.new(url: Helper.avatar_url(user)),
-          author: Discordrb::Webhooks::EmbedAuthor.new(name: "Avatar for #{user.name} (Click to open in browser)", url: Helper.avatar_url(user)),
-          footer: Discordrb::Webhooks::EmbedFooter.new(text: "Called by #{event.user.distinct} (#{event.user.id})", icon_url: Helper.avatar_url(event.user)),
+          author: Discordrb::Webhooks::EmbedAuthor.new(
+            name: "Avatar for #{user.name} (Click to open in browser)",
+            url: Helper.avatar_url(user)
+          ),
+          footer: Discordrb::Webhooks::EmbedFooter.new(
+            text: "Called by #{event.user.distinct} (#{event.user.id})",
+            icon_url: Helper.avatar_url(event.user)
+          ),
           timestamp: Time.now
         )
 
@@ -74,13 +80,13 @@ module YuukiBot
         end
 
         if user.nil?
-          event.channel.send_message('', false,
-                                     Helper.error_embed(
-                                       error: "Error unknown. Details:\n`User is nil or not found.`",
-                                       footer: "Command: `#{event.message.content}`",
-                                       colour: 0xFA0E30,
-                                       code_error: false
-                                     ))
+          error_embed = Helper.error_embed(
+            error: "Error unknown. Details:\n`User is nil or not found.`",
+            footer: "Command: `#{event.message.content}`",
+            colour: 0xFA0E30,
+            code_error: false
+          )
+          event.channel.send_message('', false, error_embed)
           next
         end
 
@@ -90,14 +96,40 @@ module YuukiBot
         donator = JSON.parse(REDIS.get('donators')).include?(user.id)
         event.channel.send_embed("__Information about **#{user.distinct}**__") do |embed|
           embed.colour = event.channel.private? ? 0xe06b2 : Helper.colour_from_user(member)
-          embed.thumbnail = Discordrb::Webhooks::EmbedThumbnail.new(url: Helper.avatar_url(user))
-          embed.author = Discordrb::Webhooks::EmbedAuthor.new(name: "#{donator ? ' 👑' : ' 👥'} #{ignoreserver ? user.name : member.display_name}", url: Helper.avatar_url(user))
-          embed.footer = Discordrb::Webhooks::EmbedFooter.new(text: "All information correct as of: #{Time.now.getutc.asctime}")
-          embed.add_field(name: 'User ID:', value: user.id, inline: true)
-          embed.add_field(name: 'Playing:', value: user.game.nil? ? '[N/A]' : user.game, inline: true)
-          embed.add_field(name: 'Account Created:', value: "#{user.creation_time.getutc.asctime} UTC", inline: true)
-          embed.add_field(name: 'Joined Server:', value: ignoreserver ? '[N/A]' : "#{member.joined_at.getutc.asctime} UTC", inline: true)
-          embed.add_field(name: 'Status', value: user.status.capitalize)
+          embed.thumbnail = Discordrb::Webhooks::EmbedThumbnail.new(
+            url: Helper.avatar_url(user)
+          )
+          embed.author = Discordrb::Webhooks::EmbedAuthor.new(
+            name: "#{donator ? ' 👑' : ' 👥'} #{ignoreserver ? user.name : member.display_name}",
+            url: Helper.avatar_url(user)
+          )
+          embed.footer = Discordrb::Webhooks::EmbedFooter.new(
+            text: "All information correct as of: #{Time.now.getutc.asctime}"
+          )
+          embed.add_field(
+            name: 'User ID:',
+            value: user.id,
+            inline: true
+          )
+          embed.add_field(
+            name: 'Playing:',
+            value: user.game.nil? ? '[N/A]' : user.game,
+            inline: true
+          )
+          embed.add_field(
+            name: 'Account Created:',
+            value: "#{user.creation_time.getutc.asctime} UTC",
+            inline: true
+          )
+          embed.add_field(
+            name: 'Joined Server:',
+            value: ignoreserver ? '[N/A]' : "#{member.joined_at.getutc.asctime} UTC",
+            inline: true
+          )
+          embed.add_field(
+            name: 'Status',
+            value: user.status.capitalize
+          )
         end
       },
       triggers: %w[info profile]
@@ -114,8 +146,8 @@ module YuukiBot
       triggers: %w[ping pong peng pung pyng pang 🅱ing]
     )
 
-    def self.ms_to_time(ms)
-      time = ms / 1000
+    def self.ms_to_time(milliseconds)
+      time = milliseconds / 1000
       seconds = time % 60
       time /= 60
       minutes = time % 60
@@ -139,9 +171,10 @@ module YuukiBot
     YuukiBot.crb.add_command(
       :uptime,
       code: proc do |event, _|
-        uptimems = (Time.now - YuukiBot.launch_time) * 1000
+        uptime_ms = (Time.now - YuukiBot.launch_time) * 1000
 
-        event.respond("I was launched on `#{YuukiBot.launch_time.asctime} UTC`\nThis means I have been online for `#{ms_to_time(uptimems)}` (`#{uptimems.floor}ms`)")
+        event.respond("I was launched on `#{YuukiBot.launch_time.asctime} UTC`\n" \
+          "This means I have been online for `#{ms_to_time(uptime_ms)}` (`#{uptime_ms.floor}ms`)")
       end
     )
   end

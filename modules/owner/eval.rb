@@ -23,7 +23,7 @@ module YuukiBot
           result_output = handle_result(result, init_time)
           msg.edit(result_output)
         rescue StandardError => e
-          msg.edit("#{YuukiBot.config['emoji_error']} An error has occurred!"\
+          msg.edit("#{YuukiBot.config['emoji_error']} An error has occurred!" \
           "```ruby\n#{e}```" \
           "Command took #{(Time.now - init_time)} seconds to execute!")
         end
