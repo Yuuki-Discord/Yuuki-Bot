@@ -33,6 +33,7 @@ module YuukiBot
     # Get the user's color
     def self.colour_from_user(member, default = -1)
       return default if member.nil? || !member.is_a?(Discordrb::Member)
+
       color = default
       unless member.nil?
         member.roles.sort_by(&:position).reverse.each do |role|

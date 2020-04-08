@@ -16,8 +16,8 @@ module YuukiBot
 
         if clearnum >= 100
           message = "#{YuukiBot.config['emoji_warning']} You are attempting to clear more than 100 messages.\n"
-          message << "To avoid rate limiting, the clearing will be done 99 messages at a time, so it might take a while.\n"
-          message << 'This message will vanish in 5 seconds and the clearing will begin, please wait..'
+          message += "To avoid rate limiting, the clearing will be done 99 messages at a time, so it might take a while.\n"
+          message += 'This message will vanish in 5 seconds and the clearing will begin, please wait..'
           event.respond(message)
           sleep(5)
         elsif clearnum > 1000
@@ -67,8 +67,8 @@ module YuukiBot
 
         if clearnum > 20
           message = "#{YuukiBot.config['emoji_warning']} You are attempting a force clear on a large number of messages.\n"
-          message << 'Force clears are much slower than ordinary clears, but can delete messages older than 2 weeks.'
-          message << 'This message will vanish in 5 seconds and the clearing will begin, please wait..'
+          message += 'Force clears are much slower than ordinary clears, but can delete messages older than 2 weeks.'
+          message += 'This message will vanish in 5 seconds and the clearing will begin, please wait..'
           event.respond(message)
           sleep(5)
         elsif clearnum > 1000

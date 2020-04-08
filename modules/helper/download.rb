@@ -23,9 +23,7 @@ module YuukiBot
 
     def self.upload_file(channel, filename)
       channel.send_file File.new([filename].sample)
-      if YuukiBot.config['debug']
-        puts "Uploaded `#{filename} to \##{channel.name}!"
-      end
+      puts "Uploaded `#{filename} to \##{channel.name}!" if YuukiBot.config['debug']
     end
   end
 end

@@ -58,7 +58,7 @@ module YuukiBot
 
       result = result_output.to_s
       if result.nil? || result == '' || result == ' ' || result == "\n"
-        output += '' "#{YuukiBot.config['emoji_tickbox']} Done! (No output)"
+        output += '' "#{YuukiBot.config['emoji_tickbox']} Done! (No output)\n"
       elsif result.length >= 1984
         uploader_domain = YuukiBot.config['hastebin_instance_url']
         uploader_file = YuukiBot.uploader.upload_raw(result)
