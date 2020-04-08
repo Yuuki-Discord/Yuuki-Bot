@@ -3,36 +3,22 @@
 # Copyright Erisa A. (erisa.moe), spotlight_is_ok, Larsenv 2017-2020
 module YuukiBot
   module Extra
-    text_joke_commands = %w[doit pun wisdom lawyerjoke]
-    text_joke_commands.each do |x|
-      YuukiBot.crb.add_command(
-        x.to_sym,
-        code: proc { |event|
-          result = File.readlines("text/Jokes/#{x}.txt").sample.chomp
-          event.respond("\\*#{result}*")
-        }
-      )
+    # Formulate a proper name to respond with for extra commands.
+    # @param [Object] event Event containing bot
+    # @param [Object] args Arguments passed in the message
+    # @return [String] Text safe to identify user with in commands
+    def self.calculate_mention(event, args)
+      user_parse_guess = event.bot.parse_mention(args.join(' '))
+      target = if args.nil? || (args == [])
+                 event.user.name
+               elsif user_parse_guess.nil?
+                 # Use the name as provided via arguments, nothing calculated.
+                 args.join(' ')
+               else
+                 user_parse_guess.name
+               end
+      target
     end
-
-    text_other_commands = %w[vote topicchange fortunes factdiscord randomssmash4item]
-    text_other_commands.each do |x|
-      YuukiBot.crb.add_command(
-        x.to_sym,
-        code: proc { |event|
-          result = File.readlines("text/Other/Text/#{x}.txt").sample.chomp
-          event.respond(result.to_s)
-        },
-        min_args: 1
-      )
-    end
-
-    YuukiBot.crb.add_command(
-      :confucius,
-      code: proc { |event, _|
-        event.respond("Confucious say #{File.readlines('text/Jokes/confucious.txt').sample.chomp}")
-      },
-      min_args: 1
-    )
 
     YuukiBot.crb.add_command(
       :dance,
@@ -47,13 +33,13 @@ module YuukiBot
       :notice,
       code: proc { |event, args|
         target_guess = event.bot.parse_mention(args.join(' '))
-        target = if args.nil? || (args == []) || (args[0] == 'me')
-                   event.user.name
-                 elsif target_guess.nil?
-                   args.join(' ')
-                 else
-                   target_guess.name
-                 end
+        whom = if args.nil? || (args == []) || (args[0] == 'me')
+                 event.user.name
+               elsif target_guess.nil?
+                 args.join(' ')
+               else
+                 target_guess.name
+               end
 
         if args.length >= 2 && args[1] == 'senpai'
           event.respond("\\*Senpai notices #{whom}*")

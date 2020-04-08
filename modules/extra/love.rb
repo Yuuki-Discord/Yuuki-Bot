@@ -6,8 +6,6 @@ module YuukiBot
     YuukiBot.crb.add_command(
       :love,
       code: proc { |event, args|
-        first = ''
-        second = ''
         if args.length == 1
           first = event.user.name
           begin
