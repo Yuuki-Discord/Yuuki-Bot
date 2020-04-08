@@ -2,6 +2,7 @@
 
 require 'yaml'
 require 'discordrb'
+
 # Load Config from YAML
 @config = if File.exist?('config/maintenance.yml')
             YAML.load_file('config/maintenance.yml')
@@ -14,8 +15,8 @@ require 'discordrb'
     puts "config.yml: #{key} is nil!"
     puts 'Corrupt or incorrect Yaml.'
     exit
-  else
-    puts("config.yml: Found #{key}: #{value}") if @config['verbose']
+  elsif @config['verbose']
+    puts("config.yml: Found #{key}: #{value}")
   end
 end
 
@@ -28,10 +29,14 @@ end
 bot.message do |event|
   if event.message.content.split(' ').length > 1
     @config['prefixes'].each do |x|
-      if event.message.content.start_with? x
-        event.respond("Hi, if you're seeing this message, it means that Yuuki-Bot is currently unavailable (Deliberately, unlike downtime) or is in maintenance due to a major bug that needs to be dealt with.\nPlease try again later, and contact `#{event.bot.user(@config['master_owner']).distinct}` if problems persist.\nSorry for any inconvenience caused!")
-        break
-      end
+      next unless event.message.content.start_with? x
+
+      username = event.bot.profile.name
+      owner_distinct = event.bot.user(@config['master_owner']).distinct
+      event.respond("Hi! It seems that #{username} is currently undergoing maintenance.\n" \
+      "Please try again later, and contact `#{owner_distinct}` if problems persist.\n" \
+      'Sorry for any inconvenience caused!')
+      break
     end
   end
 end
