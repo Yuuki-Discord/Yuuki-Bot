@@ -4,7 +4,6 @@ Metrics/BlockLength:
 Metrics/MethodLength:
   Enabled: false
 
-
 Metrics/ModuleLength:
   Enabled: false
 
@@ -33,4 +32,14 @@ Style/GlobalVars:
 
 Security/Open:
   Exclude:
-    - "helpers/download.rb"
+    - "modules/helper/download.rb"
+
+# Keep to syntactic linting, instead of complexity.
+Metrics/CyclomaticComplexity:
+  Enabled: false
+
+Metrics/AbcSize:
+  Enabled: false
+
+Metrics/PerceivedComplexity:
+  Enabled: false

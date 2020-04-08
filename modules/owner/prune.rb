@@ -19,7 +19,7 @@ module YuukiBot
           end
           unless @count.zero?
             Discordrb::API::Channel.bulk_delete_messages(event.bot.token, event.channel.id, msgs)
-        end
+          end
         else
           event.channel.history(num).each do |x|
             if x.author.id == event.bot.profile.id && x.id != msg.id
@@ -28,7 +28,13 @@ module YuukiBot
             end
           end
         end
-        count.zero? ? msg.edit("#{YuukiBot.config['emoji_warning']} No messages found!") : msg.edit("#{YuukiBot.config['emoji_tickbox']} Pruned #{count} bot messages!")
+
+        edit_string = if count.zero?
+                        "#{YuukiBot.config['emoji_warning']} No messages found!"
+                      else
+                        "#{YuukiBot.config['emoji_tickbox']} Pruned #{count} bot messages!"
+                      end
+        msg.edit(edit_string)
 
         if args[0] == '-f'
           sleep 2
@@ -57,10 +63,12 @@ module YuukiBot
             end
           end
           Discordrb::API::Channel.bulk_delete_messages(event.bot.token, event.channel.id, msgs)
-          event.respond("#{YuukiBot.config['emoji_tickbox']} Pruned #{count} messages by **#{user.distinct}** !")
+
+          tickbox = YuukiBot.config['emoji_tickbox']
+          event.respond("#{tickbox} Pruned #{count} messages by **#{user.distinct}** !")
         rescue Discordrb::Errors::NoPermission
-          event.respond("#{YuukiBot.config['emoji_error']} I don't have permission to delete messages!")
-          puts 'The bot does not have the delete message permission!'
+          error = YuukiBot.config['emoji_error']
+          event.respond("#{error} I don't have permission to delete messages!")
         end
       },
       triggers: [

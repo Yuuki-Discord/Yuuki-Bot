@@ -15,9 +15,11 @@ module YuukiBot
         clearnum = original_num + 1
 
         if clearnum >= 100
-          message = "#{YuukiBot.config['emoji_warning']} You are attempting to clear more than 100 messages.\n"
-          message += "To avoid rate limiting, the clearing will be done 99 messages at a time, so it might take a while.\n"
-          message += 'This message will vanish in 5 seconds and the clearing will begin, please wait..'
+          warning = YuukiBot.config['emoji_warning']
+          message = "#{warning} You are attempting to clear more than 100 messages.\n" \
+            'To avoid rate limiting, 99 messages will be removed at a time. ' \
+            "It may take a while.\n" \
+            'This message will vanish in 5 seconds and the clearing will begin, please wait..'
           event.respond(message)
           sleep(5)
         elsif clearnum > 1000
@@ -27,23 +29,26 @@ module YuukiBot
         end
 
         begin
-          while clearnum > 0
+          while clearnum.positive?
+            ids = []
             if clearnum >= 99
-              ids = []
               event.channel.history(99).each { |x| ids.push(x.id) }
               Discordrb::API::Channel.bulk_delete_messages(event.bot.token, event.channel.id, ids)
               clearnum -= 99
               sleep(4)
             else
-              ids = []
               event.channel.history(clearnum).each { |x| ids.push(x.id) }
               Discordrb::API::Channel.bulk_delete_messages(event.bot.token, event.channel.id, ids)
               clearnum = 0
             end
           end
-          event.respond("#{YuukiBot.config['emoji_clear']} Cleared #{original_num} messages!\nResponsible Moderator: #{event.user.mention}\n(Messages older than 2 weeks will not have been deleted. Please use `forceclear` in those cases.)")
+          event.respond("#{YuukiBot.config['emoji_clear']} Cleared #{original_num} messages!\n" \
+            "Responsible Moderator: #{event.user.mention}\n" \
+            '(Messages older than 2 weeks will not have been deleted.' \
+            'You can `forceclear` for those.)')
         rescue Discordrb::Errors::NoPermission
-          event.respond("#{YuukiBot.config['emoji_success']} Message delete failed!\nCheck the permissions?")
+          event.respond("#{YuukiBot.config['emoji_error']} Message delete failed!\n" \
+            'Check the permissions?')
           break
         end
         nil
@@ -66,9 +71,11 @@ module YuukiBot
         clearnum = original_num + 1
 
         if clearnum > 20
-          message = "#{YuukiBot.config['emoji_warning']} You are attempting a force clear on a large number of messages.\n"
-          message += 'Force clears are much slower than ordinary clears, but can delete messages older than 2 weeks.'
-          message += 'This message will vanish in 5 seconds and the clearing will begin, please wait..'
+          warning = YuukiBot.config['emoji_warning']
+          message = "#{warning} You are attempting a force clear on a large number of messages.\n" \
+            'Force clears are much slower than ordinary clears, ' \
+            "but can delete messages older than 2 weeks.\n" \
+            'This message will vanish in 5 seconds and the clearing will begin, please wait..'
           event.respond(message)
           sleep(5)
         elsif clearnum > 1000
@@ -78,14 +85,12 @@ module YuukiBot
         end
 
         begin
-          while clearnum > 0
+          while clearnum.positive?
             if clearnum >= 99
-              ids = []
               event.channel.history(99).each(&:delete)
               clearnum -= 99
               sleep(4)
             else
-              ids = []
               event.channel.history(clearnum).each(&:delete)
               clearnum = 0
             end
@@ -98,12 +103,13 @@ module YuukiBot
           # ~ sleep(3)
           # ~ message.delete
         rescue Discordrb::Errors::NoPermission
-          event.respond("#{YuukiBot.config['emoji_success']} Message delete failed!\nCheck the permissions?")
+          event.respond("#{YuukiBot.config['emoji_error']} Message delete failed!\n" \
+            'Check the permissions?')
           break
         end
         nil
       },
-      triggers: %w[clear clean],
+      triggers: %w[forceclear forceclean],
       server_only: true,
       required_permissions: [:manage_messages],
       owner_override: false,
