@@ -43,3 +43,13 @@ Metrics/AbcSize:
 
 Metrics/PerceivedComplexity:
   Enabled: false
+
+# Pending cops for RuboCop 0.80
+Style/HashEachMethods:
+  Enabled: true
+
+Style/HashTransformKeys:
+  Enabled: true
+
+Style/HashTransformValues:
+  Enabled: true
