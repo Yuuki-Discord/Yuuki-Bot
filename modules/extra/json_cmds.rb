@@ -76,7 +76,7 @@ module YuukiBot
       YuukiBot.crb.add_command(
         :wouldyourather,
         code: proc { |event, _|
-          json_string = open('http://rrrather.com/botapi').read
+          json_string = URI.open('https://www.rrrather.com/botapi').read
           array = JSON.parse(json_string, symbolize_names: true)
           event.respond("#{array[:title]}: #{array[:choicea].rstrip} OR #{array[:choiceb].rstrip}")
         }
@@ -85,10 +85,10 @@ module YuukiBot
 
       YuukiBot.crb.add_command(
         :fact,
-        code: proc { |_, _|
+        code: proc { |event, _|
           types = %w[trivia math date year]
           type = types.sample
-          open("http://numbersapi.com/random/#{type}").read
+          event.respond(URI.open("http://numbersapi.com/random/#{type}").read)
         }
       )
       puts 'Added fun command for fact!' if YuukiBot.config['verbose']
@@ -107,7 +107,7 @@ module YuukiBot
         :catgifs,
         code: proc { |event, _|
           gif_url = nil
-          open('http://marume.herokuapp.com/random.gif') do |resp|
+          URI.open('https://marume.herokuapp.com/random.gif') do |resp|
             gif_url = resp.base_uri.to_s
           end
           event.respond("OMG A CAT GIF: #{gif_url}")

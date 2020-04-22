@@ -17,7 +17,7 @@ module YuukiBot
       FileUtils.mkdir(folder) unless File.exist?(folder)
       FileUtils.rm(path) if File.exist?(path)
 
-      IO.copy_stream(open(url), path)
+      IO.copy_stream(URI.open(url), path)
       path
     end
 

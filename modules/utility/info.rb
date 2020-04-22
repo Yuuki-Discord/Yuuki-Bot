@@ -95,7 +95,7 @@ module YuukiBot
 
         donator = JSON.parse(REDIS.get('donators')).include?(user.id)
         event.channel.send_embed("__Information about **#{user.distinct}**__") do |embed|
-          embed.colour = Helper.colour_from_user(member, default = 0xe06b2)
+          embed.colour = Helper.colour_from_user(member, default: 0xe06b2)
           embed.thumbnail = Discordrb::Webhooks::EmbedThumbnail.new(
             url: Helper.avatar_url(user)
           )
