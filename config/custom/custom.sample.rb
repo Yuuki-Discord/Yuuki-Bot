@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Three different ways to add custom commands easy.
+# Three different ways to add custom commands easily.
 
 #### NOTE ####
 # The below examples that use {user} and {userid} do not currently function.

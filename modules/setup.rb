@@ -20,15 +20,15 @@ module YuukiBot
     puts 'Okay! First of all you\'ll need to create a bot account!'
     puts 'To do that, go here -> https://discordapp.com/developers/applications/me <-'
     puts 'And login to your Discord account! Then follow the instructions to make a new app'
-    puts 'After you have your app, scroll down to the Bot section and click the blue button ' \
-      'labelled "Create a bot user"'
+    puts 'After you have your app, select the "Bot" tab and click the blue button ' \
+      'labelled "Add Bot"'
     puts 'Then click "click to reveal" next to \'Token:\' and copy the long string inside!'
     print 'Please paste that string here: '
     token = gets.chomp
 
     puts '-=-=-=-=-=-=-=-=-=-=-=-=-=-=-'
-    puts 'Awesome! Now you\'ll need to head to the top of the page and fetch the Client ID, ' \
-      'which should be a long number.'
+    puts 'Awesome! Now you\'ll need to head back to the "General information" tab' \
+      'and fetch the Client ID, which should be a long number.'
     print 'And paste that here: '
     appid = gets.chomp
 
@@ -53,8 +53,8 @@ module YuukiBot
     puts 'Nice! This will make you the owner of the bot and allow you to control things ' \
       'and add more owners through commands.'
 
-    puts "\nPLEASE NOTE THAT NOT ALL INFORMATION IS COVERED WITH THIS GUIDE"
-    puts 'Please check config/config.sample.yml and config.yml to fine-tune the options.'
+    puts "\nPlease note that there's more to verything configured above!"
+    puts 'Check config/config.sample.yml and config.yml to fine-tune the options.'
 
     puts "\n We're now collating the information and generating a configuration file..."
     newconfig['token'] = token

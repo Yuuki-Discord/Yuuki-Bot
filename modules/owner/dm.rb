@@ -15,7 +15,6 @@ module YuukiBot
                   end
 
       event.bot.channel(target_id).send_embed do |embed|
-        embed.url = 'https://discordapp.com'
         embed.description = event.message.content
         embed.timestamp = Time.now
         embed.author = Discordrb::Webhooks::EmbedAuthor.new(
@@ -44,7 +43,6 @@ module YuukiBot
 
         channel.send_embed do |embed|
           # embed.colour = 0xd9ea6e
-          embed.url = 'https://discordapp.com'
           embed.description = reply
           embed.timestamp = Time.now
           embed.author = Discordrb::Webhooks::EmbedAuthor.new(

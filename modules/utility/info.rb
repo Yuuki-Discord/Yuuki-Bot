@@ -174,7 +174,7 @@ module YuukiBot
         uptime_ms = (Time.now - YuukiBot.launch_time) * 1000
 
         event.respond("I was launched on `#{YuukiBot.launch_time.asctime} UTC`\n" \
-          "This means I have been online for `#{ms_to_time(uptime_ms)}` (`#{uptime_ms.floor}ms`)")
+          "This means I have been running for `#{ms_to_time(uptime_ms)}` (`#{uptime_ms.floor}ms`)")
       end
     )
   end
