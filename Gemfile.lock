@@ -7,7 +7,7 @@ GIT
 
 GIT
   remote: https://github.com/discordrb/discordrb.git
-  revision: 2c2b50e32c055aa8288b34644346a10696d5efa1
+  revision: 44f93948a812e06b439968c6b072c0d9b749a842
   specs:
     discordrb (3.3.0)
       discordrb-webhooks (~> 3.3.0)
@@ -45,7 +45,7 @@ GEM
     netrc (0.11.0)
     opus-ruby (1.0.1)
       ffi
-    pry (0.13.0)
+    pry (0.13.1)
       coderay (~> 1.1)
       method_source (~> 1.0)
     rainbow (3.0.0)
@@ -72,6 +72,7 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.7)
+    unf_ext (0.0.7.7-x64-mingw32)
     websocket (1.2.8)
     websocket-client-simple (0.3.0)
       event_emitter
