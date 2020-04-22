@@ -9,7 +9,7 @@ module YuukiBot
       code: proc { |event, _|
         event.respond('This command has been removed!')
       },
-      triggers: %w[zalgo command angry space
+      triggers: %w[zalgo command angry space cats
                    tell randommovie owner dump translate]
     )
   end
