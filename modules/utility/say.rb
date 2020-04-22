@@ -5,10 +5,9 @@ module YuukiBot
   module Utility
     YuukiBot.crb.add_command(
       :say,
-      code: proc { |_, args|
-        args.join(' ')
-        # new_msg = event.respond(Helper.filter_everyone(message))
-        # Helper.map_say(event.channel.id, event.message.id, new_msg.id)
+      code: proc { |event, args|
+        message = args.join(' ')
+        event.respond(Helper.filter_everyone(message))
       },
       triggers: %w[say echo talk repeat],
       min_args: 1,
