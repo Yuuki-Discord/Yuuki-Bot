@@ -22,6 +22,14 @@ module YuukiBot
           next
         end
 
+        if !Helper.allowed_to_mod(event.bot.profile.on(event.server), member.on(event.server))
+          event << "#{error} I don't have permission to kick that user!"
+          next
+        elsif !Helper.allowed_to_mod(event.user, member.on(event.server))
+          event << "#{error} You don't have permission to kick that user!"
+          next
+        end
+
         # Attempt to warn the user.
         user_message = "You have been kicked from the server **#{event.server.name}** " \
           "by #{event.message.author.mention} | **#{event.message.author.display_name}**\n" \
@@ -36,8 +44,7 @@ module YuukiBot
         begin
           event.server.kick(member)
         rescue Discordrb::Errors::NoPermission
-          event << "#{error} I don't have permission to kick that user!\n" \
-            'Cancelling kick...'
+          event << "#{error} I don't have permission to kick that user!\n"
           next
         end
         event << " #{YuukiBot.config['emoji_success']} #{member.name} has been ejected."
@@ -62,8 +69,17 @@ module YuukiBot
            'Did you mention a user?'
           next
         end
+
+        if !Helper.allowed_to_mod(event.bot.profile.on(event.server), member.on(event.server))
+          event << "#{error} I don't have permission to ban that user!"
+          next
+        elsif !Helper.allowed_to_mod(event.user, member.on(event.server))
+          event << "#{error} You don't have permission to ban that user!"
+          next
+        end
+
         message = "You have been **permanently banned** from the server `#{event.server.name}` " \
-          "by #{event.message.author.mention} | **#{event.message.author.display_name}**\n" \
+          "by #{event.user.mention} | **#{event.user.display_name}**\n" \
           "They gave the following reason: ``#{args.drop(1).join(' ')}``\n\n" \
           'If you wish to appeal your ban, please contact this person, or the server owner.'
         begin
