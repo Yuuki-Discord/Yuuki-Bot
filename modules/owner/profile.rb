@@ -33,7 +33,12 @@ module YuukiBot
           begin
             event.bot.profile.name = username
           rescue StandardError => e
-            event.respond("#{error} An error has occured!\n```ruby\n#{e}```")
+            error_embed = Helper.error_embed(
+              footer: "Command: `#{event.message.content}`",
+              error: e,
+              code_error: true
+            )
+            event.channel.send_message('', false, error_embed)
             next
           end
 

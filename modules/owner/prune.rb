@@ -46,41 +46,5 @@ module YuukiBot
       owner_override: true,
       max_args: 1
     )
-
-    YuukiBot.crb.add_command(
-      :pruneuser,
-      code: proc { |event, args|
-        begin
-          user = event.bot.parse_mention(args[0])
-          num = args[1]
-          num = 75 if num.nil?
-          count = 0
-          msgs = {}
-          event.channel.history(num).each do |x|
-            if x.author.id == user.id
-              msgs.push(x.id)
-              count += 1
-            end
-          end
-          Discordrb::API::Channel.bulk_delete_messages(event.bot.token, event.channel.id, msgs)
-
-          tickbox = YuukiBot.config['emoji_tickbox']
-          event.respond("#{tickbox} Pruned #{count} messages by **#{user.distinct}** !")
-        rescue Discordrb::Errors::NoPermission
-          error = YuukiBot.config['emoji_error']
-          event.respond("#{error} I don't have permission to delete messages!")
-        end
-      },
-      triggers: [
-        'pruneuser',
-        'cleanupuser',
-        'purgeuser',
-        'cleanup user',
-        'purge user'
-      ],
-      required_permissions: [:manage_messages],
-      owner_override: true,
-      max_args: 1
-    )
   end
 end
