@@ -12,8 +12,9 @@ module YuukiBot
     puts 'You don\'t have a valid config file!'
     puts 'If you want to create a config file manually, please stop this program with Ctrl+C ' \
       'and follow the instructions in config/README.md.'
-    puts 'Waiting 3 seconds...'
-    sleep 3
+    puts 'Press any key to continue!'
+    STDIN.getch
+
     # Initialise a fresh set of configuration options.
     newconfig = YAML.load_file('config/config.sample.yml')
     puts '-=-=-=-=-=-=-=-=-=-=-=-=-=-=-'
