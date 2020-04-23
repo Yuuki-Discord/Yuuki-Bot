@@ -81,9 +81,8 @@ module YuukiBot
 
         if user.nil?
           error_embed = Helper.error_embed(
-            error: "Error unknown. Details:\n`User is nil or not found.`",
+            error: "Error:\n`User is nil or not found.`",
             footer: "Command: `#{event.message.content}`",
-            colour: 0xFA0E30,
             code_error: false
           )
           event.channel.send_message('', false, error_embed)
