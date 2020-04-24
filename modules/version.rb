@@ -4,5 +4,5 @@ module YuukiBot
   class << self
     attr_reader :version
   end
-  @version = 4.3
+  @version = 4.4
 end

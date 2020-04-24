@@ -1,8 +1,9 @@
+# frozen_string_literal: true
+
 # Copyright Erisa A. (erisa.moe) 2016-2020
 
 module YuukiBot
   module Helper
-
     def self.isadmin?(member)
       Commandrb.owners.include?(member)
     end
@@ -10,38 +11,46 @@ module YuukiBot
     def self.quit(status = 0)
       puts 'Exiting...'
       begin
-        $cbot.bot.stop
-      rescue
-        $cbot.bot.invisible
+        YuukiBot.crb.bot.stop
+      rescue StandardError
+        YuukiBot.crb.bot.invisible
       end
       exit(status)
     end
 
     def self.ctrl_c(type)
       puts "[WARN] #{type} detected, safely shutting down...."
-      $cbot.bot.stop
+      YuukiBot.crb.bot.stop
       exit(0)
     end
     trap('SIGINT') { ctrl_c('SIGINT') }
     trap('SIGTERM') { ctrl_c('SIGTERM') }
 
     def self.role_from_name(server, rolename)
-      return server.roles.select { |r| r.name == rolename }.first
+      server.roles.select { |r| r.name == rolename }.first
     end
 
     # Get the user's color
-    def self.colour_from_user(member, default = 0)
-      colour = default
+    def self.colour_from_user(member, default = -1)
+      return default if member.nil? || !member.is_a?(Discordrb::Member)
+
+      color = default
       unless member.nil?
-        member.roles.sort_by(&:position).reverse.each do | role |
-          next if role.color.combined == 0
-          puts 'Using ' + role.name + '\'s color ' + role.color.combined.to_s if YuukiBot.config['debug'] rescue nil
-          colour = role.colour.combined
+        member.roles.sort_by(&:position).reverse.each do |role|
+          next if role.color.combined.zero?
+
+          begin
+            if YuukiBot.config['debug']
+              puts 'Using ' + role.name + '\'s color ' + role.color.combined.to_s
+            end
+          rescue StandardError
+            nil
+          end
+          color = role.color.combined
           break
         end
       end
-      return colour
+      color
     end
-
   end
 end

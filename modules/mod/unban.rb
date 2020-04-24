@@ -1,26 +1,36 @@
+# frozen_string_literal: true
+
 # Copyright Erisa A. (erisa.moe) 2016-2020
 
 module YuukiBot
   module Mod
-
-    $cbot.add_command(:unban,
+    YuukiBot.crb.add_command(
+      :unban,
       code: proc { |event, args|
+        error = YuukiBot.config['emoji_error']
+
         target_id = args[0]
-        target = event.server.bans.select { |x| x.id == target_id }
-        if target == [] or target.nil?
-          event.respond("#{YuukiBot.config['emoji_error']} Failed to find user with ID `#{target_id}!`")
-          break
+        # Only one ID should match.
+        target_group = event.server.bans.select { |x| x.user.id.to_s == target_id }
+        if (target_group == []) || target_group.nil?
+          event.respond("#{error} Failed to find ban for user with ID `#{target_id}!`")
+          next
         end
+
+        target_user = target_group[0].user
+
         begin
-          event.server.unban(target)
+          event.server.unban(target_user)
         rescue Discordrb::Errors::NoPermission
-          event.respond("#{YuukiBot.config['emoji_error']} I don't have permission to unban #{target.name}!")
+          event.respond("#{error} I don't have permission to unban #{target_user.name}!")
+          next
         end
+
+        event.respond("#{YuukiBot.config['emoji_success']} Unbanned #{target_user.name}!")
       },
       max_args: 1,
       server_only: true,
       required_permissions: [:ban_members]
     )
-
   end
 end

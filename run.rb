@@ -1,12 +1,19 @@
-$launch_time = Time.now
+# frozen_string_literal: true
 
 module YuukiBot
+  class << self
+    attr_reader :uploader
+    attr_reader :launch_time
+    attr_accessor :crb
+  end
+  @launch_time = Time.now
+
   require 'haste'
   require 'open-uri'
   require 'redis'
   require 'redis-namespace'
   require 'json'
-  
+
   if ENV['COMMANDRB_PATH'].nil?
     require 'commandrb'
   else
@@ -24,26 +31,26 @@ module YuukiBot
   require_relative 'modules/version'
 
   class CommandrbBot < CommandrbBot
-    def is_owner?(id)
+    def owner?(id)
       if YuukiBot.config['master_owner'].to_i == id
         true
       else
-		    Helper.owners.include?(id)
+        Helper.owners.include?(id)
       end
     end
   end
 
   init_hash = YuukiBot.build_init
 
-  $cbot = CommandrbBot.new(init_hash)
+  @crb = CommandrbBot.new(init_hash)
 
-  module_dirs = %w(owner helper logging misc mod utility)
-  module_dirs.each {|dir|
-    Dir["modules/#{dir}/*.rb"].each { |r|
-     require_relative r
-     puts "Loaded: #{r}" if @config['verbose']
-    }
-  }
+  module_dirs = %w[owner helper logging misc mod utility]
+  module_dirs.each do |dir|
+    Dir["modules/#{dir}/*.rb"].each do |r|
+      require_relative r
+      puts "Loaded: #{r}" if @config['verbose']
+    end
+  end
 
   require_relative 'modules/custom'
   puts 'Loaded custom commands!'
@@ -51,27 +58,41 @@ module YuukiBot
   # Load Extra Commands if enabled.
   if YuukiBot.config['extra_commands']
     puts 'Loading: Extra commands...' if @config['verbose']
-    Dir['modules/extra/*.rb'].each { |r| require_relative r; puts "Loaded: #{r}" if @config['verbose'] }
+    Dir['modules/extra/*.rb'].each do |r|
+      require_relative r
+      puts "Loaded: #{r}" if @config['verbose']
+    end
   end
 
-  # I cant think of a better way to this and honestly all this code is going to be abandoned soon.
-  # forgive me, for i have sinned
-  if YuukiBot.config['redis_password'].nil? or YuukiBot.config['redis_password'] == 'nil'
-    orig_redis = Redis.new(host: YuukiBot.config['redis_host'], port: YuukiBot.config['redis_port'])
-  else
-    orig_redis = Redis.new(host: YuukiBot.config['redis_host'], port: YuukiBot.config['redis_port'], password: YuukiBot.config['redis_password'])
-  end
+  # Check if the key redis_password exists or is string literal 'nil'
+  # If so, set it!
+  redis_password = YuukiBot.config['redis_password']
+  orig_redis = if redis_password.nil? || (redis_password == 'nil')
+                 Redis.new(
+                   host: YuukiBot.config['redis_host'],
+                   port: YuukiBot.config['redis_port']
+                 )
+               else
+                 Redis.new(
+                   host: YuukiBot.config['redis_host'],
+                   port: YuukiBot.config['redis_port'],
+                   password: redis_password
+                 )
+               end
 
-  REDIS = Redis::Namespace.new(YuukiBot.config['redis_namespace'], :redis => orig_redis )
+  REDIS = Redis::Namespace.new(
+    YuukiBot.config['redis_namespace'],
+    redis: orig_redis
+  )
 
   puts '>> Initial loading succesful!! <<'
-  $uploader =  Haste::Uploader.new("https://paste.erisa.moe" )
+  @uploader = Haste::Uploader.new(@config['hastebin_instance_url'])
   if YuukiBot.config['use_pry']
-    $cbot.bot.run(true)
+    @crb.bot.run(true)
     require 'pry'
     binding.pry
   else
     puts 'Connecting to Discord....'
-    $cbot.bot.run
+    @crb.bot.run
   end
 end
