@@ -89,6 +89,10 @@ donate_urls:
   - <https://ko-fi.com/ErisaMoe>
 # - <https://paypal.me/your_name_here>
 
+# If your eval/bash/etc output is larger than what can be sent on Discord,
+# it'll be uploaded to the Hastebin instance specified below.
+hastebin_instance_url: https://paste.erisa.moe
+
 ##~~~ (: DONT TOUCH THIS PART :) ~~~##
 
 # Init options, if unsure please leave alone to avoid accidental catastrophes.

@@ -1,7 +1,7 @@
 This folder contains multiple files used for basic custom commands.
 For each file there will be a `.sample.` version available. Remove the `.sample.` from the name to use the file, then adjust it according to your needs. Most of these files achieve the same purposes, but some are more complex than others.
 
-Custom text commands can only show static strings for now, with the exception of the ones in the .rb files, which can show some dynamic content, but custom.rb won't be able to access the `event`, however you can still access the Commandrb bot object using `$cbot`.
+Custom text commands can only show static strings for now, with the exception of the ones in the .rb files, which can show some dynamic content, but custom.rb won't be able to access the `event`, however you can still access the Commandrb bot object using `YuukiBot.crb`.
 
 ## Files:
 

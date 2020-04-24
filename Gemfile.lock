@@ -1,13 +1,13 @@
 GIT
   remote: https://github.com/Yuuki-Discord/commandrb.git
-  revision: c5b83935544641c79e293e7a5e2720bb190f26ad
+  revision: 3c18c1028ddce3755d6491610deddbed2fda4516
   specs:
     commandrb (0.4.7.2)
       discordrb (~> 3.1, >= 3.1.0)
 
 GIT
   remote: https://github.com/discordrb/discordrb.git
-  revision: 2c2b50e32c055aa8288b34644346a10696d5efa1
+  revision: 44f93948a812e06b439968c6b072c0d9b749a842
   specs:
     discordrb (3.3.0)
       discordrb-webhooks (~> 3.3.0)
@@ -28,8 +28,8 @@ GEM
     event_emitter (0.2.6)
     faraday (0.17.3)
       multipart-post (>= 1.2, < 3)
-    ffi (1.12.1)
-    ffi (1.12.1-x64-mingw32)
+    ffi (1.12.2)
+    ffi (1.12.2-x64-mingw32)
     haste (0.2.3)
       faraday (~> 0.9)
       json
@@ -37,7 +37,7 @@ GEM
     http-cookie (1.0.3)
       domain_name (~> 0.5)
     json (2.3.0)
-    method_source (0.9.2)
+    method_source (1.0.0)
     mime-types (3.3.1)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2019.1009)
@@ -45,10 +45,9 @@ GEM
     netrc (0.11.0)
     opus-ruby (1.0.1)
       ffi
-    pomf.rb (1.0.0)
-    pry (0.12.2)
-      coderay (~> 1.1.0)
-      method_source (~> 0.9.0)
+    pry (0.13.1)
+      coderay (~> 1.1)
+      method_source (~> 1.0)
     rainbow (3.0.0)
     rake (13.0.1)
     redis (4.1.3)
@@ -68,11 +67,12 @@ GEM
     rqrcode (1.1.2)
       chunky_png (~> 1.0)
       rqrcode_core (~> 0.1)
-    rqrcode_core (0.1.1)
+    rqrcode_core (0.1.2)
     rumoji (0.5.0)
     unf (0.1.4)
       unf_ext
-    unf_ext (0.0.7.6)
+    unf_ext (0.0.7.7)
+    unf_ext (0.0.7.7-x64-mingw32)
     websocket (1.2.8)
     websocket-client-simple (0.3.0)
       event_emitter
@@ -86,7 +86,6 @@ DEPENDENCIES
   commandrb!
   discordrb!
   haste
-  pomf.rb
   pry
   rainbow
   rake
