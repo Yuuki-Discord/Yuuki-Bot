@@ -36,12 +36,15 @@ The creator(s) of this code accept no responsibility for any repercussions that 
 
 # Credits
 
-Kudos to the following users for helping me ([Erisa](https://github.com/Erisa)) out:
-
+### Developers
+- [Erisa](https://github.com/Erisa)
 - [Spotlight](https://github.com/spotlightishere)
-- [luigoalma](https://github.com/luigoalma), for ideas and help early in development. :3
-- [megumi](https://github.com/megumisonoda)
-- [meew0](https://github.com/meew0/) for [Discordrb](https://github.com/meew0/discordrb)
+
+### Contributors
+- [luigoalma](https://github.com/luigoalma)
+- [Larsenv](https://github.com/Larsenv)
+- [ry00001](https://github.com/ry00001)
+
+### Upstream developers
 - [edwardslabs](https://github.com/edwardslabs) for [CloudBot](https://github.com/edwardslabs/CloudBot/)
-- [ry00001](https://github.com/ry00001) for [Commandorobo](https://github.com/ry00001/commandorobo)
-- [Baatthew](https://github.com/Baatthew), the hero that everyone deserves.
+- [meew0](https://github.com/meew0/) for [Discordrb](https://github.com/meew0/discordrb)
