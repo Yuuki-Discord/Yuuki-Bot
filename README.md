@@ -22,7 +22,7 @@ You can find a [list of commands on the wiki](https://github.com/yuuki-discord/Y
 ## Updating
 1. Pull any changes from the repo: `git pull`
 2. Check any config changes. Open `config/config.yml.example` and see if any new information is needed in your `config/config.yml.example`
-3. Update the bundle: `bundle update`
+3. Install the new dependancies: `bundle install`
 4. Run the bot: `sh run_linux.sh` or `run_windows.bat`
 
 Please report any issues to Erisa | `<@228574821590499329>` on Discord, or open an [Issue](https://github.com/yuuki-discord/Yuuki-Bot/issues)! <br />
