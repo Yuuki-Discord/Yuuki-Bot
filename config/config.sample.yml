@@ -53,7 +53,7 @@ emoji_warning: ⚠
 emoji_clear: 🚮
 emoji_success: 👌
 
-# Uncomment to use Discord Bots style tick-box and errors.
+# Uncomment to use Discord Bots style tickbox and errors.
 # Only works if this bot is in Discord Bots[1] (which an obvious clone shouldn't be!)
 # Alternatively upload the emote images to your own server and change the IDs.
 # [1]: https://discord.bots.gg/
