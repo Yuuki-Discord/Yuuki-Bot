@@ -44,7 +44,7 @@ module YuukiBot
 
   @crb = CommandrbBot.new(init_hash)
 
-  module_dirs = %w[owner helper logging misc mod utility]
+  module_dirs = %w[owner helper logging misc mod statistics utility]
   module_dirs.each do |dir|
     Dir["modules/#{dir}/*.rb"].each do |r|
       require_relative r

@@ -1,0 +1,64 @@
+# frozen_string_literal: true
+
+module YuukiBot
+  module Statistics
+    class DiscordBots < GenericService
+      require 'json'
+
+      attr_accessor :api_key
+
+      API_DOMAIN = URI.parse('https://discord.bots.gg')
+      API_BASE = '/api/v1'
+
+      def service_name
+        'Discord Bots'
+      end
+
+      def config_key
+        'discord_bots_api_key'
+      end
+
+      def check_registration(bot)
+        @api_key = YuukiBot.config[config_key]
+        raise ServiceMissingTokenError.new, false if @api_key.nil? || @api_key.empty?
+
+        # Send an empty (yet authenticated) request to test for errors.
+        id = bot.bot_user.id
+        res = send_statistics_request(id, '')
+
+        # Token and related authentication errors stem from this.
+        raise ServiceInvalidTokenError if res.class == Net::HTTPUnauthorized
+
+        # This is what we want - this route fails regarding
+        # syntax if authenticated.
+        return nil if res.class == Net::HTTPBadRequest
+
+        # All other errors come down to this.
+        raise ServiceGivenError.new res.code, res.body
+      end
+
+      def register_statistics(bot)
+        # TODO: If sharding is desired, please account for that + its shard ID.
+        # See https://discord.bots.gg/docs/endpoints in the future.
+        send_statistics_request bot.bot_user.id, {
+          guildCount: bot.servers.length
+        }.to_json
+      end
+
+      def send_statistics_request(id, contents)
+        statistics_route_path = "#{API_BASE}/bots/#{id}/stats"
+
+        request = Net::HTTP::Post.new(statistics_route_path)
+        request['Authorization'] = @api_key
+        request['Content-Type'] = 'application/json'
+        request.body = contents
+
+        http = Net::HTTP.new(API_DOMAIN.host, API_DOMAIN.port)
+        http.use_ssl = true
+
+        # Return full response
+        http.request(request)
+      end
+    end
+  end
+end
