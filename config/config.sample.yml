@@ -53,10 +53,10 @@ emoji_warning: ⚠
 emoji_clear: 🚮
 emoji_success: 👌
 
-# Uncomment to use Discord Bots style tickbox and errors.
-# Only works if bot is in Discord Bots (Which an obvious clone shouldnt be!)
+# Uncomment to use Discord Bots style tick-box and errors.
+# Only works if this bot is in Discord Bots[1] (which an obvious clone shouldn't be!)
 # Alternatively upload the emote images to your own server and change the IDs.
-# https://discord.bots.gg/
+# [1]: https://discord.bots.gg/
 
 # emoji_tickbox: <:check:314349398811475968>
 # emoji_error: <:xmark:314349398824058880>
@@ -92,6 +92,9 @@ donate_urls:
 # If your eval/bash/etc output is larger than what can be sent on Discord,
 # it'll be uploaded to the Hastebin instance specified below.
 hastebin_instance_url: https://paste.erisa.moe
+
+# API key for the bot listing service https://discord.bots.gg
+discord_bots_api_key: ''
 
 ##~~~ (: DONT TOUCH THIS PART :) ~~~##
 

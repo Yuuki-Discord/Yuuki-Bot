@@ -159,6 +159,8 @@ module YuukiBot
                                            rescue StandardError
                                              event.bot.invite_url
                                            end}"
+        puts '[READY] Starting guild statistics...'
+        YuukiBot::Statistics.register_statistics_callbacks event.bot
       }
     }
     init_hash
