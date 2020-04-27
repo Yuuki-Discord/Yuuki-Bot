@@ -6,6 +6,7 @@ module YuukiBot
       require 'json'
 
       attr_accessor :api_key
+      attr_accessor :server_count
 
       API_DOMAIN = URI.parse('https://discord.bots.gg')
       API_BASE = '/api/v1'
@@ -38,11 +39,15 @@ module YuukiBot
       end
 
       def register_statistics(bot)
+        count = bot.servers.length
+        return if count == @server_count
+
         # TODO: If sharding is desired, please account for that + its shard ID.
         # See https://discord.bots.gg/docs/endpoints in the future.
         send_statistics_request bot.bot_user.id, {
-          guildCount: bot.servers.length
+            guildCount: count
         }.to_json
+        @server_count = count
       end
 
       def send_statistics_request(id, contents)
