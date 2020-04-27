@@ -45,7 +45,7 @@ module YuukiBot
         # TODO: If sharding is desired, please account for that + its shard ID.
         # See https://discord.bots.gg/docs/endpoints in the future.
         send_statistics_request bot.bot_user.id, {
-            guildCount: count
+          guildCount: count
         }.to_json
         @server_count = count
       end
