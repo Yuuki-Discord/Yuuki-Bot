@@ -94,6 +94,16 @@ module YuukiBot
       puts 'Added fun command for fact!' if YuukiBot.config['verbose']
 
       YuukiBot.crb.add_command(
+        :cats,
+        code: proc { |event, _|
+          json_string = URI.open('https://catfact.ninja/fact').read
+          array = JSON.parse(json_string, symbolize_names: true)
+          event.respond(array[:fact].to_s)
+        }
+      )
+      
+      puts 'Added fun command for cats!' if YuukiBot.config['verbose']
+      YuukiBot.crb.add_command(
         :catgifs,
         code: proc { |event, _|
           gif_url = nil
