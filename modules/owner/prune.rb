@@ -17,7 +17,7 @@ module YuukiBot
               count += 1
             end
           end
-          unless @count.zero?
+          unless count.zero?
             Discordrb::API::Channel.bulk_delete_messages(event.bot.token, event.channel.id, msgs)
           end
         else
