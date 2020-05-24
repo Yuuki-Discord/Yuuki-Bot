@@ -101,7 +101,7 @@ module YuukiBot
           event.respond(array[:fact].to_s)
         }
       )
-      
+
       puts 'Added fun command for cats!' if YuukiBot.config['verbose']
       YuukiBot.crb.add_command(
         :catgifs,
