@@ -24,7 +24,7 @@ module YuukiBot
         raise ServiceMissingTokenError.new, false if @api_key.nil? || @api_key.empty?
 
         # Send an empty (yet authenticated) request to test for errors.
-        id = bot.bot_user.id
+        id = bot.bot_user
         res = send_statistics_request(id, '')
 
         # Token and related authentication errors stem from this.
@@ -44,18 +44,20 @@ module YuukiBot
 
         # TODO: If sharding is desired, please account for that + its shard ID.
         # See https://discord.bots.gg/docs/endpoints in the future.
-        send_statistics_request bot.bot_user.id, {
+        send_statistics_request bot.bot_user, {
           guildCount: count
         }.to_json
         @server_count = count
       end
 
-      def send_statistics_request(id, contents)
-        statistics_route_path = "#{API_BASE}/bots/#{id}/stats"
+      def send_statistics_request(profile, contents)
+        statistics_route_path = "#{API_BASE}/bots/#{profile.id}/stats"
 
         request = Net::HTTP::Post.new(statistics_route_path)
         request['Authorization'] = @api_key
         request['Content-Type'] = 'application/json'
+        request['User-Agent'] = "#{profile.username}-#{profile.discrim}/#{YuukiBot.version} (discordrb; +https://github.com/Yuuki-Discord/Yuuki-Bot) DBots/#{profile.id}"
+        
         request.body = contents
 
         http = Net::HTTP.new(API_DOMAIN.host, API_DOMAIN.port)
