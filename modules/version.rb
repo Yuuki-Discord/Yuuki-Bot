@@ -1,8 +1,11 @@
 # frozen_string_literal: true
 
+require 'English'
+
 module YuukiBot
   class << self
     attr_reader :version
   end
-  @version = 4.4
+  @version = `git describe --long --tags --dirty --always`.strip
+  @version = 'v4.4-unknown' unless $CHILD_STATUS.success?
 end

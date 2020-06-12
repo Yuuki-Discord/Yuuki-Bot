@@ -6,6 +6,7 @@ module YuukiBot
     YuukiBot.crb.add_command(
       :help,
       code: proc { |event, _|
+        event << "Hello! I am #{event.bot.profile.username} `#{YuukiBot.version}`"
         event << if YuukiBot.config['show_help']
                    "Follow this link for basic help: ** 🔗 #{YuukiBot.config['help_url']}**"
                  else
