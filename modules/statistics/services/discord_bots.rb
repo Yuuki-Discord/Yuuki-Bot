@@ -56,8 +56,8 @@ module YuukiBot
         request = Net::HTTP::Post.new(statistics_route_path)
         request['Authorization'] = @api_key
         request['Content-Type'] = 'application/json'
-        request['User-Agent'] = "#{profile.username}-#{profile.discrim}/#{YuukiBot.version}
-         (discordrb; +https://github.com/Yuuki-Discord/Yuuki-Bot) DBots/#{profile.id}"
+        request['User-Agent'] = "#{profile.username}-#{profile.discrim}/#{YuukiBot.version}" \
+        "(discordrb; +https://github.com/Yuuki-Discord/Yuuki-Bot) DBots/#{profile.id}"
 
         request.body = contents
 
