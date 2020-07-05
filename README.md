@@ -8,7 +8,7 @@ You can find a [list of commands on the wiki](https://github.com/yuuki-discord/Y
 # Self-Hosting
 
 ## Requirements
-- Ruby 2.3.1+ (Due to a bug in the Ruby interpreter, this bot won't work correctly with lower versions.)
+- Ruby 2.4.0+
 - bundler (`gem install bundler`)
 
 ## Install
