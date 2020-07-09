@@ -5,11 +5,11 @@
 module YuukiBot
   module Owner
     YuukiBot.crb.add_command(
-      :oldeval,
+      :raweval,
       code: proc { |event, args|
         event.respond(eval(args.join(' ')))
       },
-      triggers: ['raweval ', 'oldeval '],
+      triggers: ['raweval '],
       owners_only: true
     )
 
