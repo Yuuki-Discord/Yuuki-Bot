@@ -1,8 +1,8 @@
 GIT
   remote: https://github.com/Yuuki-Discord/commandrb.git
-  revision: 4fdb921327f320d100ecd1f2323c57140050eaf5
+  revision: e508b780446c964ef5abffbfd8053c2e9d22ba4e
   specs:
-    commandrb (0.4.7.2)
+    commandrb (0.4.8.0)
       discordrb (~> 3.1, >= 3.1.0)
 
 GIT
@@ -36,7 +36,7 @@ GEM
     http-accept (1.7.0)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
-    json (2.3.0)
+    json (2.3.1)
     method_source (1.0.0)
     mime-types (3.3.1)
       mime-types-data (~> 3.2015)
@@ -72,7 +72,6 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.7)
-    unf_ext (0.0.7.7-x64-mingw32)
     websocket (1.2.8)
     websocket-client-simple (0.3.0)
       event_emitter
