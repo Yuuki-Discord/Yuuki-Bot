@@ -5,12 +5,13 @@
 module YuukiBot
   module Owner
     YuukiBot.crb.add_command(
-      :oldeval,
+      :raweval,
       code: proc { |event, args|
         event.respond(eval(args.join(' ')))
       },
-      triggers: ['raweval ', 'oldeval '],
-      owners_only: true
+      triggers: ['raweval '],
+      owners_only: true,
+      description: 'Evaluates a Ruby command but sends the output with no formatting.'
     )
 
     YuukiBot.crb.add_command(
@@ -30,7 +31,7 @@ module YuukiBot
       },
       triggers: ['eval2 ', 'eval'],
       owners_only: true,
-      description: 'Evaluate a Ruby command. Owner only.'
+      description: 'Evaluate a Ruby command.'
     )
 
     YuukiBot.crb.add_command(
