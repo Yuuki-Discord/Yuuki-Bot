@@ -29,10 +29,6 @@ Layout/LineLength:
     - "config/custom/custom.sample.rb"
   Max: 100
 
-Style/GlobalVars:
-  Exclude:
-    - "run.rb"
-
 Security/Open:
   Exclude:
     - "modules/helper/download.rb"
