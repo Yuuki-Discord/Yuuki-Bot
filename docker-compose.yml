@@ -2,6 +2,21 @@ version: '2.3'
 services: 
     yuuki:
         build: .
+        volumes:
+            - type: bind
+              source: ./config
+              target: /usr/src/app/config
+        environment: 
+            # Overrides your configs Redis options for use with Docker Compose
+            #  I don't advise changing this unless you have a strange setup.
+            - REDIS_DOCKER_OVERRIDE=true
+            
+            # I am not 100% sure why I implemented this, but if you like
+            #  environment variables then go for it.
+            # - BOT_TOKEN=EXAMPLEPLEASECHANGE
+            # - BOT_CLIENTID=306142257818632193
+            # - BOT_PREFIX='s!!'
+            # - BOT_OWNER=1234567890123456
     redis:
         image: "redis:alpine"
         volumes:
