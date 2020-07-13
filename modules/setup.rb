@@ -8,22 +8,51 @@ module YuukiBot
   require 'yaml'
   # Load Config from YAML
 
-  unless File.exist?('config/config.yml')
-    puts 'No valid config file found. Please copy config/config.sample.yml
-    to config/config.yml and edit it, or run config.rb.'
+  def self.load_config_yml(filename)
+    target = YAML.load_file(filename)
+    target.each do |key, value|
+      if value.nil?
+        puts "config.yml: #{key} is nil!"
+        puts 'Corrupt or incorrect Yaml.'
+        exit(1)
+      elsif key == 'token'
+        puts 'config.yml: Found: token: [REDACTED]'
+      elsif target['verbose']
+        puts("config.yml: Found #{key}: #{value}")
+      end
+    end
+    target
   end
 
-  @config = YAML.load_file('config/config.yml')
-  @config.each do |key, value|
-    if value.nil?
-      puts "config.yml: #{key} is nil!"
-      puts 'Corrupt or incorrect Yaml.'
-      exit
-    elsif key == 'token'
-      puts 'config.yml: Found: token: [REDACTED]'
-    elsif @config['verbose']
-      puts("config.yml: Found #{key}: #{value}")
+  config_file = 'config/config.yml'
+
+  if File.exist?(config_file)
+    @config = load_config_yml(config_file)
+  else
+    puts '[WARN] No valid config file found.
+    !! Please copy config/config.sample.yml                                     !!
+    !! to config/config.yml and edit it, or run config.rb.                      !!
+    !! If you\'re under Docker, try \'docker-compose run yuuki ruby config.rb\'    !!'
+
+    # Allow a basic setup without a config file.
+    if ENV['BOT_TOKEN'] && ENV['BOT_CLIENTID'] && ENV['BOT_OWNER'] && ENV['BOT_PREFIX']
+      puts '[WARN] Valid environment variables detected. Falling back to these values.'
+
+      # Prefill the defaults from the sample config, then override the required values.
+      @config = load_config_yml('config/config.sample.yml')
+      @config['token'] = ENV['BOT_TOKEN']
+      @config['client_id'] = ENV['BOT_CLIENTID']
+      @config['master_owner'] = ENV['BOT_OWNER']
+      @config['prefixes'] = [ENV['BOT_PREFIX']]
+    else
+      puts '[ERROR] No suitable environment files found, exiting.'
+      exit(1)
     end
+  end
+
+  if ENV['REDIS_DOCKER_OVERRIDE'] == 'true'
+    @config['redis_host'] = 'redis'
+    @config['redis_port'] = 6379
   end
 
   default_haste_instance = 'https://paste.erisa.moe'
