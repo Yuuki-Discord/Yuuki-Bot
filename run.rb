@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+# Mainly for docker, makes the log output a lot more sane.
+STDOUT.sync = true
+
 module YuukiBot
   class << self
     attr_reader :uploader

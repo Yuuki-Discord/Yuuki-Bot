@@ -1,0 +1,11 @@
+version: '2.3'
+services: 
+    yuuki:
+        build: .
+    redis:
+        image: "redis:alpine"
+        volumes:
+            - type: bind
+              source: ./data/redis
+              target: /data
+        command: --appendonly yes

@@ -16,6 +16,10 @@ config/custom/images
 !config/custom/custom.sample.rb
 !config/custom/images/.gitkeep
 
+# And Docker. Why did I do it this way exactly?
+# TODO^
+!docker-compose.yml
+
 # Temporary files.
 tmp/*
 
