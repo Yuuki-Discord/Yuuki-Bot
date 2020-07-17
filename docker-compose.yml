@@ -1,6 +1,8 @@
 version: '2.3'
 services: 
     yuuki:
+        depends_on:
+            - redis
         build: .
         volumes:
             - type: bind
