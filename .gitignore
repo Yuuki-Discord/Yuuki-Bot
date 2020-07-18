@@ -3,22 +3,11 @@ backup-*
 dump.rdb
 
 # Ignore all config files.
-*.yml
+config/config.yml
 config/custom/custom.rb
 config/code.rb
 config/custom/assets/*
 config/custom/images
-
-# Except the supplied samples.
-!*.sample.yml
-!config/dancingletters.yml
-!config/custom/assets/.gitkeep
-!config/custom/custom.sample.rb
-!config/custom/images/.gitkeep
-
-# And Docker. Why did I do it this way exactly?
-# TODO^
-!docker-compose.yml
 
 # Temporary files.
 tmp/*
