@@ -14,9 +14,8 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v1
         with:
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-          registry: docker.pkg.github.com
-          repository: yuuki-discord/yuuki-bot/yuuki-bot
+          username: yuukiuser
+          password: ${{ secrets.DOCKER_TOKEN }}
+          repository: yuukibot/yuukichan
           tag_with_ref: true
           add_git_labels: true
