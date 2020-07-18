@@ -5,7 +5,7 @@ on:
       pull_requests: '*'
 
 jobs:
-  build-and-publish-latest:
+  test-build-latest:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
