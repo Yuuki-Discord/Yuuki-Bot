@@ -10,10 +10,10 @@ jobs:
     docker-build-test:
         runs-on: ubuntu-latest
         steps:
-            - name: Checkout code
+          - name: Checkout code
             uses: actions/checkout@v2
 
-            - name: Test building the Docker image
+          - name: Test building the Docker image
             uses: docker/build-push-action@v1
             with:
                 tag_with_ref: true
