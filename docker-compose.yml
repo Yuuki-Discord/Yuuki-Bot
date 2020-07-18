@@ -4,6 +4,7 @@ services:
         depends_on:
             - redis
         build: .
+        restart: always
         volumes:
             - type: bind
               source: ./config
@@ -21,6 +22,7 @@ services:
             # - BOT_OWNER=1234567890123456
     redis:
         image: "redis:alpine"
+        restart: always
         volumes:
             - type: bind
               source: ./data/redis
