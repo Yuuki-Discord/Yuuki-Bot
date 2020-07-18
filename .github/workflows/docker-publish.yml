@@ -1,20 +1,22 @@
-name: Docker publish
+name: Docker test and publish to Package Registry
 
 on:
     push:
-      branches: 'docker-github'
+      branches: '*'
 
 jobs:
   build-and-publish-latest:
     runs-on: ubuntu-latest
-    # if: github.ref == 'refs/heads/master' # Running this job only for master branch
-
     steps:
-      - uses: actions/checkout@v2 # Checking out the repo
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-      - name: Build and Publish latest Docker image
-        uses: VaultVulp/gp-docker-action@1.1.6
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v1
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }} # Provide GITHUB_TOKEN to login into the GitHub Packages
-          image-name: yuuki-bot # Provide only Docker image name, tag will be automatically set to latest
-          dockerfile: Dockerfile
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          registry: docker.pkg.github.com
+          repository: Yuuki-Discord/Yuuki-Bot
+          tag_with_ref: true
+          add_git_labels: true
