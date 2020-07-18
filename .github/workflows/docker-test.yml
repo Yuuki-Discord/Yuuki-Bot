@@ -1,8 +1,6 @@
 name: Docker test build
 
-on:
-    push:
-      pull_requests: '*'
+on: pull_request
 
 jobs:
   test-build-latest:
