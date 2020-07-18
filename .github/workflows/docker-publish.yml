@@ -2,7 +2,7 @@ name: Docker test and publish to Package Registry
 
 on:
     push:
-      branches: '*'
+      branches: 'master'
 
 jobs:
   build-and-publish:
