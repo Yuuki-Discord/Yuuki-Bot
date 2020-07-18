@@ -45,7 +45,7 @@ module YuukiBot
       @config['master_owner'] = ENV['BOT_OWNER']
       @config['prefixes'] = [ENV['BOT_PREFIX']]
     else
-      puts '[ERROR] No suitable environment files found, exiting.'
+      puts '[ERROR] No suitable environment variables found, exiting.'
       exit(1)
     end
   end
