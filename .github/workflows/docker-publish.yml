@@ -17,6 +17,6 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
           registry: docker.pkg.github.com
-          repository: yuuki-discord/yuuki-bot
+          repository: yuuki-discord/yuuki-bot/yuuki-bot
           tag_with_ref: true
           add_git_labels: true

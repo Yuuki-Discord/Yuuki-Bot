@@ -12,7 +12,7 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v1
         with:
-          repository: yuuki-discord/yuuki-bot
+          repository: yuuki-discord/yuuki-bot/yuuki-bot
           tag_with_ref: true
           add_git_labels: true
           push: false
