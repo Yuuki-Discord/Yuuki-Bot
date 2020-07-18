@@ -10,7 +10,7 @@ module YuukiBot
         event.respond('Goodbye!')
         Helper.quit(0)
       },
-      triggers: ['shutdown', 'bye', 'fuck off', 'die', 'kys', 'go away'],
+      triggers: ['shutdown', 'bye', 'die', 'go away'],
       owners_only: true,
       description: 'Shuts down the bot. Owner only.',
       catch_errors: false
@@ -19,7 +19,7 @@ module YuukiBot
     YuukiBot.crb.add_command(
       :reboot,
       code: proc { |event, _|
-        event.respond 'Rebooting...!'
+        event.respond 'Restarting...!'
         Helper.quit(1)
       },
       triggers: ['reboot', 'restart', 'reload', 'gtfo', 'machine 🅱roke', '🅱achine 🅱roke'],
