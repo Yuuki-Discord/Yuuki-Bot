@@ -46,7 +46,8 @@ or
     - If anything errors, make sure to check the new `config.example.yml` and update your `config.yml` accordingly.
 
 ### Docker
-3. Restart the container if it's running (`docker-compose restart`) or run it if not (`docker-compose up`/`docker-compose up -d`)
+3. Update the containers: `docker-compose pull`
+4. Start or restart the containers: `docker-compose up -d`
 
 ### Standalone
 3. Install/update the gem dependancies: `bundle install`
