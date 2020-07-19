@@ -62,6 +62,8 @@ Enjoy~
 Use of this bot is at your own discretion. The bot's current code is viewable at this repository, feel free to review the code to verify its safety.
 The creator(s) of this code accept no responsibility for any repercussions that occur as a result of adding this bot.
 
+The `yuuki help` command on the publicly running bot should always show the commit hash of the running code (If a version is shown, omit the first `g` after that version to get the commit hash) For example at time of writing the bot returns `990bcb5`, which corresponds to [this code state](https://github.com/Yuuki-Discord/Yuuki-Bot/tree/990bcb55b4a06049db59bb08f16ad582315979bc).
+
 # Credits
 
 ### Developers
