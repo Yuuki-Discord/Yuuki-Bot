@@ -2,9 +2,11 @@ name: RuboCop Linter
 
 on:
   push:
-    branches: '*'
+    branches:
+    - '*'
   pull_request:
-    branches: '*'
+    branches:
+    - '*'
 
 jobs:
   lint:
