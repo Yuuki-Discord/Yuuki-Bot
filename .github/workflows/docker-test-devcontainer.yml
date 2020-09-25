@@ -1,0 +1,26 @@
+name: Docker test build (Devcontainer)
+
+on:
+  push:
+    branches: 
+    - '*'
+
+  pull_request:
+    branches: 
+    - '*'
+
+jobs:
+  test-build-latest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v2
+        with:
+          file: ./.devcontainer/Dockerfile
+          tags: yuukibot/yuukichan
+          push: false
