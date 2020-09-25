@@ -1,0 +1,24 @@
+version: '2.3'
+services: 
+    yuuki:
+        build: .
+        depends_on:
+            - redis
+        restart: on-failure
+        environment:
+            # Overrides your configs Redis options for use with Docker Compose
+            #  I don't advise changing this unless you have a strange setup.
+            - REDIS_DOCKER_OVERRIDE=true
+        volumes:
+            # VSCode workspace mount.
+            - ..:/workspace:cached
+        # Make the container run forever in the background so VSCode can attach with ease.
+        entrypoint: sleep
+        command: infinity 
+    redis:
+        image: "redis:alpine"
+        restart: always
+        volumes:
+            - type: bind
+              source: ./data/redis
+              target: /data

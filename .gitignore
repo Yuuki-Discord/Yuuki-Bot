@@ -1,6 +1,6 @@
 # Bye backups
 backup-*
-dump.rdb
+*.rdb
 
 # Ignore all config files.
 config/config.yml
@@ -8,6 +8,12 @@ config/custom/custom.rb
 config/code.rb
 config/custom/assets/*
 config/custom/images
+
+*.db
+
+# VSCode related things
+.vscode/*
+.devcontainer/data
 
 # Temporary files.
 tmp/*
@@ -122,12 +128,3 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
-
-
-*.db
-
-log/*
-logs/*
-log*
-.vscode/*
-!.rubocop.yml
