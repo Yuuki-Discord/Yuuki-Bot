@@ -19,6 +19,7 @@ services:
         image: "redis:alpine"
         restart: always
         volumes:
-            - type: bind
-              source: ./data/redis
-              target: /data
+            - redisdata:/data
+
+volumes:
+    redisdata:
