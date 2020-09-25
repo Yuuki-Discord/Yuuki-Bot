@@ -5,7 +5,7 @@ RUN bundle config --global frozen 1
 
 WORKDIR /workspace
 
-RUN apt update && apt install -y --no-install-recommends git build-essential redis-tools
+RUN apt update && apt install -y --no-install-recommends git build-essential redis-tools openssh-client
 RUN echo "alias redis-cli='redis-cli -h redis'" > /root/.bashrc
 
 CMD ["sleep", "infinity"]
