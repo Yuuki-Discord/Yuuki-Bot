@@ -13,7 +13,6 @@ config/custom/images
 
 # VSCode related things
 .vscode/*
-.devcontainer/data
 
 # Temporary files.
 tmp/*
