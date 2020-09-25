@@ -23,6 +23,5 @@ jobs:
         with:
           file: ./.devcontainer/Dockerfile
           tags: yuukibot/yuukichan
-          tag_with_ref: true
           add_git_labels: true
           push: false
