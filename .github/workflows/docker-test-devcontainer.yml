@@ -22,7 +22,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           file: ./.devcontainer/Dockerfile
-          repository: yuukibot/yuukichan
+          tags: yuukibot/yuukichan
           tag_with_ref: true
           add_git_labels: true
           push: false
