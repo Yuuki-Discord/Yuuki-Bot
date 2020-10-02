@@ -14,6 +14,9 @@ gem 'rumoji'
 
 group :development, optional: true do
   gem 'debase'
+  gem 'fastri'
   gem 'pry'
+  gem 'rcodetools'
+  gem 'rubocop'
   gem 'ruby-debug-ide'
 end
