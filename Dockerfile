@@ -10,4 +10,4 @@ COPY Gemfile Gemfile.lock ./
 RUN apk update && apk add git build-base && bundle install && apk del --purge build-base
 COPY . .
 
-CMD ["./run_linux.sh"]
+CMD ["./run.rb"]
