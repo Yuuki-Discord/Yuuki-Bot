@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/Yuuki-Discord/commandrb.git
-  revision: e508b780446c964ef5abffbfd8053c2e9d22ba4e
+  revision: 80118e8bddf02969a716af8084fd95a3eca9ce91
   specs:
     commandrb (0.4.8.0)
       discordrb (~> 3.1, >= 3.1.0)
@@ -23,6 +23,9 @@ GEM
   specs:
     chunky_png (1.3.11)
     coderay (1.1.3)
+    debase (0.2.4.1)
+      debase-ruby_core_source (>= 0.10.2)
+    debase-ruby_core_source (0.10.11)
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
     event_emitter (0.2.6)
@@ -68,11 +71,12 @@ GEM
       chunky_png (~> 1.0)
       rqrcode_core (~> 0.1)
     rqrcode_core (0.1.2)
+    ruby-debug-ide (0.7.2)
+      rake (>= 0.8.1)
     rumoji (0.5.0)
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.7)
-    unf_ext (0.0.7.7-x64-mingw32)
     websocket (1.2.8)
     websocket-client-simple (0.3.0)
       event_emitter
@@ -84,6 +88,7 @@ PLATFORMS
 
 DEPENDENCIES
   commandrb!
+  debase
   discordrb!
   haste
   pry
@@ -92,6 +97,7 @@ DEPENDENCIES
   redis
   redis-namespace
   rqrcode
+  ruby-debug-ide
   rumoji
 
 BUNDLED WITH
