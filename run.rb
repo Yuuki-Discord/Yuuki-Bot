@@ -1,4 +1,9 @@
+#!/usr/bin/env ruby
 # frozen_string_literal: true
+
+require 'rubygems'
+require 'bundler/setup'
+Bundler.require(:default)
 
 # Mainly for docker, makes the log output a lot more sane.
 STDOUT.sync = true
@@ -11,25 +16,6 @@ module YuukiBot
   end
   @launch_time = Time.now
 
-  require 'haste'
-  require 'open-uri'
-  require 'redis'
-  require 'redis-namespace'
-  require 'json'
-
-  if ENV['COMMANDRB_PATH'].nil?
-    require 'commandrb'
-  else
-    puts '[INFO] Loading commandrb from Environment location.'
-    require_relative "#{ENV['COMMANDRB_PATH']}/lib/commandrb"
-  end
-
-  if ENV['DISCORDRB_PATH'].nil?
-    require 'discordrb'
-  else
-    puts '[INFO] Loading discordrb from Environment location.'
-    require_relative "#{ENV['DISCORDRB_PATH']}/lib/discordrb"
-  end
   require_relative 'modules/setup'
   require_relative 'modules/version'
 
