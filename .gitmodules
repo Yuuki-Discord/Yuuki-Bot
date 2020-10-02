@@ -2,3 +2,4 @@
 	path = text
 	url = https://github.com/yuuki-discord/text-responses.git
 	branch = master
+	ignore = all
