@@ -1,0 +1,8 @@
+{
+    "ruby.format": "rubocop",
+    "ruby.intellisense": "rubyLocate",
+    "ruby.lint": {
+    "rubocop": true
+    },
+    "editor.tabSize": 2
+}

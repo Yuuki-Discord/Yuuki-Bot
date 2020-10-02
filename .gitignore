@@ -11,9 +11,6 @@ config/custom/images
 
 *.db
 
-# VSCode related things
-.vscode/*
-
 # Temporary files.
 tmp/*
 
