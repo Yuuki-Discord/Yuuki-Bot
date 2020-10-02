@@ -8,7 +8,7 @@
 ## When you're done, save this file as `config.yml` (In the config folder)                           ##
 #######################################################################################################
 
-token: EXAMPLE # Get from https://discordapp.com/developers/applications/me
+token: EXAMPLETOKEN # Get from https://discordapp.com/developers/applications/me
 client_id: 306142257818632193 # Also get from https://discordapp.com/developers/applications/me
 prefixes:
   - "s!!" # Please change.
