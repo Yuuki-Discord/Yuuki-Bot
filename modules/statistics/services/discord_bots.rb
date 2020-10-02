@@ -3,8 +3,6 @@
 module YuukiBot
   module Statistics
     class DiscordBots < GenericService
-      require 'json'
-
       attr_accessor :api_key
       attr_accessor :server_count
 

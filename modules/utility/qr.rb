@@ -4,8 +4,6 @@
 
 module YuukiBot
   module Utility
-    require 'rqrcode'
-
     YuukiBot.crb.add_command(
       :qr,
       code: proc { |event, args|
