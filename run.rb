@@ -16,20 +16,6 @@ module YuukiBot
   end
   @launch_time = Time.now
 
-  if ENV['COMMANDRB_PATH'].nil?
-    require 'commandrb'
-  else
-    puts '[INFO] Loading commandrb from Environment location.'
-    require_relative "#{ENV['COMMANDRB_PATH']}/lib/commandrb"
-  end
-
-  if ENV['DISCORDRB_PATH'].nil?
-    require 'discordrb'
-  else
-    puts '[INFO] Loading discordrb from Environment location.'
-    require_relative "#{ENV['DISCORDRB_PATH']}/lib/discordrb"
-  end
-
   require_relative 'modules/setup'
   require_relative 'modules/version'
 
