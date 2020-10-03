@@ -4,9 +4,6 @@
     "ruby.lint": {
         "rubocop": {
             "useBundler": true
-        },
-        "reek": {
-            "useBundler": true
         }
     },
     "ruby.format": "rubocop",
