@@ -10,8 +10,9 @@ puts 'If you want to create a config file manually, please stop this program wit
 puts 'Press any key to continue!'
 STDIN.getch
 
-# Initialise a fresh set of configuration options.
-newconfig = YAML.load_file('config/config.sample.yml')
+# Load in a fresh state from the sample file. Hopefully this hasn't been changed
+file = File.open('config/config.sample.yml')
+configstring = file.read()
 puts '-=-=-=-=-=-=-=-=-=-=-=-=-=-=-'
 puts 'Okay! First of all you\'ll need to create a bot account!'
 puts 'To do that, go here -> https://discordapp.com/developers/applications/me <-'
@@ -53,11 +54,10 @@ puts "\nPlease note that there's more to verything configured above!"
 puts 'Check config/config.sample.yml and config.yml to fine-tune the options.'
 
 puts "\n We're now collating the information and generating a configuration file..."
-newconfig['token'] = token
-newconfig['client_id'] = appid
-newconfig['prefixes'][0] = prefix
-newconfig['master_owner'] = id
-
-File.write('config/config.yml', newconfig.to_yaml)
+configstring.gsub!('EXAMPLETOKEN', token)
+configstring.gsub!('306142257818632193', appid)
+configstring.gsub!('s!!', prefix)
+configstring.gsub!('1234567890', id)
+File.write('config/config.yml', configstring)
 
 puts 'All done! Feel free to launch the bot now!'
