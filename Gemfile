@@ -17,6 +17,7 @@ group :development, optional: true do
   gem 'fastri'
   gem 'pry'
   gem 'rcodetools'
+  gem 'reek'
   gem 'rubocop'
   gem 'ruby-debug-ide'
 end
