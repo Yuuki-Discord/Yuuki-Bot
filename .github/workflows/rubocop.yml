@@ -4,7 +4,7 @@ name: RuboCop Lint
 on: [push, pull_request]
 
 jobs:
-  build:
+  rubocop-lint:
     runs-on: ubuntu-latest
 
     steps:
