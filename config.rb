@@ -13,6 +13,31 @@ STDIN.getch
 # Load in a fresh state from the sample file. Hopefully this hasn't been changed
 file = File.open('config/config.sample.yml')
 configstring = file.read
+
+# Perform a basic check to make sure the values to replace are present.
+
+# A loose key/value map for the values we're modifying.
+# Only used to inform the user which key has already been changed.
+checks = {
+  "token": 'EXAMPLETOKEN',
+  "client_id": '306142257818632193',
+  "prefix": 's!!',
+  "master_owner": '1234567890'
+}
+
+checks.each do |key, expected_value|
+  next if configstring.include?(expected_value)
+
+  # The script is going to silently fail later so it's better to error out
+  #   and get the user to fix it.
+  # Since it should only happen if the user messes up the file.
+  puts "ERROR: The value for `#{key}` has been changed in config/config.sample.yml"
+  puts 'ERROR: The config sample file should NOT be edited.'
+  puts 'TIP: If you cloned the repository with Git, you can discord local changes'
+  puts 'TIP:   with `git checkout config/config.sample.yml` and try this script again.'
+  exit(1) # Exit with error status, like a good process should.
+end
+
 puts '-=-=-=-=-=-=-=-=-=-=-=-=-=-=-'
 puts 'Okay! First of all you\'ll need to create a bot account!'
 puts 'To do that, go here -> https://discordapp.com/developers/applications/me <-'
