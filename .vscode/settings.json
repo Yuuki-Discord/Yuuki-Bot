@@ -1,10 +1,11 @@
 {
-    "ruby.format": "rubocop",
-    "ruby.intellisense": "rubyLocate",
+    "ruby.useBundler": true,
+    "ruby.useLanguageServer": true,
     "ruby.lint": {
-        "rubocop": true,
-        "ruby": true
+        "rubocop": {
+            "useBundler": true
+        }
     },
-    "editor.tabSize": 2,
-    "ruby.useBundler": true
+    "ruby.format": "rubocop",
+    "ruby.intellisense": "rubyLocate"
 }
