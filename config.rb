@@ -12,7 +12,7 @@ STDIN.getch
 
 # Load in a fresh state from the sample file. Hopefully this hasn't been changed
 file = File.open('config/config.sample.yml')
-configstring = file.read()
+configstring = file.read
 puts '-=-=-=-=-=-=-=-=-=-=-=-=-=-=-'
 puts 'Okay! First of all you\'ll need to create a bot account!'
 puts 'To do that, go here -> https://discordapp.com/developers/applications/me <-'
