@@ -4,7 +4,6 @@ services:
         build: .
         depends_on:
             - redis
-        restart: on-failure
         environment:
             # Overrides your configs Redis options for use with Docker Compose
             #  I don't advise changing this unless you have a strange setup.
@@ -17,7 +16,6 @@ services:
         command: infinity 
     redis:
         image: "redis:alpine"
-        restart: always
         volumes:
             - redisdata:/data
 
