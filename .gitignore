@@ -4,6 +4,7 @@ backup-*
 
 # Ignore all config files.
 config/config.yml
+config/custom/custom.yml
 config/custom/custom.rb
 config/code.rb
 config/custom/assets/*
