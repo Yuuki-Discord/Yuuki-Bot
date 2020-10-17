@@ -26,7 +26,7 @@ For standalone:
 Then either
 ### Docker (Recommended)
 3. Generate a configuration file. You have a few choices:
-    - Run the guided script: `docker run yuuki ./config.rb`
+    - Run the guided script: `docker-compose run yuuki ./config.rb`
     - Create a `config/config.yml` manually: see `config/README.md` for details.
     - Uncomment and edit the environment variables in `docker-compose.yml`
 4. Run the bot: `docker-compose up`  
