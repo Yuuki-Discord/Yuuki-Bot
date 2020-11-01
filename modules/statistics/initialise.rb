@@ -26,19 +26,19 @@ module YuukiBot
       # Use all methods available from its base implementation.
       statistic_classes.each do |handler|
         service_failed = begin
-                           handler.check_registration(bot)
-                           false
-                         rescue NotImplementedError
-                           log 'A service did not have a method implemented! Please debug.'
-                           true
-                         rescue ServiceMissingTokenError
-                           # We do not need to log. This service should be treated as disabled.
-                           true
-                         rescue StandardError => e
-                           log "Service #{handler.service_name} reported an error: #{e.message}"
-                           log e.backtrace.join("\n")
-                           true
-                         end
+          handler.check_registration(bot)
+          false
+        rescue NotImplementedError
+          log 'A service did not have a method implemented! Please debug.'
+          true
+        rescue ServiceMissingTokenError
+          # We do not need to log. This service should be treated as disabled.
+          true
+        rescue StandardError => e
+          log "Service #{handler.service_name} reported an error: #{e.message}"
+          log e.backtrace.join("\n")
+          true
+        end
 
         unless service_failed
           log "Adding #{handler.service_name} as a service!"

@@ -3,8 +3,7 @@
 module YuukiBot
   module Statistics
     class DiscordBots < GenericService
-      attr_accessor :api_key
-      attr_accessor :server_count
+      attr_accessor :api_key, :server_count
 
       API_DOMAIN = URI.parse('https://discord.bots.gg')
       API_BASE = '/api/v1'
@@ -26,11 +25,11 @@ module YuukiBot
         res = send_statistics_request(id, '')
 
         # Token and related authentication errors stem from this.
-        raise ServiceInvalidTokenError if res.class == Net::HTTPUnauthorized
+        raise ServiceInvalidTokenError if res.instance_of?(Net::HTTPUnauthorized)
 
         # This is what we want - this route fails regarding
         # syntax if authenticated.
-        return nil if res.class == Net::HTTPBadRequest
+        return nil if res.instance_of?(Net::HTTPBadRequest)
 
         # All other errors come down to this.
         raise ServiceGivenError.new res.code, res.body

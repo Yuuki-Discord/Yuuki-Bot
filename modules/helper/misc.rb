@@ -40,9 +40,7 @@ module YuukiBot
           next if role.color.combined.zero?
 
           begin
-            if YuukiBot.config['debug']
-              puts 'Using ' + role.name + '\'s color ' + role.color.combined.to_s
-            end
+            puts "Using #{role.name}'s color #{role.color.combined}" if YuukiBot.config['debug']
           rescue StandardError
             nil
           end

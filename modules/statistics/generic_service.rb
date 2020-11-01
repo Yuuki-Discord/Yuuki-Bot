@@ -37,10 +37,10 @@ module YuukiBot
     end
 
     class ServiceGivenError < StandardError
-      attr_reader :code
-      attr_reader :body
+      attr_reader :code, :body
 
       def initialize(code, body)
+        super
         @code = code
         @body = body
       end
