@@ -9,15 +9,14 @@ module YuukiBot
     # @return [String] Text safe to identify user with in commands
     def self.calculate_mention(event, args)
       user_parse_guess = event.bot.parse_mention(args.join(' '))
-      target = if args.nil? || (args == [])
-                 event.user.name
-               elsif user_parse_guess.nil?
-                 # Use the name as provided via arguments, nothing calculated.
-                 args.join(' ')
-               else
-                 user_parse_guess.name
-               end
-      target
+      if args.nil? || (args == [])
+        event.user.name
+      elsif user_parse_guess.nil?
+        # Use the name as provided via arguments, nothing calculated.
+        args.join(' ')
+      else
+        user_parse_guess.name
+      end
     end
 
     YuukiBot.crb.add_command(

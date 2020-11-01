@@ -160,9 +160,9 @@ module YuukiBot
       hours = hours.floor
       days = days.floor
 
-      seconds = seconds.to_s.length == 1 ?  '0' + seconds.to_s : seconds.to_s
-      minutes = minutes.to_s.length == 1 ?  '0' + minutes.to_s : minutes.to_s
-      hours = hours.to_s.length == 1 ? '0' + hours.to_s : hours.to_s
+      seconds = seconds.to_s.length == 1 ?  "0#{seconds}" : seconds.to_s
+      minutes = minutes.to_s.length == 1 ?  "0#{minutes}" : minutes.to_s
+      hours = hours.to_s.length == 1 ? "0#{hours}" : hours.to_s
 
       "#{days} day#{'s' unless days == 1}, #{hours}:#{minutes}:#{seconds}"
     end

@@ -8,9 +8,7 @@ module YuukiBot
     # If no name is given, it will be taken from the url.
     # Returns the full path of the downloaded file.
     def self.download_file(url, folder, name = nil)
-      if name.nil?
-        name = File.basename(URI.parse(url).path) if name.nil?
-      end
+      name = File.basename(URI.parse(url).path) if name.nil?
 
       path = "#{folder}/#{name}".gsub('//', '/')
 

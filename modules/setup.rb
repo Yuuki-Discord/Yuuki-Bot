@@ -79,7 +79,7 @@ module YuukiBot
 
   def self.build_init
     # Transfer it into an init hash.
-    init_hash = {
+    {
       token: @config['token'],
       prefixes: @config['prefixes'],
       client_id: @config['client_id'],
@@ -103,10 +103,10 @@ module YuukiBot
           raise 'No valid status found.'
         end
         ignored = begin
-                    JSON.parse(REDIS.get('ignores'))
-                  rescue StandardError
-                    []
-                  end
+          JSON.parse(REDIS.get('ignores'))
+        rescue StandardError
+          []
+        end
         ignored.each do |id|
           begin
             @crb.bot.ignore_user(@crb.bot.user(id))
@@ -116,23 +116,22 @@ module YuukiBot
         end
 
         event.bot.game = begin
-                           YuukiBot.config['game']
-                         rescue StandardError
-                           nil
-                         end
+          YuukiBot.config['game']
+        rescue StandardError
+          nil
+        end
         puts "[READY] Logged in as #{event.bot.profile.distinct} (#{event.bot.profile.id})!"
         puts "[READY] Connected to #{event.bot.servers.count} servers!"
         puts "[READY] Raw Invite URL: #{event.bot.invite_url}"
         puts "[READY] Redis ping: #{REDIS.ping}"
         puts "[READY] Vanity Invite URL: #{begin
-                                             @config['invite_url']
-                                           rescue StandardError
-                                             event.bot.invite_url
-                                           end}"
+          @config['invite_url']
+        rescue StandardError
+          event.bot.invite_url
+        end}"
         puts '[READY] Starting guild statistics...'
         YuukiBot::Statistics.register_statistics_callbacks event.bot
       }
     }
-    init_hash
   end
 end
