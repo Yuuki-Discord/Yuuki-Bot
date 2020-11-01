@@ -24,26 +24,27 @@ module YuukiBot
 
         user = Helper.userparse(args[1])
         id = begin
-                user.id
-             rescue StandardError
-               event.respond("#{error} Not a valid user!")
-               next
-              end
+          user.id
+        rescue StandardError
+          event.respond("#{error} Not a valid user!")
+          next
+        end
 
         donators = begin
-                      JSON.parse(REDIS.get('donators'))
-                   rescue StandardError
-                     []
-                    end
+          JSON.parse(REDIS.get('donators'))
+        rescue StandardError
+          []
+        end
 
-        if args[0] == 'add'
+        case args[0]
+        when 'add'
           if donators.include?(id)
             event.respond("#{error} User is already a donator!")
             next
           end
           REDIS.set('donators', donators.push(id).to_json)
           event.respond("#{tickbox} added `#{Helper.userid_to_string(id)}` to donators!")
-        elsif args[0] == 'remove'
+        when 'remove'
           unless donators.include?(id)
             event.respond("#{error} User is not a donator!")
             next
@@ -71,10 +72,10 @@ module YuukiBot
         YuukiBot.config['donate_urls'].each { |url| event << "- #{url}" }
         event << '__**Donators :heart:**__ (aka the best people ever)'
         donators = begin
-                     JSON.parse(REDIS.get('donators'))
-                   rescue StandardError
-                     []
-                   end
+          JSON.parse(REDIS.get('donators'))
+        rescue StandardError
+          []
+        end
         if donators.empty?
           event << 'None! You can be the first! :)'
         else

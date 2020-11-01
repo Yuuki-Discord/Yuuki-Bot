@@ -6,12 +6,11 @@ require 'bundler/setup'
 Bundler.require(:default)
 
 # Mainly for docker, makes the log output a lot more sane.
-STDOUT.sync = true
+$stdout.sync = true
 
 module YuukiBot
   class << self
-    attr_reader :uploader
-    attr_reader :launch_time
+    attr_reader :uploader, :launch_time
     attr_accessor :crb
   end
   @launch_time = Time.now

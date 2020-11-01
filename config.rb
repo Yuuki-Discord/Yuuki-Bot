@@ -8,7 +8,7 @@ require 'io/console'
 puts 'If you want to create a config file manually, please stop this program with Ctrl+C ' \
     'and follow the instructions in config/README.md.'
 puts 'Press any key to continue!'
-STDIN.getch
+$stdin.getch
 
 # Load in a fresh state from the sample file. Hopefully this hasn't been changed
 file = File.open('config/config.sample.yml')
