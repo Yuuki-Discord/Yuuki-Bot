@@ -19,7 +19,7 @@ Security/Eval:
 
 Lint/Debugger:
   Exclude:
-    - "run.rb"
+    - "main.rb"
 
 Layout/EndOfLine:
   EnforcedStyle: lf
