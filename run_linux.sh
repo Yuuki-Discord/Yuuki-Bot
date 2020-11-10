@@ -1,2 +1,2 @@
 #!/bin/sh
-ruby run.rb
+ruby main.rb
