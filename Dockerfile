@@ -7,7 +7,7 @@ WORKDIR /usr/src/app
 
 COPY Gemfile Gemfile.lock ./
 # https://stackoverflow.com/a/42145848/13110561
-RUN apk update && apk add git build-base && bundle install && apk del --purge build-base
+RUN apk add --no-cache git build-base && bundle install && apk del --purge build-base
 COPY . .
 
 CMD ["./main.rb"]
