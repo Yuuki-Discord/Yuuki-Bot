@@ -18,5 +18,6 @@ group :development, optional: true do
   gem 'pry'
   gem 'rcodetools'
   gem 'rubocop'
+  gem 'rubocop-rake'
   gem 'ruby-debug-ide'
 end
