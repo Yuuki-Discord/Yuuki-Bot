@@ -1,14 +1,15 @@
 # frozen_string_literal: true
 
 source 'http://rubygems.org'
-gem 'commandrb', git: 'https://github.com/Yuuki-Discord/commandrb.git'
-gem 'discordrb', git: 'https://github.com/discordrb/discordrb.git'
+gem 'commandrb', github: 'Yuuki-Discord/commandrb'
+gem 'discordrb', github: 'shardlab/discordrb', branch: 'main'
 gem 'haste'
 
 gem 'rainbow'
 gem 'rake'
 gem 'redis'
-gem 'redis-namespace'
+gem 'redis-namespace', github: 'resque/redis-namespace',
+                       ref: 'c31e63dc3cd5e59ef5ea394d4d46ac60d1e6f82e'
 gem 'rqrcode'
 gem 'rumoji'
 
