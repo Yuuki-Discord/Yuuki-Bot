@@ -2,9 +2,11 @@ name: Docker test build (Devcontainer)
 
 on:
   push:
-    branches: "*"
+    branches: 
+      - "*"
   pull_request:
-    branches: "*"
+    branches: 
+      - "*"
 
 jobs:
   test-build-dev:
