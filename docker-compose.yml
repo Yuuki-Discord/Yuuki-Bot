@@ -2,6 +2,7 @@ version: '2.3'
 services: 
     yuuki:
         image: "yuukibot/yuukichan:latest"
+        # image: "ghcr.io/yuuki-discord/yuuki-bot"
         depends_on:
             - redis
         restart: on-failure
