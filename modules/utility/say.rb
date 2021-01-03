@@ -24,5 +24,14 @@ module YuukiBot
       min_args: 1,
       triggers: %w[speak hide]
     )
+
+    # The choose command does not require extra_commands to be enabled.
+    YuukiBot.crb.add_command(
+      :choose,
+      code: proc { |event, args|
+        event.respond("I choose #{args.sample}!")
+      },
+      min_args: 1
+    )
   end
 end
