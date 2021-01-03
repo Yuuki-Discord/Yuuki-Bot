@@ -131,13 +131,5 @@ module YuukiBot
       )
       puts 'Added fun command for fight!' if YuukiBot.config['verbose']
     end
-
-    # The choose command does not require extra_commands to be enabled.
-    YuukiBot.crb.add_command(
-      :choose,
-      code: proc { |event, args|
-        event.respond("I choose #{args.sample}!")
-      }
-    )
   end
 end
