@@ -1,4 +1,4 @@
-# https://github.com/rails/rails/blob/master/.github/workflows/rubocop.yml
+# https://github.com/rails/rails/blob/main/.github/workflows/rubocop.yml
 name: RuboCop Lint
 
 on: [push, pull_request]
