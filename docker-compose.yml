@@ -5,7 +5,7 @@ services:
         # image: "ghcr.io/yuuki-discord/yuuki-bot"
         depends_on:
             - redis
-        restart: on-failure
+        restart: unless-stopped
         volumes:
             - type: bind
               source: ./config
