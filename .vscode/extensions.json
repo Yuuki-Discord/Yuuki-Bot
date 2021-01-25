@@ -2,6 +2,7 @@
     "recommendations": [
         "rebornix.ruby",
         "ms-azuretools.vscode-docker",
-        "redhat.vscode-yaml"
+        "redhat.vscode-yaml",
+        "icrawl.discord-vscode"
     ]
 }

@@ -1,7 +1,7 @@
 version: '3'
 services: 
     yuuki:
-        build: .
+        image: yuukibot/devcontainer
         depends_on:
             - redis
         environment:
@@ -11,9 +11,8 @@ services:
         volumes:
             # VSCode workspace mount.
             - ..:/workspace:cached
-        # Make the container run forever in the background so VSCode can attach with ease.
-        entrypoint: sleep
-        command: infinity 
+        # Needed for nested docker
+        privileged: true
     redis:
         image: "redis:alpine"
         volumes:
