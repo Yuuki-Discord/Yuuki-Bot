@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 source 'http://rubygems.org'
-gem 'commandrb', github: 'Yuuki-Discord/commandrb'
+gem 'commandrb', github: 'Yuuki-Discord/commandrb', branch: 'main'
 gem 'discordrb', github: 'shardlab/discordrb', branch: 'main'
 gem 'haste'
 
