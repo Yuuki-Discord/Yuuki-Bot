@@ -14,7 +14,7 @@ gem 'rqrcode'
 gem 'rumoji'
 
 group :development, optional: true do
-  gem 'debase'
+  gem 'debase', '~> 0.2.5.beta2'
   gem 'fastri'
   gem 'pry'
   gem 'rcodetools'
