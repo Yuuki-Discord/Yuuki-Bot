@@ -49,7 +49,7 @@ jobs:
         uses: docker/build-push-action@v2
         with: 
           context: ./.devcontainer
-          file: ./Dockerfile
+          file: ./.devcontainer/Dockerfile
           platforms: linux/amd64
           push: true
           tags: |
