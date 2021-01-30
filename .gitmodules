@@ -1,5 +1,5 @@
 [submodule "text"]
 	path = text
-	url = https://github.com/yuuki-discord/text-responses.git
+	url = https://github.com/Yuuki-Discord/text-responses
 	branch = main
 	ignore = all
