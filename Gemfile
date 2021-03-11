@@ -2,7 +2,7 @@
 
 source 'http://rubygems.org'
 gem 'commandrb', github: 'Yuuki-Discord/commandrb', branch: 'main'
-gem 'discordrb', github: 'shardlab/discordrb', branch: 'main'
+gem 'discordrb'
 gem 'haste'
 
 gem 'rainbow'
