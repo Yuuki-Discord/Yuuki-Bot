@@ -8,8 +8,7 @@ gem 'haste'
 gem 'rainbow'
 gem 'rake'
 gem 'redis'
-gem 'redis-namespace', github: 'resque/redis-namespace',
-                       ref: 'c31e63dc3cd5e59ef5ea394d4d46ac60d1e6f82e'
+gem 'redis-namespace'
 gem 'rqrcode'
 gem 'rumoji'
 

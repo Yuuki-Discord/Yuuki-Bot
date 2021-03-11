@@ -7,14 +7,6 @@ GIT
       discordrb (~> 3.1, >= 3.1.0)
 
 GIT
-  remote: https://github.com/resque/redis-namespace.git
-  revision: c31e63dc3cd5e59ef5ea394d4d46ac60d1e6f82e
-  ref: c31e63dc3cd5e59ef5ea394d4d46ac60d1e6f82e
-  specs:
-    redis-namespace (1.8.0)
-      redis (>= 3.0.4)
-
-GIT
   remote: https://github.com/shardlab/discordrb.git
   revision: 75d3e6a8fd2cda78a1e3c8e4585b33372b5800e4
   branch: main
@@ -69,6 +61,8 @@ GEM
     rake (13.0.3)
     rcodetools (0.8.5.0)
     redis (4.2.5)
+    redis-namespace (1.8.1)
+      redis (>= 3.0.4)
     regexp_parser (2.1.1)
     rest-client (2.1.0)
       http-accept (>= 1.7.0, < 2.0)
@@ -120,7 +114,7 @@ DEPENDENCIES
   rake
   rcodetools
   redis
-  redis-namespace!
+  redis-namespace
   rqrcode
   rubocop
   rubocop-rake
