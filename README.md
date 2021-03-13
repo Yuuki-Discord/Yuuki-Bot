@@ -11,14 +11,14 @@ You can find a [list of commands on the wiki](https://github.com/yuuki-discord/Y
 
 For Docker (Recommended):
 - A Docker installation, including `docker` and `docker-compose` binaries.
-  - On Debian-based Linux distros this is usually as simple as `apt install docker.io docker-compose` - for advances installations check out [https://docs.docker.com/engine/install](the documentation).
+  - On Debian-based Linux distros this is usually as simple as `apt install docker.io docker-compose` - for advanced installations check out [the documentation](https://docs.docker.com/engine/install)
 
 For standalone:
 - Ruby 2.4.0+
 - Bundler (`gem install bundler`)
 - Locally running Redis (`apt install redis-server` ?)
 
-Note: We do not currently support running standalone on bare Windows platforms. It should definitely work, but no guarantees or support are made.  
+Note: We do not currently support running standalone on bare Windows platforms. It should work, but no guarantees or support are made.  
 For Windows it's recommended to use [WSL](https://docs.microsoft.com/en-us/windows/wsl/about) (WSL1 and WSl2 are both fine) or [Docker Desktop](https://docs.docker.com/docker-for-windows/install/).  
 
 
