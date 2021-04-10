@@ -13,6 +13,11 @@ module YuukiBot
           rescue StandardError
             second = args[0]
           end
+        elsif args.length == 3 && args[1].empty?
+          # Occasionally, Discord clients may insert a space
+          # between two mentions.
+          first = args[0]
+          second = args[2]
         else
           first = args[0]
           second = args[1]
