@@ -108,11 +108,9 @@ module YuukiBot
           []
         end
         ignored.each do |id|
-          begin
-            @crb.bot.ignore_user(@crb.bot.user(id))
-          rescue StandardError => e
-            p e
-          end
+          @crb.bot.ignore_user(@crb.bot.user(id))
+        rescue StandardError => e
+          p e
         end
 
         event.bot.game = begin
