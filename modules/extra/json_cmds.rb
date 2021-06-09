@@ -5,11 +5,11 @@ module YuukiBot
   module Extra
     if YuukiBot.config['extra_commands']
       # List containing defined foods for command usage.
-      json_food_commands = %w[beer biscuit brekkie borgar burger cake cereal cheese chicken chocolate
-                              coffee cookie donut doobie drinks halal icecream kebab keto kosher
-                              milkshake muffin noodles nugget oreo pancake pasta pie pizza potato
-                              rice sandwich scone snack soup steak sushi taco tea wine]
-
+      json_food_commands = %w[beer biscuit brekkie borgar burger cake cereal cheese chicken
+                              chocolate coffee cookie donut doobie drinks halal icecream kebab
+                              keto kosher milkshake muffin noodles nugget oreo pancake pasta
+                              rice sandwich scone snack soup steak sushi taco tea wine pie
+                              pizza potato]
       json_food_commands.each do |x|
         YuukiBot.crb.add_command(
           x.to_sym,
