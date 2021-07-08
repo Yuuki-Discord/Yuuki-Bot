@@ -1,4 +1,4 @@
-name: Build and deploy Docker image
+name: Build and deploy Docker image(s)
 
 on:
   push:
@@ -41,8 +41,8 @@ jobs:
         uses: docker/login-action@v1
         with:
           registry: ghcr.io
-          username: ${{ secrets.CR_USERNAME }}
-          password: ${{ secrets.CR_PAT }}
+          username: yuuki-discord
+          password: ${{ secrets.GITHUB_TOKEN }}
       -
         name: Build and push the application
         uses: docker/build-push-action@v2
@@ -54,6 +54,8 @@ jobs:
           tags: |
             yuukibot/yuukichan:latest,
             ghcr.io/yuuki-discord/yuuki-bot:latest,
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,dest=/tmp/.buildx-cache
       - name: Build and push the devcontainer
         uses: docker/build-push-action@v2
         with: 

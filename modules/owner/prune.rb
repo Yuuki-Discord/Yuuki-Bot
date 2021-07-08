@@ -6,23 +6,24 @@ module YuukiBot
     YuukiBot.crb.add_command(
       :prune,
       code: proc { |event, args|
-        num = 75
+        delete_num = 75
         count = 0
-        msgs = []
-        msg = event.channel.send("#{YuukiBot.config['emoji_loading']} Deleting, please wait...")
+
+        loading = YuukiBot.config['emoji_loading']
+        info_msg = event.channel.send("#{loading} Deleting, please wait...")
+
         if event.bot.profile.on(event.server).permission?(:manage_messages, event.channel)
-          event.channel.history(num).each do |x|
-            if x.author.id == event.bot.profile.id && x.id != msg.id
-              msgs.push(x.id)
-              count += 1
-            end
-          end
-          unless count.zero?
-            Discordrb::API::Channel.bulk_delete_messages(event.bot.token, event.channel.id, msgs)
-          end
+          count = Helper.delete_messages(event, delete_num, proc { |x|
+            # Ensure we only select messages from ourself.
+            next if x.author.id != event.bot.profile.id
+            # Do not delete our information message.
+            next if x.id == info_msg.id
+
+            true
+          })
         else
-          event.channel.history(num).each do |x|
-            if x.author.id == event.bot.profile.id && x.id != msg.id
+          event.channel.history(delete_num).each do |x|
+            if x.author.id == event.bot.profile.id && x.id != info_msg.id
               x.delete
               count += 1
             end
@@ -34,11 +35,11 @@ module YuukiBot
                       else
                         "#{YuukiBot.config['emoji_tickbox']} Pruned #{count} bot messages!"
                       end
-        msg.edit(edit_string)
+        info_msg.edit(edit_string)
 
         if args[0] == '-f'
           sleep 2
-          msg.delete
+          info_msg.delete
         end
       },
       triggers: %w[prune cleanup purge stfu],

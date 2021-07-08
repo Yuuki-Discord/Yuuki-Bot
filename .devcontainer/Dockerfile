@@ -13,7 +13,7 @@ RUN echo "alias redis-cli='redis-cli -h redis'" > /root/.bashrc
 RUN bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)"
 
 # Yay, more scripts from the internet!
-RUN bash -c "$(curl -fsSL https://krypt.co/kr)"
+RUN bash -c 'if [ $(arch) == "x86_64" ]; then bash -c "$(curl -fsSL https://krypt.co/kr)" ; fi'
 
 # Stolen from Microsofts image
 ADD https://raw.githubusercontent.com/microsoft/vscode-dev-containers/master/containers/docker-in-docker/.devcontainer/library-scripts/docker-in-docker-debian.sh  /tmp/library-scripts/
