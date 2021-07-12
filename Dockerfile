@@ -1,4 +1,4 @@
-FROM ruby:3.0-alpine as builder
+FROM ruby:3.0.2-alpine as builder
 
 # throw errors if Gemfile has been modified since Gemfile.lock
 RUN bundle config --global frozen 1
