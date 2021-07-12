@@ -16,6 +16,8 @@ jobs:
         name: Build image
         uses: docker/build-push-action@v2
         with:
+          env: |
+            DOCKER_HOST=unix:///run/user/997/docker.sock
           context: .
           file: ./.devcontainer/Dockerfile
           platforms: linux/amd64
