@@ -41,14 +41,3 @@ jobs:
           tags: |
             yuukibot/yuukichan:latest,
             ghcr.io/yuuki-discord/yuuki-bot:latest,
-      - name: Build and push the devcontainer
-        uses: docker/build-push-action@v2
-        with: 
-          context: ./.devcontainer
-          file: ./.devcontainer/Dockerfile
-          platforms: linux/amd64
-          push: true
-          builder: builder
-          tags: |
-            yuukibot/devcontainer:latest
-            ghcr.io/yuuki-discord/devcontainer:latest
