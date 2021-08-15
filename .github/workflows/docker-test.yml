@@ -1,6 +1,15 @@
 name: Docker test build
 
-on: [push, pull_request]
+on:
+  push:
+    branches:    
+      - '**'        # matches every branch
+      - '!main'   # excludes main
+
+  pull_request:
+    branches:    
+      - '**'        # matches every branch
+
 
 jobs:
   test-build-prod:
