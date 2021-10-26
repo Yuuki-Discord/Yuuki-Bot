@@ -23,7 +23,7 @@ module YuukiBot
                          YuukiBot.config['invite_url']
                        end
           event << "\n Or if you're looking to invite me to your server, you can do it here: " \
-          "** 🔗 <#{invite_url}>**"
+                   "** 🔗 <#{invite_url}>**"
         end
       },
       triggers: %w[help support commands invite]

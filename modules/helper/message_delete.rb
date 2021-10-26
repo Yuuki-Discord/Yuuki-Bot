@@ -13,7 +13,7 @@ module YuukiBot
       # Decrement by 5 minutes (5 times 60 seconds)
       max_bulk_delete_time -= 5 * 60
       # Decrement by 2 weeks (2 groups of 7 days over 24 hours/60 minutes/60 seconds)
-      max_bulk_delete_time - 2 * 7 * 24 * 60 * 60
+      max_bulk_delete_time - (2 * 7 * 24 * 60 * 60)
     end
 
     # Allows deleting of an amount messages with an optional criteria.

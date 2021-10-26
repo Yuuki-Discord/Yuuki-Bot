@@ -33,7 +33,7 @@ module YuukiBot
 
         if channel.nil?
           event.respond("#{YuukiBot.config['emoji_error']} Not a valid channel! " \
-            'Has the user started a conversation?')
+                        'Has the user started a conversation?')
           next
         end
         unless channel.private?

@@ -7,7 +7,7 @@ module YuukiBot
       :owners,
       code: proc { |event, _|
         event << 'This bot instance is managed/owned by the following users. ' \
-          'If you have any questions or concerns, please DM me or view my help command!'
+                 'If you have any questions or concerns, please DM me or view my help command!'
         unless YuukiBot.config['master_owner'].nil?
           event << "- **#{event.bot.user(YuukiBot.config['master_owner']).distinct}** [**MAIN**]"
         end

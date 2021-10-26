@@ -27,15 +27,15 @@ bot.ready do |event|
 end
 
 bot.message do |event|
-  if event.message.content.split(' ').length > 1
+  if event.message.content.split.length > 1
     @config['prefixes'].each do |x|
       next unless event.message.content.start_with? x
 
       username = event.bot.profile.name
-      owner_distinct = event.bot.user(@config['master_owner']).distinct
+      owner_tag = event.bot.user(@config['master_owner']).distinct
       event.respond("Hi! It seems that #{username} is currently undergoing maintenance.\n" \
-      "Please try again later, and contact `#{owner_distinct}` if problems persist.\n" \
-      'Sorry for any inconvenience caused!')
+                    "Please try again later, and contact `#{owner_tag}` if problems persist.\n" \
+                    'Sorry for any inconvenience caused!')
       break
     end
   end

@@ -36,12 +36,12 @@ module YuukiBot
           })
         rescue Discordrb::Errors::NoPermission
           info_msg.edit("#{YuukiBot.config['emoji_error']} Message delete failed!\n" \
-            'Check the permissions?')
+                        'Check the permissions?')
           next
         end
 
         info_msg.edit("#{YuukiBot.config['emoji_clear']} Cleared #{message_count} messages!\n" \
-            "Responsible Moderator: #{event.user.mention}\n")
+                      "Responsible Moderator: #{event.user.mention}\n")
       },
       triggers: %w[clear clean],
       server_only: true,

@@ -68,7 +68,7 @@ module YuukiBot
     def self.common_donate(event)
       if YuukiBot.config['show_donate_urls']
         event << "💰 Hey, making bots and hosting them isn't free. " \
-                  'If you want this bot to stay alive, consider giving some 💵 to the devs: '
+                 'If you want this bot to stay alive, consider giving some 💵 to the devs: '
         YuukiBot.config['donate_urls'].each { |url| event << "- #{url}" }
         event << '__**Donators :heart:**__ (aka the best people ever)'
         donators = begin

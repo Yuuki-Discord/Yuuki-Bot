@@ -39,8 +39,8 @@ module YuukiBot
         # "Sanitize" qr code content
         if content.length > 1000
           event.respond("#{YuukiBot.config['emoji_error']} " \
-        'QR codes have a limit of 1000 characters. ' \
-        "You went over by #{content.length - 1000}!")
+                        'QR codes have a limit of 1000 characters. ' \
+                        "You went over by #{content.length - 1000}!")
           next
         end
 
