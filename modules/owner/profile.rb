@@ -61,7 +61,7 @@ module YuukiBot
           event.respond("#{tickbox} Status set to **#{display_state}**!")
         else
           event.respond("#{error} Enter a valid subcommand!\n" \
-            'Valid commands: `avatar`, `game`, `username`, `status`, `nickname`.')
+                        'Valid commands: `avatar`, `game`, `username`, `status`, `nickname`.')
           next
         end
       },
@@ -94,7 +94,7 @@ module YuukiBot
           event.respond("#{YuukiBot.config['emoji_tickbox']} Reset game!")
         else
           event.respond("#{YuukiBot.config['emoji_error']} Enter a valid subcommand!\n" \
-            'Valid commands: `avatar`, `game`, `nickname`.')
+                        'Valid commands: `avatar`, `game`, `nickname`.')
         end
       },
       triggers: %w[reset],

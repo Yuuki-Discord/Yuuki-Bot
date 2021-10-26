@@ -53,10 +53,10 @@ module YuukiBot
                  end
 
         response = "💗 **MATCHMAKING** 💗\n" \
-            "First - #{first}\n" \
-            "Second - #{second}\n" \
-            "**-=-=-=-=-=-=-=-=-=-=-=-**\n" \
-            "Result ~ #{percentage}% - #{result}\n"
+                   "First - #{first}\n" \
+                   "Second - #{second}\n" \
+                   "**-=-=-=-=-=-=-=-=-=-=-=-**\n" \
+                   "Result ~ #{percentage}% - #{result}\n"
 
         event.respond(response)
       },

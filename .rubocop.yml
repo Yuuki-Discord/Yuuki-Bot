@@ -1,5 +1,12 @@
+######################################
+############# IMPORTANT ##############
+# When upgrading the RuboCop gem,
+# ensure that new cops do not heavily
+# modify the existing style.
+# Disable any of these new cops.
+######################################
 AllCops:
-  NewCops: disable
+  NewCops: enable
 
 Metrics/BlockLength:
   Enabled: false
@@ -42,20 +49,3 @@ Metrics/AbcSize:
 
 Metrics/PerceivedComplexity:
   Enabled: false
-
-# Pending cops for RuboCop 0.80
-Style/HashEachMethods:
-  Enabled: true
-
-Style/HashTransformKeys:
-  Enabled: true
-
-Style/HashTransformValues:
-  Enabled: true
-
-# Pendng cops for RuboCop 0.81
-Lint/RaiseException:
-  Enabled: true
-
-Lint/StructNewOverride:
-  Enabled: true

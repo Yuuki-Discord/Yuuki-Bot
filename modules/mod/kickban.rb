@@ -18,7 +18,7 @@ module YuukiBot
           member = event.bot.parse_mention(args[0])
         rescue StandardError
           event << "#{error} Failed to parse user \"#{args[0]}\"\n" \
-            'Did you mention a user?'
+                   'Did you mention a user?'
           next
         end
 
@@ -31,14 +31,15 @@ module YuukiBot
         end
 
         # Attempt to warn the user.
+        author = event.message.author
         user_message = "You have been kicked from the server **#{event.server.name}** " \
-          "by #{event.message.author.mention} | **#{event.message.author.display_name}**\n" \
-          "They gave the following reason: ``#{args.drop(1).join(' ')}``"
+                       "by #{author.mention} | **#{author.display_name}**\n" \
+                       "They gave the following reason: ``#{args.drop(1).join(' ')}``"
         begin
           member.pm(user_message)
         rescue Discordrb::Errors::NoPermission
           event << "#{YuukiBot.config['emoji_warning']} Failed to DM user about kick reason. " \
-            'Kicking anyway...'
+                   'Kicking anyway...'
         end
 
         begin
@@ -66,7 +67,7 @@ module YuukiBot
         member = event.bot.parse_mention(args[0])
         if member.nil?
           event << "#{error} Failed to parse user \"#{args[0]}\"\n" \
-           'Did you mention a user?'
+                   'Did you mention a user?'
           next
         end
 
@@ -79,20 +80,20 @@ module YuukiBot
         end
 
         message = "You have been **permanently banned** from the server `#{event.server.name}` " \
-          "by #{event.user.mention} | **#{event.user.display_name}**\n" \
-          "They gave the following reason: ``#{args.drop(1).join(' ')}``\n\n" \
-          'If you wish to appeal your ban, please contact this person, or the server owner.'
+                  "by #{event.user.mention} | **#{event.user.display_name}**\n" \
+                  "They gave the following reason: ``#{args.drop(1).join(' ')}``\n\n" \
+                  'If you wish to appeal your ban, please contact this person, or the server owner.'
         begin
           member.pm(message)
         rescue Discordrb::Errors::NoPermission
           event << "#{YuukiBot.config['emoji_warning']} Failed to DM user about ban reason. " \
-            'Banning anyway...'
+                   'Banning anyway...'
         end
         begin
           event.server.ban(member)
         rescue Discordrb::Errors::NoPermission
           event << "#{error} I don't have permission to ban that user!\n" \
-            'Cancelling ban...'
+                   'Cancelling ban...'
           next
         end
         event << "#{YuukiBot.config['emoji_success']} The banhammer was hit on #{member.name}!"

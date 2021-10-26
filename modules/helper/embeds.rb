@@ -21,7 +21,7 @@ module YuukiBot
       raise 'Invalid arguments for Helper.avatar_embed!' if url.nil?
 
       colour = 0x22ef1f if color.nil? && colour.nil?
-      username = username.nil? ? 'Unknown User' : username
+      username = 'Unknown User' if username.nil?
       Discordrb::Webhooks::Embed.new(
         colour: colour || color,
         image: Discordrb::Webhooks::EmbedImage.new(url: url),

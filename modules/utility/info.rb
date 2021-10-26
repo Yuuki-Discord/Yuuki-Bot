@@ -21,7 +21,6 @@ module YuukiBot
                                        Helper.error_embed(
                                          error: 'Not a valid user!',
                                          footer: "Command: `#{event.message.content}`",
-                                         colour: 0xFA0E30,
                                          code_error: false
                                        ))
             raise 'Not a valid user'
@@ -33,7 +32,6 @@ module YuukiBot
                                      Helper.error_embed(
                                        error: "Error:\n`User is nil or not found.`",
                                        footer: "Command: `#{event.message.content}`",
-                                       colour: 0xFA0E30,
                                        code_error: false
                                      ))
           next
@@ -172,8 +170,8 @@ module YuukiBot
       code: proc do |event, _|
         uptime_ms = (Time.now - YuukiBot.launch_time) * 1000
 
-        event.respond("I was launched on `#{YuukiBot.launch_time.asctime} UTC`\n" \
-          "This means I have been running for `#{ms_to_time(uptime_ms)}` (`#{uptime_ms.floor}ms`)")
+        event.respond("I was launched on `#{YuukiBot.launch_time.asctime} UTC`!\n" \
+                      "I have been running for `#{ms_to_time(uptime_ms)}` (#{uptime_ms.floor} ms).")
       end
     )
   end
