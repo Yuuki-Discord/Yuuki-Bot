@@ -90,7 +90,10 @@ module YuukiBot
         member = user.on(event.server)
         ignoreserver = true if member.nil?
 
-        donator = JSON.parse(REDIS.get('donators')).include?(user.id)
+        donatorlist = REDIS.get('donators')
+
+        donator = donatorlist.nil? ? false : JSON.parse(donatorlist.include?(user.id))
+
         event.channel.send_embed("__Information about **#{user.distinct}**__") do |embed|
           embed.colour = Helper.colour_from_user(member, default: 0xe06b2)
           embed.thumbnail = Discordrb::Webhooks::EmbedThumbnail.new(
@@ -109,11 +112,6 @@ module YuukiBot
             inline: true
           )
           embed.add_field(
-            name: 'Playing:',
-            value: user.game.nil? ? '[N/A]' : user.game,
-            inline: true
-          )
-          embed.add_field(
             name: 'Account Created:',
             value: "#{user.creation_time.getutc.asctime} UTC",
             inline: true
@@ -122,10 +120,6 @@ module YuukiBot
             name: 'Joined Server:',
             value: ignoreserver ? '[N/A]' : "#{member.joined_at.getutc.asctime} UTC",
             inline: true
-          )
-          embed.add_field(
-            name: 'Status',
-            value: user.status.capitalize
           )
         end
       },
