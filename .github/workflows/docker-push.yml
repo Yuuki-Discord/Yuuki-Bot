@@ -39,5 +39,5 @@ jobs:
           push: true
           builder: builder
           tags: |
-            yuukibot/yuukichan:latest,
-            ghcr.io/yuuki-discord/yuuki-bot:latest,
+            yuukibot/yuukichan:latest
+            ghcr.io/yuuki-discord/yuuki-bot:latest
