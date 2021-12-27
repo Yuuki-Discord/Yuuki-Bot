@@ -1,4 +1,6 @@
-FROM ruby:3.1.0-alpine as builder
+ARG RUBY_VERSION=3.1.0
+
+FROM ruby:${RUBY_VERSION}-alpine as builder
 
 # throw errors if Gemfile has been modified since Gemfile.lock
 RUN bundle config --global frozen 1
@@ -14,7 +16,7 @@ RUN bundle config path vendor/bundle && bundle install
 ##########
 # RUNNER #
 ##########
-FROM ruby:3.1.0-alpine
+FROM ruby:${RUBY_VERSION}-alpine
 
 WORKDIR /usr/src/app
 
