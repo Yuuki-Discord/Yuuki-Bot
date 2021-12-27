@@ -18,7 +18,7 @@
 	// "forwardPorts": [],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "docker run -v /workspaces/redis-data:/data -p 127.0.0.1:6379:6379 --restart=always -d redis:alpine && gem install bundler && bundle config with development && bundle install",
+	"postCreateCommand": "docker run -v /workspaces/redis-data:/data -p 127.0.0.1:6379:6379 --restart=always -d redis:alpine && gem install bundler && bundle config with development:ide && bundle install",
 
 	// Comment out connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
 	"remoteUser": "vscode"
