@@ -13,11 +13,14 @@ gem 'rqrcode'
 gem 'rumoji'
 
 group :development, optional: true do
-  gem 'debase', '~> 0.2.5.beta2'
   gem 'fastri'
   gem 'pry'
   gem 'rcodetools'
   gem 'rubocop'
   gem 'rubocop-rake'
+end
+
+group :ide, optional: true do
+  gem 'debase', '~> 0.2.5.beta2'
   gem 'ruby-debug-ide'
 end
