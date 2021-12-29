@@ -86,7 +86,8 @@ show_donate_urls: true
 # Wrap in <> if using more than one (To avoid huge embeds).
 donate_urls:
   # It would be nice if you kept the original devs, but is not required.
-  - <https://ko-fi.com/ErisaMoe>
+  - <https://github.com/sponsors/Erisa/>
+  - <https://github.com/sponsors/spotlightishere/>
 # - <https://paypal.me/your_name_here>
 
 # If your eval/bash/etc output is larger than what can be sent on Discord,
