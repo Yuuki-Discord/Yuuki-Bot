@@ -12,7 +12,7 @@ jobs:
     - name: Set up Ruby 3.1.0
       uses: ruby/setup-ruby@v1
       with:
-        ruby-version: 3.1.0
+        ruby-version: 3.1.1
     - name: Cache gems
       uses: actions/cache@v1
       with:

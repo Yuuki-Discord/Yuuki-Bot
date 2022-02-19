@@ -1,5 +1,5 @@
 # Note: You can use any Debian/Ubuntu based image you want. 
-FROM mcr.microsoft.com/vscode/devcontainers/ruby:0-3.0
+FROM mcr.microsoft.com/vscode/devcontainers/ruby:0-3.1
 
 # [Option] Install zsh
 ARG INSTALL_ZSH="true"
