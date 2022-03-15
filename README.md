@@ -3,7 +3,7 @@ Free and open-source bot for [Discord](https://discordapp.com).
 
 # Usage
 You can invite the [publicly usable version of the bot](https://erisa.link/yuukibot) or [host your own version](#self-hosting) to gain full control and access to owner commands.  
-You can find a [list of commands on the wiki](https://github.com/yuuki-discord/Yuuki-Bot/wiki/Commands).
+You can find a [list of commands on the wiki](https://github.com/Yuuki-Discord/Yuuki-Bot/wiki).
 
 # Self-Hosting
 
