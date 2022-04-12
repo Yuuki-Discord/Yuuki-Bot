@@ -9,10 +9,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Set up Ruby 3.1.0
+    - name: Set up Ruby 3.1.2
       uses: ruby/setup-ruby@v1
       with:
-        ruby-version: 3.1.1
+        ruby-version: 3.1.2
     - name: Cache gems
       uses: actions/cache@v1
       with:
