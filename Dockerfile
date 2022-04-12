@@ -1,4 +1,4 @@
-ARG RUBY_VERSION=3.1.1
+ARG RUBY_VERSION=3.1.2
 
 FROM ruby:${RUBY_VERSION}-alpine as builder
 
