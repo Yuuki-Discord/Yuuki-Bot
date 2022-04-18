@@ -37,16 +37,15 @@ module YuukiBot
     end
 
     class ServiceGivenError < StandardError
-      attr_reader :code, :body
+      attr_reader :res
 
-      def initialize(code, body)
+      def initialize(res)
         super
-        @code = code
-        @body = body
+        @res = res
       end
 
       def message
-        "Service returned error code #{code}: #{body}"
+        "Service returned error code #{res.code}: #{res.body}"
       end
     end
   end

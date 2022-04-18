@@ -20,31 +20,29 @@ module YuukiBot
         @api_key = YuukiBot.config[config_key]
         raise ServiceMissingTokenError.new, false if @api_key.nil? || @api_key.empty?
 
-        # Send an empty (yet authenticated) request to test for errors.
-        id = bot.bot_user
-        res = send_statistics_request(id, '')
+        # Send an initial request to test for errors.
+        res = register_statistics(bot)
 
         # Token and related authentication errors stem from this.
         raise ServiceInvalidTokenError if res.instance_of?(Net::HTTPUnauthorized)
 
-        # This is what we want - this route fails regarding
-        # syntax if authenticated.
-        return nil if res.instance_of?(Net::HTTPBadRequest)
+        # Fine if success.
+        return nil if res.instance_of?(Net::HTTPOK)
 
         # All other errors come down to this.
-        raise ServiceGivenError.new res.code, res.body
+        raise ServiceGivenError, res
       end
 
       def register_statistics(bot)
         count = bot.servers.length
-        return if count == @server_count
+        return nil if count == @server_count
 
+        @server_count = count
         # TODO: If sharding is desired, please account for that + its shard ID.
         # See https://discord.bots.gg/docs/endpoints in the future.
         send_statistics_request bot.bot_user, {
           guildCount: count
         }.to_json
-        @server_count = count
       end
 
       def send_statistics_request(profile, contents)
