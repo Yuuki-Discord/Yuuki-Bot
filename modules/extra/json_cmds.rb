@@ -13,16 +13,15 @@ module YuukiBot
       json_food_commands.each do |x|
         YuukiBot.crb.add_command(
           x.to_sym,
-          code: proc { |event, args|
-            json = JSON.parse(File.read("text/Food/#{x}.json"))
-
-            variables = {}
-            variables['user'] = Extra.calculate_mention(event, args)
-            textgen = Textgen.generate_string(json['templates'], json['parts'], variables)
-            event.respond("\\*#{textgen}*")
-          },
           triggers: [x, "give #{x} to ", "give a #{x} to "]
-        )
+        ) do |event, args|
+          json = JSON.parse(File.read("text/Food/#{x}.json"))
+
+          variables = {}
+          variables['user'] = Extra.calculate_mention(event, args)
+          textgen = Textgen.generate_string(json['templates'], json['parts'], variables)
+          event.respond("\\*#{textgen}*")
+        end
         puts "Added food command for #{x}!" if YuukiBot.config['verbose']
       end
       YuukiBot.crb.commands[:brekkie][:triggers].push('breakfast', 'brekky', 'give breakfast to ',
@@ -31,104 +30,81 @@ module YuukiBot
 
       json_attack_commands = %w[slap compliment strax present]
       json_attack_commands.each do |x|
-        YuukiBot.crb.add_command(
-          x.to_sym,
-          code: proc { |event, args|
-            json = JSON.parse(File.read("text/Attack/JSON/#{x}.json"))
+        YuukiBot.crb.add_command(x.to_sym) do |event, args|
+          json = JSON.parse(File.read("text/Attack/JSON/#{x}.json"))
 
-            variables = {}
-            variables['user'] = Extra.calculate_mention(event, args)
-            textgen = Textgen.generate_string(json['templates'], json['parts'], variables)
-            event.respond("\\*#{textgen}*")
-          }
-        )
+          variables = {}
+          variables['user'] = Extra.calculate_mention(event, args)
+          textgen = Textgen.generate_string(json['templates'], json['parts'], variables)
+          event.respond("\\*#{textgen}*")
+        end
         puts "Added attack command for #{x}!" if YuukiBot.config['verbose']
       end
 
-      YuukiBot.crb.add_command(
-        :randomquestion,
-        code: proc { |event|
-          json = JSON.parse(File.read('text/Other/JSON/randomquestion.json'))
+      YuukiBot.crb.add_command(:randomquestion) do |event|
+        json = JSON.parse(File.read('text/Other/JSON/randomquestion.json'))
 
-          variables = {}
-          response = Textgen.generate_string(json['templates'], json['parts'], variables)
+        variables = {}
+        response = Textgen.generate_string(json['templates'], json['parts'], variables)
 
-          event.respond(response)
-        }
-      )
+        event.respond(response)
+      end
       puts 'Added fun command for random question!' if YuukiBot.config['verbose']
 
-      YuukiBot.crb.add_command(
-        :nextzeldagame,
-        code: proc { |event|
-          json = JSON.parse(File.read('text/Other/JSON/nextzeldagame.json'))
+      YuukiBot.crb.add_command(:nextzeldagame) do |event|
+        json = JSON.parse(File.read('text/Other/JSON/nextzeldagame.json'))
 
-          prng = Random.new
-          variables = {}
-          variables['random_number'] = prng.rand(1..10)
-          response = Textgen.generate_string(json['templates'], json['parts'], variables)
+        prng = Random.new
+        variables = {}
+        variables['random_number'] = prng.rand(1..10)
+        response = Textgen.generate_string(json['templates'], json['parts'], variables)
 
-          event.respond(response)
-        }
-      )
+        event.respond(response)
+      end
       puts 'Added fun command for nextzeldagame!' if YuukiBot.config['verbose']
 
-      YuukiBot.crb.add_command(
-        :wouldyourather,
-        code: proc { |event, _|
-          json_string = URI.open('https://www.rrrather.com/botapi').read
-          array = JSON.parse(json_string, symbolize_names: true)
-          event.respond("#{array[:title]}: #{array[:choicea].rstrip} OR #{array[:choiceb].rstrip}")
-        }
-      )
+      YuukiBot.crb.add_command(:wouldyourather) do |event|
+        json_string = URI.open('https://www.rrrather.com/botapi').read
+        array = JSON.parse(json_string, symbolize_names: true)
+        event.respond("#{array[:title]}: #{array[:choicea].rstrip} OR #{array[:choiceb].rstrip}")
+      end
       puts 'Added fun command for wouldyourather!' if YuukiBot.config['verbose']
 
-      YuukiBot.crb.add_command(
-        :fact,
-        code: proc { |event, _|
-          types = %w[trivia math date year]
-          type = types.sample
-          event.respond(URI.open("http://numbersapi.com/random/#{type}").read)
-        }
-      )
+      YuukiBot.crb.add_command(:fact) do |event|
+        types = %w[trivia math date year]
+        type = types.sample
+        event.respond(URI.open("http://numbersapi.com/random/#{type}").read)
+      end
       puts 'Added fun command for fact!' if YuukiBot.config['verbose']
 
-      YuukiBot.crb.add_command(
-        :cats,
-        code: proc { |event, _|
-          json_string = URI.open('https://catfact.ninja/fact').read
-          array = JSON.parse(json_string, symbolize_names: true)
-          event.respond(array[:fact].to_s)
-        }
-      )
+      YuukiBot.crb.add_command(:cats) do |event, _args|
+        json_string = URI.open('https://catfact.ninja/fact').read
+        array = JSON.parse(json_string, symbolize_names: true)
+        event.respond(array[:fact].to_s)
+      end
 
       puts 'Added fun command for cats!' if YuukiBot.config['verbose']
-      YuukiBot.crb.add_command(
-        :catgifs,
-        code: proc { |event, _|
-          gif_url = nil
-          URI.open('https://marume.herokuapp.com/random.gif') do |resp|
-            gif_url = resp.base_uri.to_s
-          end
-          event.respond("OMG A CAT GIF: #{gif_url}")
-        }
-      )
+      YuukiBot.crb.add_command(:catgifs) do |event|
+        gif_url = nil
+        URI.open('https://marume.herokuapp.com/random.gif') do |resp|
+          gif_url = resp.base_uri.to_s
+        end
+        event.respond("OMG A CAT GIF: #{gif_url}")
+      end
       puts 'Added fun command for catgifs!' if YuukiBot.config['verbose']
 
-      YuukiBot.crb.add_command(
-        :fight,
-        code: proc { |event, args|
-          json = JSON.parse(File.read('text/Attack/JSON/fight.json'))
+      YuukiBot.crb.add_command(:fight) do |event, args|
+        json = JSON.parse(File.read('text/Attack/JSON/fight.json'))
 
-          variables = {}
-          variables['user'] = event.user.name
-          # The user can fight the user. True ingenuity.
-          variables['target'] = Extra.calculate_mention(event, args)
-          response = Textgen.generate_string(json['templates'], json['parts'], variables)
+        variables = {}
+        variables['user'] = event.user.name
+        # The user can fight the user. True ingenuity.
+        variables['target'] = Extra.calculate_mention(event, args)
+        response = Textgen.generate_string(json['templates'],
+                                           json['parts'], variables)
 
-          event.respond(response)
-        }
-      )
+        event.respond(response)
+      end
       puts 'Added fun command for fight!' if YuukiBot.config['verbose']
     end
   end

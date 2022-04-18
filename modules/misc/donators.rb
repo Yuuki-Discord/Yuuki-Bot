@@ -5,65 +5,63 @@ module YuukiBot
   module Misc
     YuukiBot.crb.add_command(
       :donators,
-      code: proc { |event, args|
-        if args.empty?
-          # Treat as normal donate.
-          common_donate(event)
-          next
-        end
-
-        # Common emoji used in responses to follow
-        error = YuukiBot.config['emoji_error']
-        tickbox = YuukiBot.config['emoji_tickbox']
-
-        valid_commands = %w[add remove]
-        unless valid_commands.include?(args[0]) || args[1].nil?
-          event.respond("#{error} Not a valid command! Use me with `add @user` or `remove @user`.")
-          next
-        end
-
-        user = Helper.userparse(args[1])
-        id = begin
-          user.id
-        rescue StandardError
-          event.respond("#{error} Not a valid user!")
-          next
-        end
-
-        donators = begin
-          JSON.parse(REDIS.get('donators'))
-        rescue StandardError
-          []
-        end
-
-        case args[0]
-        when 'add'
-          if donators.include?(id)
-            event.respond("#{error} User is already a donator!")
-            next
-          end
-          REDIS.set('donators', donators.push(id).to_json)
-          event.respond("#{tickbox} added `#{Helper.userid_to_string(id)}` to donators!")
-        when 'remove'
-          unless donators.include?(id)
-            event.respond("#{error} User is not a donator!")
-            next
-          end
-          REDIS.set('donators', (donators - [id]).to_json)
-          event.respond("#{tickbox} removed `#{Helper.userid_to_string(user.id)}` from donators!")
-        end
-      },
       owners_only: true
-    )
+    ) do |event, args|
+      if args.empty?
+        # Treat as normal donate.
+        common_donate(event)
+        next
+      end
+
+      # Common emoji used in responses to follow
+      error = YuukiBot.config['emoji_error']
+      tickbox = YuukiBot.config['emoji_tickbox']
+
+      valid_commands = %w[add remove]
+      unless valid_commands.include?(args[0]) || args[1].nil?
+        event.respond("#{error} Not a valid command! Use me with `add @user` or `remove @user`.")
+        next
+      end
+
+      user = Helper.userparse(args[1])
+      id = begin
+        user.id
+      rescue StandardError
+        event.respond("#{error} Not a valid user!")
+        next
+      end
+
+      donators = begin
+        JSON.parse(REDIS.get('donators'))
+      rescue StandardError
+        []
+      end
+
+      case args[0]
+      when 'add'
+        if donators.include?(id)
+          event.respond("#{error} User is already a donator!")
+          next
+        end
+        REDIS.set('donators', donators.push(id).to_json)
+        event.respond("#{tickbox} added `#{Helper.userid_to_string(id)}` to donators!")
+      when 'remove'
+        unless donators.include?(id)
+          event.respond("#{error} User is not a donator!")
+          next
+        end
+        REDIS.set('donators', (donators - [id]).to_json)
+        event.respond("#{tickbox} removed `#{Helper.userid_to_string(user.id)}` from donators!")
+      end
+    end
 
     YuukiBot.crb.add_command(
       :donate,
-      code: proc { |event, _args|
-        common_donate(event)
-      },
       triggers: ['donate', 'donateinfo', 'how do i donate', 'how do i donate?', 'how do I donate',
                  'how do I donate?', 'doante', 'donut']
-    )
+    ) do |event|
+      common_donate(event)
+    end
 
     def self.common_donate(event)
       if YuukiBot.config['show_donate_urls']

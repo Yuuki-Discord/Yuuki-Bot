@@ -6,11 +6,10 @@ module YuukiBot
   module Utility
     YuukiBot.crb.add_command(
       :stubs,
-      code: proc { |event, _|
-        event.respond('This command has been removed!')
-      },
       triggers: %w[zalgo command angry space
                    tell randommovie owner dump translate]
-    )
+    ) do |event|
+      event.respond('This command has been removed!')
+    end
   end
 end
