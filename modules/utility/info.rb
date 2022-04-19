@@ -8,18 +8,12 @@ module YuukiBot
       :avatar,
       arg_format: {
         user: { name: 'user', description: 'User to retrieve info for', type: :user,
-                optional: true }
+                optional: true, default: :current_user }
       },
       triggers: %w[avatar avy],
       server_only: true
     ) do |event, args|
-      # If no user was determined, we'll assume the current user is intended.
-      user = if args.user.nil?
-               event.user
-             else
-               args.user
-             end
-
+      user = args.user
       avy_embed = Discordrb::Webhooks::Embed.new(
         image: Discordrb::Webhooks::EmbedImage.new(url: Helper.avatar_url(user)),
         author: Discordrb::Webhooks::EmbedAuthor.new(
@@ -44,17 +38,11 @@ module YuukiBot
       :info,
       arg_format: {
         user: { name: 'user', description: 'User to retrieve info for', type: :user,
-                optional: true }
+                optional: true, default: :current_user }
       },
       triggers: %w[info profile]
     ) do |event, args|
-      # If no user was determined, we'll assume the current user is intended.
-      user = if args.user.nil?
-               event.user
-             else
-               args.user
-             end
-
+      user = args.user
       member = user.on(event.server)
       ignoreserver = true if member.nil?
 
