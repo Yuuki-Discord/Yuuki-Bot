@@ -30,9 +30,9 @@ module YuukiBot
       owners_only: true,
       arg_format: {
         channel: { name: 'channel', description: 'Channel to DM', type: :channel },
-        reply: { name: 'reply', description: 'Reply contents', type: :remaining},
-      },
-      ) do |event, args|
+        reply: { name: 'reply', description: 'Reply contents', type: :remaining }
+      }
+    ) do |event, args|
       channel = args.channel
       reply = args.message
 

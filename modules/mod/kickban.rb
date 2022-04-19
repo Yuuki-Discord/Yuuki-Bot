@@ -76,7 +76,7 @@ module YuukiBot
 
       message = "You have been **permanently banned** from the server `#{event.server.name}` " \
                 "by #{event.user.mention} | **#{event.user.display_name}**\n" \
-                "They gave the following reason: ``#{args.drop(1).join(' ')}``\n\n" \
+                "They gave the following reason: ``#{reason}``\n\n" \
                 'If you wish to appeal your ban, please contact this person, or the server owner.'
       begin
         member.pm(message)
