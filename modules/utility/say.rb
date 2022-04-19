@@ -5,30 +5,36 @@ module YuukiBot
   module Utility
     YuukiBot.crb.add_command(
       :say,
+      arg_format: {
+        message: { name: 'message', description: 'Message to say', type: :remaining }
+      },
       triggers: %w[say echo talk repeat],
-      min_args: 1,
       owners_only: true
     ) do |event, args|
-      message = args.join(' ')
-      event.respond(Helper.filter_everyone(message))
+      event.respond(Helper.filter_everyone(args.message))
     end
 
     YuukiBot.crb.add_command(
       :speak,
       owners_only: true,
-      min_args: 1,
+      arg_format: {
+        message: { name: 'message', description: 'Message to say', type: :remaining }
+      },
+      delete_activator: true,
       triggers: %w[speak hide]
     ) do |event, args|
-      event.message.delete
-      event.respond(args.join(' '))
+      event.respond(args.message)
     end
 
     # The choose command does not require extra_commands to be enabled.
     YuukiBot.crb.add_command(
       :choose,
-      min_args: 1
+      arg_format: {
+        message: { name: 'choices', description: 'Choices to consider', type: :remaining }
+      }
     ) do |event, args|
-      event.respond("I choose #{args.sample}!")
+      choices = args.message.split
+      event.respond("I choose #{choices.sample}!")
     end
   end
 end

@@ -6,38 +6,19 @@ module YuukiBot
   module Utility
     YuukiBot.crb.add_command(
       :avatar,
+      arg_format: {
+        user: { name: 'user', description: 'User to retrieve info for', type: :user,
+                optional: true }
+      },
       triggers: %w[avatar avy],
       server_only: true
     ) do |event, args|
-      if args.empty?
-        user = event.user
-      else
-        begin
-          user = if args[0] == 'byid'
-                   event.bot.user(args[1])
-                 else
-                   Helper.userparse(args.join(' '))
-                 end
-        rescue StandardError
-          event.channel.send_message('', false,
-                                     Helper.error_embed(
-                                       error: 'Not a valid user!',
-                                       footer: "Command: `#{event.message.content}`",
-                                       code_error: false
-                                     ))
-          raise 'Not a valid user'
-        end
-      end
-
-      if user.nil?
-        event.channel.send_message('', false,
-                                   Helper.error_embed(
-                                     error: "Error:\n`User is nil or not found.`",
-                                     footer: "Command: `#{event.message.content}`",
-                                     code_error: false
-                                   ))
-        next
-      end
+      # If no user was determined, we'll assume the current user is intended.
+      user = if args.user.nil?
+               event.user
+             else
+               args.user
+             end
 
       avy_embed = Discordrb::Webhooks::Embed.new(
         image: Discordrb::Webhooks::EmbedImage.new(url: Helper.avatar_url(user)),
@@ -61,31 +42,18 @@ module YuukiBot
 
     YuukiBot.crb.add_command(
       :info,
+      arg_format: {
+        user: { name: 'user', description: 'User to retrieve info for', type: :user,
+                optional: true }
+      },
       triggers: %w[info profile]
     ) do |event, args|
-      if args.empty? || args[0].nil? || (args[0] == '')
-        user = event.user
-      else
-        begin
-          user = if args[0] == 'byid'
-                   event.bot.user(args[1])
-                 else
-                   event.bot.parse_mention(args.join(' '))
-                 end
-        rescue StandardError
-          user = event.user
-        end
-      end
-
-      if user.nil?
-        error_embed = Helper.error_embed(
-          error: "Error:\n`User is nil or not found.`",
-          footer: "Command: `#{event.message.content}`",
-          code_error: false
-        )
-        event.channel.send_message('', false, error_embed)
-        next
-      end
+      # If no user was determined, we'll assume the current user is intended.
+      user = if args.user.nil?
+               event.user
+             else
+               args.user
+             end
 
       member = user.on(event.server)
       ignoreserver = true if member.nil?

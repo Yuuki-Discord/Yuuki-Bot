@@ -6,11 +6,16 @@ module YuukiBot
     YuukiBot.crb.add_command(
       :prune,
       triggers: %w[prune cleanup purge stfu],
+      arg_format: {
+        delete_num: { name: 'num', description: 'Number of messages to delete',
+                      type: :integer, default: 75, optional: true },
+        remove_orig: { name: 'remove orig', description: 'Remove invocation message',
+                       type: :boolean, default: false, optional: true }
+      },
       required_permissions: [:manage_messages],
-      owner_override: true,
-      max_args: 1
+      owner_override: true
     ) do |event, args|
-      delete_num = 75
+      delete_num = args.delete_num
       count = 0
 
       loading = YuukiBot.config['emoji_loading']
@@ -42,7 +47,7 @@ module YuukiBot
                     end
       info_msg.edit(edit_string)
 
-      if args[0] == '-f'
+      if args.remove_orig
         sleep 2
         info_msg.delete
       end

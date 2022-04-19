@@ -8,22 +8,16 @@ module YuukiBot
       :kick,
       required_permissions: [:kick_members],
       owner_override: false,
-      server_only: true
+      server_only: true,
+      arg_format: {
+        user: { name: 'user', description: 'User to kick', type: :user },
+        reason: { name: 'reason', description: 'Reason', type: :remaining, optional: true }
+      }
     ) do |event, args|
       error = YuukiBot.config['emoji_error']
 
-      if args.empty?
-        event << "#{error} Invalid argument. Please mention a valid user."
-        next
-      end
-
-      begin
-        member = event.bot.parse_mention(args[0])
-      rescue StandardError
-        event << "#{error} Failed to parse user \"#{args[0]}\"\n" \
-                 'Did you mention a user?'
-        next
-      end
+      member = args.user
+      reason = args.reason
 
       if !Helper.allowed_to_mod(event.bot.profile.on(event.server),
                                 member.on(event.server))
@@ -38,7 +32,7 @@ module YuukiBot
       author = event.message.author
       user_message = "You have been kicked from the server **#{event.server.name}** " \
                      "by #{author.mention} | **#{author.display_name}**\n" \
-                     "They gave the following reason: ``#{args.drop(1).join(' ')}``"
+                     "They gave the following reason: ``#{reason}``"
       begin
         member.pm(user_message)
       rescue Discordrb::Errors::NoPermission
@@ -60,20 +54,16 @@ module YuukiBot
       triggers: %w[ban],
       required_permissions: [:ban_members],
       owner_override: false,
-      server_only: true
+      server_only: true,
+      arg_format: {
+        user: { name: 'user', description: 'User to ban', type: :user },
+        reason: { name: 'reason', description: 'Reason', type: :remaining, optional: true }
+      }
     ) do |event, args|
       error = YuukiBot.config['emoji_error']
-      if args.empty?
-        event << "#{error} Invalid argument. Please mention a valid user."
-        next
-      end
 
-      member = event.bot.parse_mention(args[0])
-      if member.nil?
-        event << "#{error} Failed to parse user \"#{args[0]}\"\n" \
-                 'Did you mention a user?'
-        next
-      end
+      member = args.user
+      reason = args.reason
 
       if !Helper.allowed_to_mod(event.bot.profile.on(event.server),
                                 member.on(event.server))

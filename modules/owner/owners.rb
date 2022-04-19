@@ -23,17 +23,27 @@ module YuukiBot
 
     YuukiBot.crb.add_command(
       :botowners,
-      owners_only: true
+      owners_only: true,
+      arg_format: {
+        subcommand: { name: 'subcommand', description: 'Command to run', type: :string,
+                      choices: [
+                        {
+                          name: 'Add',
+                          value: 'add'
+                        },
+                        {
+                          name: 'Remove',
+                          value: 'remove'
+                        }
+                      ] },
+        user: { name: 'user', description: 'User to work with', type: :user }
+      }
     ) do |event, args|
       error = YuukiBot.config['emoji_error']
       tickbox = YuukiBot.config['emoji_tickbox']
 
-      user = Helper.userparse(args[1])
-      if user.nil?
-        event.respond("#{error} Not a valid user!")
-        next
-      end
-      case args[0]
+      user = args.user
+      case args.subcommand
       when 'add'
         if YuukiBot.crb.owner?(user.id)
           event.respond("#{error} User is already an owner!")

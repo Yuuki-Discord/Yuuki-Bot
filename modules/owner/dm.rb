@@ -27,10 +27,14 @@ module YuukiBot
 
     YuukiBot.crb.add_command(
       :reply,
-      owners_only: true
-    ) do |event, args|
-      channel = event.bot.channel(args[0])
-      reply = args.drop(1).join(' ')
+      owners_only: true,
+      arg_format: {
+        channel: { name: 'channel', description: 'Channel to DM', type: :channel },
+        reply: { name: 'reply', description: 'Reply contents', type: :remaining},
+      },
+      ) do |event, args|
+      channel = args.channel
+      reply = args.message
 
       if channel.nil?
         event.respond("#{YuukiBot.config['emoji_error']} Not a valid channel! " \

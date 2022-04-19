@@ -7,20 +7,26 @@ module YuukiBot
     YuukiBot.crb.add_command(
       :raweval,
       triggers: ['raweval '],
-      owners_only: true
+      owners_only: true,
+      arg_format: {
+        eval: { name: 'eval', description: 'Contents to eval', type: :remaining }
+      }
     ) do |event, args|
-      event.respond(eval(args.join(' ')))
+      event.respond(eval(args.eval))
     end
 
     YuukiBot.crb.add_command(
       :eval,
       triggers: ['eval2 ', 'eval'],
       owners_only: true,
-      description: 'Evaluate a Ruby command. Owner only.'
+      description: 'Evaluate a Ruby command. Owner only.',
+      arg_format: {
+        eval: { name: 'eval', description: 'Contents to eval', type: :remaining }
+      }
     ) do |event, args|
       msg = event.respond "#{YuukiBot.config['emoji_loading']} Evaluating..."
       init_time = Time.now
-      result = eval args.join(' ')
+      result = eval args.eval
       result_output = handle_result(result, init_time)
       msg.edit(result_output)
     rescue StandardError => e
@@ -33,12 +39,15 @@ module YuukiBot
       :bash,
       triggers: ['bash ', 'sh ', 'shell ', 'run '],
       owners_only: true,
-      description: 'Evaluate a Bash command. Owner only. Use with care.'
+      description: 'Evaluate a Bash command. Owner only. Use with care.',
+      arg_format: {
+        script: { name: 'script', description: 'Contents to run', type: :remaining }
+      }
     ) do |event, args|
       init_time = Time.now
       msg = event.respond "#{YuukiBot.config['emoji_loading']} Evaluating..."
       # Capture all output, including STDERR.
-      result = `#{"#{args.join(' ')} 2>&1"} `
+      result = `#{"#{args.script} 2>&1"} `
       result_output = handle_result(result, init_time)
       msg.edit(result_output)
     end

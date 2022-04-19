@@ -34,19 +34,14 @@ module YuukiBot
 
     YuukiBot.crb.add_command(
       :qr,
-      min_args: 1,
+      arg_format: {
+        contents: { name: 'contents', description: 'Value to encode for QR', type: :remaining,
+                    max_char: 1000 }
+      },
       catch_errors: true
     ) do |event, args|
-      content = args.join(' ')
-      # "Sanitize" qr code content
-      if content.length > 1000
-        event.respond("#{YuukiBot.config['emoji_error']} " \
-                      'QR codes have a limit of 1000 characters. ' \
-                      "You went over by #{content.length - 1000}!")
-        next
-      end
-
       filename = 'qr.png'
+      content = args.contents
 
       # Force the size to be 512x512 px.
       qr_code = RQRCode::QRCode.new(content)

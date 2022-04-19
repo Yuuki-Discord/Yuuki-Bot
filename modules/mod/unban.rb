@@ -8,12 +8,17 @@ module YuukiBot
       :unban,
       max_args: 1,
       server_only: true,
-      required_permissions: [:ban_members]
+      required_permissions: [:ban_members],
+      arg_format: {
+        user: { name: 'user', description: 'User to unban', type: :user }
+      }
     ) do |event, args|
       error = YuukiBot.config['emoji_error']
 
-      target_id = args[0]
-      # Only one ID should match.
+      target_user = args.user
+      target_id = target_user.id
+
+      # Ensure the user in question is banned.
       target_group = event.server.bans.select do |x|
         x.user.id.to_s == target_id
       end
@@ -21,8 +26,6 @@ module YuukiBot
         event.respond("#{error} Failed to find ban for user with ID `#{target_id}!`")
         next
       end
-
-      target_user = target_group[0].user
 
       begin
         event.server.unban(target_user)
