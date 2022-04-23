@@ -35,22 +35,25 @@ module YuukiBot
     !! If you\'re under Docker, try \'docker-compose run yuuki ruby config.rb\'    !!'
 
     # Allow a basic setup without a config file.
-    if ENV['BOT_TOKEN'] && ENV['BOT_CLIENTID'] && ENV['BOT_OWNER'] && ENV['BOT_PREFIX']
+    if ENV.fetch('BOT_TOKEN',
+                 nil) && ENV.fetch('BOT_CLIENTID',
+                                   nil) && ENV.fetch('BOT_OWNER',
+                                                     nil) && ENV.fetch('BOT_PREFIX', nil)
       puts '[WARN] Valid environment variables detected. Falling back to these values.'
 
       # Prefill the defaults from the sample config, then override the required values.
       @config = load_config_yml('config/config.sample.yml')
-      @config['token'] = ENV['BOT_TOKEN']
-      @config['client_id'] = ENV['BOT_CLIENTID']
-      @config['master_owner'] = ENV['BOT_OWNER']
-      @config['prefixes'] = [ENV['BOT_PREFIX']]
+      @config['token'] = ENV.fetch('BOT_TOKEN', nil)
+      @config['client_id'] = ENV.fetch('BOT_CLIENTID', nil)
+      @config['master_owner'] = ENV.fetch('BOT_OWNER', nil)
+      @config['prefixes'] = [ENV.fetch('BOT_PREFIX', nil)]
     else
       puts '[ERROR] No suitable environment variables found, exiting.'
       exit(1)
     end
   end
 
-  if ENV['REDIS_DOCKER_OVERRIDE'] == 'true'
+  if ENV.fetch('REDIS_DOCKER_OVERRIDE', nil) == 'true'
     @config['redis_host'] = 'redis'
     @config['redis_port'] = 6379
   end
