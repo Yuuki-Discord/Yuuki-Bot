@@ -35,10 +35,9 @@ module YuukiBot
     !! If you\'re under Docker, try \'docker-compose run yuuki ruby config.rb\'    !!'
 
     # Allow a basic setup without a config file.
-    if ENV.fetch('BOT_TOKEN',
-                 nil) && ENV.fetch('BOT_CLIENTID',
-                                   nil) && ENV.fetch('BOT_OWNER',
-                                                     nil) && ENV.fetch('BOT_PREFIX', nil)
+    if ENV.fetch('BOT_TOKEN', nil) &&
+       ENV.fetch('BOT_CLIENTID', nil) &&
+       ENV.fetch('BOT_OWNER', nil) && ENV.fetch('BOT_PREFIX', nil)
       puts '[WARN] Valid environment variables detected. Falling back to these values.'
 
       # Prefill the defaults from the sample config, then override the required values.
