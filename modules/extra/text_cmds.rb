@@ -50,12 +50,15 @@ module YuukiBot
       text_attack_commands = %w[lart insult]
       text_attack_commands.each do |x|
         YuukiBot.crb.add_command(
-          x.to_sym
+          x.to_sym,
+          arg_format: {
+            user: { name: 'user', description: "User to #{x}", type: :user,
+                    optional: true, default: :current_user }
+          }
         ) do |event, args|
           result = File.readlines("text/Attack/Text/#{x}.txt").sample.chomp
           if /{user}/ =~ result
-            result = result.gsub('{user}',
-                                 Extra.calculate_mention(event, args))
+            result = result.gsub('{user}', args.user.name)
           end
 
           event.respond("\\*#{result}*")

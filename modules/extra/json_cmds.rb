@@ -13,12 +13,17 @@ module YuukiBot
       json_food_commands.each do |x|
         YuukiBot.crb.add_command(
           x.to_sym,
-          triggers: [x, "give #{x} to ", "give a #{x} to "]
+          triggers: [x, "give #{x} to ", "give a #{x} to "],
+          group: :food,
+          text_subcommand: true,
+          arg_format: {
+            user: { name: 'user', description: "User to give #{x} to", type: :user,
+                    optional: true, default: :current_user }
+          }
         ) do |event, args|
           json = JSON.parse(File.read("text/Food/#{x}.json"))
 
-          variables = {}
-          variables['user'] = Extra.calculate_mention(event, args)
+          variables = { 'user' => args.user.name }
           textgen = Textgen.generate_string(json['templates'], json['parts'], variables)
           event.respond("\\*#{textgen}*")
         end
@@ -30,11 +35,18 @@ module YuukiBot
 
       json_attack_commands = %w[slap compliment strax present]
       json_attack_commands.each do |x|
-        YuukiBot.crb.add_command(x.to_sym) do |event, args|
+        YuukiBot.crb.add_command(
+          x.to_sym,
+          group: :attack,
+          text_subcommand: true,
+          arg_format: {
+            user: { name: 'user', description: "User to give a #{x} to", type: :user,
+                    optional: true, default: :current_user }
+          }
+        ) do |event, args|
           json = JSON.parse(File.read("text/Attack/JSON/#{x}.json"))
 
-          variables = {}
-          variables['user'] = Extra.calculate_mention(event, args)
+          variables = { 'user' => args.user.name }
           textgen = Textgen.generate_string(json['templates'], json['parts'], variables)
           event.respond("\\*#{textgen}*")
         end
@@ -93,13 +105,19 @@ module YuukiBot
       end
       puts 'Added fun command for catgifs!' if YuukiBot.config['verbose']
 
-      YuukiBot.crb.add_command(:fight) do |event, args|
+      YuukiBot.crb.add_command(
+        :fight,
+        arg_format: {
+          user: { name: 'user', description: 'User to fight', type: :user,
+                  optional: true, default: :current_user }
+        }
+      ) do |event, args|
         json = JSON.parse(File.read('text/Attack/JSON/fight.json'))
 
         variables = {}
         variables['user'] = event.user.name
         # The user can fight the user. True ingenuity.
-        variables['target'] = Extra.calculate_mention(event, args)
+        variables['target'] = args.user.name
         response = Textgen.generate_string(json['templates'],
                                            json['parts'], variables)
 
