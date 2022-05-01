@@ -57,7 +57,7 @@ module YuukiBot
     @config['redis_port'] = 6379
   end
 
-  default_haste_instance = 'https://hastes.erisa.uk'
+  default_haste_instance = 'https://haste.erisa.uk'
   if @config['hastebin_instance_url'].nil?
     puts "No Hastebin instance configured. Using #{default_haste_instance}."
     @config['hastebin_instance_url'] = default_haste_instance
