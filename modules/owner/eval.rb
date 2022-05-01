@@ -65,7 +65,7 @@ module YuukiBot
 
         output += "#{YuukiBot.config['emoji_warning']}" \
                   'Your output exceeded the character limit! ' \
-                  "(`#{result.length - 1984}`/`1984`)\n" \
+                  "(`#{result.length}`/`1984`)\n" \
                   "You can view the result here: #{uploader_domain}/raw/#{uploader_file}\n"
       else
         output += "Output: ```\n#{result}```"
