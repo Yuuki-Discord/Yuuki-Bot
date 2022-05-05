@@ -92,7 +92,7 @@ donate_urls:
 
 # If your eval/bash/etc output is larger than what can be sent on Discord,
 # it'll be uploaded to the Hastebin instance specified below.
-hastebin_instance_url: https://paste.erisa.moe
+hastebin_instance_url: https://haste.erisa.uk
 
 # API key for the bot listing service https://discord.bots.gg
 discord_bots_api_key: ''
