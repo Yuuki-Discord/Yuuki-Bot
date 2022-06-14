@@ -1,17 +1,11 @@
-GIT
-  remote: https://github.com/Yuuki-Discord/commandrb.git
-  revision: 7759ec5085a18d800c86efa306084f163c85a34f
-  ref: v0.5.0
-  specs:
-    commandrb (0.4.8)
-      discordrb (~> 3.1, >= 3.1.0)
-
 GEM
   remote: https://rubygems.org/
   specs:
     ast (2.4.2)
     chunky_png (1.4.0)
     coderay (1.1.3)
+    commandrb (0.5.0)
+      discordrb (~> 3.1, >= 3.1.0)
     debase (0.2.5.beta2)
       debase-ruby_core_source (>= 0.10.12)
     debase-ruby_core_source (0.10.16)
@@ -98,7 +92,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  commandrb!
+  commandrb
   debase (~> 0.2.5.beta2)
   discordrb
   fastri
