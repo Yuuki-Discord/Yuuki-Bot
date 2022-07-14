@@ -103,7 +103,6 @@ discord_bots_api_key: ''
 parse_self: true
 parse_bots: false
 prefix_type: always
-type: :bot
 catch_errors: true
 
 # Debug options, only change if contributing to Yuuki-Bot or making your own fork.

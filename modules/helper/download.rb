@@ -12,8 +12,8 @@ module YuukiBot
 
       path = "#{folder}/#{name}".gsub('//', '/')
 
-      FileUtils.mkdir(folder) unless File.exist?(folder)
-      FileUtils.rm(path) if File.exist?(path)
+      FileUtils.mkdir_p(folder)
+      FileUtils.rm_rf(path)
 
       IO.copy_stream(URI.open(url), path)
       path

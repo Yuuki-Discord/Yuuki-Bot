@@ -89,7 +89,6 @@ module YuukiBot
       parse_bots: @config['parse_bots'],
       catch_errors: @config['catch_errors'],
       selfbot: false,
-      type: @config['type'],
       game: @config['game'],
       owners: @config['owners'],
 
