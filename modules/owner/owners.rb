@@ -5,7 +5,9 @@ module YuukiBot
   module Owner
     YuukiBot.crb.add_command(
       :owners,
-      triggers: ['owners']
+      description: 'Show who owns the bot instance.',
+      triggers: ['owners'],
+      text_only: true
     ) do |event|
       event << 'This bot instance is managed/owned by the following users. ' \
                'If you have any questions or concerns, please DM me or view my help command!'

@@ -5,8 +5,10 @@ module YuukiBot
   module Owner
     YuukiBot.crb.add_command(
       :nick,
+      description: 'Change the nickname of the bot.',
       group: :config,
       owners_only: true,
+      text_only: true,
       arg_format: {
         nickname: { name: 'nickname', description: 'The nickname the bot should use',
                     type: :string }
@@ -20,8 +22,10 @@ module YuukiBot
 
     YuukiBot.crb.add_command(
       :avatar,
+      description: 'Change the avatar of the bot.',
       group: :config,
       owners_only: true,
+      text_only: true,
       arg_format: {
         url: { name: 'url', description: 'The URL of the avatar to set',
                type: :string }
@@ -33,8 +37,10 @@ module YuukiBot
 
     YuukiBot.crb.add_command(
       :game,
+      description: 'Change the game of the bot.',
       group: :config,
       owners_only: true,
+      text_only: true,
       arg_format: {
         game: { name: 'game', description: 'The contents of the game to set',
                 type: :string }
@@ -46,8 +52,10 @@ module YuukiBot
 
     YuukiBot.crb.add_command(
       :username,
+      description: 'Change the username of the bot.',
       group: :config,
       owners_only: true,
+      text_only: true,
       arg_format: {
         username: { name: 'username', description: 'The name to rename this bot to',
                     type: :string }

@@ -5,6 +5,8 @@ module YuukiBot
   module Owner
     YuukiBot.crb.add_command(
       :ignore,
+      description: 'Ignore a user from the bot. Owner only.',
+      text_only: true,
       triggers: %w[ignore],
       owners_only: true
     ) do |event, args|

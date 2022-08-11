@@ -7,6 +7,11 @@ module YuukiBot
     YuukiBot.crb.add_command(
       :clear,
       triggers: %w[clear clean],
+      description: 'Clear messages from the current channel. Requires permission.',
+      arg_format: {
+        target: { name: 'count', description: 'Number of messages to delete.', type: :number,
+                  optional: false }
+      },
       server_only: true,
       required_permissions: [:manage_messages],
       owner_override: false,

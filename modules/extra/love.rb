@@ -6,7 +6,13 @@ module YuukiBot
     YuukiBot.crb.add_command(
       :love,
       triggers: ['love', 'ship '],
-      min_args: 1
+      min_args: 1,
+      arg_format: {
+        target: { name: 'target', description: 'User or object to ship with', type: :string,
+                  optional: false },
+        other: { name: 'other', description: 'If not yourself, the other part of the ship',
+                 type: :string, optional: true }
+      }
     ) do |event, args|
       if args.length == 1
         first = event.user.name

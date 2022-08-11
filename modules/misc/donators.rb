@@ -5,7 +5,9 @@ module YuukiBot
   module Misc
     YuukiBot.crb.add_command(
       :donators,
-      owners_only: true
+      owners_only: true,
+      description: 'Manage the donators added to the bot. Owner only.',
+      text_only: true
     ) do |event, args|
       if args.empty?
         # Treat as normal donate.
@@ -58,7 +60,8 @@ module YuukiBot
     YuukiBot.crb.add_command(
       :donate,
       triggers: ['donate', 'donateinfo', 'how do i donate', 'how do i donate?', 'how do I donate',
-                 'how do I donate?', 'doante', 'donut']
+                 'how do I donate?', 'doante', 'donut'],
+      description: 'Shows the amazing people who donated to help keep this bot alive <3'
     ) do |event|
       common_donate(event)
     end

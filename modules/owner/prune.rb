@@ -5,6 +5,7 @@ module YuukiBot
   module Owner
     YuukiBot.crb.add_command(
       :prune,
+      description: "Delete Yuuki's recent messages.",
       triggers: %w[prune cleanup purge stfu],
       arg_format: {
         delete_num: { name: 'num', description: 'Number of messages to delete',

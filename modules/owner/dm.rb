@@ -27,7 +27,9 @@ module YuukiBot
 
     YuukiBot.crb.add_command(
       :reply,
+      description: 'Reply to a DM.',
       owners_only: true,
+      text_only: true,
       arg_format: {
         channel: { name: 'channel', description: 'Channel to DM', type: :channel },
         reply: { name: 'reply', description: 'Reply contents', type: :remaining }

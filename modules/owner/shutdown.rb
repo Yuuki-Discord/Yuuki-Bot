@@ -7,6 +7,7 @@ module YuukiBot
       :shutdown,
       triggers: ['shutdown', 'bye', 'die', 'go away'],
       owners_only: true,
+      text_only: true,
       description: 'Shuts down the bot. Owner only.',
       catch_errors: false
     ) do |event|
@@ -20,6 +21,7 @@ module YuukiBot
       triggers: ['reboot', 'restart', 'reload', 'gtfo', 'machine 🅱roke',
                  '🅱achine 🅱roke'],
       owners_only: true,
+      text_only: true,
       description: 'Shuts down the bot. Owner only.',
       catch_errors: false
     ) do |event|

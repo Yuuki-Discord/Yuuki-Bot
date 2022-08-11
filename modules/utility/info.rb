@@ -6,6 +6,7 @@ module YuukiBot
   module Utility
     YuukiBot.crb.add_command(
       :avatar,
+      description: "Show someone's avatar.",
       arg_format: {
         user: { name: 'user', description: 'User to retrieve info for', type: :user,
                 optional: true, default: :current_user }
@@ -36,6 +37,7 @@ module YuukiBot
 
     YuukiBot.crb.add_command(
       :info,
+      description: 'Show information about someone.',
       arg_format: {
         user: { name: 'user', description: 'User to retrieve info for', type: :user,
                 optional: true, default: :current_user }
@@ -82,6 +84,7 @@ module YuukiBot
 
     YuukiBot.crb.add_command(
       :ping,
+      description: 'Ping! Is Yuuki awake?',
       triggers: %w[ping pong peng pung pyng pang 🅱ing]
     ) do |event|
       return_message = event.respond('Pinging..!')

@@ -6,6 +6,7 @@ module YuukiBot
   module Mod
     YuukiBot.crb.add_command(
       :unban,
+      description: 'Unban a user from the server, if you have permission.',
       max_args: 1,
       server_only: true,
       required_permissions: [:ban_members],

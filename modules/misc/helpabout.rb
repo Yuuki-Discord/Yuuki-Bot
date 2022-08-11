@@ -5,7 +5,9 @@ module YuukiBot
   module Misc
     YuukiBot.crb.add_command(
       :help,
-      triggers: %w[help support commands invite]
+      triggers: %w[help support commands invite],
+      slash_trigger: 'about-yuuki',
+      description: 'Shows information about me!'
     ) do |event, _args|
       event << "Hello! I am #{event.bot.profile.username} `#{YuukiBot.version}`"
       event << if YuukiBot.config['show_help']

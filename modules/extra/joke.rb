@@ -5,6 +5,7 @@ module YuukiBot
   module Extra
     YuukiBot.crb.add_command(
       :dance,
+      description: 'Make your text dance!',
       arg_format: {
         text: { name: 'text', description: 'Text to dance', type: :remaining }
       }
@@ -15,7 +16,8 @@ module YuukiBot
 
     YuukiBot.crb.add_command(
       :notice,
-      min_args: 1
+      min_args: 1,
+      description: 'Make Yuuki-senpai notice you.'
     ) do |event, args|
       target_guess = event.bot.parse_mention(args.join(' '))
       whom = if args.nil? || (args == []) || (args[0] == 'me')

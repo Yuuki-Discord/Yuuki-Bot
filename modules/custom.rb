@@ -6,7 +6,8 @@ module YuukiBot
       require_relative 'config/custom/custom'
       unless CUSTOM_TEXT.nil? || CUSTOM_TEXT == {}
         CUSTOM_TEXT.each do |name, response|
-          YuukiBot.crb.add_command(name.to_sym) do |event|
+          YuukiBot.crb.add_command(name.to_sym,
+                                   description: "Custom text command #{name}") do |event|
             event.respond(response)
           end
           puts "Added custom command: #{name}"
@@ -15,7 +16,8 @@ module YuukiBot
 
       unless CUSTOM_IMAGE.nil? || CUSTOM_IMAGE == {}
         CUSTOM_IMAGE.each do |name, image|
-          YuukiBot.crb.add_command(name.to_sym) do |event|
+          YuukiBot.crb.add_command(name.to_sym,
+                                   description: "Custom image command #{name}") do |event|
             event.channel.send_file(File.new("./config/custom/#{image}"))
           end
           puts "Added custom command: #{name}"
@@ -28,7 +30,7 @@ module YuukiBot
     end
     unless yml_commands.nil? || yml_commands[:text].nil? || yml_commands[:text] == {}
       yml_commands[:text].each do |name, response|
-        YuukiBot.crb.add_command(name.to_sym) do |event|
+        YuukiBot.crb.add_command(name.to_sym, description: "Custom text command #{name}") do |event|
           event.respond(response)
         end
         puts "Added custom command: #{name}"
@@ -37,7 +39,8 @@ module YuukiBot
 
     unless yml_commands.nil? || yml_commands[:image].nil? || yml_commands[:image] == {}
       yml_commands[:image].each do |name, image|
-        YuukiBot.crb.add_command(name.to_sym) do |event|
+        YuukiBot.crb.add_command(name.to_sym,
+                                 description: "Custom image command #{name}") do |event|
           event.channel.send_file(File.new("./config/custom/#{image}"))
         end
         puts "Added custom command: #{name}"

@@ -6,6 +6,8 @@ module YuukiBot
   module Owner
     YuukiBot.crb.add_command(
       :raweval,
+      description: 'Evaluate code.',
+      text_only: true,
       triggers: ['raweval '],
       owners_only: true,
       arg_format: {

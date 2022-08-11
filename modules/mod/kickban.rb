@@ -6,6 +6,7 @@ module YuukiBot
   module Mod
     YuukiBot.crb.add_command(
       :kick,
+      description: 'Kick a user from the server, if you have permission.',
       required_permissions: [:kick_members],
       owner_override: false,
       server_only: true,
@@ -29,7 +30,7 @@ module YuukiBot
       end
 
       # Attempt to warn the user.
-      author = event.message.author
+      author = event.user
       user_message = "You have been kicked from the server **#{event.server.name}** " \
                      "by #{author.mention} | **#{author.display_name}**\n" \
                      "They gave the following reason: ``#{reason}``"
@@ -51,6 +52,7 @@ module YuukiBot
 
     YuukiBot.crb.add_command(
       :ban,
+      description: 'Ban a user from the server, if you have permission.',
       triggers: %w[ban],
       required_permissions: [:ban_members],
       owner_override: false,

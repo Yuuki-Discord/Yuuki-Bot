@@ -34,6 +34,7 @@ module YuukiBot
 
     YuukiBot.crb.add_command(
       :qr,
+      description: 'Generate a QR code from text.',
       arg_format: {
         contents: { name: 'contents', description: 'Value to encode for QR', type: :remaining,
                     max_char: 1000 }

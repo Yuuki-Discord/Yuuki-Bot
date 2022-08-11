@@ -6,6 +6,7 @@ module YuukiBot
   module Utility
     YuukiBot.crb.add_command(
       :stubs,
+      text_only: true,
       triggers: %w[zalgo command angry space
                    tell randommovie owner dump translate]
     ) do |event|

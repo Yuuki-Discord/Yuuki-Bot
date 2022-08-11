@@ -14,6 +14,7 @@ module YuukiBot
         YuukiBot.crb.add_command(
           x.to_sym,
           triggers: [x, "give #{x} to ", "give a #{x} to "],
+          description: "Gives #{x} to a user!",
           group: :food,
           text_subcommand: true,
           arg_format: {
@@ -38,6 +39,7 @@ module YuukiBot
         YuukiBot.crb.add_command(
           x.to_sym,
           group: :attack,
+          description: "Give someone a #{x}!",
           text_subcommand: true,
           arg_format: {
             user: { name: 'user', description: "User to give a #{x} to", type: :user,
@@ -53,7 +55,7 @@ module YuukiBot
         puts "Added attack command for #{x}!" if YuukiBot.config['verbose']
       end
 
-      YuukiBot.crb.add_command(:randomquestion) do |event|
+      YuukiBot.crb.add_command(:randomquestion, description: 'Give a random question!') do |event|
         json = JSON.parse(File.read('text/Other/JSON/randomquestion.json'))
 
         variables = {}
@@ -63,7 +65,8 @@ module YuukiBot
       end
       puts 'Added fun command for random question!' if YuukiBot.config['verbose']
 
-      YuukiBot.crb.add_command(:nextzeldagame) do |event|
+      YuukiBot.crb.add_command(:nextzeldagame,
+                               description: "What's the next Zelda game?") do |event|
         json = JSON.parse(File.read('text/Other/JSON/nextzeldagame.json'))
 
         prng = Random.new
@@ -75,28 +78,29 @@ module YuukiBot
       end
       puts 'Added fun command for nextzeldagame!' if YuukiBot.config['verbose']
 
-      YuukiBot.crb.add_command(:wouldyourather) do |event|
+      YuukiBot.crb.add_command(:wouldyourather,
+                               description: 'Shows a Would you Rather question') do |event|
         json_string = URI.open('https://www.rrrather.com/botapi').read
         array = JSON.parse(json_string, symbolize_names: true)
         event.respond("#{array[:title]}: #{array[:choicea].rstrip} OR #{array[:choiceb].rstrip}")
       end
       puts 'Added fun command for wouldyourather!' if YuukiBot.config['verbose']
 
-      YuukiBot.crb.add_command(:fact) do |event|
+      YuukiBot.crb.add_command(:fact, description: 'Gives a trivia question!') do |event|
         types = %w[trivia math date year]
         type = types.sample
         event.respond(URI.open("http://numbersapi.com/random/#{type}").read)
       end
       puts 'Added fun command for fact!' if YuukiBot.config['verbose']
 
-      YuukiBot.crb.add_command(:cats) do |event, _args|
+      YuukiBot.crb.add_command(:cats, description: 'Gives a fact about cats.') do |event|
         json_string = URI.open('https://catfact.ninja/fact').read
         array = JSON.parse(json_string, symbolize_names: true)
         event.respond(array[:fact].to_s)
       end
 
       puts 'Added fun command for cats!' if YuukiBot.config['verbose']
-      YuukiBot.crb.add_command(:catgifs) do |event|
+      YuukiBot.crb.add_command(:catgifs, description: 'Cat gifs!!!') do |event|
         gif_url = nil
         URI.open('https://marume.herokuapp.com/random.gif') do |resp|
           gif_url = resp.base_uri.to_s
@@ -107,6 +111,7 @@ module YuukiBot
 
       YuukiBot.crb.add_command(
         :fight,
+        description: 'Fight a user!',
         arg_format: {
           user: { name: 'user', description: 'User to fight', type: :user,
                   optional: true, default: :current_user }
