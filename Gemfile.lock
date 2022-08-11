@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/Yuuki-Discord/commandrb.git
-  revision: e40383331e02cc86723ffa2e2a65caebab97a95d
+  revision: 927ecc2ebce73c83f2ff8a1a331db535f4cc504a
   branch: main
   specs:
     commandrb (0.4.8)

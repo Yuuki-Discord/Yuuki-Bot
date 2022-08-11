@@ -7,5 +7,5 @@ module YuukiBot
     attr_reader :version
   end
   @version = `git describe --long --tags --dirty --always`.strip
-  @version = 'v4.5-unknown' unless $CHILD_STATUS.success?
+  @version = 'v4.5.1-unknown' unless $CHILD_STATUS.success?
 end
