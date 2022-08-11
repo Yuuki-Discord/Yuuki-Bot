@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/Yuuki-Discord/commandrb.git
-  revision: bc68bd5a127d6385d374142d786a2c86bf536c21
+  revision: e40383331e02cc86723ffa2e2a65caebab97a95d
   branch: main
   specs:
     commandrb (0.4.8)
@@ -117,4 +117,4 @@ DEPENDENCIES
   rumoji
 
 BUNDLED WITH
-   2.3.3
+   2.3.15
