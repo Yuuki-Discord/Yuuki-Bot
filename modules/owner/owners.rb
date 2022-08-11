@@ -25,6 +25,7 @@ module YuukiBot
 
     YuukiBot.crb.add_command(
       :botowners,
+      description: 'Manipulates the lists of owners. Owner only.',
       owners_only: true,
       arg_format: {
         subcommand: { name: 'subcommand', description: 'Command to run', type: :string,

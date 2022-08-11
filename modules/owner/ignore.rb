@@ -37,6 +37,7 @@ module YuukiBot
 
     YuukiBot.crb.add_command(
       :unignore,
+      description: 'Unignores a user from the bot. Owner only.',
       owners_only: true
     ) do |event, args|
       if args == []
