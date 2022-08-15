@@ -32,7 +32,7 @@ module YuukiBot
       # We don't want black (0x000000) if the user has no role colors.
       # Let's leave that to Discord.
       avy_embed.color = color unless color == -1
-      event.channel.send_message('', false, avy_embed)
+      event.send_embed('', avy_embed)
     end
 
     YuukiBot.crb.add_command(
@@ -46,19 +46,19 @@ module YuukiBot
     ) do |event, args|
       user = args.user
       member = user.on(event.server)
-      ignoreserver = true if member.nil?
+      ignore_server = member.nil?
 
-      donatorlist = REDIS.get('donators')
+      donator_list = REDIS.get('donators')
 
-      donator = donatorlist.nil? ? false : JSON.parse(donatorlist.include?(user.id))
+      donator = donator_list.nil? ? false : JSON.parse(donator_list.include?(user.id))
 
-      event.channel.send_embed("__Information about **#{user.distinct}**__") do |embed|
+      event.send_embed("__Information about **#{user.distinct}**__") do |embed|
         embed.colour = Helper.colour_from_user(member, 0xe06b2)
         embed.thumbnail = Discordrb::Webhooks::EmbedThumbnail.new(
           url: Helper.avatar_url(user)
         )
         embed.author = Discordrb::Webhooks::EmbedAuthor.new(
-          name: "#{donator ? ' 👑' : ' 👥'} #{ignoreserver ? user.name : member.display_name}",
+          name: "#{donator ? ' 👑' : ' 👥'} #{ignore_server ? user.name : member.display_name}",
           url: Helper.avatar_url(user)
         )
         embed.footer = Discordrb::Webhooks::EmbedFooter.new(
@@ -76,7 +76,7 @@ module YuukiBot
         )
         embed.add_field(
           name: 'Joined Server:',
-          value: ignoreserver ? '[N/A]' : "#{member.joined_at.getutc.asctime} UTC",
+          value: ignore_server ? '[N/A]' : "#{member.joined_at.getutc.asctime} UTC",
           inline: true
         )
       end
@@ -85,9 +85,10 @@ module YuukiBot
     YuukiBot.crb.add_command(
       :ping,
       description: 'Ping! Is Yuuki awake?',
+      text_only: true,
       triggers: %w[ping pong peng pung pyng pang 🅱ing]
     ) do |event|
-      return_message = event.respond('Pinging..!')
+      return_message = event.respond 'Pinging..!'
       ping = (return_message.id - event.message.id) >> 22
       choose = %w[i o e u y a]
       return_message.edit("P#{choose.sample}ng! (`#{ping}ms`)")
