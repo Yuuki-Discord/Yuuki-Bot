@@ -116,7 +116,8 @@ module YuukiBot
     end
 
     YuukiBot.crb.add_command(
-      :uptime
+      :uptime,
+      description: 'Shows how long the bot has running.'
     ) do |event|
       uptime_ms = (Time.now - YuukiBot.launch_time) * 1000
 

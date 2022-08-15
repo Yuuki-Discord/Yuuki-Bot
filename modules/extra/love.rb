@@ -5,6 +5,7 @@ module YuukiBot
   module Extra
     YuukiBot.crb.add_command(
       :love,
+      description: 'They love me... they love me not. Find out!',
       triggers: ['love', 'ship '],
       min_args: 1,
       arg_format: {

@@ -44,7 +44,8 @@ module YuukiBot
       text_attack_commands = %w[nk]
       text_attack_commands.each do |x|
         YuukiBot.crb.add_command(
-          x.to_sym
+          x.to_sym,
+          description: 'Get your North Korean news, fresh from the source'
         ) do |event, _args|
           result = File.readlines("text/Attack/Text/#{x}.txt").sample.chomp
 
