@@ -51,21 +51,6 @@ module YuukiBot
     end
 
     YuukiBot.crb.add_command(
-      :username,
-      description: 'Change the username of the bot.',
-      group: :config,
-      owners_only: true,
-      text_only: true,
-      arg_format: {
-        username: { name: 'username', description: 'The name to rename this bot to',
-                    type: :string }
-      }
-    ) do |event, args|
-      event.bot.profile.name = args.username
-      event.success "Username set to `#{args.username}`!"
-    end
-
-    YuukiBot.crb.add_command(
       :status,
       group: :config,
       owners_only: true,
