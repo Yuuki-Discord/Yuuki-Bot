@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/Yuuki-Discord/commandrb.git
-  revision: 25045e3ebd10b6f54420beb60deaebe8732c0cff
+  revision: 03b0ebd75a4ef809813276e045a189116d0c5a52
   branch: intents-hotfix
   specs:
     commandrb (0.4.8)
