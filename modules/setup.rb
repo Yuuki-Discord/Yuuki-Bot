@@ -92,6 +92,7 @@ module YuukiBot
       type: @config['type'],
       game: @config['game'],
       owners: @config['owners'],
+      intents: :unprivileged, 
 
       typing_default: @config['typing_default'],
       ready: proc { |event|
