@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 gem 'commandrb'
-gem 'discordrb'
+gem 'discordrb', '>= 3.5.0'
 gem 'haste'
 
 gem 'rainbow'
