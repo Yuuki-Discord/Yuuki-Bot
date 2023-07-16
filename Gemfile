@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 source 'https://rubygems.org'
-gem 'commandrb'
+gem 'commandrb', git: 'https://github.com/Yuuki-Discord/commandrb.git', branch: 'intents-hotfix'
 gem 'discordrb', '>= 3.5.0'
 gem 'haste'
 
