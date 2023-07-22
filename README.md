@@ -1,7 +1,8 @@
 # Yuuki-Bot
 Free and open-source bot for [Discord](https://discordapp.com).
 
-> **Warning**: **Yuuki is not actively maintained. Only security and critical bug fixes will be made.**
+> **Warning**\
+> **Yuuki is not actively maintained. Only security and critical bug fixes will be made.**
 
 # Usage
 You can invite the [publicly usable version of the bot](https://erisa.link/yuukibot) or [host your own version](#self-hosting) to gain full control and access to owner commands.  
