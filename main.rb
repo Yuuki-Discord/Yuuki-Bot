@@ -34,7 +34,7 @@ module YuukiBot
 
   module_dirs = %w[owner helper logging misc mod statistics utility]
   module_dirs.each do |dir|
-    Dir["modules/#{dir}/*.rb"].sort.each do |r|
+    Dir["modules/#{dir}/*.rb"].each do |r|
       require_relative r
       puts "Loaded: #{r}" if @config['verbose']
     end
@@ -46,7 +46,7 @@ module YuukiBot
   # Load Extra Commands if enabled.
   if YuukiBot.config['extra_commands']
     puts 'Loading: Extra commands...' if @config['verbose']
-    Dir['modules/extra/*.rb'].sort.each do |r|
+    Dir['modules/extra/*.rb'].each do |r|
       require_relative r
       puts "Loaded: #{r}" if @config['verbose']
     end

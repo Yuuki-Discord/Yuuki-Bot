@@ -38,11 +38,7 @@ module YuukiBot
         # We can only potentially bulk-delete messages by 100 at a time.
         # Set our current loop's artificial limit.
         # See https://discordapp.com/developers/docs/resources/channel#bulk-delete-messages
-        to_clear = if clear_num > 100
-                     100
-                   else
-                     clear_num
-                   end
+        to_clear = [clear_num, 100].min
 
         # Sort messages between being available for bulk and manual per-message deletion.
         event.channel.history(to_clear).each do |msg|

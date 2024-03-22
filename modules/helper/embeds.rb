@@ -24,8 +24,8 @@ module YuukiBot
       username = 'Unknown User' if username.nil?
       Discordrb::Webhooks::Embed.new(
         colour: colour || color,
-        image: Discordrb::Webhooks::EmbedImage.new(url: url),
-        author: Discordrb::Webhooks::EmbedAuthor.new(name: "Avatar for #{username}", url: url),
+        image: Discordrb::Webhooks::EmbedImage.new(url:),
+        author: Discordrb::Webhooks::EmbedAuthor.new(name: "Avatar for #{username}", url:),
         footer: Discordrb::Webhooks::EmbedFooter.new(text: "Avatar correct as of #{time}")
       )
     end
