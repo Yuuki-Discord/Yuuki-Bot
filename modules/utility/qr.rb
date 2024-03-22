@@ -12,7 +12,7 @@ module YuukiBot
       @filetype = ''
 
       def initialize(contents, filename = 'unknown', filetype = 'application/octet-stream')
-        super contents
+        super(contents)
 
         @filename = filename
         @filetype = filetype

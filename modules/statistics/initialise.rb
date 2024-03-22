@@ -5,7 +5,7 @@ module YuukiBot
     attr_accessor :running_statistics
 
     def self.require_services
-      Dir['./modules/statistics/services/*.rb'].sort.each do |r|
+      Dir['./modules/statistics/services/*.rb'].each do |r|
         require r
         puts "Loaded service: #{r}" if YuukiBot.config['verbose']
       end
@@ -47,7 +47,7 @@ module YuukiBot
       end
 
       # It's useless to run a timer if no services are added.
-      update_statistics bot unless @running_statistics.length.zero?
+      update_statistics bot unless @running_statistics.empty?
     end
 
     # Create a timer every 5 minutes to cycle through

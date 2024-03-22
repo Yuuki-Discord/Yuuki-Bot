@@ -6,7 +6,7 @@ module YuukiBot
     YuukiBot.crb.add_command(
       :set,
       code: proc { |event, args|
-        if args.length.zero?
+        if args.empty?
           # Let the default case handle as unknown.
           args[0] = ''
         end
@@ -72,7 +72,7 @@ module YuukiBot
     YuukiBot.crb.add_command(
       :reset,
       code: proc { |event, args|
-        if args.length.zero?
+        if args.empty?
           # Let the default case handle as unknown.
           args[0] = ''
         end

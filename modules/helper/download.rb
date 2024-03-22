@@ -12,8 +12,8 @@ module YuukiBot
 
       path = "#{folder}/#{name}".gsub('//', '/')
 
-      FileUtils.mkdir(folder) unless File.exist?(folder)
-      FileUtils.rm(path) if File.exist?(path)
+      FileUtils.mkdir_p(folder)
+      FileUtils.rm_f(path)
 
       IO.copy_stream(URI.open(url), path)
       path
@@ -21,7 +21,7 @@ module YuukiBot
 
     def self.upload_file(channel, filename)
       channel.send_file File.new([filename].sample)
-      puts "Uploaded `#{filename} to \##{channel.name}!" if YuukiBot.config['debug']
+      puts "Uploaded `#{filename} to ##{channel.name}!" if YuukiBot.config['debug']
     end
   end
 end
