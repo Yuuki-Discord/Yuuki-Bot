@@ -7,6 +7,9 @@
 ######################################
 AllCops:
   NewCops: enable
+  TargetRubyVersion: 3.1
+  SuggestExtensions: false
+
 
 Metrics/BlockLength:
   Enabled: false
@@ -49,3 +52,4 @@ Metrics/AbcSize:
 
 Metrics/PerceivedComplexity:
   Enabled: false
+
