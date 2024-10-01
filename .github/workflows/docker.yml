@@ -5,6 +5,9 @@ on:
   push:
     branches:
       - '*'
+  pull_request:
+    branches:    
+      - '**'        # matches every branch
 
 env:
   IMAGE_NAME: ghcr.io/yuuki-discord/yuuki-bot
