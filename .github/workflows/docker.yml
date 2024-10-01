@@ -100,13 +100,15 @@ jobs:
           pattern: digests-*
           merge-multiple: true
           path: /tmp/digests
-      - 
-        name: Login to GitHub Registry
+      -
+        name: Login to GitHub Container Registry
+        if: github.ref == 'refs/heads/main'
         uses: docker/login-action@v3
         with:
           registry: ghcr.io
-          username: ${{ github.repository_owner }}
-          password: ${{ secrets.PAT }}
+          username: yuuki-discord
+          password: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Docker meta
         id: meta
         uses: docker/metadata-action@v5
