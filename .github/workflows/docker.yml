@@ -90,7 +90,7 @@ jobs:
 
   merge:
     if: github.ref == 'refs/heads/main'
-    runs-on: ubicloud
+    runs-on: ubuntu-24.04
     needs:
       - docker
     steps:
