@@ -1,6 +1,6 @@
 {
     "recommendations": [
-        "rebornix.ruby",
+        "Shopify.ruby-lsp",
         "ms-azuretools.vscode-docker",
         "redhat.vscode-yaml",
         "icrawl.discord-vscode"
