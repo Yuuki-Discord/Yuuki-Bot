@@ -22,10 +22,10 @@ module YuukiBot
           next
         end
 
-        if !Helper.allowed_to_mod(event.bot.profile.on(event.server), member.on(event.server))
+        if !Helper.allowed_to_mod?(event.bot.profile.on(event.server), member.on(event.server))
           event << "#{error} I don't have permission to kick that user!"
           next
-        elsif !Helper.allowed_to_mod(event.user, member.on(event.server))
+        elsif !Helper.allowed_to_mod?(event.user, member.on(event.server))
           event << "#{error} You don't have permission to kick that user!"
           next
         end
@@ -71,10 +71,10 @@ module YuukiBot
           next
         end
 
-        if !Helper.allowed_to_mod(event.bot.profile.on(event.server), member.on(event.server))
+        if !Helper.allowed_to_mod?(event.bot.profile.on(event.server), member.on(event.server))
           event << "#{error} I don't have permission to ban that user!"
           next
-        elsif !Helper.allowed_to_mod(event.user, member.on(event.server))
+        elsif !Helper.allowed_to_mod?(event.user, member.on(event.server))
           event << "#{error} You don't have permission to ban that user!"
           next
         end

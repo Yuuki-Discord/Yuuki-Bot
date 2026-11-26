@@ -7,7 +7,7 @@ module YuukiBot
       template_base = template.sample
       # Parse variables
       variables&.each do |variable|
-        template_base = template_base.gsub("{#{variable[0]}}", (variable[1]).to_s)
+        template_base = template_base.gsub("{#{variable[0]}}", variable[1].to_s)
       end
       # Parse parts
       parts.each do |part|

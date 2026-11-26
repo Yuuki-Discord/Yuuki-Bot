@@ -11,7 +11,7 @@ module YuukiBot
       member.roles.max_by(&:position).position
     end
 
-    def self.allowed_to_mod(invoker, target)
+    def self.allowed_to_mod?(invoker, target)
       role_hierarchy(invoker) > role_hierarchy(target)
     end
   end

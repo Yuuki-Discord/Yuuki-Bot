@@ -11,8 +11,7 @@ puts 'Press any key to continue!'
 $stdin.getch
 
 # Load in a fresh state from the sample file. Hopefully this hasn't been changed
-file = File.open('config/config.sample.yml')
-configstring = file.read
+configstring = File.read('config/config.sample.yml')
 
 # Perform a basic check to make sure the values to replace are present.
 

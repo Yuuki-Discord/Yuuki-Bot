@@ -152,8 +152,8 @@ module YuukiBot
       hours = hours.floor
       days = days.floor
 
-      seconds = seconds.to_s.length == 1 ?  "0#{seconds}" : seconds.to_s
-      minutes = minutes.to_s.length == 1 ?  "0#{minutes}" : minutes.to_s
+      seconds = seconds.to_s.length == 1 ? "0#{seconds}" : seconds.to_s
+      minutes = minutes.to_s.length == 1 ? "0#{minutes}" : minutes.to_s
       hours = hours.to_s.length == 1 ? "0#{hours}" : hours.to_s
 
       "#{days} day#{'s' unless days == 1}, #{hours}:#{minutes}:#{seconds}"
