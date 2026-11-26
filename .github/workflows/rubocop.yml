@@ -8,13 +8,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Set up Ruby 3.1.2
-      uses: ruby/setup-ruby@v1
+    - uses: actions/checkout@v7.0.1
+    - name: Set up Ruby 3.3
+      uses: ruby/setup-ruby@v1.345.0
       with:
-        ruby-version: 3.1.2
+        ruby-version: 3.3
     - name: Cache gems
-      uses: actions/cache@v4
+      uses: actions/cache@v6.1.0
       with:
         path: vendor/bundle
         key: ${{ runner.os }}-rubocop-${{ hashFiles('**/Gemfile.lock') }}
